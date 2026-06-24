@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Wren Kitchens 与 TSH 公开合作案例的中文结构化摘要。">
+  <title>案例详情：Wren Kitchens 公开案例结构参考｜ForFlow 萬維流形</title>
+  <link rel="icon" href="assets/forflow-mark.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="case-detail-page">
+<a class="skip-link" href="#main">跳至主要内容</a>
+<svg class="ff-symbols" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.3 15.3 5.2 5.2"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+  <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+  <symbol id="i-agent" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M9 11h.01M15 11h.01M9 15h6M12 7V4m-2 0h4M3 12H1m22 0h-2"/></symbol>
+  <symbol id="i-training" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v4c2.8 2.2 7.2 2.2 10 0v-4M21 9v6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"/></symbol>
+  <symbol id="i-cases" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M8 5V3h8v2M3 10h18M9 14h6"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M14 14c3.5 0 6 2.2 6 6"/></symbol>
+  <symbol id="i-customer" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-marketing" viewBox="0 0 24 24"><path d="M4 13v-2l12-5v12L4 13Z"/><path d="M7 14v5h4l-1-5M19 9c1 1 1 5 0 6"/></symbol>
+  <symbol id="i-knowledge" viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"/><path d="M9 19h6M10 15v2h4v-2M4 8H2m20 0h-2M5 3 3.5 1.5M19 3l1.5-1.5"/></symbol>
+  <symbol id="i-operations" viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 12h4l3-4M13 12l3 4"/></symbol>
+  <symbol id="i-finance" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"/><path d="m3 8 6-5 6 7 6-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+  <symbol id="i-growth" viewBox="0 0 24 24"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-6M15 7h4v4"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"/><circle cx="3" cy="7" r="1.5"/><circle cx="21" cy="17" r="1.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6L12 2ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2.2A3.4 3.4 0 0 0 4 12a3.4 3.4 0 0 0 2 5.8A3 3 0 0 0 12 18V6a3 3 0 0 0-3-2Z"/><path d="M15 4a3 3 0 0 1 5 2.2A3.4 3.4 0 0 1 20 12a3.4 3.4 0 0 1-2 5.8A3 3 0 0 1 12 18V6a3 3 0 0 1 3-2ZM8 8h4m-5 5h5m4-5h-4m5 5h-5"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M8.5 15.5A7 7 0 1 1 15.5 15.5c-.9.7-1.5 1.3-1.5 2.5h-4c0-1.2-.6-1.8-1.5-2.5Z"/><path d="M12 6v4m-2 0h4"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><path d="M12 21V7M7 12l5-5 5 5M4 4h5M15 4h5"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2 11h10l3-7H6"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M13 5h7M16.5 2v6"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M4 19 15 8M13 4l7 7M3 20l4-1-3-3-1 4Z"/><path d="m15 3 6 6-2 2-6-6 2-2Z"/></symbol>
+  <symbol id="i-reference" viewBox="0 0 24 24"><path d="M6 3h10l3 3v15H6V3Z"/><path d="M16 3v4h4M9 11h7M9 15h7M9 19h4"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 5h16M12 5v14M8 19h8"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m4 17 5-5 4 4 2-2 5 5"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 10 4-3v10l-4-3v-4Z"/></symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 5c3 0 6-3 6-6M6 8c1 2 3 4 6 5M14 19l3-8 3 8M15 16h4"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></symbol>
+  <symbol id="i-speech" viewBox="0 0 24 24"><path d="M5 4h14v12H9l-4 4V4Z"/><path d="M9 8v4m3-6v8m3-5v3"/></symbol>
+  <symbol id="i-document" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-cost" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.7-1.7-1-3-1-2 0-3 .9-3 2s1.1 1.7 3 2 3 .9 3 2-1 2-3 2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"/></symbol>
+  <symbol id="i-requirements" viewBox="0 0 24 24"><path d="M5 4h14v16H5V4Z"/><path d="m8 9 1.5 1.5L12 8m2 2h3m-9 5 1.5 1.5L12 14m2 2h3"/></symbol>
+  <symbol id="i-experience" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6Z"/><path d="M9 19c.5 1.3 1.5 2 3 2s2.5-.7 3-2M12 7v4"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 13.5v-3l-2-.7-.6-1.5.9-1.9-2.1-2.1-1.9.9-1.5-.6L10.5 3h-3l-.7 2-1.5.6-1.9-.9-2.1 2.1.9 1.9-.6 1.5-2 .7v3l2 .7.6 1.5-.9 1.9 2.1 2.1 1.9-.9 1.5.6.7 2h3l.7-2 1.5-.6 1.9.9 2.1-2.1-.9-1.9.6-1.5 2-.7Z" transform="translate(2 0) scale(.82)"/></symbol>
+  <symbol id="i-risk" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+  <symbol id="i-security" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-leadership" viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10H4Z"/><path d="M9 20v-6h6v6M8 9h8"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M4 6h7v7H7c0 3-1 5-4 6 2-2 2-4 1-6V6Zm10 0h7v7h-4c0 3-1 5-4 6 2-2 2-4 1-6V6Z"/></symbol>
+</svg>
+
+<div class="ff-utility-bar">
+  <div class="container ff-utility-inner">
+    <span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
+    <nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例中心</a><a href="index.html#contact">方案沟通</a></nav>
+  </div>
+</div>
+<header class="site-header ff-header" data-header>
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="ForFlow 萬維流形首页">
+      <img src="assets/forflow-lockup-transparent.png" alt="ForFlow 萬維流形">
+    </a>
+    <nav class="primary-nav ff-mega-nav" aria-label="主导航" data-mega-root>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" data-mega-trigger aria-expanded="false">企业服务 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--services" data-mega-panel>
+            <div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>四条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
+            <div class="mega-link-grid">
+              <a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>01</em></a>
+              <a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>02</em></a>
+              <a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>03</em></a>
+              <a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>04</em></a>
+            </div>
+          </div>
+        </li>
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" data-mega-trigger aria-expanded="false">场景与工具 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--tools" data-mega-panel>
+            <div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
+            <div class="mega-feature-stack">
+              <a class="mega-feature" href="navigator.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+              <a class="mega-feature" href="category-hrms.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-people"></use></svg></span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+              <button class="mega-feature search-trigger" type="button"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料与案例</small></div><em>搜索</em></button>
+            </div>
+          </div>
+        </li>
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" data-mega-trigger aria-expanded="false">手册与洞察 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--insights" data-mega-panel>
+            <a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span></a>
+            <div class="mega-insight-list">
+              <a href="cases.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cases"></use></svg></span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
+              <a href="case-wren-kitchens.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-growth"></use></svg></span><div><b>案例详情示范</b><small>查看完整案例页面的信息层级</small></div></a>
+              <a href="document-viewer.html?doc=playbook"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
+            </div>
+          </div>
+        </li>
+        <li><a href="cases.html" aria-current="page">案例</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-trigger" type="button" aria-label="打开全站搜索"><svg class="ff-icon" aria-hidden="true"><use href="#i-search"></use></svg></button>
+      <a class="btn btn--green header-cta" href="navigator.html">开始诊断 <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu-panel ff-mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
+  <details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div></details>
+  <details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
+  <details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例中心</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
+  <a href="cases.html" aria-current="page">案例 <span>05</span></a>
+  <a class="btn btn--green" href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">→</span></a>
+</div>
+<main id="main">
+<section class="case-detail-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例</a><span>/</span><strong>Wren Kitchens</strong></nav><p class="eyebrow">Public case reference</p><h1>从紧急团队扩容，<br>走向长期技术合作。</h1><p>以下内容根据 TSH 公开案例重新组织为中文示范页面，用来展示 ForFlow 案例页应有的信息结构；不代表 ForFlow 参与该项目。</p><div class="case-detail-metrics"><div><strong>31</strong><span>公开资料中的合作团队规模</span></div><div><strong>1 分钟 → 约 5 秒</strong><span>关键产品浏览服务加载优化</span></div><div><strong>多业务模块</strong><span>安装、物流、产品、QA、移动应用</span></div></div><div class="case-detail-visual case-art--wren"><span>MANUFACTURING × RETAIL × SOFTWARE DELIVERY</span></div></div></section>
+<div class="container case-detail-shell"><aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#challenge">业务挑战</a><a href="#takeover">快速接管</a><a href="#modules">合作模块</a><a href="#impact">公开影响</a><a href="#lessons">可复用经验</a></nav></div></aside><article>
+<section id="challenge" data-section class="case-section"><p class="eyebrow">Challenge</p><h2>业务增长很快，但技术能力无法同速扩展。</h2><p>公开案例显示，Wren Kitchens 在结束上一家供应商合作后，需要快速补充开发能力，同时保持质量、可靠性和按期交付。当地专业人才有限，路线图又会随业务变化，因此企业不仅需要“人手”，还需要能接管知识、处理高风险工作并灵活扩缩的伙伴。</p><ul><li>需要立即补充大量 PHP 开发能力</li><li>短期与长期项目并存，团队规模需要灵活变化</li><li>未来几个季度的技术工作难以完全提前规划</li><li>关键业务要求稳定、准时且可持续交付</li></ul></section>
+<section id="takeover" data-section class="case-section"><p class="eyebrow">Project takeover</p><h2>没有完整交接窗口，也要先稳住业务。</h2><p>新团队直接进入已有内部 IT 组织。由于客户拥有清晰文档和技术责任，新伙伴可以从第一天建立可靠知识基础。重点不是立即大改系统，而是确认责任、运行风险、关键流程和可快速改善的事项。</p><div class="case-quote"><blockquote>先建立稳定交付与信任，再逐步承担更复杂、更关键的业务模块。</blockquote><footer>案例页面结构总结</footer></div></section>
+<section id="modules" data-section class="case-section"><p class="eyebrow">Workstreams</p><h2>合作扩展到安装、物流、产品、质量和移动应用。</h2><div class="case-modules"><article class="case-module"><h3>安装流程</h3><p>支持安装人员网络、测量、预约、日期和客户验收等完整生命周期。</p></article><article class="case-module"><h3>物流与交付</h3><p>优化影响夜间运行和标签准确性的关键流程，减少异常与处罚。</p></article><article class="case-module"><h3>产品与知识交接</h3><p>协助新内部开发人员理解领域知识、系统和责任边界。</p></article><article class="case-module"><h3>质量与移动应用</h3><p>完善上线前验证、QA 标准和 iPad 内部应用的稳定与持续交付。</p></article></div></section>
+<section id="impact" data-section class="case-section"><p class="eyebrow">Impact</p><h2>公开案例报告了成本、稳定性和交付速度的共同改善。</h2><p>公开页面提到，团队先处理“容易见效”的数据库与服务问题，其中一个关键产品浏览服务从约 1 分钟缩短到约 5 秒；物流与标签流程也提高了准确性，减少了处罚并稳定关键夜间运行。</p><p>更重要的结果是合作模式从紧急扩容逐步转为长期、跨模块协作：外部团队不只是完成任务，还承担知识传递、风险工作和持续改进。</p></section>
+<section id="lessons" data-section class="case-section"><p class="eyebrow">Lessons for enterprise AI</p><h2>这类案例对 AI 项目同样有三点启发。</h2><ol class="start-steps"><li><span>1</span><div><h3>先稳住关键流程</h3><p>AI 项目也应先理解现有责任、数据和失败成本，不要一开始大规模重构。</p></div></li><li><span>2</span><div><h3>从可验证改善建立信任</h3><p>选择能快速量化的时效、错误和质量问题，形成共同工作方式。</p></div></li><li><span>3</span><div><h3>把知识留在企业</h3><p>文档、评估、培训和内部负责人必须与技术交付同步。</p></div></li></ol></section>
+</article></div>
+<section class="final-cta"><div class="container final-cta-inner"><div><h2>把同样的案例结构，<br>用于你的项目。</h2><p>先写清问题、基线、流程、数据、风险与成功指标。</p></div><a class="btn" href="navigator.html">开始场景诊断 →</a></div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <img src="assets/forflow-lockup-transparent.png" alt="ForFlow 萬維流形">
+      <p>面向企业的 AI 原生增长运行层。<br>从高价值场景、安全落地到持续运营。</p>
+    </div>
+    <div class="footer-col"><h3>企业服务</h3>
+      <a href="service-ai-enablement.html">企业 AI 赋能计划</a>
+      <a href="service-data-governance.html">数据治理</a>
+      <a href="service-agent-build.html">企业 Agent 搭建</a>
+      <a href="service-ai-training.html">企业 AI 培训</a>
+    </div>
+    <div class="footer-col"><h3>工具与资源</h3>
+      <a href="navigator.html">AI 场景诊断</a>
+      <a href="playbook.html">企业 AI 实战手册</a>
+      <a href="category-hrms.html">HR AI 场景地图</a>
+      <a href="document-viewer.html?doc=playbook">PDF 阅读器</a>
+    </div>
+    <div class="footer-col"><h3>案例与行动</h3>
+      <a href="cases.html">案例中心</a>
+      <a href="case-wren-kitchens.html">案例详情示范</a>
+      <button class="footer-search search-trigger" type="button">全站搜索</button>
+      <a href="navigator.html">开始诊断</a>
+    </div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>响应式企业网站原型 · CMS / CRM / 报价接口已预留</span></div>
+</footer>
+
+<div class="search-modal" data-search-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal-backdrop" data-search-close></div>
+  <div class="search-modal-panel">
+    <h2 class="sr-only" id="search-modal-title">搜索 ForFlow</h2>
+    <form class="search-modal-form" action="search.html" method="get">
+      <span class="search-modal-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg></span>
+      <input type="search" name="search" placeholder="输入服务、场景或资料，例如：Agent" autocomplete="off" aria-label="搜索关键词">
+      <button class="btn btn--green" type="submit">搜索</button>
+    </form>
+    <button class="search-modal-close" type="button" data-search-close>关闭 <span aria-hidden="true">×</span></button>
+    <div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=培训">AI 培训</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+  </div>
+</div>
+</body></html>

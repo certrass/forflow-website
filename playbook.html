@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#050505">
+  <meta name="description" content="ForFlow 企业生成式 AI 实战手册：认识 GenAI、判断商业价值、选择买或建、管理风险并规划实施。">
+  <title>企业生成式 AI 实战手册｜ForFlow 萬維流形</title>
+  <link rel="icon" href="assets/forflow-mark.png"><link rel="stylesheet" href="styles.css"><script src="script.js" defer></script>
+</head>
+<body class="playbook-v4">
+<a class="skip-link" href="#main">跳至主要内容</a>
+
+<svg class="ff-symbols" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.3 15.3 5.2 5.2"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+  <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+  <symbol id="i-agent" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M9 11h.01M15 11h.01M9 15h6M12 7V4m-2 0h4M3 12H1m22 0h-2"/></symbol>
+  <symbol id="i-training" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v4c2.8 2.2 7.2 2.2 10 0v-4M21 9v6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"/></symbol>
+  <symbol id="i-cases" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M8 5V3h8v2M3 10h18M9 14h6"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M14 14c3.5 0 6 2.2 6 6"/></symbol>
+  <symbol id="i-customer" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-marketing" viewBox="0 0 24 24"><path d="M4 13v-2l12-5v12L4 13Z"/><path d="M7 14v5h4l-1-5M19 9c1 1 1 5 0 6"/></symbol>
+  <symbol id="i-knowledge" viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"/><path d="M9 19h6M10 15v2h4v-2M4 8H2m20 0h-2M5 3 3.5 1.5M19 3l1.5-1.5"/></symbol>
+  <symbol id="i-operations" viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 12h4l3-4M13 12l3 4"/></symbol>
+  <symbol id="i-finance" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"/><path d="m3 8 6-5 6 7 6-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+  <symbol id="i-growth" viewBox="0 0 24 24"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-6M15 7h4v4"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"/><circle cx="3" cy="7" r="1.5"/><circle cx="21" cy="17" r="1.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6L12 2ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2.2A3.4 3.4 0 0 0 4 12a3.4 3.4 0 0 0 2 5.8A3 3 0 0 0 12 18V6a3 3 0 0 0-3-2Z"/><path d="M15 4a3 3 0 0 1 5 2.2A3.4 3.4 0 0 1 20 12a3.4 3.4 0 0 1-2 5.8A3 3 0 0 1 12 18V6a3 3 0 0 1 3-2ZM8 8h4m-5 5h5m4-5h-4m5 5h-5"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M8.5 15.5A7 7 0 1 1 15.5 15.5c-.9.7-1.5 1.3-1.5 2.5h-4c0-1.2-.6-1.8-1.5-2.5Z"/><path d="M12 6v4m-2 0h4"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><path d="M12 21V7M7 12l5-5 5 5M4 4h5M15 4h5"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2 11h10l3-7H6"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M13 5h7M16.5 2v6"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M4 19 15 8M13 4l7 7M3 20l4-1-3-3-1 4Z"/><path d="m15 3 6 6-2 2-6-6 2-2Z"/></symbol>
+  <symbol id="i-reference" viewBox="0 0 24 24"><path d="M6 3h10l3 3v15H6V3Z"/><path d="M16 3v4h4M9 11h7M9 15h7M9 19h4"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 5h16M12 5v14M8 19h8"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m4 17 5-5 4 4 2-2 5 5"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 10 4-3v10l-4-3v-4Z"/></symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 5c3 0 6-3 6-6M6 8c1 2 3 4 6 5M14 19l3-8 3 8M15 16h4"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></symbol>
+  <symbol id="i-speech" viewBox="0 0 24 24"><path d="M5 4h14v12H9l-4 4V4Z"/><path d="M9 8v4m3-6v8m3-5v3"/></symbol>
+  <symbol id="i-document" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-cost" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.7-1.7-1-3-1-2 0-3 .9-3 2s1.1 1.7 3 2 3 .9 3 2-1 2-3 2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"/></symbol>
+  <symbol id="i-requirements" viewBox="0 0 24 24"><path d="M5 4h14v16H5V4Z"/><path d="m8 9 1.5 1.5L12 8m2 2h3m-9 5 1.5 1.5L12 14m2 2h3"/></symbol>
+  <symbol id="i-experience" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6Z"/><path d="M9 19c.5 1.3 1.5 2 3 2s2.5-.7 3-2M12 7v4"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 13.5v-3l-2-.7-.6-1.5.9-1.9-2.1-2.1-1.9.9-1.5-.6L10.5 3h-3l-.7 2-1.5.6-1.9-.9-2.1 2.1.9 1.9-.6 1.5-2 .7v3l2 .7.6 1.5-.9 1.9 2.1 2.1 1.9-.9 1.5.6.7 2h3l.7-2 1.5-.6 1.9.9 2.1-2.1-.9-1.9.6-1.5 2-.7Z" transform="translate(2 0) scale(.82)"/></symbol>
+  <symbol id="i-risk" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+  <symbol id="i-security" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-leadership" viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10H4Z"/><path d="M9 20v-6h6v6M8 9h8"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M4 6h7v7H7c0 3-1 5-4 6 2-2 2-4 1-6V6Zm10 0h7v7h-4c0 3-1 5-4 6 2-2 2-4 1-6V6Z"/></symbol>
+</svg>
+
+
+<div class="ff-utility-bar">
+  <div class="container ff-utility-inner">
+    <span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
+    <nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例中心</a><a href="index.html#contact">方案沟通</a></nav>
+  </div>
+</div>
+<header class="site-header ff-header" data-header>
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="ForFlow 萬維流形首页">
+      <img src="assets/forflow-lockup-transparent.png" alt="ForFlow 萬維流形">
+    </a>
+    <nav class="primary-nav ff-mega-nav" aria-label="主导航" data-mega-root>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" data-mega-trigger aria-expanded="false">企业服务 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--services" data-mega-panel>
+            <div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>四条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
+            <div class="mega-link-grid">
+              <a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>01</em></a>
+              <a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>02</em></a>
+              <a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>03</em></a>
+              <a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>04</em></a>
+            </div>
+          </div>
+        </li>
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" data-mega-trigger aria-expanded="false">场景与工具 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--tools" data-mega-panel>
+            <div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
+            <div class="mega-feature-stack">
+              <a class="mega-feature" href="navigator.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+              <a class="mega-feature" href="category-hrms.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-people"></use></svg></span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+              <button class="mega-feature search-trigger" type="button"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料与案例</small></div><em>搜索</em></button>
+            </div>
+          </div>
+        </li>
+        <li class="mega-item">
+          <button class="mega-trigger is-current" type="button" data-mega-trigger aria-expanded="false">手册与洞察 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--insights" data-mega-panel>
+            <a class="mega-editorial" href="playbook.html" aria-current="page"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span></a>
+            <div class="mega-insight-list">
+              <a href="cases.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cases"></use></svg></span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
+              <a href="case-wren-kitchens.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-growth"></use></svg></span><div><b>案例详情示范</b><small>查看完整案例页面的信息层级</small></div></a>
+              <a href="document-viewer.html?doc=playbook"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
+            </div>
+          </div>
+        </li>
+        <li><a href="cases.html">案例</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-trigger" type="button" aria-label="打开全站搜索"><svg class="ff-icon" aria-hidden="true"><use href="#i-search"></use></svg></button>
+      <a class="btn btn--green header-cta" href="navigator.html">开始诊断 <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu-panel ff-mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
+  <details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div></details>
+  <details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
+  <details open><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html" aria-current="page">企业 AI 实战手册</a><a href="cases.html">案例中心</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
+  <a href="cases.html">案例 <span>05</span></a>
+  <a class="btn btn--green" href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">→</span></a>
+</div>
+
+<nav class="pb-toolbar" aria-label="手册工具栏"><div class="container pb-toolbar-inner"><a href="index.html#resources" class="pb-back">← 返回资源中心</a><div class="pb-progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-playbook-progress></i></div><div class="pb-toolbar-actions"><button type="button" data-toc-open><svg class="ff-icon" aria-hidden="true"><use href="#i-layers"></use></svg> 目录</button><a href="assets/genai-playbook-reference.pdf" download><svg class="ff-icon" aria-hidden="true"><use href="#i-download"></use></svg> 下载 PDF</a></div></div></nav>
+<main id="main">
+  <section class="pb-landing" aria-labelledby="pb-title">
+    <div class="pb-landing-glow" aria-hidden="true"></div>
+    <div class="container pb-landing-inner">
+      <div class="pb-landing-title" data-reveal><p class="pb-kicker">FORFLOW PRACTICAL GUIDE / 2026</p><h1 id="pb-title">企业生成式 AI<br>实战手册</h1><p>给企业主、业务负责人和技术负责人一套共同语言：先理解能力和风险，再决定买、改造还是建设。</p><div class="pb-audience"><span>企业主</span><span>业务负责人</span><span>数据与技术团队</span></div></div>
+      <div class="pb-brand-cover playbook-cover-art" data-reveal><img src="assets/forflow-lockup.png" alt="ForFlow 萬維流形完整品牌标识"><div><small>Generative AI Playbook for Enterprises</small><strong>从问题到价值，<br>从试点到运行。</strong></div></div>
+      <div class="pb-map" data-reveal>
+        <a href="#pb-intro" class="pb-map-card"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-brain"></use></svg></span><div><b>认识生成式 AI</b><small>演进、LLM、RAG 与模型类型</small></div><svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+        <a href="#pb-opportunity" class="pb-map-card"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-bulb"></use></svg></span><div><b>商业价值与增长机会</b><small>效率、体验、成本与收入</small></div><svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+        <a href="#pb-decision" class="pb-map-card pb-map-card--wide"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-split"></use></svg></span><div><b>实施方式：买还是建</b><small>用成本、业务要求、经验、治理与定制需求做判断</small></div><svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg><div class="pb-map-split"><em><svg class="ff-icon" aria-hidden="true"><use href="#i-cart"></use></svg> 购买现成方案</em><em><svg class="ff-icon" aria-hidden="true"><use href="#i-build"></use></svg> 定制与自建</em></div></a>
+        <a href="#pb-references" class="pb-map-card pb-map-card--reference"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-reference"></use></svg></span><div><b>参考资料</b><small>安全、治理、技能与原始 PDF</small></div><svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+      </div>
+      <p class="pb-landing-note">本手册将原始材料重写为更适合中文企业读者的表达，并补充 ForFlow 的场景选择、价值验证和运行治理视角。</p>
+    </div>
+  </section>
+
+  <div class="container pb-shell">
+    <aside class="pb-toc" aria-label="手册目录"><div class="pb-toc-inner"><p>TABLE OF CONTENTS</p><nav data-scrollspy><a class="is-active" href="#pb-intro"><span>01</span>认识 GenAI</a><a href="#pb-opportunity"><span>02</span>商业价值</a><a href="#pb-decision"><span>03</span>买还是建</a><a href="#pb-buy"><span>04</span>采用现成方案</a><a href="#pb-build"><span>05</span>定制与自建</a><a href="#pb-references"><span>06</span>参考资料</a></nav><div class="pb-toc-card"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-compass"></use></svg></span><b>不知道从哪里开始？</b><p>先完成 3 分钟 AI 场景诊断。</p><a href="navigator.html">启动 Navigator →</a></div><a class="pb-download-link" href="assets/genai-playbook-reference.pdf" download><svg class="ff-icon" aria-hidden="true"><use href="#i-download"></use></svg> 下载原始 PDF</a></div></aside>
+
+    <article class="pb-article">
+      <details class="pb-chapter" id="pb-intro" data-section open>
+        <summary><span class="pb-chapter-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-brain"></use></svg></span><span class="pb-chapter-number">01</span><div><small>INTRODUCTION TO GENERATIVE AI</small><h2>先用业务语言认识 GenAI。</h2><p>理解它能生成什么、为什么会出错，以及如何接入企业知识。</p></div><span class="pb-toggle"><svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></summary>
+        <div class="pb-chapter-body">
+          <p class="pb-lead">生成式 AI 会根据学习到的模式，生成文字、图片、声音、视频、代码等新内容。企业真正需要理解的不是模型名单，而是它能否在可信数据、清晰流程和责任边界内稳定解决问题。</p>
+          <section class="pb-subsection"><div class="pb-subhead"><span>01.1</span><div><h3>AI 与 GenAI 的演进</h3><p>从“让机器执行规则”，走到“让模型理解上下文并生成内容”。</p></div></div><div class="pb-evolution-grid"><div class="pb-nested-ai" aria-label="人工智能、机器学习、深度学习与生成式 AI 的关系"><div class="ring-ai">人工智能<div class="ring-ml">机器学习<div class="ring-dl">深度学习<div class="ring-gen">生成式 AI</div></div></div></div></div><div class="pb-timeline"><article><b>1956</b><p>人工智能成为计算机科学中的独立研究方向，目标是让机器完成需要人类智能的任务。</p></article><article><b>1990s</b><p>互联网和数据规模增长推动机器学习，让系统可以从数据中持续改进判断。</p></article><article><b>2010s</b><p>深度学习在图像、语音和复杂模式识别方面取得突破。</p></article><article><b>2021+</b><p>大规模预训练模型让普通人可以通过提示词生成文本、图像、声音和代码。</p></article></div></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>01.2</span><div><h3>LLM 与 RAG：通用能力如何变成企业答案</h3><p>模型负责理解和生成，企业知识与检索负责给它正确上下文。</p></div></div><div class="pb-explainer-grid"><article class="pb-explainer"><div class="pb-explainer-visual pb-llm-visual"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-brain"></use></svg></span><i></i><i></i><i></i><i></i></div><div><h4>大语言模型（LLM）</h4><p>LLM 专门处理和生成人类语言。它能总结、推理、改写和生成内容，但不会天然知道企业最新制度、产品信息或内部流程。</p><ul><li>能力强不等于答案一定正确</li><li>参数更多不等于更适合每个企业任务</li><li>关键输出仍需来源、评估与人工判断</li></ul></div></article><article class="pb-explainer"><div class="pb-rag-flow"><span>企业资料</span><b>→</b><span>检索引擎</span><b>→</b><span>可信上下文</span><b>→</b><span>模型回答</span><em>附来源 · 可核验</em></div><div><h4>检索增强生成（RAG）</h4><p>RAG 在模型回答前，先从企业授权资料中查找相关内容，再把检索结果作为上下文交给模型。它更适合制度问答、产品知识、SOP 和内部助手。</p><ul><li>支持文本、数字、图像、音频等资料</li><li>用向量检索寻找“语义相近”内容</li><li>仍需要权限、版本和内容质量管理</li></ul></div></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>01.3</span><div><h3>常见 GenAI 模型与企业用途</h3><p>以下是能力类型，不是供应商采购清单。</p></div></div><div class="pb-model-grid">
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-text"></use></svg></span><b>01</b><h4>文本生成</h4><p>报告、邮件、文章、客服与教育内容。</p><small>常见模型：GPT、Llama、Gemini、Qwen 等</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-image"></use></svg></span><b>02</b><h4>图像生成</h4><p>设计概念、广告素材、视觉故事与创意表达。</p><small>常见模型：DALL·E、Stable Diffusion 等</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-audio"></use></svg></span><b>03</b><h4>音频生成</h4><p>语音助手、有声内容、播客与音乐草稿。</p><small>适用于多语言与无障碍场景</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-video"></use></svg></span><b>04</b><h4>视频生成</h4><p>营销视频、培训内容与个性化视觉素材。</p><small>需要特别关注版权与真实性</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-translate"></use></svg></span><b>05</b><h4>翻译与本地化</h4><p>实时翻译、文档翻译与跨区域内容适配。</p><small>专业术语仍需词库和复核</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-speech"></use></svg></span><b>06</b><h4>语音识别与合成</h4><p>会议转录、语音命令、屏幕阅读和客服录音。</p><small>注意告知、授权与个人信息</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cube"></use></svg></span><b>07</b><h4>3D 与多模态</h4><p>产品设计、游戏资产和文字图像音视频协同。</p><small>适合复杂内容工作流</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-code"></use></svg></span><b>08</b><h4>代码生成</h4><p>开发、测试、调试、重构和技术文档。</p><small>必须保留代码审查与安全测试</small></article>
+            <article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-document"></use></svg></span><b>09</b><h4>文档理解</h4><p>从合同、发票、表格和图片中提取、分类与校验信息。</p><small>适合高频结构化流程</small></article>
+          </div><p class="pb-note">模型和产品持续变化。选型时应以任务质量、数据政策、集成能力、成本和长期可控性为准。</p></section>
+        </div>
+      </details>
+
+      <details class="pb-chapter" id="pb-opportunity" data-section open>
+        <summary><span class="pb-chapter-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-bulb"></use></svg></span><span class="pb-chapter-number">02</span><div><small>TRANSFORMATIVE &amp; GROWTH OPPORTUNITIES</small><h2>四类企业价值，先选一项作为主指标。</h2><p>效率、体验、成本和收入之间有关联，但首个项目不应同时追全部。</p></div><span class="pb-toggle"><svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></summary>
+        <div class="pb-chapter-body"><p class="pb-lead">GenAI 的价值不在“生成得像不像人”，而在它是否减少业务摩擦、让客户获得更及时的服务，并把员工时间释放到需要判断和创造力的工作。</p><div class="pb-value-grid"><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>提高效率</h3></header><p>自动完成内容初稿、资料查找、重复问答和数据整理，缩短等待与交接。</p><b>建议指标</b><ul><li>平均处理时长</li><li>一次完成率</li><li>每周节省工时</li></ul></article><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-customer"></use></svg></span><h3>个性化体验</h3></header><p>根据客户资料与偏好，在合适渠道提供更相关的产品、服务和沟通。</p><b>建议指标</b><ul><li>首次响应时间</li><li>客户满意度</li><li>转化与留存</li></ul></article><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cost"></use></svg></span><h3>降低成本</h3></header><p>减少人工复制、重复处理和跨系统查找，让资源投入更聚焦。</p><b>建议指标</b><ul><li>单笔处理成本</li><li>返工与错误率</li><li>外包或加班成本</li></ul></article><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-growth"></use></svg></span><h3>增加收入</h3></header><p>通过更快响应、个性化推荐、精准营销与新服务形成增长机会。</p><b>建议指标</b><ul><li>线索转化率</li><li>客单价与复购</li><li>新服务收入</li></ul></article></div><div class="pb-business-callout"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-quote"></use></svg></span><div><b>企业视角</b><p>首个项目只设一个主指标，再加两个保护指标。例如以“处理时长”为主指标，同时监测“准确率”和“客户满意度”，避免单纯追求速度造成质量下降。</p></div></div></div>
+      </details>
+
+      <details class="pb-chapter" id="pb-decision" data-section open>
+        <summary><span class="pb-chapter-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-split"></use></svg></span><span class="pb-chapter-number">03</span><div><small>IMPLEMENTATION APPROACH: BUY OR BUILD</small><h2>现成方案，还是定制能力？</h2><p>不是二选一的信仰问题，而是企业阶段、控制需求与总成本的判断。</p></div><span class="pb-toggle"><svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></summary>
+        <div class="pb-chapter-body"><p class="pb-lead">对于常见需求、经验较少或希望快速启动的企业，先采用成熟方案通常更合适；当流程独特、数据敏感、需要深度集成或能形成竞争优势时，再考虑定制与建设。</p><div class="pb-buy-build"><article class="pb-buy-card"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cart"></use></svg></span><small>BUY</small><h3>购买现成方案</h3><p>通过成熟软件快速使用 GenAI 能力，减少从零开发和运维负担。</p><ul><li>上线更快，初期投入较低</li><li>供应商负责产品维护和更新</li><li>适合通用办公、内容、客服和 HR 场景</li><li>定制、模型控制与深度集成可能受限</li></ul></article><article class="pb-build-card"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-build"></use></svg></span><small>BUILD / CUSTOMISE</small><h3>定制或建设</h3><p>把现有模型接入企业数据、系统和工作流，形成专属应用或 Agent。</p><ul><li>贴合独特流程、数据和交互</li><li>对安全、权限和模型选择控制更强</li><li>可沉淀为企业专属能力与知识产权</li><li>需要更多技术、预算和长期运维</li></ul></article></div>
+          <div class="pb-factor-list"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cost"></use></svg></span><div><h3>成本</h3><p>不要只比订阅费与开发费，要计算集成、基础设施、维护、支持、人才与培训的总拥有成本。</p><div><b>偏向买：</b>关注前期投入与快速使用。<br><b>偏向建：</b>高频长期使用，且能承担建设与维护。</div></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-requirements"></use></svg></span><div><h3>业务要求</h3><p>通用场景已有成熟方案时，购买更实际；需求独特、流程复杂或能形成竞争优势时，定制更有价值。</p><div><b>先问：</b>现成产品能覆盖 80% 需求吗？剩余 20% 是否决定竞争力？</div></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-experience"></use></svg></span><div><h3>经验水平</h3><p>刚接触 GenAI 的企业，可以先用成熟方案积累经验、建立内部信心和识别更多场景。</p><div><b>常见路径：</b>先买 → 边用边学 → 明确差距 → 再决定是否建设。</div></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-shield"></use></svg></span><div><h3>风险与治理</h3><p>建设可提供更高控制，但企业也承担维护、安全更新和风险所有权；购买则需仔细评估供应商责任。</p><div><b>无论买或建：</b>企业都要对输入数据质量、隐私和使用边界负责。</div></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-settings"></use></svg></span><div><h3>定制与集成</h3><p>现成方案的模型、API 和界面可能限制深度定制；建设更适合复杂上下文、专属体验与跨系统工作流。</p><div><b>关键问题：</b>AI 是否必须进入现有系统，而不是让员工切换到另一个孤立工具？</div></div></article></div>
+          <div class="pb-decision-tool" data-decision-tool><div><small>QUICK DECISION CHECK</small><h3>用 5 个问题形成第一版倾向。</h3><p>这不是报价器，而是管理层讨论的起点。</p></div><div class="pb-decision-questions"><fieldset><legend>1. 需求是否属于市场上常见场景？</legend><button type="button" data-decision-vote="buy">是，较通用</button><button type="button" data-decision-vote="build">否，流程独特</button></fieldset><fieldset><legend>2. 是否必须深度接入内部系统和权限？</legend><button type="button" data-decision-vote="buy">标准接口足够</button><button type="button" data-decision-vote="build">必须深度集成</button></fieldset><fieldset><legend>3. 数据是否高度敏感或受严格监管？</legend><button type="button" data-decision-vote="buy">供应商方案可满足</button><button type="button" data-decision-vote="build">需要更强控制</button></fieldset><fieldset><legend>4. 团队是否已有 AI 与工程能力？</legend><button type="button" data-decision-vote="buy">经验较少</button><button type="button" data-decision-vote="build">已有成熟团队</button></fieldset><fieldset><legend>5. 多快需要看到业务结果？</legend><button type="button" data-decision-vote="buy">数周内</button><button type="button" data-decision-vote="build">可以长期建设</button></fieldset></div><div class="pb-decision-result"><span>当前建议</span><strong data-decision-result>请完成上面的选择。</strong><button type="button" data-decision-reset>重新判断</button></div></div>
+        </div>
+      </details>
+
+      <details class="pb-chapter" id="pb-buy" data-section open>
+        <summary><span class="pb-chapter-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-cart"></use></svg></span><span class="pb-chapter-number">04</span><div><small>IMPLEMENTATION APPROACH: BUY</small><h2>采用现成方案：快速起步，也要认真治理。</h2><p>通用场景适合先买，但配置、数据、培训和持续优化仍然需要企业投入。</p></div><span class="pb-toggle"><svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></summary>
+        <div class="pb-chapter-body">
+          <section class="pb-subsection"><div class="pb-subhead"><span>04.1</span><div><h3>可直接采用的常见场景</h3><p>先从已有成熟产品、效果容易验证的工作开始。</p></div></div><div class="pb-usecase-grid"><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-document"></use></svg></span><h4>办公效率</h4><a href="search.html?search=办公效率">查看方案 →</a></header><ul><li><b>文档生成：</b>报告、邮件、方案和演示文稿初稿</li><li><b>会议管理：</b>安排、转录、总结与行动项跟踪</li><li><b>数据分析：</b>识别趋势并生成管理摘要</li></ul></article><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-marketing"></use></svg></span><h4>营销与销售</h4><a href="search.html?search=营销">查看方案 →</a></header><ul><li><b>内容创作：</b>文案、图片、视频与渠道版本</li><li><b>个性化沟通：</b>按客户画像调整推荐与跟进</li><li><b>市场洞察：</b>汇总趋势、竞品和客户反馈</li><li><b>生成式网页：</b>快速探索布局与内容方向</li></ul></article><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-customer"></use></svg></span><h4>客户互动</h4><a href="search.html?search=客户服务">查看方案 →</a></header><ul><li><b>前台：</b>线索收集、销售辅助、客服与预约</li><li><b>后台：</b>转录、回复建议、知识检索与情绪分析</li><li><b>质检：</b>发现问题并给出培训建议</li></ul></article><article><header><span><svg class="ff-icon" aria-hidden="true"><use href="#i-people"></use></svg></span><h4>人力资源</h4><a href="category-hrms.html">查看场景 →</a></header><ul><li><b>招聘：</b>职位、简历初筛与候选人沟通</li><li><b>入职：</b>欢迎信息、清单、制度与培训</li><li><b>绩效：</b>材料整理、目标和反馈辅助</li></ul></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>04.2</span><div><h3>购买前的四项检查</h3><p>成熟产品也不是“开通账号就会产生价值”。</p></div></div><div class="pb-check-grid"><article><span>01</span><h4>数据与时间投入</h4><p>准备准确、最新、可授权的数据，并安排业务人员参与配置、测试和评估。</p></article><article><span>02</span><h4>供应商与工具</h4><p>比较易用性、功能、支持、稳定性、数据政策、集成和退出机制。</p></article><article><span>03</span><h4>内容质量与责任</h4><p>建立事实核验、品牌语气、版权、敏感内容与人工审批规则。</p></article><article><span>04</span><h4>持续监测与改进</h4><p>监测质量与采用率，收集反馈，持续调整提示词、知识和流程。</p></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>04.3</span><div><h3>团队需要的三类基础能力</h3><p>工具越容易用，越需要清楚“什么能输入、什么要核验”。</p></div></div><div class="pb-skill-triad"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-brain"></use></svg></span><h4>GenAI 基础</h4><p>知道模型的能力、局限、幻觉、上下文和责任边界。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-data"></use></svg></span><h4>数据管理</h4><p>会收集、清理、分类、保护数据，并理解输入外部工具的风险。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-spark"></use></svg></span><h4>提示设计</h4><p>能给清晰任务、上下文、受众、约束、示例和输出格式。</p></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>04.4</span><div><h3>7 个提示词原则：每条都带示例</h3><p>好的提示不是“更长”，而是让目标、材料和评价标准更明确。</p></div></div><div class="pb-prompt-guide"><details open><summary><b>01</b>具体、清楚</summary><div><p><strong>示例：</strong>“为一款高端智能手表写 100 字产品描述，突出运动追踪、防水和简洁设计。”</p><p><strong>要点：</strong>说明目的、长度、关键内容和输出格式。</p></div></details><details><summary><b>02</b>提供上下文</summary><div><p><strong>示例：</strong>“根据附件中的新加坡 iPhone 销售交易，生成管理层摘要。”</p><p><strong>要点：</strong>说明数据范围、时间、业务背景和不能假设的内容。</p></div></details><details><summary><b>03</b>说明受众与语气</summary><div><p><strong>示例：</strong>“为对高端保险感兴趣但尚未购买的年长客户，写一封友好、清楚的跟进邮件。”</p><p><strong>要点：</strong>告诉模型读者是谁、希望形成什么感受。</p></div></details><details><summary><b>04</b>给出示例</summary><div><p><strong>示例：</strong>提供一段符合品牌语气的旧文案，要求新内容保持相同结构和风格。</p><p><strong>要点：</strong>示例比抽象形容词更容易对齐质量。</p></div></details><details><summary><b>05</b>设置约束和核验</summary><div><p><strong>示例：</strong>“不超过 150 字；只能使用给定资料；不确定时明确写‘资料未说明’。”</p><p><strong>要点：</strong>写明禁止编造、必须引用和需要人工确认的部分。</p></div></details><details><summary><b>06</b>要求多个选项</summary><div><p><strong>示例：</strong>“生成 3 个邮件标题，每个不超过 20 字，并说明各自适合的受众。”</p><p><strong>要点：</strong>便于比较、组合和选择。</p></div></details><details><summary><b>07</b>迭代与改进</summary><div><p><strong>示例：</strong>“根据以下反馈，缩短段落、增强结论，并列出你做了哪些修改。”</p><p><strong>要点：</strong>把第一次输出当作初稿，逐步提高质量。</p></div></details></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>04.5</span><div><h3>理解风险，并把控制放进流程</h3><p>“员工要小心”不是治理机制；需要规则、技术控制与责任人。</p></div></div><div class="pb-risk-grid"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-risk"></use></svg></span><h4>幻觉与错误</h4><p>对关键事实使用可信来源、限定知识范围、显示引用，并保留人工复核。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-people"></use></svg></span><h4>偏差与不公平</h4><p>检查不同群体结果，使用多样化样本，保留申诉和人工判断。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-experience"></use></svg></span><h4>过度依赖</h4><p>明确 AI 是助手而非责任主体，关键决定由授权人员确认。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-shield"></use></svg></span><h4>合规与伦理</h4><p>定义不可使用场景、知识产权规则、记录留存和透明告知。</p></article></div><div class="pb-cyber-safe"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-data"></use></svg></span><div><h4>保护企业数据</h4><p><b>为什么：</b>向外部工具提交敏感资料，可能带来泄露、知识产权和声誉风险。</p><p><b>怎么做：</b>员工输入前查看数据分类和工具政策；关键资料脱敏或使用企业批准环境。</p></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-security"></use></svg></span><div><h4>验证供应商安全</h4><p><b>为什么：</b>攻击者可能通过供应商漏洞、恶意输入或越权访问影响企业。</p><p><b>怎么做：</b>检查安全认证、治理流程、输入防护、漏洞测试、日志与事件响应。</p></div></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>04.6</span><div><h3>公开案例：从具体问题开始</h3><p>工具只是手段，真正的结果来自流程重构和团队采用。</p></div></div><div class="pb-story-grid"><article><small>Jan &amp; Elly · 教育内容</small><h4>18 小时 → 30 分钟</h4><p>通过 GenAI 辅助选题、写作和 SEO，稳定产出内容，并把员工培训和后续客服场景纳入计划。</p><ul><li>每月 4 篇文章与 10 条社媒内容</li><li>公开材料报告估算每年节省约 48,000 新元</li></ul></article><article><small>Crestar Fan · 零售客服</small><h4>重复任务时间 -56%</h4><p>通过全天候智能客服加快响应，让团队转向高价值服务，并继续探索 Copilot 和数据洞察。</p><ul><li>公开材料报告销售显著增长</li><li>投资在较短周期内得到回收</li></ul></article></div><p class="pb-note">案例数字来自用户提供的公开材料摘要；正式发布前应复核来源、口径、时间和授权。</p></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>04.7</span><div><h3>采用现成方案的 5 个起步步骤</h3><p>从小范围、可衡量、可人工复核的项目开始。</p></div></div><ol class="pb-start-steps"><li><span>1</span><div><h4>识别场景</h4><p>寻找高频、耗时、信息来源清楚且结果可衡量的任务。</p></div></li><li><span>2</span><div><h4>选择合适工具</h4><p>比较易用性、扩展、集成、数据安全、隐私和预算。</p></div></li><li><span>3</span><div><h4>建立基础</h4><p>准备负责人、数据、培训、使用规则和验收标准。</p></div></li><li><span>4</span><div><h4>小步试点</h4><p>记录质量、效率、采用和风险，达到门槛后再扩大。</p></div></li><li><span>5</span><div><h4>监测与改进</h4><p>持续更新知识、提示和流程，并跟踪业务指标。</p></div></li></ol></section>
+        </div>
+      </details>
+
+      <details class="pb-chapter" id="pb-build" data-section open>
+        <summary><span class="pb-chapter-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-build"></use></svg></span><span class="pb-chapter-number">05</span><div><small>IMPLEMENTATION APPROACH: BUILD</small><h2>定制与自建：不是从零训练一个大模型。</h2><p>多数企业是在现有模型上接入数据、系统和流程，形成可控的专属应用。</p></div><span class="pb-toggle"><svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></summary>
+        <div class="pb-chapter-body"><p class="pb-lead">建设自己的 GenAI 方案，可以更贴合业务要求和工作流，也能加强对数据、权限、模型和体验的控制。代价是更高的投入、更多技术角色和持续运维责任。</p>
+          <section class="pb-subsection"><div class="pb-subhead"><span>05.1</span><div><h3>两种主要建设方式</h3><p>“定制与适配”适合多数企业，“专属方案”留给真正复杂和差异化需求。</p></div></div><div class="pb-build-modes"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-settings"></use></svg></span><small>01 / CUSTOMISE &amp; ADAPT</small><h4>定制与适配</h4><p>修改现有产品或模型，增加 RAG、企业接口、专属界面、规则和权限。</p><ul><li>更常见、周期更短</li><li>使用现有模型，不从零训练</li><li>适合接入已有流程和系统</li></ul></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-build"></use></svg></span><small>02 / BESPOKE</small><h4>专属方案</h4><p>为独特业务需求设计架构、模型组合和工作流，追求最高控制与差异化。</p><ul><li>适合复杂流程和多模态</li><li>可形成独特知识产权</li><li>投入、周期与运维要求更高</li></ul></article></div><div class="pb-comparison-table" role="table" aria-label="定制与适配和专属方案比较"><div role="row"><b role="columnheader">比较项</b><b role="columnheader">定制与适配</b><b role="columnheader">专属方案</b></div><div role="row"><span>适用需求</span><span>较常见、复杂度适中</span><span>高度复杂、差异化强</span></div><div role="row"><span>技术方式</span><span>现有模型 + RAG + 集成</span><span>模型组合、微调或专属编排</span></div><div role="row"><span>典型例子</span><span>酒店智能助手接入预订和物业系统</span><span>教育机构课程计划、学生反馈与个性化活动系统</span></div><div role="row"><span>项目周期</span><span>更短，可复用预制模块</span><span>更长，需要从需求和架构开始</span></div><div role="row"><span>控制与成本</span><span>平衡速度、控制和投入</span><span>控制最高，投入和运维也最高</span></div></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>05.2</span><div><h3>什么时候值得建设</h3><p>以下场景更可能超过现成产品的能力边界。</p></div></div><div class="pb-build-usecases"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-flow"></use></svg></span><h4>进入业务流程</h4><p>需要把 AI 接进文档管理、订单、客服、排程或审批，而不是另开一个聊天窗口。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-code"></use></svg></span><h4>开发专属 API</h4><p>让 AI 与 ERP、CRM、知识库和自研系统安全交换数据与动作。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-knowledge"></use></svg></span><h4>高度专业行业</h4><p>通用模型无法满足行业术语、规则、监管和精度要求。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-operations"></use></svg></span><h4>复杂业务流程</h4><p>存在多步骤、多例外、多角色和人工审批，现成产品难以覆盖。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-growth"></use></svg></span><h4>形成竞争优势</h4><p>AI 能直接创造差异化服务、专属数据资产或新的收入来源。</p></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cube"></use></svg></span><h4>规模与多模态</h4><p>需要跨部门、跨数据对象和多种模型协调运行。</p></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>05.3</span><div><h3>建设 GenAI 方案需要哪些能力</h3><p>可由内部团队、外部伙伴或混合团队共同承担。</p></div></div><div class="pb-capability-grid"><article><span>AI / ML</span><h4>模型与评估工程</h4><p>选择模型、提示与工具调用，必要时微调，并建立质量评估。</p></article><article><span>SOFTWARE</span><h4>软件与系统集成</h4><p>连接现有应用、数据库与 API，保证稳定运行和错误处理。</p></article><article><span>DATA</span><h4>数据工程</h4><p>准备、清理、管道化数据，建立版本、质量和权限机制。</p></article><article><span>CLOUD</span><h4>云与基础设施</h4><p>部署模型与服务，管理成本、性能、网络、密钥和可用性。</p></article><article><span>PRODUCT</span><h4>前后端与产品设计</h4><p>把 AI 放进用户真正愿意使用的界面和工作路径。</p></article><article><span>GOVERNANCE</span><h4>安全、治理与运营</h4><p>定义责任、审批、日志、测试、监控、知识更新和事件响应。</p></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>05.4</span><div><h3>如何选择技术伙伴</h3><p>会做 Demo 不等于能把系统长期跑起来。</p></div></div><div class="pb-partner-grid"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-flow"></use></svg></span><div class="pb-partner-copy"><h4>能落地，也能长期支持</h4><p>有系统集成、培训、故障处理、监控和维护能力，并能适应业务变化。</p></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-experience"></use></svg></span><div class="pb-partner-copy"><h4>相关经验与取舍能力</h4><p>理解行业和流程，能解释为什么选择某种模型、架构和实施顺序。</p></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-security"></use></svg></span><div class="pb-partner-copy"><h4>数据安全与合规</h4><p>权限、日志、测试、数据处理、责任边界和退出方案清楚。</p></div></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-leadership"></use></svg></span><div class="pb-partner-copy"><h4>信誉、稳定与伦理</h4><p>团队稳定，商业模式、价值观和长期目标与企业相容。</p></div></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>05.5</span><div><h3>治理、安全与领导支持</h3><p>技术上线只是开始，企业需要把运行责任固定下来。</p></div></div><div class="pb-operating-triad"><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-shield"></use></svg></span><h4>治理</h4><ul><li>明确业务负责人、技术负责人和风险责任人</li><li>定义允许与禁止场景、模型和数据范围</li><li>设置质量门槛、人工审批和变更流程</li></ul></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-security"></use></svg></span><h4>安全</h4><ul><li>最小权限、密钥管理、日志和网络隔离</li><li>测试提示注入、恶意文件、越权与敏感输出</li><li>准备故障、供应商中断和数据事件响应</li></ul></article><article><span><svg class="ff-icon" aria-hidden="true"><use href="#i-leadership"></use></svg></span><h4>领导与采用</h4><ul><li>管理层持续说明为什么做和如何衡量</li><li>让一线员工参与设计、测试和改进</li><li>把培训、反馈和奖励机制放进推广计划</li></ul></article></div></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>05.6</span><div><h3>公开案例：定制能力如何进入业务</h3><p>复杂场景需要业务团队、内部技术和外部专家共同工作。</p></div></div><div class="pb-story-grid"><article><small>EtonHouse · 教育运营</small><h4>预计行政时间 -80%</h4><p>建设符合教学法和学生进度的课程与活动规划助手，同时培训教师和开发团队，并计划扩展更多语言和幼儿课程。</p></article><article><small>iHub · 物流数据</small><h4>预计报表时间 -50%</h4><p>把多源数据查询变成自然语言对话，增加图表和摘要，并通过内部团队与技术伙伴共同建立治理和部署能力。</p></article></div><p class="pb-note">以上为用户提供的公开案例内容摘要；预计值和业务结果应在正式发布前再次核验。</p></section>
+          <section class="pb-subsection"><div class="pb-subhead"><span>05.7</span><div><h3>建设方案的起步清单</h3><p>先形成组织共识，再进入架构和开发。</p></div></div><ol class="pb-start-steps"><li><span>1</span><div><h4>建立共同理解</h4><p>理解能力、局限、治理、安全和负责任使用。</p></div></li><li><span>2</span><div><h4>识别高价值场景</h4><p>量化时间、收入、市场机会与风险回报。</p></div></li><li><span>3</span><div><h4>准备专家与资源</h4><p>明确内部、外部或混合团队的角色和预算。</p></div></li><li><span>4</span><div><h4>获得管理层和员工支持</h4><p>确定负责人、变更机制和采用计划。</p></div></li><li><span>5</span><div><h4>分阶段建设和验收</h4><p>先原型、再试点、后生产，每阶段都有继续或停止条件。</p></div></li></ol></section>
+        </div>
+      </details>
+
+      <details class="pb-chapter" id="pb-references" data-section open>
+        <summary><span class="pb-chapter-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-reference"></use></svg></span><span class="pb-chapter-number">06</span><div><small>REFERENCES &amp; NEXT STEP</small><h2>继续阅读、核验与行动。</h2><p>把方法带回企业自己的场景、数据和责任边界。</p></div><span class="pb-toggle"><svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></summary>
+        <div class="pb-chapter-body"><div class="pb-reference-grid"><div><h3>安全、治理与技能</h3><a href="https://www.csa.gov.sg/cyber-essentials" target="_blank" rel="noopener">Cyber Essentials · 新加坡网络安全局 ↗</a><a href="https://www.pdpc.gov.sg/" target="_blank" rel="noopener">个人数据保护与 PDPA 资料 ↗</a><a href="https://www.skillsfuture.gov.sg/" target="_blank" rel="noopener">SkillsFuture Singapore ↗</a><a href="assets/genai-playbook-reference.pdf" download>下载用户提供的原始 GenAI Playbook PDF ↓</a></div><div><h3>ForFlow 企业资源</h3><a href="navigator.html">AI 场景诊断器 ↗</a><a href="service-ai-enablement.html">企业 AI 赋能计划 ↗</a><a href="service-data-governance.html">数据治理 ↗</a><a href="service-agent-build.html">企业 Agent 搭建 ↗</a><a href="service-ai-training.html">企业 AI 培训 ↗</a></div></div><div class="pb-final-cta"><div><small>GETTING STARTED</small><h3>把这本手册的方法，<br>转换成企业自己的第一步。</h3><p>用 3 分钟说明当前业务问题、目标和条件，获得可讨论的场景与路径建议。</p></div><a class="btn btn--green" href="navigator.html">进入 AI 场景诊断 <span aria-hidden="true">→</span></a></div></div>
+      </details>
+    </article>
+  </div>
+  <div class="pb-toc-drawer" data-toc-drawer aria-hidden="true"><div class="pb-drawer-head"><strong>企业 AI 实战手册</strong><button type="button" data-toc-close>关闭 ×</button></div><a href="#pb-intro"><span>01</span>认识 GenAI</a><a href="#pb-opportunity"><span>02</span>商业价值</a><a href="#pb-decision"><span>03</span>买还是建</a><a href="#pb-buy"><span>04</span>采用现成方案</a><a href="#pb-build"><span>05</span>定制与自建</a><a href="#pb-references"><span>06</span>参考资料</a><a class="btn btn--green" href="assets/genai-playbook-reference.pdf" download>下载原始 PDF</a></div>
+</main>
+
+<footer class="site-footer ff-footer" id="contact">
+  <div class="container ff-footer-lead">
+    <p>下一步，不需要先买工具。</p>
+    <h2>先把最值得改变的<br>那一段业务说清楚。</h2>
+    <a class="btn btn--green" href="navigator.html">开始 3 分钟诊断 <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="container footer-main">
+    <div class="footer-brand"><img src="assets/forflow-lockup-transparent.png" alt="ForFlow 萬維流形"><p>面向企业的 AI 原生增长运行层。<br>从高价值场景、安全落地到持续运营。</p></div>
+    <div class="footer-col"><h3>企业服务</h3><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div>
+    <div class="footer-col"><h3>工具与资源</h3><a href="navigator.html">AI 场景诊断</a><a href="playbook.html">企业 AI 实战手册</a><a href="category-hrms.html">HR AI 场景地图</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div>
+    <div class="footer-col"><h3>案例与行动</h3><a href="cases.html">案例中心</a><a href="case-wren-kitchens.html">案例详情示范</a><button class="footer-search search-trigger" type="button">全站搜索</button><a href="navigator.html">开始诊断</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 增长运行层 · 中文响应式网站</span></div>
+</footer>
+
+
+<div class="search-modal" data-search-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-modal-backdrop" data-search-close></div>
+  <div class="search-modal-panel">
+    <p class="search-modal-kicker">SEARCH FORFLOW</p>
+    <h2 class="sr-only" id="search-modal-title">搜索 ForFlow</h2>
+    <form class="search-modal-form" action="search.html" method="get"><span class="search-modal-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-search"></use></svg></span><input type="search" name="search" placeholder="输入服务、场景或资料，例如：Agent" autocomplete="off" aria-label="搜索关键词"><button class="btn btn--green" type="submit">搜索</button></form>
+    <button class="search-modal-close" type="button" data-search-close>关闭 <span aria-hidden="true">×</span></button>
+    <div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=培训">AI 培训</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+  </div>
+</div>
+
+</body></html>

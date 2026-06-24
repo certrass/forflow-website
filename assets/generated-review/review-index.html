@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ForFlow Generated Asset Review</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #050505;
+      --muted: #626962;
+      --line: #dde3dc;
+      --flow: #63f578;
+      --surface: #f6f8f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fff;
+      color: var(--ink);
+    }
+    main {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+    header {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 22px;
+    }
+    small {
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 5.5rem);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+    }
+    p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    article {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+    article img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #eef2ed;
+    }
+    .meta {
+      display: grid;
+      gap: 8px;
+      padding: 18px;
+      background: #fff;
+    }
+    h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+    code {
+      color: #164d22;
+      font-size: .82rem;
+      overflow-wrap: anywhere;
+    }
+    .priority {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 24px;
+      border-radius: 999px;
+      background: var(--flow);
+      color: #071008;
+      font-size: .76rem;
+      font-weight: 900;
+    }
+    @media (max-width: 760px) {
+      main { width: min(100% - 24px, 520px); padding-top: 30px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <small>ForFlow Generated Asset Review / China + Q2Q</small>
+      <h1>中国场景 + Q2Q 工作单元素材候选</h1>
+      <p>C 系列是当前推荐审核组：默认中国人、中国企业场景，并且每张图都对应一个可诊断、可复核、可派单的工作单元。S 系列保留为 Sana-style 照片语言参考；P 系列是早期 v1 方向，仅作对照。</p>
+    </header>
+    <section class="grid" aria-label="素材候选">
+      <article>
+        <img src="c01-home-hero-china-q2q-workunit-tablet-v2.png" alt="C01 v2 中国场景 Q2Q 首页 hero 工作单元平板视觉候选">
+        <div class="meta"><span class="priority">C01 v2</span><h2>首页 hero / Q2Q Work Unit</h2><code>c01-home-hero-china-q2q-workunit-tablet-v2.png</code><p>v2 优先：屏幕朝向使用者，左侧留白保留给首页标题。</p></div>
+      </article>
+      <article>
+        <img src="c02-navigator-china-q2q-diagnostic-workbench.png" alt="C02 中国场景 Q2Q Navigator 诊断工作台视觉候选">
+        <div class="meta"><span class="priority">C02</span><h2>首页 Navigator / Diagnostic Workbench</h2><code>c02-navigator-china-q2q-diagnostic-workbench.png</code><p>派单前场景诊断：业务挑战、数据条件、人工复核与下一步。</p></div>
+      </article>
+      <article>
+        <img src="c03-case-library-china-q2q-workflow-evidence.png" alt="C03 中国场景 Q2Q 案例库工作流证据视觉候选">
+        <div class="meta"><span class="priority">C03</span><h2>案例库 / Workflow Evidence</h2><code>c03-case-library-china-q2q-workflow-evidence.png</code><p>案例不只是结果展示，而是一条工作单元证据链。</p></div>
+      </article>
+      <article>
+        <img src="c04-playbook-china-q2q-leader-reading-v2.png" alt="C04 v2 中国场景 Q2Q 企业手册负责人阅读视觉候选">
+        <div class="meta"><span class="priority">C04 v2</span><h2>企业 AI 手册 / Leader Reading</h2><code>c04-playbook-china-q2q-leader-reading-v2.png</code><p>v2 优先：设备为自然阅读角度，不再像展示屏。</p></div>
+      </article>
+      <article>
+        <img src="c05-service-ai-enablement-china-q2q-task-cards.png" alt="C05 中国场景 Q2Q 企业 AI 赋能任务卡视觉候选">
+        <div class="meta"><span class="priority">C05</span><h2>企业 AI 赋能 / Task Cards</h2><code>c05-service-ai-enablement-china-q2q-task-cards.png</code><p>把零散个人试用转成岗位真实任务模板、采用证据和复盘机制。</p></div>
+      </article>
+      <article>
+        <img src="c06-service-data-governance-china-q2q-evidence-packet.png" alt="C06 中国场景 Q2Q 数据治理证据包视觉候选">
+        <div class="meta"><span class="priority">C06</span><h2>数据治理 / Evidence Packet</h2><code>c06-service-data-governance-china-q2q-evidence-packet.png</code><p>数据资产、口径、权限和质量检查形成 AI 可用证据包。</p></div>
+      </article>
+      <article>
+        <img src="c07-service-agent-build-china-q2q-authorized-workflow-v2.png" alt="C07 v2 中国场景 Q2Q 企业 Agent 授权工作流视觉候选">
+        <div class="meta"><span class="priority">C07 v2</span><h2>企业 Agent 搭建 / Authorized Workflow</h2><code>c07-service-agent-build-china-q2q-authorized-workflow-v2.png</code><p>v2 优先：桌面协作视角，屏幕自然朝向参与者。</p></div>
+      </article>
+      <article>
+        <img src="c08-service-ai-training-china-q2q-role-rehearsal-v2.png" alt="C08 v2 中国场景 Q2Q 企业 AI 培训角色演练视觉候选">
+        <div class="meta"><span class="priority">C08 v2</span><h2>企业 AI 培训 / Role Rehearsal</h2><code>c08-service-ai-training-china-q2q-role-rehearsal-v2.png</code><p>v2 优先：更自然的桌面演练视角，避免举屏展示感。</p></div>
+      </article>
+      <article>
+        <img src="c09-category-hrms-china-q2q-human-review-map.png" alt="C09 中国场景 Q2Q HR 人工复核边界视觉候选">
+        <div class="meta"><span class="priority">C09</span><h2>HR 场景地图 / Human Review Map</h2><code>c09-category-hrms-china-q2q-human-review-map.png</code><p>选择 HR 可辅助任务，同时明确人工复核边界。</p></div>
+      </article>
+      <article>
+        <img src="c10-case-education-content-china-q2q-reviewed-workflow.png" alt="C10 中国场景 Q2Q 教育内容审核工作流视觉候选">
+        <div class="meta"><span class="priority">C10</span><h2>教育内容案例 / Reviewed Workflow</h2><code>c10-case-education-content-china-q2q-reviewed-workflow.png</code><p>选题、初稿、渠道改写、审核、发布证据的内容工作单元。</p></div>
+      </article>
+      <article>
+        <img src="c11-case-retail-service-china-q2q-routing-review.png" alt="C11 中国场景 Q2Q 零售客服分流复核视觉候选">
+        <div class="meta"><span class="priority">C11</span><h2>零售客服案例 / Routing Review</h2><code>c11-case-retail-service-china-q2q-routing-review.png</code><p>高频问答分流、知识引用、人工转接和响应证据。</p></div>
+      </article>
+      <article>
+        <img src="c12-case-logistics-data-china-q2q-dispatch-evidence.png" alt="C12 中国场景 Q2Q 物流数据派单证据视觉候选">
+        <div class="meta"><span class="priority">C12</span><h2>物流数据案例 / Dispatch Evidence</h2><code>c12-case-logistics-data-china-q2q-dispatch-evidence.png</code><p>运单、仓储、路线、异常数据查询、摘要、人工确认和下一步派单。</p></div>
+      </article>
+      <article>
+        <img src="s01-home-hero-sana-style-person-tablet.png" alt="S01 Sana-style 首页 hero 真人平板视觉候选">
+        <div class="meta"><span class="priority">S01</span><h2>Sana-style 首页 hero / Person + Tablet</h2><code>s01-home-hero-sana-style-person-tablet.png</code><p>白底、大留白、真人与设备，替代早期海报感 hero。</p></div>
+      </article>
+      <article>
+        <img src="s02-home-navigator-sana-style-device-stack.png" alt="S02 Sana-style Navigator 设备文件堆叠视觉候选">
+        <div class="meta"><span class="priority">S02</span><h2>Sana-style Navigator / Device Stack</h2><code>s02-home-navigator-sana-style-device-stack.png</code><p>设备放在文件堆叠上，更像真实产品照片。</p></div>
+      </article>
+      <article>
+        <img src="s03-case-library-sana-style-keyboard-workflow.png" alt="S03 Sana-style 案例库键盘工作流视觉候选">
+        <div class="meta"><span class="priority">S03</span><h2>Sana-style 案例库 / Keyboard Workflow</h2><code>s03-case-library-sana-style-keyboard-workflow.png</code><p>真实键盘、彩色任务键和桌面物件，贴近参考图。</p></div>
+      </article>
+      <article>
+        <img src="s04-playbook-sana-style-lounge-reading.png" alt="S04 Sana-style 手册休息区阅读视觉候选">
+        <div class="meta"><span class="priority">S04</span><h2>Sana-style 手册 / Lounge Reading</h2><code>s04-playbook-sana-style-lounge-reading.png</code><p>松弛生活化阅读场景，适合手册/资源页。</p></div>
+      </article>
+      <article>
+        <img src="s05-service-ai-enablement-sana-style-workflow-cards.png" alt="S05 Sana-style 企业 AI 赋能任务卡视觉候选">
+        <div class="meta"><span class="priority">S05</span><h2>Sana-style 企业 AI 赋能 / Workflow Cards</h2><code>s05-service-ai-enablement-sana-style-workflow-cards.png</code><p>团队任务卡与采用方法；留作照片语言对照。</p></div>
+      </article>
+      <article>
+        <img src="s06-service-data-governance-sana-style-documents-catalog.png" alt="S06 Sana-style 数据治理文件目录视觉候选">
+        <div class="meta"><span class="priority">S06</span><h2>Sana-style 数据治理 / Documents Catalog</h2><code>s06-service-data-governance-sana-style-documents-catalog.png</code><p>文件整理和数据目录；留作照片语言对照。</p></div>
+      </article>
+      <article>
+        <img src="p01-home-hero-ai-flow-runtime.png" alt="P01 首页 hero AI 工作流主视觉候选">
+        <div class="meta"><span class="priority">P01</span><h2>首页 hero / AI Flow Runtime</h2><code>p01-home-hero-ai-flow-runtime.png</code><p>替换当前 `hero-hand.jpg` 的候选。无文字、左侧留白。</p></div>
+      </article>
+      <article>
+        <img src="p02-home-navigator-runtime-map.png" alt="P02 首页 Navigator 运行地图视觉候选">
+        <div class="meta"><span class="priority">P02</span><h2>首页 Navigator / Runtime Map</h2><code>p02-home-navigator-runtime-map.png</code><p>替换当前 `flow-runtime.png` 的候选。竖向面板友好。</p></div>
+      </article>
+      <article>
+        <img src="p03-case-retail-manufacturing-workflow.png" alt="P03 零售制造主案例视觉候选">
+        <div class="meta"><span class="priority">P03</span><h2>案例主视觉 / Retail Manufacturing Workflow</h2><code>p03-case-retail-manufacturing-workflow.png</code><p>对应 Wren 类公开案例，但不出现真实品牌。</p></div>
+      </article>
+      <article>
+        <img src="p04-case-education-content-sprint.png" alt="P04 教育内容营销案例视觉候选">
+        <div class="meta"><span class="priority">P04</span><h2>教育内容案例 / Content Sprint</h2><code>p04-case-education-content-sprint.png</code><p>对应 18h 到 30min 的内容流程压缩故事。</p></div>
+      </article>
+      <article>
+        <img src="p05-case-retail-service-agent.png" alt="P05 零售客服智能服务案例视觉候选">
+        <div class="meta"><span class="priority">P05</span><h2>零售客服案例 / Service Agent</h2><code>p05-case-retail-service-agent.png</code><p>对应 7x24 客服和重复任务减少；含少量 24/7 符号。</p></div>
+      </article>
+      <article>
+        <img src="p06-case-logistics-data-query.png" alt="P06 物流数据查询案例视觉候选">
+        <div class="meta"><span class="priority">P06</span><h2>物流数据案例 / Data Query</h2><code>p06-case-logistics-data-query.png</code><p>对应多源供应链数据和自然语言查询。</p></div>
+      </article>
+      <article>
+        <img src="p07-service-ai-enablement-team-workshop.png" alt="P07 企业 AI 赋能计划服务页视觉候选">
+        <div class="meta"><span class="priority">P07</span><h2>企业 AI 赋能 / Team Workshop</h2><code>p07-service-ai-enablement-team-workshop.png</code><p>对应实战陪跑、采用指标和内部 Champion 培养。</p></div>
+      </article>
+      <article>
+        <img src="p08-service-data-governance-asset-map.png" alt="P08 数据治理服务页视觉候选">
+        <div class="meta"><span class="priority">P08</span><h2>数据治理 / Asset Map</h2><code>p08-service-data-governance-asset-map.png</code><p>对应资产盘点、质量、权限、血缘与 AI 数据层。</p></div>
+      </article>
+      <article>
+        <img src="p09-service-agent-build-orchestration.png" alt="P09 企业 Agent 搭建服务页视觉候选">
+        <div class="meta"><span class="priority">P09</span><h2>企业 Agent 搭建 / Orchestration</h2><code>p09-service-agent-build-orchestration.png</code><p>对应知识、系统、权限、审批、执行和审计。</p></div>
+      </article>
+      <article>
+        <img src="p10-service-ai-training-role-workshop.png" alt="P10 企业 AI 培训服务页视觉候选">
+        <div class="meta"><span class="priority">P10</span><h2>企业 AI 培训 / Role Workshop</h2><code>p10-service-ai-training-role-workshop.png</code><p>对应管理层、业务与技术团队的角色化训练。</p></div>
+      </article>
+      <article>
+        <img src="p11-category-hrms-scene-map.png" alt="P11 HR 场景地图页视觉候选">
+        <div class="meta"><span class="priority">P11</span><h2>HR 场景地图 / Scene Map</h2><code>p11-category-hrms-scene-map.png</code><p>对应招聘、入职、员工服务、培训和绩效场景。</p></div>
+      </article>
+      <article>
+        <img src="p12-playbook-cover-practical-guide.png" alt="P12 企业生成式 AI 实战手册封面视觉候选">
+        <div class="meta"><span class="priority">P12</span><h2>企业 AI 手册 / Practical Guide</h2><code>p12-playbook-cover-practical-guide.png</code><p>对应企业实战手册封面或资源卡视觉。</p></div>
+      </article>
+      <article>
+        <img src="p13-case-education-operations-planning.png" alt="P13 教育运营案例视觉候选">
+        <div class="meta"><span class="priority">P13</span><h2>教育运营案例 / v1 Extra</h2><code>p13-case-education-operations-planning.png</code><p>生成于 Sana-style 反馈前，后续建议按 S 系列重出。</p></div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

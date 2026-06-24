@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+*.pyc
+.netlify/
+test-results/
+tests/screenshots/
+tests/polished/
+tests/*-report.json
+tests/*-report.txt

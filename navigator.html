@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#f6f7f5" name="theme-color"/>
+<meta content="ForFlow AI Navigator——从业务挑战出发，定位第一条 AI 增长流。" name="description"/>
+<title>AI Navigator｜ForFlow.ai</title>
+<link href="assets/forflow-mark.png" rel="icon"/>
+<link href="styles.css" rel="stylesheet"/>
+<script defer="" src="script.js"></script>
+</head>
+<body class="navigator-page">
+<a class="skip-link" href="#navigator-main">跳至诊断内容</a>
+<svg aria-hidden="true" class="ff-symbols" focusable="false">
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.3 15.3 5.2 5.2"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m7 9 5 5 5-5"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"></path></symbol>
+<symbol id="i-download" viewbox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"></path></symbol>
+<symbol id="i-compass" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"></path></symbol>
+<symbol id="i-layers" viewbox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></symbol>
+<symbol id="i-data" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></symbol>
+<symbol id="i-agent" viewbox="0 0 24 24"><rect height="11" rx="3" width="14" x="5" y="7"></rect><path d="M9 11h.01M15 11h.01M9 15h6M12 7V4m-2 0h4M3 12H1m22 0h-2"></path></symbol>
+<symbol id="i-training" viewbox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"></path><path d="M7 12v4c2.8 2.2 7.2 2.2 10 0v-4M21 9v6"></path></symbol>
+<symbol id="i-book" viewbox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"></path></symbol>
+<symbol id="i-cases" viewbox="0 0 24 24"><rect height="15" rx="2" width="18" x="3" y="5"></rect><path d="M8 5V3h8v2M3 10h18M9 14h6"></path></symbol>
+<symbol id="i-people" viewbox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2"></circle><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M14 14c3.5 0 6 2.2 6 6"></path></symbol>
+<symbol id="i-customer" viewbox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"></path><path d="M8 9h8M8 12h5"></path></symbol>
+<symbol id="i-marketing" viewbox="0 0 24 24"><path d="M4 13v-2l12-5v12L4 13Z"></path><path d="M7 14v5h4l-1-5M19 9c1 1 1 5 0 6"></path></symbol>
+<symbol id="i-knowledge" viewbox="0 0 24 24"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"></path><path d="M9 19h6M10 15v2h4v-2M4 8H2m20 0h-2M5 3 3.5 1.5M19 3l1.5-1.5"></path></symbol>
+<symbol id="i-operations" viewbox="0 0 24 24"><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><path d="M9 12h4l3-4M13 12l3 4"></path></symbol>
+<symbol id="i-finance" viewbox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"></path><path d="m3 8 6-5 6 7 6-5"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></symbol>
+<symbol id="i-growth" viewbox="0 0 24 24"><path d="M4 19V5m0 14h16"></path><path d="m7 15 4-4 3 2 5-6M15 7h4v4"></path></symbol>
+<symbol id="i-flow" viewbox="0 0 24 24"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"></path><circle cx="3" cy="7" r="1.5"></circle><circle cx="21" cy="17" r="1.5"></circle></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="i-spark" viewbox="0 0 24 24"><path d="m12 2 1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6L12 2ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"></path></symbol>
+<symbol id="i-brain" viewbox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2.2A3.4 3.4 0 0 0 4 12a3.4 3.4 0 0 0 2 5.8A3 3 0 0 0 12 18V6a3 3 0 0 0-3-2Z"></path><path d="M15 4a3 3 0 0 1 5 2.2A3.4 3.4 0 0 1 20 12a3.4 3.4 0 0 1-2 5.8A3 3 0 0 1 12 18V6a3 3 0 0 1 3-2ZM8 8h4m-5 5h5m4-5h-4m5 5h-5"></path></symbol>
+<symbol id="i-bulb" viewbox="0 0 24 24"><path d="M9 18h6M10 21h4M8.5 15.5A7 7 0 1 1 15.5 15.5c-.9.7-1.5 1.3-1.5 2.5h-4c0-1.2-.6-1.8-1.5-2.5Z"></path><path d="M12 6v4m-2 0h4"></path></symbol>
+<symbol id="i-split" viewbox="0 0 24 24"><path d="M12 21V7M7 12l5-5 5 5M4 4h5M15 4h5"></path></symbol>
+<symbol id="i-cart" viewbox="0 0 24 24"><path d="M3 4h2l2 11h10l3-7H6"></path><circle cx="9" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle><path d="M13 5h7M16.5 2v6"></path></symbol>
+<symbol id="i-build" viewbox="0 0 24 24"><path d="M4 19 15 8M13 4l7 7M3 20l4-1-3-3-1 4Z"></path><path d="m15 3 6 6-2 2-6-6 2-2Z"></path></symbol>
+<symbol id="i-reference" viewbox="0 0 24 24"><path d="M6 3h10l3 3v15H6V3Z"></path><path d="M16 3v4h4M9 11h7M9 15h7M9 19h4"></path></symbol>
+<symbol id="i-text" viewbox="0 0 24 24"><path d="M4 5h16M12 5v14M8 19h8"></path></symbol>
+<symbol id="i-image" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><circle cx="9" cy="9" r="2"></circle><path d="m4 17 5-5 4 4 2-2 5 5"></path></symbol>
+<symbol id="i-audio" viewbox="0 0 24 24"><path d="M9 18V6l10-2v12"></path><circle cx="6" cy="18" r="3"></circle><circle cx="16" cy="16" r="3"></circle></symbol>
+<symbol id="i-video" viewbox="0 0 24 24"><rect height="14" rx="2" width="14" x="3" y="5"></rect><path d="m17 10 4-3v10l-4-3v-4Z"></path></symbol>
+<symbol id="i-translate" viewbox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 5c3 0 6-3 6-6M6 8c1 2 3 4 6 5M14 19l3-8 3 8M15 16h4"></path></symbol>
+<symbol id="i-code" viewbox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"></path></symbol>
+<symbol id="i-cube" viewbox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></symbol>
+<symbol id="i-speech" viewbox="0 0 24 24"><path d="M5 4h14v12H9l-4 4V4Z"></path><path d="M9 8v4m3-6v8m3-5v3"></path></symbol>
+<symbol id="i-document" viewbox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z"></path><path d="M14 3v5h5M9 12h6M9 16h6"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+<symbol id="i-cost" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15 8.5c-.7-.7-1.7-1-3-1-2 0-3 .9-3 2s1.1 1.7 3 2 3 .9 3 2-1 2-3 2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"></path></symbol>
+<symbol id="i-requirements" viewbox="0 0 24 24"><path d="M5 4h14v16H5V4Z"></path><path d="m8 9 1.5 1.5L12 8m2 2h3m-9 5 1.5 1.5L12 14m2 2h3"></path></symbol>
+<symbol id="i-experience" viewbox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6Z"></path><path d="M9 19c.5 1.3 1.5 2 3 2s2.5-.7 3-2M12 7v4"></path></symbol>
+<symbol id="i-settings" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19 13.5v-3l-2-.7-.6-1.5.9-1.9-2.1-2.1-1.9.9-1.5-.6L10.5 3h-3l-.7 2-1.5.6-1.9-.9-2.1 2.1.9 1.9-.6 1.5-2 .7v3l2 .7.6 1.5-.9 1.9 2.1 2.1 1.9-.9 1.5.6.7 2h3l.7-2 1.5-.6 1.9.9 2.1-2.1-.9-1.9.6-1.5 2-.7Z" transform="translate(2 0) scale(.82)"></path></symbol>
+<symbol id="i-risk" viewbox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 9v5m0 3h.01"></path></symbol>
+<symbol id="i-security" viewbox="0 0 24 24"><rect height="11" rx="2" width="14" x="5" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"></path></symbol>
+<symbol id="i-leadership" viewbox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10H4Z"></path><path d="M9 20v-6h6v6M8 9h8"></path></symbol>
+<symbol id="i-quote" viewbox="0 0 24 24"><path d="M4 6h7v7H7c0 3-1 5-4 6 2-2 2-4 1-6V6Zm10 0h7v7h-4c0 3-1 5-4 6 2-2 2-4 1-6V6Z"></path></symbol>
+</svg><div class="ff-utility-bar">
+<div class="container ff-utility-inner">
+<span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
+<nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例中心</a><a href="index.html#contact">方案沟通</a></nav>
+</div>
+</div><header class="site-header ff-header" data-header="">
+<div class="container header-inner">
+<a aria-label="ForFlow 萬維流形首页" class="brand" href="index.html">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+</a>
+<nav aria-label="主导航" class="primary-nav ff-mega-nav" data-mega-root="">
+<ul>
+<li><a href="index.html">首页</a></li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">企业服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--services" data-mega-panel="">
+<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>四条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-link-grid">
+<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>01</em></a>
+<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>02</em></a>
+<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>03</em></a>
+<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>04</em></a>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger is-current" data-mega-trigger="" type="button">场景与工具 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--tools" data-mega-panel="">
+<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-feature-stack">
+<a aria-current="page" class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+<a class="mega-feature" href="category-hrms.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-people"></use></svg></span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+<button class="mega-feature search-trigger" type="button"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料与案例</small></div><em>搜索</em></button>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">手册与洞察 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--insights" data-mega-panel="">
+<a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br/>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></span></a>
+<div class="mega-insight-list">
+<a href="cases.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
+<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>案例详情示范</b><small>查看完整案例页面的信息层级</small></div></a>
+<a href="document-viewer.html?doc=playbook"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
+</div>
+</div>
+</li>
+<li><a href="cases.html">案例</a></li>
+</ul>
+</nav>
+<div class="header-actions">
+<button aria-label="打开全站搜索" class="icon-btn search-trigger" type="button"><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></button>
+<a class="btn btn--green header-cta" href="navigator.html">开始诊断 <span aria-hidden="true">→</span></a>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="打开菜单" class="menu-toggle" type="button"><span></span></button>
+</div>
+</header><div aria-hidden="true" class="mobile-menu-panel ff-mobile-menu" id="mobile-menu">
+<a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
+<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div></details>
+<details open=""><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a aria-current="page" href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
+<details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例中心</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
+<a href="cases.html">案例 <span>05</span></a>
+<a class="btn btn--green" href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">→</span></a>
+</div><main id="navigator-main">
+<section class="navigator-hero-strip">
+<div class="container navigator-hero-inner">
+<nav aria-label="面包屑" class="breadcrumbs">
+<a href="index.html">首页</a><span>/</span><a href="index.html#resources">AI 工具</a><span>/</span><strong>AI Navigator</strong>
+</nav>
+<h1>找到你的第一条<br/>AI 增长流。</h1>
+<p>从业务挑战、价值目标、组织准备度和部署偏好出发，获得一版可讨论的场景建议。填写过程约 3 分钟。</p>
+</div>
+</section>
+<div class="container navigator-shell" data-navigator="">
+<aside aria-label="诊断步骤" class="navigator-sidebar">
+<div class="navigator-sidebar-inner">
+<p class="sidebar-kicker">Your route</p>
+<ol class="step-list">
+<li class="step-item is-active" data-progress-step="1">
+<span class="step-marker">01</span>
+<span class="step-copy"><strong>业务挑战</strong><span>选择最需要改善的环节</span></span>
+</li>
+<li class="step-item" data-progress-step="2">
+<span class="step-marker">02</span>
+<span class="step-copy"><strong>价值与准备度</strong><span>明确目标和现状</span></span>
+</li>
+<li class="step-item" data-progress-step="3">
+<span class="step-marker">03</span>
+<span class="step-copy"><strong>部署偏好</strong><span>约束、周期和数据条件</span></span>
+</li>
+<li class="step-item" data-progress-step="4">
+<span class="step-marker">04</span>
+<span class="step-copy"><strong>推荐结果</strong><span>查看场景与下一步</span></span>
+</li>
+</ol>
+<div class="sidebar-trust">
+<span class="trust-icon">✓</span>
+<h3>原型说明</h3>
+<p>本页面为前端交互原型。推荐逻辑、产品库、表单提交和 CRM 接口均已留出替换位置。</p>
+</div>
+</div>
+</aside>
+<section aria-live="polite" class="navigator-workspace">
+<div aria-hidden="true" class="mobile-progress">
+<div class="mobile-progress-track"><div class="mobile-progress-bar" data-mobile-progress=""></div></div>
+<div class="mobile-progress-label"><strong data-mobile-step-label="">步骤 1 / 4 · 业务挑战</strong><span>约 3 分钟</span></div>
+</div>
+<form id="navigator-form" novalidate="">
+<div class="workspace-card">
+<section aria-labelledby="step-1-title" class="step-panel is-active" data-step="1">
+<div class="step-panel-head">
+<span class="step-tag">Step 01 / Business challenge</span>
+<h2 id="step-1-title">你现在最想改善哪一段业务？</h2>
+<p>请选择 1–2 个最优先的挑战。后续推荐会围绕这些业务环节展开。</p>
+</div>
+<p class="field-note" data-choice-note="">已选择 0 / 2</p>
+<div class="choice-grid">
+<div class="choice-card">
+<input id="challenge-customer" name="challenge" type="checkbox" value="customer"/>
+<label for="challenge-customer">
+<span class="choice-check">✓</span><span class="choice-code">CE</span>
+<h3>客户触达与服务</h3>
+<p>客服问答、线索分流、自动跟进和个性化推荐。</p>
+</label>
+</div>
+<div class="choice-card">
+<input id="challenge-marketing" name="challenge" type="checkbox" value="marketing"/>
+<label for="challenge-marketing">
+<span class="choice-check">✓</span><span class="choice-code">MK</span>
+<h3>营销与内容增长</h3>
+<p>内容生成、活动策划、素材变体和渠道复盘。</p>
+</label>
+</div>
+<div class="choice-card">
+<input id="challenge-knowledge" name="challenge" type="checkbox" value="knowledge"/>
+<label for="challenge-knowledge">
+<span class="choice-check">✓</span><span class="choice-code">KN</span>
+<h3>企业知识与决策</h3>
+<p>知识检索、SOP 助手、分析辅助和经验复用。</p>
+</label>
+</div>
+<div class="choice-card">
+<input id="challenge-operations" name="challenge" type="checkbox" value="operations"/>
+<label for="challenge-operations">
+<span class="choice-check">✓</span><span class="choice-code">OP</span>
+<h3>运营流程自动化</h3>
+<p>文档处理、订单协同、异常识别和流程编排。</p>
+</label>
+</div>
+<div class="choice-card">
+<input id="challenge-finance" name="challenge" type="checkbox" value="finance"/>
+<label for="challenge-finance">
+<span class="choice-check">✓</span><span class="choice-code">FN</span>
+<h3>财务与经营分析</h3>
+<p>对账、报表、预测、审核与经营洞察。</p>
+</label>
+</div>
+<div class="choice-card">
+<input id="challenge-hr" name="challenge" type="checkbox" value="hr"/>
+<label for="challenge-hr">
+<span class="choice-check">✓</span><span class="choice-code">HR</span>
+<h3>人才与组织赋能</h3>
+<p>招聘、入职、员工问答、培训和能力陪练。</p>
+</label>
+</div>
+</div>
+</section>
+<section aria-labelledby="step-2-title" class="step-panel" data-step="2">
+<div class="step-panel-head">
+<span class="step-tag">Step 02 / Value &amp; readiness</span>
+<h2 id="step-2-title">你希望 AI 先带来什么结果？</h2>
+<p>选择 1–2 个价值目标，并说明组织当前所处阶段。</p>
+</div>
+<div class="form-section" style="margin-top:0;padding-top:0;border-top:0">
+<h3>优先价值目标</h3>
+<p>最多选择两项。</p>
+<div class="pill-grid" data-goal-grid="">
+<div class="pill-choice"><input id="goal-speed" name="goal" type="checkbox" value="speed"/><label for="goal-speed">缩短处理时间</label></div>
+<div class="pill-choice"><input id="goal-cost" name="goal" type="checkbox" value="cost"/><label for="goal-cost">降低运营成本</label></div>
+<div class="pill-choice"><input id="goal-revenue" name="goal" type="checkbox" value="revenue"/><label for="goal-revenue">提升转化与收入</label></div>
+<div class="pill-choice"><input id="goal-quality" name="goal" type="checkbox" value="quality"/><label for="goal-quality">提高质量与一致性</label></div>
+<div class="pill-choice"><input id="goal-experience" name="goal" type="checkbox" value="experience"/><label for="goal-experience">改善客户/员工体验</label></div>
+<div class="pill-choice"><input id="goal-risk" name="goal" type="checkbox" value="risk"/><label for="goal-risk">降低错误与风险</label></div>
+</div>
+</div>
+<div class="form-section">
+<h3>组织准备度</h3>
+<p>选择最接近当前实际情况的一项。</p>
+<div class="radio-row">
+<div class="radio-card">
+<input id="readiness-idea" name="readiness" type="radio" value="idea"/>
+<label for="readiness-idea"><strong>刚开始探索</strong><span>有问题和想法，但尚未整理流程与数据。</span></label>
+</div>
+<div class="radio-card">
+<input id="readiness-process" name="readiness" type="radio" value="process"/>
+<label for="readiness-process"><strong>已有明确流程</strong><span>知道要改哪里，流程和负责人基本清楚。</span></label>
+</div>
+<div class="radio-card">
+<input id="readiness-data" name="readiness" type="radio" value="data"/>
+<label for="readiness-data"><strong>已有数据与试验</strong><span>已有知识库、接口或试点，希望进入生产。</span></label>
+</div>
+</div>
+</div>
+<div class="form-section">
+<div class="inline-selects">
+<div class="select-field">
+<label for="team-size">预计首批使用团队</label>
+<select id="team-size" name="teamSize">
+<option value="">请选择</option>
+<option value="small">1–10 人</option>
+<option value="medium">11–50 人</option>
+<option value="large">51–200 人</option>
+<option value="enterprise">200 人以上</option>
+</select>
+</div>
+<div class="select-field">
+<label for="industry">所属行业（内容映射占位）</label>
+<select id="industry" name="industry">
+<option value="">请选择</option>
+<option value="retail">零售 / 消费</option>
+<option value="manufacturing">制造 / 供应链</option>
+<option value="professional">专业服务</option>
+<option value="technology">科技 / 软件</option>
+<option value="finance">金融 / 保险</option>
+<option value="other">其他行业</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="step-3-title" class="step-panel" data-step="3">
+<div class="step-panel-head">
+<span class="step-tag">Step 03 / Deployment preference</span>
+<h2 id="step-3-title">什么样的部署方式更适合你？</h2>
+<p>这些信息用于过滤不合适的方案，并决定试点与生产架构的边界。</p>
+</div>
+<div class="form-section" style="margin-top:0;padding-top:0;border-top:0">
+<h3>部署偏好</h3>
+<p>选择最接近当前要求的一项。</p>
+<div class="radio-row">
+<div class="radio-card">
+<input id="deployment-cloud" name="deployment" type="radio" value="cloud"/>
+<label for="deployment-cloud"><strong>云端优先</strong><span>追求快速启动，使用标准 SaaS 与云模型。</span></label>
+</div>
+<div class="radio-card">
+<input id="deployment-hybrid" name="deployment" type="radio" value="hybrid"/>
+<label for="deployment-hybrid"><strong>混合部署</strong><span>核心数据留在内部，按需调用外部能力。</span></label>
+</div>
+<div class="radio-card">
+<input id="deployment-private" name="deployment" type="radio" value="private"/>
+<label for="deployment-private"><strong>私有化优先</strong><span>对数据、模型和审计有更高控制要求。</span></label>
+</div>
+</div>
+</div>
+<div class="form-section">
+<h3>希望多久看到首个结果？</h3>
+<div class="pill-grid">
+<div class="pill-choice"><input id="timeline-30" name="timeline" type="radio" value="30d"/><label for="timeline-30">30 天内试点</label></div>
+<div class="pill-choice"><input id="timeline-quarter" name="timeline" type="radio" value="quarter"/><label for="timeline-quarter">一个季度</label></div>
+<div class="pill-choice"><input id="timeline-half" name="timeline" type="radio" value="half"/><label for="timeline-half">半年内规模化</label></div>
+</div>
+</div>
+<div class="form-section">
+<h3>需要重点考虑的约束</h3>
+<p>可多选；不选也可以继续。</p>
+<div class="pill-grid">
+<div class="pill-choice"><input id="constraint-sensitive" name="constraint" type="checkbox" value="sensitive"/><label for="constraint-sensitive">敏感数据</label></div>
+<div class="pill-choice"><input id="constraint-audit" name="constraint" type="checkbox" value="audit"/><label for="constraint-audit">审计留痕</label></div>
+<div class="pill-choice"><input id="constraint-integration" name="constraint" type="checkbox" value="integration"/><label for="constraint-integration">多系统集成</label></div>
+<div class="pill-choice"><input id="constraint-human" name="constraint" type="checkbox" value="human"/><label for="constraint-human">人工审批兜底</label></div>
+<div class="pill-choice"><input id="constraint-multilingual" name="constraint" type="checkbox" value="multilingual"/><label for="constraint-multilingual">多语言</label></div>
+<div class="pill-choice"><input id="constraint-budget" name="constraint" type="checkbox" value="budget"/><label for="constraint-budget">预算受限</label></div>
+</div>
+</div>
+<div class="form-section">
+<div class="inline-selects">
+<div class="select-field">
+<label for="systems">需要连接的系统数量（占位）</label>
+<select id="systems" name="systems">
+<option value="">请选择</option>
+<option value="none">暂无系统连接</option>
+<option value="few">1–3 个</option>
+<option value="many">4–10 个</option>
+<option value="complex">10 个以上</option>
+</select>
+</div>
+<div class="select-field">
+<label for="owner">是否已有业务负责人</label>
+<select id="owner" name="owner">
+<option value="">请选择</option>
+<option value="yes">已有明确负责人</option>
+<option value="partial">有候选人，需进一步确认</option>
+<option value="no">尚未确定</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="step-4-title" class="step-panel" data-step="4">
+<div class="step-panel-head">
+<span class="step-tag">Step 04 / Recommendation</span>
+<h2 id="step-4-title">你的 AI 增长流建议。</h2>
+<p>推荐根据当前原型规则生成，用于展示结果页结构；正式版可替换为真实方案库、评分模型与 CRM 提交。</p>
+</div>
+<div id="result-output">
+<div class="result-summary">
+<article class="result-hero">
+<span class="result-label">Primary route</span>
+<h3 data-result-title="">场景验证冲刺</h3>
+<p data-result-description="">先用一个高价值流程完成 30 天内的价值验证，再决定生产架构。</p>
+</article>
+<div class="result-meta">
+<div class="result-meta-card"><small>推荐起点</small><strong data-result-start="">业务流程梳理</strong></div>
+<div class="result-meta-card"><small>建议部署</small><strong data-result-deployment="">云端 / 混合可选</strong></div>
+<div class="result-meta-card"><small>成功指标</small><strong data-result-metric="">时效 · 质量 · 采用率</strong></div>
+</div>
+</div>
+<div class="recommendation-list" data-recommendation-list="">
+<!-- JS injects recommendation cards here. -->
+</div>
+<p class="result-disclaimer">内容占位说明：推荐名称、匹配度、能力标签、方案详情、服务商/产品映射、报价入口和留资表单都可由 CMS 或后端接口替换。</p>
+</div>
+</section>
+</div>
+<div class="workspace-actions">
+<span class="action-status" data-action-status="">请选择 1–2 个业务挑战</span>
+<div class="action-buttons">
+<button class="btn btn--ghost" data-prev="" disabled="" type="button">上一步</button>
+<button class="btn btn--green" data-next="" disabled="" type="button">继续 <span class="arrow">→</span></button>
+</div>
+</div>
+</form>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+<div class="container footer-main">
+<div class="footer-brand">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+<p>面向企业的 AI 原生增长运行层。<br/>从高价值场景、安全落地到持续运营。</p>
+</div>
+<div class="footer-col"><h3>企业服务</h3>
+<a href="service-ai-enablement.html">企业 AI 赋能计划</a>
+<a href="service-data-governance.html">数据治理</a>
+<a href="service-agent-build.html">企业 Agent 搭建</a>
+<a href="service-ai-training.html">企业 AI 培训</a>
+</div>
+<div class="footer-col"><h3>工具与资源</h3>
+<a href="navigator.html">AI 场景诊断</a>
+<a href="playbook.html">企业 AI 实战手册</a>
+<a href="category-hrms.html">HR AI 场景地图</a>
+<a href="document-viewer.html?doc=playbook">PDF 阅读器</a>
+</div>
+<div class="footer-col"><h3>案例与行动</h3>
+<a href="cases.html">案例中心</a>
+<a href="case-wren-kitchens.html">案例详情示范</a>
+<button class="footer-search search-trigger" type="button">全站搜索</button>
+<a href="navigator.html">开始诊断</a>
+</div>
+</div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>响应式企业网站原型 · CMS / CRM / 报价接口已预留</span></div>
+</footer>
+<div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
+<div class="search-modal-backdrop" data-search-close=""></div>
+<div class="search-modal-panel">
+<h2 class="sr-only" id="search-modal-title">搜索 ForFlow</h2>
+<form action="search.html" class="search-modal-form" method="get">
+<span class="search-modal-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg></span>
+<input aria-label="搜索关键词" autocomplete="off" name="search" placeholder="输入服务、场景或资料，例如：Agent" type="search"/>
+<button class="btn btn--green" type="submit">搜索</button>
+</form>
+<button class="search-modal-close" data-search-close="" type="button">关闭 <span aria-hidden="true">×</span></button>
+<div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=培训">AI 培训</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+</div>
+</div></body>
+</html>
