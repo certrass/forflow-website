@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="如何让静态 P&amp;ID 图纸不仅能被工程师查看，还能被系统搜索、关联和用于故障排查？ 公开案例的中文业务化解读、价值、边界与试点建议。" name="description"/>
+<title>P&amp;ID 智能化扩展工厂运营｜ForFlow 萬維流形</title>
+<link href="assets/forflow-mark.png" rel="icon"/>
+<link href="styles.css" rel="stylesheet"/>
+<script defer="" src="script.js"></script>
+</head>
+<body class="case-detail-page case-theme--manufacturing case-study-v2">
+<a class="skip-link" href="#main">跳至主要内容</a>
+<svg aria-hidden="true" class="ff-symbols" focusable="false">
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.3 15.3 5.2 5.2"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m7 9 5 5 5-5"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"></path></symbol>
+<symbol id="i-download" viewbox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"></path></symbol>
+<symbol id="i-compass" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"></path></symbol>
+<symbol id="i-layers" viewbox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></symbol>
+<symbol id="i-data" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></symbol>
+<symbol id="i-agent" viewbox="0 0 24 24"><rect height="11" rx="3" width="14" x="5" y="7"></rect><path d="M9 11h.01M15 11h.01M9 15h6M12 7V4m-2 0h4M3 12H1m22 0h-2"></path></symbol>
+<symbol id="i-training" viewbox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"></path><path d="M7 12v4c2.8 2.2 7.2 2.2 10 0v-4M21 9v6"></path></symbol>
+<symbol id="i-book" viewbox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"></path></symbol>
+<symbol id="i-cases" viewbox="0 0 24 24"><rect height="15" rx="2" width="18" x="3" y="5"></rect><path d="M8 5V3h8v2M3 10h18M9 14h6"></path></symbol>
+<symbol id="i-people" viewbox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2"></circle><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M14 14c3.5 0 6 2.2 6 6"></path></symbol>
+<symbol id="i-customer" viewbox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"></path><path d="M8 9h8M8 12h5"></path></symbol>
+<symbol id="i-marketing" viewbox="0 0 24 24"><path d="M4 13v-2l12-5v12L4 13Z"></path><path d="M7 14v5h4l-1-5M19 9c1 1 1 5 0 6"></path></symbol>
+<symbol id="i-knowledge" viewbox="0 0 24 24"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"></path><path d="M9 19h6M10 15v2h4v-2M4 8H2m20 0h-2M5 3 3.5 1.5M19 3l1.5-1.5"></path></symbol>
+<symbol id="i-operations" viewbox="0 0 24 24"><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><path d="M9 12h4l3-4M13 12l3 4"></path></symbol>
+<symbol id="i-finance" viewbox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"></path><path d="m3 8 6-5 6 7 6-5"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></symbol>
+<symbol id="i-growth" viewbox="0 0 24 24"><path d="M4 19V5m0 14h16"></path><path d="m7 15 4-4 3 2 5-6M15 7h4v4"></path></symbol>
+<symbol id="i-flow" viewbox="0 0 24 24"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"></path><circle cx="3" cy="7" r="1.5"></circle><circle cx="21" cy="17" r="1.5"></circle></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="i-spark" viewbox="0 0 24 24"><path d="m12 2 1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6L12 2ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"></path></symbol>
+<symbol id="i-brain" viewbox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2.2A3.4 3.4 0 0 0 4 12a3.4 3.4 0 0 0 2 5.8A3 3 0 0 0 12 18V6a3 3 0 0 0-3-2Z"></path><path d="M15 4a3 3 0 0 1 5 2.2A3.4 3.4 0 0 1 20 12a3.4 3.4 0 0 1-2 5.8A3 3 0 0 1 12 18V6a3 3 0 0 1 3-2ZM8 8h4m-5 5h5m4-5h-4m5 5h-5"></path></symbol>
+<symbol id="i-bulb" viewbox="0 0 24 24"><path d="M9 18h6M10 21h4M8.5 15.5A7 7 0 1 1 15.5 15.5c-.9.7-1.5 1.3-1.5 2.5h-4c0-1.2-.6-1.8-1.5-2.5Z"></path><path d="M12 6v4m-2 0h4"></path></symbol>
+<symbol id="i-split" viewbox="0 0 24 24"><path d="M12 21V7M7 12l5-5 5 5M4 4h5M15 4h5"></path></symbol>
+<symbol id="i-cart" viewbox="0 0 24 24"><path d="M3 4h2l2 11h10l3-7H6"></path><circle cx="9" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle><path d="M13 5h7M16.5 2v6"></path></symbol>
+<symbol id="i-build" viewbox="0 0 24 24"><path d="M4 19 15 8M13 4l7 7M3 20l4-1-3-3-1 4Z"></path><path d="m15 3 6 6-2 2-6-6 2-2Z"></path></symbol>
+<symbol id="i-reference" viewbox="0 0 24 24"><path d="M6 3h10l3 3v15H6V3Z"></path><path d="M16 3v4h4M9 11h7M9 15h7M9 19h4"></path></symbol>
+<symbol id="i-text" viewbox="0 0 24 24"><path d="M4 5h16M12 5v14M8 19h8"></path></symbol>
+<symbol id="i-image" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><circle cx="9" cy="9" r="2"></circle><path d="m4 17 5-5 4 4 2-2 5 5"></path></symbol>
+<symbol id="i-audio" viewbox="0 0 24 24"><path d="M9 18V6l10-2v12"></path><circle cx="6" cy="18" r="3"></circle><circle cx="16" cy="16" r="3"></circle></symbol>
+<symbol id="i-video" viewbox="0 0 24 24"><rect height="14" rx="2" width="14" x="3" y="5"></rect><path d="m17 10 4-3v10l-4-3v-4Z"></path></symbol>
+<symbol id="i-translate" viewbox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 5c3 0 6-3 6-6M6 8c1 2 3 4 6 5M14 19l3-8 3 8M15 16h4"></path></symbol>
+<symbol id="i-code" viewbox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"></path></symbol>
+<symbol id="i-cube" viewbox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></symbol>
+<symbol id="i-speech" viewbox="0 0 24 24"><path d="M5 4h14v12H9l-4 4V4Z"></path><path d="M9 8v4m3-6v8m3-5v3"></path></symbol>
+<symbol id="i-document" viewbox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z"></path><path d="M14 3v5h5M9 12h6M9 16h6"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+<symbol id="i-cost" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15 8.5c-.7-.7-1.7-1-3-1-2 0-3 .9-3 2s1.1 1.7 3 2 3 .9 3 2-1 2-3 2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"></path></symbol>
+<symbol id="i-requirements" viewbox="0 0 24 24"><path d="M5 4h14v16H5V4Z"></path><path d="m8 9 1.5 1.5L12 8m2 2h3m-9 5 1.5 1.5L12 14m2 2h3"></path></symbol>
+<symbol id="i-experience" viewbox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6Z"></path><path d="M9 19c.5 1.3 1.5 2 3 2s2.5-.7 3-2M12 7v4"></path></symbol>
+<symbol id="i-settings" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19 13.5v-3l-2-.7-.6-1.5.9-1.9-2.1-2.1-1.9.9-1.5-.6L10.5 3h-3l-.7 2-1.5.6-1.9-.9-2.1 2.1.9 1.9-.6 1.5-2 .7v3l2 .7.6 1.5-.9 1.9 2.1 2.1 1.9-.9 1.5.6.7 2h3l.7-2 1.5-.6 1.9.9 2.1-2.1-.9-1.9.6-1.5 2-.7Z" transform="translate(2 0) scale(.82)"></path></symbol>
+<symbol id="i-risk" viewbox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 9v5m0 3h.01"></path></symbol>
+<symbol id="i-security" viewbox="0 0 24 24"><rect height="11" rx="2" width="14" x="5" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"></path></symbol>
+<symbol id="i-leadership" viewbox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10H4Z"></path><path d="M9 20v-6h6v6M8 9h8"></path></symbol>
+<symbol id="i-quote" viewbox="0 0 24 24"><path d="M4 6h7v7H7c0 3-1 5-4 6 2-2 2-4 1-6V6Zm10 0h7v7h-4c0 3-1 5-4 6 2-2 2-4 1-6V6Z"></path></symbol>
+</svg>
+<div class="ff-utility-bar">
+<div class="container ff-utility-inner">
+<span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
+<nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例中心</a><a href="index.html#contact">方案沟通</a></nav>
+</div>
+</div>
+<header class="site-header ff-header" data-header="">
+<div class="container header-inner">
+<a aria-label="ForFlow 萬維流形首页" class="brand" href="index.html">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+</a>
+<nav aria-label="主导航" class="primary-nav ff-mega-nav" data-mega-root="">
+<ul>
+<li><a href="index.html">首页</a></li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">企业服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--services" data-mega-panel="">
+<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>四条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-link-grid">
+<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>01</em></a>
+<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>02</em></a>
+<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>03</em></a>
+<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>04</em></a>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">场景与工具 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--tools" data-mega-panel="">
+<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-feature-stack">
+<a class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+<a class="mega-feature" href="category-hrms.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-people"></use></svg></span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+<button class="mega-feature search-trigger" type="button"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料与案例</small></div><em>搜索</em></button>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">手册与洞察 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--insights" data-mega-panel="">
+<a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br/>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></span></a>
+<div class="mega-insight-list">
+<a href="cases.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
+<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>案例详情示范</b><small>查看完整案例页面的信息层级</small></div></a>
+<a href="document-viewer.html?doc=playbook"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
+</div>
+</div>
+</li>
+<li><a aria-current="page" href="cases.html">案例</a></li>
+</ul>
+</nav>
+<div class="header-actions">
+<button aria-label="打开全站搜索" class="icon-btn search-trigger" type="button"><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></button>
+<a class="btn btn--green header-cta" href="navigator.html">开始诊断 <span aria-hidden="true">→</span></a>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="打开菜单" class="menu-toggle" type="button"><span></span></button>
+</div>
+</header>
+<div aria-hidden="true" class="mobile-menu-panel ff-mobile-menu" id="mobile-menu">
+<a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
+<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div></details>
+<details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
+<details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例中心</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
+<a aria-current="page" href="cases.html">案例 <span>05</span></a>
+<a class="btn btn--green" href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">→</span></a>
+</div>
+<main id="main">
+<section class="case-study-hero">
+<div class="container">
+<nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例中心</a><span>/</span><strong>制造业</strong></nav>
+<div class="case-study-hero__grid">
+<div class="case-study-hero__copy">
+<div class="case-study-meta"><span>工业知识资产化</span><span>流程制造、能源与重型设备</span><span>9 分钟</span></div>
+<h1>把工厂管线图变成可查询的运营知识</h1>
+<p class="case-study-lead">工业图纸的价值不只是图片里的文字，而是设备之间的关系。案例通过混合识别、知识图谱和专业 Agent，把被锁在 PDF 中的工程知识变成可查询资产。</p>
+<div class="case-study-actions"><a class="btn btn--green" href="#overview">先看案例价值 <span aria-hidden="true">↓</span></a><a class="btn btn--ghost" href="#case-source">查看原始资料 <span aria-hidden="true">↘</span></a></div>
+</div>
+<figure class="case-study-hero__media case-study-hero__media--contain">
+<img alt="P&amp;ID 智能化扩展工厂运营的业务化案例导读图" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/cover-manufacturing-pid.png"/>
+<figcaption>业务化导读图 · 原始公开插图在正文完整保留</figcaption>
+</figure>
+</div>
+<div aria-label="公开资料中的关键证据" class="case-proof-rail"><div><strong>2,000</strong><span>一份 8 页发动机图中可包含的节点数量</span></div><div><strong>7,500</strong><span>同一公开示例中的连接关系数量</span></div><div><strong>100%</strong><span>关键图纸数字化要求人工确认后的准确性目标</span></div></div>
+<p class="case-proof-note">以上为原始公开资料中的测试、示例或项目信息，用于理解方法，不应直接视为对其他企业的效果承诺。</p>
+</div>
+</section>
+<div class="container case-detail-shell case-story-shell">
+<aside class="case-toc"><div class="case-toc-inner"><small>本页目录 · 9 分钟</small><nav data-scrollspy=""><a class="is-active" href="#overview">案例速览</a><a href="#challenge">静态图纸的瓶颈</a><a href="#digitize">如何数字化</a><a href="#knowledge">从图到知识网络</a><a href="#evidence">原文架构图</a><a href="#value">运营价值与边界</a><a href="#apply">价值与落地</a></nav><a class="case-toc-source" href="#case-source">原始资料 ↘</a></div></aside>
+<article><section class="case-section case-overview" data-section="" id="overview">
+<p class="eyebrow">Case at a glance</p>
+<h2>先看结论：这篇案例能帮企业做什么判断？</h2>
+<div class="case-question-panel">
+<div><small>本案例要回答的问题</small><h3>如何让静态 P&amp;ID 图纸不仅能被工程师查看，还能被系统搜索、关联和用于故障排查？</h3></div>
+<div class="case-goal"><small>案例目标</small><p>把设备、仪表、管线与连接关系转为可查询知识网络，并由工程师校验，使图纸知识能服务维护与运营。</p></div>
+</div>
+<div class="case-fact-grid">
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><small>案例类型</small><strong>工业知识资产化</strong></div></div>
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-operations"></use></svg></span><div><small>适用行业</small><strong>流程制造、能源与重型设备</strong></div></div>
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><div><small>AI 工作方式</small><strong>原生 PDF 提取 + 符号识别 + 连接关系重建 + 知识图谱 + 工程问答</strong></div></div>
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-people"></use></svg></span><div><small>人的最终责任</small><strong>工程师确认关键符号、跨页连接与版本，并对任何操作建议承担最终判断。</strong></div></div>
+</div>
+<div class="case-why-read"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>为什么值得读</small><p>适合图纸多、设备复杂、停机成本高，并且高度依赖资深工程师经验的制造企业。</p></div></div>
+<div class="case-value-chain-wrap">
+<div class="case-subhead"><small>从输入到价值</small><h3>不要只看用了什么技术，要看业务链路怎样改变。</h3></div>
+<ol class="case-value-chain"><li><span>01</span><div><strong>静态 P&amp;ID</strong><p>读取文字、线条、设备符号、坐标和图纸版本</p></div></li><li><span>02</span><div><strong>关系重建</strong><p>将设备与连接转换为节点、边和层级结构</p></div></li><li><span>03</span><div><strong>专家校验</strong><p>工程师修正识别结果和跨页连接</p></div></li><li><span>04</span><div><strong>可查询知识</strong><p>问答、故障分析和维护准备返回可追溯结果</p></div></li></ol>
+</div>
+</section><section class="case-section" data-section="" id="challenge"><p class="eyebrow">Operational bottleneck</p><h2>图纸包含关键工程知识，但 PDF 只能“被人看”，很难“被系统问”。</h2><p>一份 P&amp;ID 记录阀门、管线、仪表、设备和连接关系。大型工厂可能有上百页图纸；当工程师需要查找某个部件上下游、确认故障影响或准备维修时，人工翻图速度慢，也依赖少数资深人员的经验。</p><aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-knowledge"></use></svg></span><div><small>企业主看这里</small><h3>图像识别只是第一步</h3><p>业务价值不在于把图纸变成文字，而在于保留“谁与谁相连、属于什么系统、发生什么关系”，并让工程师能验证。</p></div></aside></section><section class="case-section" data-section="" id="digitize"><p class="eyebrow">Hybrid digitisation</p><h2>可直接读取的内容不必走 AI，难识别的符号再用视觉模型。</h2><p>案例采用混合方式：先直接提取 PDF 中已有的文字和线条，再用图像匹配识别泵、阀门、仪表等符号，最后由工程师确认。这样既减少计算和误差，也把人工精力集中在真正复杂的部分。</p><ol class="case-process"><li><span>01</span><div><h3>拆解图纸</h3><p>读取每一页的文本、几何线条、符号候选和坐标。</p></div></li><li><span>02</span><div><h3>识别设备</h3><p>把图形与标准符号库匹配，给出设备类型和置信度。</p></div></li><li><span>03</span><div><h3>重建连接</h3><p>根据线条和位置推断上下游、控制和测量关系。</p></div></li><li><span>04</span><div><h3>工程师确认</h3><p>在可视界面中修正错误，关键资料达到可用准确度。</p></div></li><li><span>05</span><div><h3>保存版本</h3><p>把确认后的对象和关系写入知识网络，并保留图纸版本。</p></div></li></ol></section><section class="case-section" data-section="" id="knowledge"><p class="eyebrow">From drawing to answers</p><h2>知识图谱保存连接关系，文档检索补充操作说明，专用助手负责组织答案。</h2><div class="case-icon-grid"><article class="case-icon-card"><span class="case-icon-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-cube"></use></svg></span><h3>设备与部件</h3><p>每个泵、阀、仪表和管段成为可查询对象。</p></article><article class="case-icon-card"><span class="case-icon-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><h3>连接关系</h3><p>系统知道上下游、控制、测量和所属回路。</p></article><article class="case-icon-card"><span class="case-icon-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><h3>关联文档</h3><p>维修手册、规格和历史记录与对象关联。</p></article><article class="case-icon-card"><span class="case-icon-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><h3>工程问答</h3><p>助手把图纸关系和文档证据组合成可追溯回答。</p></article></div><div class="case-quote"><blockquote>工程师问的不是“图上有什么字”，而是“关闭这个阀会影响哪些设备”。</blockquote><footer>ForFlow 业务化解读</footer></div></section><section class="case-section" data-section="" id="evidence"><p class="eyebrow">Original diagrams</p><h2>原文图展示了从工程图到知识网络和问答的两层结构。</h2><div class="case-figure-grid"><figure class="case-figure case-figure--contain"><a aria-label="打开原图：包含设备、管线和仪表关系的 P&amp;ID 图" href="assets/cases/manufacturing-pid-diagram.png" rel="noopener" target="_blank"><img alt="包含设备、管线和仪表关系的 P&amp;ID 图" decoding="async" loading="lazy" src="assets/cases/manufacturing-pid-diagram.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>原文插图：P&amp;ID 中包含大量对象与连接关系。</figcaption></figure><figure class="case-figure case-figure--contain"><a aria-label="打开原图：P&amp;ID 智能处理和问答架构" href="assets/cases/manufacturing-pid-architecture.png" rel="noopener" target="_blank"><img alt="P&amp;ID 智能处理和问答架构" decoding="async" loading="lazy" src="assets/cases/manufacturing-pid-architecture.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>原文插图：数字化、知识存储、检索和问答的完整链路。</figcaption></figure></div></section><section class="case-section" data-section="" id="value"><p class="eyebrow">Business value</p><h2>先从查图和维护准备入手，再扩展到更高风险的运营决策。</h2><div class="case-decision-grid"><article class="case-decision-card"><small>低风险起点</small><h3>图纸搜索与定位</h3><p>让工程师快速找到设备、页码和关联文档，减少查找时间。</p></article><article class="case-decision-card"><small>中等风险</small><h3>维修与变更影响分析</h3><p>列出可能受影响的上下游对象，由工程师确认后进入工单。</p></article><article class="case-decision-card"><small>高风险场景</small><h3>实时操作建议</h3><p>必须结合实时系统、严格权限和工程审批，不能只凭文档助手执行。</p></article></div><p>对企业来说，最重要的前置工作是图纸版本管理、设备编码一致性和工程师复核机制。没有这些基础，再强的模型也可能在错误版本上给出看似合理的答案。</p></section><section class="case-section case-application" data-section="" id="apply">
+<p class="eyebrow">Business value &amp; adoption</p>
+<h2>对企业的价值，不在“用了 AI”，而在时间、质量、风险和能力怎样变化。</h2>
+<div class="case-value-cards"><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><small>效率</small><h3>缩短查图时间</h3><p>从逐页翻找变为按设备、回路和上下游关系查询。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-knowledge"></use></svg></span><small>知识</small><h3>保存工程知识</h3><p>把连接关系和资深人员经验转成可持续维护的企业资产。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-settings"></use></svg></span><small>运营</small><h3>支持维修准备</h3><p>快速定位受影响设备、相关手册和可能的隔离范围。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><small>安全</small><h3>保留工程边界</h3><p>自动提取与问答都经过版本、权限和工程师确认。</p></article></div>
+<div class="case-fit-grid">
+<article class="case-fit-card case-fit-card--yes"><small>更适合借鉴</small><h3>出现这些条件时，值得进入试点</h3><ul><li>P&amp;ID 数量大、查找时间长且停机代价高</li><li>设备编码和图纸版本有基本管理</li><li>愿意让工程师参与校验，而不是只依赖图像模型</li><li>有明确的首批问答与维护场景</li></ul></article>
+<article class="case-fit-card case-fit-card--no"><small>不适合直接照搬</small><h3>这些情况要先补基础或缩小范围</h3><ul><li>图纸长期未更新，现场与文档严重不一致</li><li>希望系统直接控制设备或替代安全操作程序</li><li>缺少设备主数据和统一命名</li><li>只做全文检索，却不需要设备关系和流程上下文</li></ul></article>
+</div>
+<div class="case-adoption-grid">
+<article><span>01</span><small>第一步试点</small><h3>从哪里开始</h3><p>选一个设备系统或一组 5–10 页图纸，验证符号、跨页连接、工程师校验和 20 个高频问题。</p></article>
+<article><span>02</span><small>前置条件</small><h3>开始前要准备什么</h3><p>图纸版本、设备编码、符号模板、工程负责人和明确的权限范围。</p></article>
+<article><span>03</span><small>衡量方法</small><h3>怎样判断是否值得扩展</h3><p>查找时间、关系识别准确率、人工修正量、问题命中率、引用完整性和维修准备时长。</p></article>
+</div>
+<div class="case-board-questions">
+<div><small>Management checklist</small><h3>管理层和项目负责人应先问的五个问题</h3><p>这些问题比“选哪个模型”更早，也更能决定项目能否形成业务价值。</p></div>
+<ol><li><span>01</span><p>哪类查图任务最频繁、最耽误停机恢复？</p></li><li><span>02</span><p>现有图纸与现场设备的一致性如何？</p></li><li><span>03</span><p>哪些关系必须达到 100% 人工确认？</p></li><li><span>04</span><p>知识图谱如何与设备主数据、手册和工单关联？</p></li><li><span>05</span><p>助手能建议到什么程度，哪一步必须由工程师签字？</p></li></ol>
+</div>
+</section></article>
+</div>
+<section class="case-related">
+<div class="container">
+<div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例 →</a></div>
+<div class="case-related-grid">
+<a class="case-related-card" href="case-wren-kitchens.html">
+<img alt="" decoding="async" loading="lazy" src="assets/generated-review/p03-case-retail-manufacturing-workflow.png"/>
+<div><small>制造与零售 · 公开案例结构</small><h3>长期技术合作如何扩展到多个业务模块</h3><p>从紧急扩容到跨物流、安装和内部系统的持续协作</p><span>继续阅读 <b>↗</b></span></div>
+</a>
+<a class="case-related-card" href="cases.html#ihub">
+<img alt="" decoding="async" loading="lazy" src="assets/generated-review/c12-case-logistics-data-china-q2q-dispatch-evidence.png"/>
+<div><small>物流数据 · 公开 GenAI 案例</small><h3>用自然语言查询多源供应链数据</h3><p>把查询、摘要和人工确认放回运营证据链</p><span>继续阅读 <b>↗</b></span></div>
+</a>
+<a class="case-related-card" href="playbook.html#pb-build">
+<img alt="" decoding="async" loading="lazy" src="assets/generated-review/c04-playbook-china-q2q-leader-reading-v2.png"/>
+<div><small>企业 AI 手册 · 技术选择</small><h3>买成熟方案，还是定制与自建？</h3><p>先按场景风险、数据边界和长期维护能力做判断</p><span>继续阅读 <b>↗</b></span></div>
+</a></div>
+</div>
+</section><section class="case-next-cta">
+<div class="container case-next-cta__inner">
+<div><small>把案例映射到你的企业</small><h2>不复制架构，先复制判断方法。</h2><p>把真实流程、数据、责任边界和指标带进一次场景诊断，找到最小可验证起点。</p></div>
+<div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例中心</a></div>
+</div>
+</section><section aria-labelledby="case-source-title" class="case-source-foot" id="case-source"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-reference"></use></svg></span><div><small>原始公开资料</small><h2 id="case-source-title">查看原文与原始插图</h2><p>本页依据原始公开资料进行中文业务化整理，保留原文插图，但不代表 ForFlow 参与该项目，也不构成效果、合规或适用性承诺。采用前请结合自身流程、数据、法规和专业意见验证。</p><a href="https://aws.amazon.com/cn/blogs/industries/how-everllence-scaled-pid-intelligence-to-improve-plant-operations/" rel="noopener noreferrer" target="_blank">How Everllence Scaled P&amp;ID Intelligence to Improve Plant Operations <span aria-hidden="true">↗</span></a></div></div></div></section>
+</main>
+<footer class="site-footer">
+<div class="container footer-main">
+<div class="footer-brand">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+<p>面向企业的 AI 原生增长运行层。<br/>从高价值场景、安全落地到持续运营。</p>
+</div>
+<div class="footer-col"><h3>企业服务</h3>
+<a href="service-ai-enablement.html">企业 AI 赋能计划</a>
+<a href="service-data-governance.html">数据治理</a>
+<a href="service-agent-build.html">企业 Agent 搭建</a>
+<a href="service-ai-training.html">企业 AI 培训</a>
+</div>
+<div class="footer-col"><h3>工具与资源</h3>
+<a href="navigator.html">AI 场景诊断</a>
+<a href="playbook.html">企业 AI 实战手册</a>
+<a href="category-hrms.html">HR AI 场景地图</a>
+<a href="document-viewer.html?doc=playbook">PDF 阅读器</a>
+</div>
+<div class="footer-col"><h3>案例与行动</h3>
+<a href="cases.html">案例中心</a>
+<a href="case-wren-kitchens.html">案例详情示范</a>
+<button class="footer-search search-trigger" type="button">全站搜索</button>
+<a href="navigator.html">开始诊断</a>
+</div>
+</div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>响应式企业网站原型 · CMS / CRM / 报价接口已预留</span></div>
+</footer>
+<div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
+<div class="search-modal-backdrop" data-search-close=""></div>
+<div class="search-modal-panel">
+<h2 class="sr-only" id="search-modal-title">搜索 ForFlow</h2>
+<form action="search.html" class="search-modal-form" method="get">
+<span class="search-modal-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg></span>
+<input aria-label="搜索关键词" autocomplete="off" name="search" placeholder="输入服务、场景或资料，例如：Agent" type="search"/>
+<button class="btn btn--green" type="submit">搜索</button>
+</form>
+<button class="search-modal-close" data-search-close="" type="button">关闭 <span aria-hidden="true">×</span></button>
+<div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=培训">AI 培训</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+</div>
+</div>
+</body></html>
