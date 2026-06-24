@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 
 from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / '.python-deps'))
+
 from bs4 import BeautifulSoup
 import html
 import re
 
-ROOT = Path(__file__).resolve().parent
-
 SEARCH_ICON = '''<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg>'''
 ARROW = '<span class="arrow" aria-hidden="true">→</span>'
+ASSET_VERSION = '20260625-search-reading-v4'
+CSS_VERSION = ASSET_VERSION
+SCRIPT_VERSION = ASSET_VERSION
 
 NAV_ITEMS = [
     ('index.html', '首页', 'home'),
@@ -25,10 +31,125 @@ SERVICE_LINKS = [
     ('service-ai-training.html', '企业 AI 培训'),
 ]
 
+CASE_LIBRARY_ITEMS = [
+    {
+        'id': 'wren',
+        'featured': True,
+        'href': 'case-wren-kitchens.html',
+        'tags': ['retail', 'data'],
+        'kicker': '制造与零售 · 长期技术合作结构参考',
+        'title': '从紧急团队扩容，到跨物流、安装与内部系统的战略合作',
+        'description': '公开案例摘要：快速接管、嵌入内部团队、优化关键流程，并逐步扩展到多个业务模块。',
+        'visual': {'type': 'art', 'class': 'case-art--wren', 'html': '<span>WREN / PUBLIC REFERENCE</span>'},
+        'link_label': '查看案例详情 →',
+        'search': True,
+        'search_text': 'Wren 厨房 零售 制造 物流 技术合作 跨模块 软件交付',
+        'search_kicker': '案例结构参考',
+        'search_title': '大型零售：从紧急扩容到长期技术合作',
+        'search_description': '挑战、接管、模块、公开影响与可复用经验。',
+    },
+    {
+        'id': 'jan-elly',
+        'tags': ['education'],
+        'kicker': '教育内容 · 公开 GenAI 案例',
+        'title': '把 18 小时博客工作压缩为 30 分钟',
+        'description': '从选题、写作到 SEO，建立可重复内容流程，并培训团队共同使用。',
+        'visual': {'type': 'art', 'class': 'case-art--green', 'html': '<b>18h</b><span>→ 30min</span>'},
+    },
+    {
+        'tags': ['retail', 'service'],
+        'kicker': '零售客服 · 公开 GenAI 案例',
+        'title': '用 7×24 智能客服提升响应和转化',
+        'description': '减少高频问答，让团队把时间转向复杂服务和销售机会。',
+        'visual': {'type': 'art', 'class': 'case-art--dark', 'html': '<b>-56%</b><span>重复任务时间</span>'},
+    },
+    {
+        'tags': ['education'],
+        'kicker': '教育运营 · 公开 GenAI 案例',
+        'title': '让教师把时间从行政工作还给学生',
+        'description': '建设符合教学法与学生进度的课程和活动规划助手。',
+        'visual': {'type': 'art', 'class': 'case-art--blue', 'html': '<b>-80%</b><span>预计行政时间</span>'},
+    },
+    {
+        'id': 'ihub',
+        'tags': ['data'],
+        'kicker': '物流数据 · 公开 GenAI 案例',
+        'title': '用自然语言查询多源供应链数据',
+        'description': '减少手工提取和整理，计划加入图表、摘要和多轮查询。',
+        'visual': {'type': 'art', 'class': 'case-art--lines', 'html': '<b>-50%</b><span>预计报表时间</span>'},
+        'search': True,
+        'search_text': '物流 数据 Agent 自然语言 报表 iHub 供应链 多源数据',
+        'search_kicker': '公开 GenAI 案例',
+        'search_title': '物流：自然语言数据 Agent',
+        'search_description': '用对话查询多源数据，减少人工报表处理。',
+    },
+    {
+        'id': 'pid',
+        'href': 'case-manufacturing-pid-intelligence.html',
+        'tags': ['retail', 'data'],
+        'kicker': '工业知识资产化 · 案例 Blog 模板',
+        'title': 'P&ID 智能化扩展工厂运营',
+        'description': '把静态管线图纸变成可查询、可关联、可由工程师复核的运营知识网络。',
+        'visual': {'type': 'media', 'src': 'assets/cases/thumb-manufacturing-pid.webp', 'label': '制造业'},
+        'link_label': '阅读案例 <b>↗</b>',
+        'search': True,
+        'search_text': '制造业 P&ID 工厂运营 工业知识资产化 工程师复核 图纸 查询 关联',
+        'search_kicker': '案例 Blog 模板',
+        'search_title': '制造业：P&ID 智能化扩展工厂运营',
+    },
+    {
+        'id': 'healthcare-agent-roi',
+        'href': 'case-healthcare-agent-roi.html',
+        'tags': ['service', 'data'],
+        'kicker': '高合规医疗 · 受限多智能体',
+        'title': '复杂医疗工作流中的智能体落地与 ROI 验证',
+        'description': '把就诊前中后和患者语音入口拆成可验收、可追踪、可升级人工的生产级流程。',
+        'visual': {'type': 'media', 'src': 'assets/cases/healthcare-care-chain-sana-plain.png', 'label': '医疗工作流'},
+        'link_label': '阅读案例 <b>↗</b>',
+        'search': True,
+        'search_text': '医疗 AWS Amazon Connect Health 受限多智能体 ROI 患者语音 EHR 保险验证 预约管理 HealthLake SFT GRPO',
+        'search_kicker': '高合规医疗 · 受限多智能体',
+        'search_title': '医疗：受限多智能体架构与 ROI 验证',
+    },
+    {
+        'id': 'automotive-dfmea-ontology-agent',
+        'href': 'case-automotive-dfmea-ontology-agent.html',
+        'tags': ['retail', 'data'],
+        'kicker': '汽车工程 · 本体智能体 DFMEA',
+        'title': '本体智能体如何重塑安全关键零部件 DFMEA',
+        'description': '以 B 柱为例，把材料、工艺、失效机理和法规要求连成可推理、可追溯、可复评的风险情报系统。',
+        'visual': {'type': 'media', 'src': 'assets/cases/automotive-dfmea-bpillar-hero.png', 'label': '汽车 DFMEA'},
+        'link_label': '阅读案例 <b>↗</b>',
+        'search': True,
+        'search_text': '汽车 B柱 B 柱 DFMEA FMEA 本体 Ontology 智能体 Agent AI 安全关键零部件 RFLP AgentCore Strands SDK AWS Bedrock 22MnB5 硼钢 热冲压 失效模式 RPN 工程推理',
+        'search_kicker': '汽车工程 · 本体智能体 DFMEA',
+        'search_title': '汽车：本体智能体重塑 B 柱 DFMEA',
+        'search_description': '从电子表格 DFMEA 到工程本体推理，解释 AI 如何发现组合失效并沉淀组织知识。',
+    },
+    {
+        'tags': ['data', 'service'],
+        'kicker': '文档流程 · TSH 公开案例引用',
+        'title': '文档审阅与投标 Agent',
+        'description': '通过 AI 应用减少大量人工文档处理，并保留质量控制。',
+        'visual': {'type': 'art', 'class': 'case-art--paper', 'html': '<b>-95%</b><span>流程时间公开案例</span>'},
+    },
+    {
+        'tags': ['service'],
+        'kicker': '概念案例 · 可替换',
+        'title': '员工制度与入职知识助手',
+        'description': '把分散制度转为按权限检索、带引用的员工服务入口。',
+        'visual': {'type': 'art', 'class': 'case-art--grid', 'html': '<b>HR</b><span>知识与服务</span>'},
+    },
+]
+
 SERVICE_KEYS = {href.removesuffix('.html') for href, _ in SERVICE_LINKS}
 TOOLS_KEYS = {'navigator', 'navigator-results', 'category-hrms'}
 INSIGHT_KEYS = {'playbook', 'document-viewer'}
-CASE_KEYS = {'cases', 'case-wren-kitchens'}
+CASE_KEYS = {'cases'} | {
+    item['href'].split('#')[0].removesuffix('.html')
+    for item in CASE_LIBRARY_ITEMS
+    if item.get('href', '').startswith('case-')
+}
 
 def current_attr(condition):
     return ' aria-current="page"' if condition else ''
@@ -38,6 +159,72 @@ def current_class(condition):
 
 def ff_icon(name):
     return f'<svg class="ff-icon" aria-hidden="true"><use href="#{name}"></use></svg>'
+
+def esc(value):
+    return html.escape(str(value), quote=True)
+
+def render_case_visual(item):
+    visual = item['visual']
+    if visual['type'] == 'media':
+        return (
+            '<div class="case-card-media">'
+            f'<img src="{esc(visual["src"])}" alt="" decoding="async" loading="lazy">'
+            f'<span>{esc(visual["label"])}</span>'
+            '</div>'
+        )
+    return f'<div class="case-art {esc(visual["class"])}">{visual["html"]}</div>'
+
+def render_case_library_card(item):
+    id_attr = f' id="{esc(item["id"])}"' if item.get('id') else ''
+    tags_attr = esc(' '.join(item['tags']))
+    visual_html = render_case_visual(item)
+    title_tag = 'h2' if item.get('featured') else 'h3'
+    link_html = f'<span class="{"text-link" if item.get("featured") else "case-card-link"}">{item.get("link_label", "查看案例 →")}</span>' if item.get('href') else ''
+    body_html = (
+        f'<div><small>{esc(item["kicker"])}</small>'
+        f'<{title_tag}>{esc(item["title"])}</{title_tag}>'
+        f'<p>{esc(item["description"])}</p>'
+        f'{link_html}</div>'
+    )
+    if item.get('href'):
+        modifier = 'case-library-card--feature' if item.get('featured') else 'case-library-card--linked'
+        return (
+            f'<a{id_attr} class="case-library-card {modifier}" data-case-tags="{tags_attr}" '
+            f'href="{esc(item["href"])}">{visual_html}{body_html}</a>'
+        )
+    return f'<article{id_attr} class="case-library-card" data-case-tags="{tags_attr}">{visual_html}{body_html}</article>'
+
+def render_case_library(featured=False):
+    return '\n'.join(
+        render_case_library_card(item)
+        for item in CASE_LIBRARY_ITEMS
+        if bool(item.get('featured')) is featured
+    )
+
+def case_target(item):
+    if item.get('href'):
+        return item['href']
+    if item.get('id'):
+        return f'cases.html#{item["id"]}'
+    return 'cases.html'
+
+def render_search_case_cards():
+    cards = []
+    for item in CASE_LIBRARY_ITEMS:
+        if not item.get('search'):
+            continue
+        cards.append(
+            f'<a class="search-result-card" href="{esc(case_target(item))}" '
+            f'data-search-text="{esc(item.get("search_text", item["title"]))}">'
+            f'<small>{esc(item.get("search_kicker", item["kicker"]))}</small>'
+            f'<h3>{esc(item.get("search_title", item["title"]))}</h3>'
+            f'<p>{esc(item.get("search_description", item["description"]))}</p>'
+            '<span>查看案例 →</span></a>'
+        )
+    return '\n'.join(cards)
+
+def search_case_count():
+    return sum(1 for item in CASE_LIBRARY_ITEMS if item.get('search'))
 
 def ff_symbols():
     for relative in ('templates/index.html', 'index.html'):
@@ -171,7 +358,7 @@ def search_modal():
       <button class="btn btn--green" type="submit">搜索</button>
     </form>
     <button class="search-modal-close" type="button" data-search-close>关闭 <span aria-hidden="true">×</span></button>
-    <div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=培训">AI 培训</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+    <div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
   </div>
 </div>'''
 
@@ -185,8 +372,8 @@ def page(title, description, active, body, body_class=''):
   <meta name="description" content="{html.escape(description)}">
   <title>{html.escape(title)}｜ForFlow 萬維流形</title>
   <link rel="icon" href="assets/forflow-mark.png">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v={CSS_VERSION}">
+  <script src="script.js?v={SCRIPT_VERSION}" defer></script>
 </head>
 <body class="{body_class}">
 <a class="skip-link" href="#main">跳至主要内容</a>
@@ -226,7 +413,32 @@ def patch_existing(filename, active):
     else:
         tag = soup.new_tag('link', rel='icon', href='assets/forflow-mark.png')
         soup.head.append(tag)
+    for sheet in soup.find_all('link', rel=lambda x: x and 'stylesheet' in x):
+        href = sheet.get('href', '')
+        if href.split('?')[0] == 'styles.css':
+            sheet['href'] = f'styles.css?v={CSS_VERSION}'
+    for script in soup.find_all('script', src=True):
+        src = script.get('src', '')
+        if src.split('?')[0] == 'script.js':
+            script['src'] = f'script.js?v={SCRIPT_VERSION}'
     path.write_text(str(soup), encoding='utf-8')
+
+def version_asset_links():
+    for path in ROOT.glob('*.html'):
+        soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+        changed = False
+        for sheet in soup.find_all('link', rel=lambda x: x and 'stylesheet' in x):
+            href = sheet.get('href', '')
+            if href.split('?')[0] == 'styles.css':
+                sheet['href'] = f'styles.css?v={CSS_VERSION}'
+                changed = True
+        for script in soup.find_all('script', src=True):
+            src = script.get('src', '')
+            if src.split('?')[0] == 'script.js':
+                script['src'] = f'script.js?v={SCRIPT_VERSION}'
+                changed = True
+        if changed:
+            path.write_text(str(soup), encoding='utf-8')
 
 # Patch existing pages instead of rebuilding them.
 patch_existing('index.html', 'home')
@@ -448,18 +660,13 @@ category_body='''
 '''
 (ROOT/'category-hrms.html').write_text(page('人力资源与组织效率场景','招聘、入职、员工服务、培训、绩效与 HR 分析的 AI 场景地图。','category-hrms',category_body,'category-page'),encoding='utf-8')
 
-cases_body='''
+cases_body=f'''
 <section class="cases-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>案例</strong></nav><p class="eyebrow">Case studies</p><h1>从业务问题到<br>可验证结果。</h1><p>案例页不只展示技术，而是回答为什么做、如何做、谁参与、怎样验证，以及下一步怎么扩展。</p><div class="case-filter-bar"><button class="is-active" data-case-filter="all">全部</button><button data-case-filter="retail">零售与制造</button><button data-case-filter="education">教育</button><button data-case-filter="service">客户服务</button><button data-case-filter="data">数据与运营</button></div></div></section>
 <section class="section-pad"><div class="container case-library">
-<a id="wren" class="case-library-card case-library-card--feature" data-case-tags="retail data" href="case-wren-kitchens.html"><div class="case-art case-art--wren"><span>WREN / PUBLIC REFERENCE</span></div><div><small>制造与零售 · 长期技术合作结构参考</small><h2>从紧急团队扩容，到跨物流、安装与内部系统的战略合作</h2><p>公开案例摘要：快速接管、嵌入内部团队、优化关键流程，并逐步扩展到多个业务模块。</p><span class="text-link">查看案例详情 →</span></div></a>
+{render_case_library(featured=True)}
 <div class="case-library-grid">
-<article id="jan-elly" class="case-library-card" data-case-tags="education"><div class="case-art case-art--green"><b>18h</b><span>→ 30min</span></div><div><small>教育内容 · 公开 GenAI 案例</small><h3>把 18 小时博客工作压缩为 30 分钟</h3><p>从选题、写作到 SEO，建立可重复内容流程，并培训团队共同使用。</p></div></article>
-<article class="case-library-card" data-case-tags="retail service"><div class="case-art case-art--dark"><b>-56%</b><span>重复任务时间</span></div><div><small>零售客服 · 公开 GenAI 案例</small><h3>用 7×24 智能客服提升响应和转化</h3><p>减少高频问答，让团队把时间转向复杂服务和销售机会。</p></div></article>
-<article class="case-library-card" data-case-tags="education"><div class="case-art case-art--blue"><b>-80%</b><span>预计行政时间</span></div><div><small>教育运营 · 公开 GenAI 案例</small><h3>让教师把时间从行政工作还给学生</h3><p>建设符合教学法与学生进度的课程和活动规划助手。</p></div></article>
-<article id="ihub" class="case-library-card" data-case-tags="data"><div class="case-art case-art--lines"><b>-50%</b><span>预计报表时间</span></div><div><small>物流数据 · 公开 GenAI 案例</small><h3>用自然语言查询多源供应链数据</h3><p>减少手工提取和整理，计划加入图表、摘要和多轮查询。</p></div></article>
-<article class="case-library-card" data-case-tags="data service"><div class="case-art case-art--paper"><b>-95%</b><span>流程时间公开案例</span></div><div><small>文档流程 · TSH 公开案例引用</small><h3>文档审阅与投标 Agent</h3><p>通过 AI 应用减少大量人工文档处理，并保留质量控制。</p></div></article>
-<article class="case-library-card" data-case-tags="service"><div class="case-art case-art--grid"><b>HR</b><span>知识与服务</span></div><div><small>概念案例 · 可替换</small><h3>员工制度与入职知识助手</h3><p>把分散制度转为按权限检索、带引用的员工服务入口。</p></div></article>
-</div><p class="source-note">部分案例为用户提供的公开资料摘要或页面结构参考，不代表 ForFlow 已为相关企业提供服务。正式发布时请补充授权、来源与真实项目数据。</p></div></section>
+{render_case_library(featured=False)}
+</div><p class="source-note">案例中心持续收录可拆解、可复用、可验证的企业 AI 落地样板，帮助团队把标杆实践转化为自己的场景诊断与交付路径。</p></div></section>
 <section class="case-method section-pad section-ink"><div class="container"><div class="section-head"><div><p class="eyebrow eyebrow--light">A useful case study</p><h2 class="section-title">一个可信案例，<br>至少回答五个问题。</h2></div></div><ol class="case-method-list"><li><span>01</span><p>原来的业务问题和基线是什么？</p></li><li><span>02</span><p>为什么选择这个场景和方法？</p></li><li><span>03</span><p>数据、系统、团队和风险如何处理？</p></li><li><span>04</span><p>用哪些指标证明效果？</p></li><li><span>05</span><p>下一步如何运营和扩展？</p></li></ol></div></section>
 '''
 (ROOT/'cases.html').write_text(page('企业 AI 案例中心','企业 AI、数据、Agent 和组织赋能案例结构与公开案例摘要。','cases',cases_body,'cases-page'),encoding='utf-8')
@@ -477,12 +684,132 @@ case_detail_body='''
 '''
 (ROOT/'case-wren-kitchens.html').write_text(page('案例详情：Wren Kitchens 公开案例结构参考','Wren Kitchens 与 TSH 公开合作案例的中文结构化摘要。','case-wren-kitchens',case_detail_body,'case-detail-page'),encoding='utf-8')
 
+automotive_dfmea_body='''
+<section class="case-study-hero">
+  <div class="container">
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例中心</a><span>/</span><strong>汽车工程与安全关键零部件</strong></nav>
+    <div class="case-study-hero__grid">
+      <div class="case-study-hero__copy">
+        <div class="case-study-meta"><span>案例 Blog · 上篇</span><span>汽车安全关键件</span><span>DFMEA</span><span>工程本体 + 智能体 AI</span></div>
+        <h1>基于本体的智能体 AI 如何重塑安全关键型汽车零部件的 DFMEA</h1>
+        <p class="case-study-lead">以 B 柱为例，把材料、工艺、失效机理、法规要求和历史经验连接成一套可推理、可追溯、可持续更新的风险情报系统。它要解决的不是“AI 能不能写表格”，而是企业如何不再把安全关键知识困在电子表格和工程师记忆里。</p>
+        <div class="case-study-actions"><a class="btn btn--green" href="#overview">先看管理问题 <span aria-hidden="true">↓</span></a><a class="btn btn--ghost" href="#ontology">查看本体逻辑 <span aria-hidden="true">↘</span></a></div>
+      </div>
+      <figure class="case-study-hero__media case-study-hero__media--scene">
+        <img alt="汽车 B 柱结构件与工程风险网络场景图" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/automotive-dfmea-bpillar-hero.png">
+        <figcaption>B 柱 DFMEA 的核心挑战：材料、工艺、界面、载荷和法规要求在同一个安全关键结构件上交汇。</figcaption>
+      </figure>
+    </div>
+    <div aria-label="本案例的风险与交付证据结构" class="case-proof-rail"><div><strong>40%–60%</strong><span>传统流程可能遗漏的潜在失效模式</span></div><div><strong>37+</strong><span>B 柱材料、界面与载荷节点</span></div><div><strong>RFLP</strong><span>需求、功能、逻辑、物理四层追溯</span></div></div>
+    <p class="case-proof-note">本文是上篇，聚焦管理者最需要先看懂的三件事：AI 如何改变 DFMEA 工作方式，工程本体为什么是核心资产，以及现在应该优先布局哪些能力。下篇再进入 AgentCore、Strands SDK、多智能体编排和 AWS 架构实现。</p>
+  </div>
+</section>
+<div class="container case-detail-shell case-story-shell">
+  <aside class="case-toc"><div class="case-toc-inner"><small>本页目录 · 上篇</small><nav data-scrollspy><a class="is-active" href="#overview">案例速览</a><a href="#bpillar">B 柱关键性</a><a href="#dfmea-gap">DFMEA 困境</a><a href="#ontology">本体突破</a><a href="#rflp">RFLP 框架</a><a href="#seven-dimensions">七个维度</a><a href="#manager-actions">管理者布局</a><a href="#next">下篇预告</a></nav><a class="case-toc-source" href="#case-source">案例价值 ↘</a></div></aside>
+  <article>
+    <section class="case-section case-overview" data-section id="overview">
+      <p class="eyebrow">Case at a glance</p>
+      <h2>DFMEA 不是一张风险表，而是安全关键知识能否被组织留住的问题。</h2>
+      <p>每一辆行驶在路上的汽车，都将车内乘员的生命安全托付给一个几乎无人知晓的结构部件：B 柱。而每一根投入量产的 B 柱，其安全性的背后，是一套几十年来从未发生根本性变革的工程方法。行业实践中，传统 DFMEA 平均可能遗漏 40% 到 60% 的潜在失效模式。</p>
+      <p>设计失效模式及影响分析 DFMEA，是工程领域防止设计缺陷演变为灾难性现场故障的最后一道防线。对于安全关键部件而言，一个被忽略的失效模式，其代价不只是保修索赔，它可能直接决定车内乘员在事故中能否生还。</p>
+      <div class="case-question-panel">
+        <div><small>本篇要回答的问题</small><h3>AI 如何从“自动补全 DFMEA 表格”，升级为可审计的工程推理系统？</h3></div>
+        <div class="case-goal"><small>企业主视角</small><p>真正值得投资的不是一次生成表格，而是把组织的材料、工艺、试验、索赔和工程判断沉淀为可复用的本体资产。</p></div>
+      </div>
+      <div class="case-fact-grid">
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>安全对象</small><strong>B 柱：侧碰防护、车顶抗压、安全带锚固</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>知识问题</small><strong>电子表格、个人记忆和历史项目孤岛</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-brain"></use></svg></span><div><small>AI 关键</small><strong>本体上下文 + 专项智能体 + 可追溯推理</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-reference"></use></svg></span><div><small>业务结果</small><strong>更快发现组合失效，更稳地保留工程经验</strong></div></div>
+      </div>
+      <div class="case-value-chain-wrap">
+        <div class="case-subhead"><small>从文档到系统</small><h3>智能体 AI 改造 DFMEA 的价值链，是从数据到演进。</h3></div>
+        <ol class="case-value-chain"><li><span>01</span><div><strong>数据</strong><p>消除个人记忆限制，调用全部机构知识</p></div></li><li><span>02</span><div><strong>推理</strong><p>用本体连接材料、工艺、环境和载荷</p></div></li><li><span>03</span><div><strong>发现</strong><p>识别历史表格中从未共同出现的组合失效</p></div></li><li><span>04</span><div><strong>演进</strong><p>随材料、法规、索赔和工程变更持续更新</p></div></li></ol>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="bpillar">
+      <p class="eyebrow">B-pillar in 60 seconds</p>
+      <h2>B 柱为什么是安全关键件？因为它把三类生命安全功能压在一个结构件上。</h2>
+      <p>B 柱是车辆前后车门之间的垂直结构立柱。乘客几乎察觉不到它的存在，但它承担着整车结构中最重要的三项安全职能。</p>
+      <div class="case-value-cards"><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><small>侧面碰撞防护</small><h3>乘员舱第一道屏障</h3><p>在 FMVSS 214 和 Euro NCAP 等侧碰场景下，B 柱必须吸收并耗散巨大动能，同时将车厢侵入量控制在毫米级范围内。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-risk"></use></svg></span><small>车顶抗压强度</small><h3>翻滚事故中的生存空间</h3><p>车辆翻滚时，B 柱承受来自车辆自身重量的压溃力，防止车顶坍塌伤及乘员。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-security"></use></svg></span><small>安全带锚固点</small><h3>急剧减速下的载荷锚点</h3><p>B 柱上部集成肩部安全带锚固点，必须承受车辆急剧减速时数千磅瞬间冲击载荷，不得松脱或失效。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><small>多材料结构</small><h3>强度与轻量化并存</h3><p>现代 B 柱常组合热冲压硼钢 22MnB5、先进高强度合金和碳纤维复合材料，每种材料都带来独特失效机制。</p></article></div>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>工程管理者要看到的重点</small><h3>风险不只来自单个零件，而来自材料、工艺和界面的交互。</h3><p>钢/碳纤维混合 B 柱可实现约 26% 减重，但也引入分层开裂、电偶腐蚀、粘接失效等新风险。这些风险不一定出现在历史 DFMEA 表格里。</p></div></aside>
+    </section>
+
+    <section class="case-section" data-section id="dfmea-gap">
+      <p class="eyebrow">Why classic DFMEA breaks</p>
+      <h2>传统 DFMEA 的问题，不是工程师不专业，而是流程已经扛不住复杂度。</h2>
+      <p>DFMEA 会对设计中的每个要素提出看似简单的问题：哪些地方可能出问题？出问题会带来什么后果？如何发现这些问题？最终输出的风险优先数 RPN，综合严重度、发生率和可探测性，用于指导后续工程决策。</p>
+      <p>对于 B 柱而言，这些问题会迅速膨胀为数百种失效模式，横跨数十个界面、多种载荷工况，以及材料、工艺、环境之间的复杂交互。全面分析是唯一负责任的选择，但传统方法做到真正全面，已经变得近乎不可能。</p>
+      <div class="case-decision-grid"><article class="case-decision-card"><small>耗时惊人</small><h3>一个 B 柱 DFMEA 可消耗 3 到 4 周研讨会</h3><p>DFMEA 和 PFMEA 至今大多仍以手工方式创建，严重依赖工程师记忆、经验积累和参差不齐的电子表格。</p></article><article class="case-decision-card"><small>知识流失</small><h3>资深工程师退休，机构记忆随之消失</h3><p>当一位工程师带着某个焊接接头失效案例的记忆退休，那份宝贵判断也可能从组织能力中消失。</p></article><article class="case-decision-card"><small>评分不一致</small><h3>RPN 横向可比性被侵蚀</h3><p>不同团队对严重度和发生率的评分标准各行其是，DFMEA 本应提供的优先级排序功能会被削弱。</p></article></div>
+      <div class="case-subhead"><small>行业压力</small><h3>复杂性、开发周期、人才和监管同时压缩 DFMEA 的安全余量。</h3></div>
+      <div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>复杂性激增</small><h3>多材料 B 柱带来十年前不存在的失效机制</h3><ul><li>定制坯料与热冲压分区</li><li>钢/碳纤维界面</li><li>分层开裂、电偶腐蚀、粘接失效</li><li>材料、工艺、环境和载荷交互</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>周期压缩</small><h3>EV 平台常把开发目标压到 24 至 36 个月</h3><ul><li>每个安全关键件都开 3 到 4 周研讨会不现实</li><li>监管测试规程持续演进</li><li>设计变更会让静态表格快速过期</li><li>设计阶段、生产阶段、召回阶段的修复成本级差巨大</li></ul></article></div>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-risk"></use></svg></span><div><small>核心痛点</small><h3>电子表格不是动态风险系统。</h3><p>工程变更单 ECO 一旦修改设计，表格就可能落后于真实设计状态，在记录的风险与实际产品之间留下危险鸿沟。</p></div></aside>
+    </section>
+
+    <section class="case-section" data-section id="ontology">
+      <p class="eyebrow">Ontology as reasoning context</p>
+      <h2>真正的突破不是把历史 DFMEA 喂给大模型，而是构建工程本体。</h2>
+      <p>很多“AI 辅助 DFMEA”的直觉做法，是把历史 DFMEA 电子表格喂给大语言模型，期待它生成有用失效模式。但这条路最多得到一个自动补全引擎：它能复述常见模式，却无法推断失效成因，也无法判断新材料、新工艺组合是否会引入历史中从未出现过的风险。</p>
+      <div class="case-decision-grid"><article class="case-decision-card"><small>失败原因一</small><h3>继承知识盲区</h3><p>如果历史 DFMEA 本身不完整，模型会继承同样的遗漏。你无法从未被记录的失效模式中学到任何东西。</p></article><article class="case-decision-card"><small>失败原因二</small><h3>缺乏因果理解</h3><p>模型可能知道“焊接失效”常见，却不知道是氢脆、疲劳裂纹，还是激光焊参数漂移导致熔合不足。</p></article><article class="case-decision-card"><small>失败原因三</small><h3>无法推断组合失效</h3><p>最危险的模式常来自多个因素交互，而这些因素可能从未在历史数据中同时出现。</p></article></div>
+      <div class="case-subhead"><small>本体编码的是关系</small><h3>材料 → 工艺 → 失效机理 → 影响效应。</h3></div>
+      <p>用于 DFMEA 的工程本体，不只是事实列表，而是结构化关系。当本体知道 22MnB5 硼钢经过 900°C 奥氏体化热冲压之后，随即进入阴极浸涂工艺流程，它就能推断：涂层过程中可能捕获氢原子，并在热影响区造成脆化风险。这不是查电子表格，而是基于结构化关系的工程推理。</p>
+      <div class="case-board-questions"><div><small>AI 推理上下文</small><h3>本体给智能体的不是答案，而是工程背景。</h3><p>当专项 AI 代理被要求识别 B 柱车顶纵梁焊缝的失效模式时，本体提供材料、工艺、环境、载荷和历史五类上下文，让 AI 可以像资深工程师一样沿因果链判断。</p></div><ol><li><span>01</span><p>材料上下文：22MnB5、奥氏体化、淬火、热影响区、氢敏感性。</p></li><li><span>02</span><p>工艺上下文：激光焊接、焊点几何、热输入、残余应力、疲劳萌生概率。</p></li><li><span>03</span><p>环境上下文：道路盐分、水分循环、涂层缺陷和腐蚀机制。</p></li><li><span>04</span><p>载荷上下文：侧面冲击、路面振动、热胀冷缩与多轴疲劳交互。</p></li><li><span>05</span><p>历史上下文：过去项目的焊缝失效、里程、工况和验证记录。</p></li></ol></div>
+    </section>
+
+    <section class="case-section" data-section id="rflp">
+      <p class="eyebrow">RFLP framework</p>
+      <h2>RFLP 让 AI 不只列失效模式，还能追溯它违反了哪条安全要求。</h2>
+      <p>用于 DFMEA 的工程本体基于 RFLP 构建：需求 Requirements、功能 Functions、逻辑架构 Logical、物理架构 Physical。它忠实反映系统工程分解方式，让失效模式从物理部件一路向上追溯到功能和安全需求。</p>
+      <ol class="case-process"><li><span>R</span><div><h3>需求层：定义 B 柱必须达到什么指标</h3><p>例如 8 kN·m 能量吸收、3 倍车重的车顶抗压强度、22 kN 安全带锚固载荷。</p></div></li><li><span>F</span><div><h3>功能层：定义它如何实现这些目标</h3><p>包括可控塑性变形、载荷路径分配、侵入量限制和乘员舱保护。</p></div></li><li><span>L</span><div><h3>逻辑架构层：把功能映射到抽象解决方案</h3><p>例如能量吸收区、结构连接件、锚固点、材料过渡区和载荷传递路径。</p></div></li><li><span>P</span><div><h3>物理架构层：对应实际硬件</h3><p>例如 22MnB5 帽形截面、激光焊接接头、四螺栓锚固板和钢/复合材料界面。</p></div></li></ol>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>事件驱动</small><h3>本体不是一次性分类表，而是持续演进的知识系统。</h3><p>新材料进入供应链，失效机制会传播到相关部件；现场故障出现，发生率评级沿因果链更新；法规标准变化，受影响功能和需求被标记复评；ECO 修改设计，系统判断哪些 DFMEA 条目已经失效。</p></div></aside>
+    </section>
+
+    <section class="case-section" data-section id="seven-dimensions">
+      <p class="eyebrow">Seven dimensions</p>
+      <h2>以本体为基础，智能体 AI 从七个维度重塑 DFMEA。</h2>
+      <p>这七个维度不是并列功能清单，而是一条递进的价值链：数据消除记忆问题，推理应用结构化智能，发现找到未知风险，预测预判未来失效，证据让决策植根于物理规律，行动确保每项风险都有验证路径，演进让 DFMEA 随设计变化保持实时更新。</p>
+      <div class="case-adoption-grid"><article><span>01</span><small>规模化知识</small><h3>终结记忆局限</h3><p>同时调用过去 14 个 B 柱项目、2300 余种热冲压结构件失效模式、8 个车型年份保修索赔、材料属性库、测试报告和原型验证结果。</p></article><article><span>02</span><small>本体推理</small><h3>应用结构化智能</h3><p>失效模式分析、结构分解、法规认证和通用分析代理共享本体推理过程，每项断言都可沿因果链审计。</p></article><article><span>03</span><small>跨项目迁移</small><h3>发现意想不到的发现</h3><p>卡车 C 柱的焊接疲劳经验，可通过材料、工艺、环境和载荷相似性迁移到轿车 B 柱。</p></article><article><span>04</span><small>组合失效识别</small><h3>追踪交互效应</h3><p>车顶纵梁焊缝不再只是“焊缝失效”，而是氢脆、疲劳循环、腐蚀和涂层附着力共同作用的因果网络。</p></article><article><span>05</span><small>物理证据</small><h3>让结论回到工程规律</h3><p>把材料曲线、焊接热输入、残余应力、道路盐分和多轴载荷纳入同一条推理路径。</p></article><article><span>06</span><small>验证行动</small><h3>每项高风险都有下一步</h3><p>风险不止被列出来，还要转化为试验、仿真、供应商控制、工艺窗口或设计复核任务。</p></article><article><span>07</span><small>持续演进</small><h3>DFMEA 成为动态风险情报系统</h3><p>每次 DFMEA、保修索赔、现场故障、法规变化和 ECO 都反过来丰富本体资产。</p></article></div>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><small>B 柱案例</small><h3>37 个以上界面节点让本体价值被放大。</h3><p>焊缝将热冲压硼钢与车顶纵梁连接，焊接改变热影响区微观结构，接头承受循环和冲击载荷，涂层缺陷引入腐蚀，应力腐蚀开裂在持续载荷下发展。传统研讨会容易把这些合并成“焊缝失效”，本体系统会展开完整因果链。</p></div></aside>
+    </section>
+
+    <section class="case-section case-application" data-section id="manager-actions">
+      <p class="eyebrow">What leaders should build</p>
+      <h2>对工程管理者来说，本体是 AI 时代最值得构建的壁垒资产。</h2>
+      <p>提示词和模型选择可以被竞争对手复制，但工程本体很难复制。它以结构化、机器可读的形式编码组织多年积累的工程专有知识：真实代价换来的失效模式、适配自身制造能力的材料工艺组合、目标市场监管条款解读、与自身车辆架构相关的界面风险。</p>
+      <div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>现在就该做</small><h3>把机构记忆转成可计算资产</h3><ul><li>梳理历史 DFMEA、试验报告、保修索赔和现场故障</li><li>把材料、工艺、界面、载荷、法规和功能要求编码为关系</li><li>建立严重度、发生率、可探测性的统一评分口径</li><li>让 ECO、法规变化和供应链变化触发复评</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>不要先做</small><h3>不要把 LLM 当成电子表格填充器</h3><ul><li>不要只让模型复述历史表格</li><li>不要把未验证生成结果直接作为工程结论</li><li>不要跳过人类专家复核和试验证据</li><li>不要忽视本体读写、审计和权限边界</li></ul></article></div>
+      <div class="case-board-questions"><div><small>Q2Q 视角</small><h3>先问场景是否具备上线资格，再谈多智能体架构。</h3><p>DFMEA 智能体不是替代工程责任，而是把工程师的经验、企业知识和验证路径组织成一个可追踪的 Human + Agent 工作单元。</p></div><ol><li><span>01</span><p>哪些失效模式是靠个人记忆维持的？</p></li><li><span>02</span><p>哪些评分口径在不同团队之间不可比？</p></li><li><span>03</span><p>哪些材料、工艺或法规变化会让旧 DFMEA 失效？</p></li><li><span>04</span><p>哪些历史项目经验可以迁移到当前平台？</p></li><li><span>05</span><p>哪些 AI 结论必须绑定仿真、试验或专家复核证据？</p></li></ol></div>
+    </section>
+
+    <section class="case-section" data-section id="next">
+      <p class="eyebrow">Part two preview</p>
+      <h2>下篇进入技术实现：AgentCore、Strands SDK、七层 AWS 架构和 B 柱逐步演练。</h2>
+      <p>第二部分将深入技术架构细节：基于 Amazon Bedrock AgentCore 与 Strands SDK 的实现逻辑，多智能体编排 Pipeline，本体读写机制，以及 B 柱 DFMEA 的逐步实现演练。</p>
+      <div class="case-related-grid"><article class="case-related-card"><div><small>架构层</small><h3>7 层 AWS 架构</h3><p>从数据接入、本体存储、AgentCore 运行时，到审计、权限和工程系统集成。</p></div></article><article class="case-related-card"><div><small>编排层</small><h3>多智能体管道</h3><p>失效模式、结构分解、法规认证、通用耐久性分析代理如何协同。</p></div></article><article class="case-related-card"><div><small>演练层</small><h3>B 柱 DFMEA 步进实现</h3><p>从输入设计、调用本体、生成候选失效模式，到证据复核和 ECO 更新。</p></div></article></div>
+    </section>
+  </article>
+</div>
+<section class="case-related">
+  <div class="container">
+    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例 →</a></div>
+    <div class="case-related-grid">
+      <a class="case-related-card" href="case-manufacturing-pid-intelligence.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/thumb-manufacturing-pid.webp"><div><small>制造业知识资产化</small><h3>P&amp;ID 图纸如何变成可查询运营知识</h3><p>静态图纸、知识图谱、工程师复核和可追溯问答</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="navigator.html"><img alt="" decoding="async" loading="lazy" src="assets/generated-review/c02-navigator-china-q2q-diagnostic-workbench.png"><div><small>Q2Q 场景诊断</small><h3>先判断场景是否值得 AI 化</h3><p>从问题、数据、责任和证据门判断第一条 AI 增长流</p><span>继续阅读 <b>↗</b></span></div></a>
+    </div>
+  </div>
+</section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>不要先问用哪个模型，先问知识能否被推理和复评。</h2><p>把真实流程、材料工艺、历史失效和验证责任带进一次场景诊断，判断这个 AI 工作单元是否具备上线资格。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例中心</a></div></div></section>
+<section class="case-source-foot" id="case-source" aria-labelledby="case-source-title"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-reference"></use></svg></span><div><small>案例价值</small><h2 id="case-source-title">这不是“AI 写 DFMEA”，而是把安全关键工程知识变成可复用资产。</h2><p>对企业来说，真正的收益来自三件事：减少遗漏，统一判断口径，保留工程经验。本体智能体让 DFMEA 从一次性会议和静态表格，变成随设计、法规和现场反馈持续演进的风险情报系统。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+'''
+(ROOT/'case-automotive-dfmea-ontology-agent.html').write_text(page('基于本体的智能体 AI 如何重塑安全关键型汽车零部件的 DFMEA（上篇）','以 B 柱 DFMEA 为例，解释工程本体、RFLP、智能体 AI 和多项目知识迁移如何重塑安全关键汽车零部件风险分析。','case-automotive-dfmea-ontology-agent',automotive_dfmea_body,'case-detail-page case-theme--automotive case-study-v2'),encoding='utf-8')
+
 search_body=f'''
-<section class="search-page-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>搜索</strong></nav><form class="search-page-form" action="search.html" method="get"><span>{SEARCH_ICON}</span><input data-search-page-input type="search" name="search" value="" placeholder="输入服务、场景或资料" aria-label="搜索关键词"><button class="btn btn--green" type="submit">搜索</button></form><div class="search-tabs"><button class="is-active" data-search-tab="all">全部 <span data-count-all>0</span></button><button data-search-tab="category">方案分类 <span data-count-category>0</span></button><button data-search-tab="service">企业服务 <span data-count-service>0</span></button><button data-search-tab="resource">资料 <span data-count-resource>0</span></button><button data-search-tab="case">案例 <span data-count-case>0</span></button></div></div></section>
+<section class="search-page-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>搜索</strong></nav><form class="search-page-form" action="search.html" method="get"><span>{SEARCH_ICON}</span><input data-search-page-input type="search" name="search" value="" placeholder="输入行业、技术、场景或案例，例如：DFMEA / 医疗 / AgentCore" aria-label="搜索关键词"><button class="btn btn--green" type="submit">搜索</button></form><p class="search-live-summary" data-search-summary aria-live="polite">输入关键词后会按相关度排序。</p><div class="search-quick-links" aria-label="常用搜索"><span>试试：</span><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=B柱">B 柱</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=AgentCore">AgentCore</a><a href="search.html?search=P%26ID">P&amp;ID</a><a href="search.html?search=数据治理">数据治理</a></div><div class="search-tabs"><button class="is-active" data-search-tab="all">全部 <span data-count-all>0</span></button><button data-search-tab="category">方案分类 <span data-count-category>0</span></button><button data-search-tab="service">企业服务 <span data-count-service>0</span></button><button data-search-tab="resource">资料 <span data-count-resource>0</span></button><button data-search-tab="case">案例 <span data-count-case>0</span></button></div></div></section>
 <section class="search-results-page section-pad"><div class="container"><div class="search-result-group" data-result-type="category"><div class="search-result-head"><h2>方案分类 <span>1</span></h2><a href="category-hrms.html">查看全部 →</a></div><div class="search-category-card" data-search-text="人力资源 HR 招聘 入职 员工 Agent 培训"><span class="category-icon">HR</span><div><h3>人力资源与组织效率</h3><p>招聘、入职、员工服务、培训、绩效与 HR 数据分析场景。</p></div><a href="category-hrms.html">→</a></div></div>
 <div class="search-result-group" data-result-type="service"><div class="search-result-head"><h2>企业服务 <span>4</span></h2><a href="index.html#services">查看全部 →</a></div><div class="search-result-grid"><a class="search-result-card" href="service-agent-build.html" data-search-text="企业 Agent 智能体 搭建 RAG 系统集成 自动化"><small>企业服务</small><h3>企业 Agent 搭建</h3><p>连接知识、系统和规则，完成多步业务任务。</p><span>2 周验证起步 →</span></a><a class="search-result-card" href="service-data-governance.html" data-search-text="数据治理 数据工程 RAG 知识库 指标 质量"><small>企业服务</small><h3>数据治理</h3><p>资产、口径、质量、管道、权限与 AI 数据层。</p><span>查看详情 →</span></a><a class="search-result-card" href="service-ai-enablement.html" data-search-text="AI 赋能 采用 组织 团队 绩效"><small>企业服务</small><h3>企业 AI 赋能计划</h3><p>把零散试用变成可衡量的团队能力。</p><span>查看详情 →</span></a><a class="search-result-card" href="service-ai-training.html" data-search-text="AI 培训 课程 管理层 业务 技术 提示词"><small>企业服务</small><h3>企业 AI 培训</h3><p>按角色和岗位定制，学完即用。</p><span>查看详情 →</span></a></div></div>
 <div class="search-result-group" data-result-type="resource"><div class="search-result-head"><h2>资料 <span>2</span></h2><span>PDF / 在线手册</span></div><div class="document-result-grid"><a href="document-viewer.html?doc=playbook" data-search-text="GenAI 生成式 AI playbook 手册 RAG 风险 买还是建"><div class="doc-thumb doc-thumb--playbook"><img src="assets/forflow-lockup.png" alt="ForFlow 萬維流形"></div><div><span class="doc-type">PDF</span><h3>企业生成式 AI 实战手册</h3><p>GenAI、RAG、买还是建、风险治理和落地步骤。</p><small>参考 PDF · 支持在线查看与下载</small></div></a><a href="document-viewer.html?doc=solutions" data-search-text="方案 搜索 解决方案 SMEs digital"><div class="doc-thumb doc-thumb--solutions">{SEARCH_ICON}<b>Explore</b><span>digital solutions</span></div><div><span class="doc-type">PDF</span><h3>方案搜索结果参考页面</h3><p>用户提供的 SMEs Go Digital 搜索结果 PDF，用于布局与交互参考。</p><small>2 页 · 在线查看</small></div></a></div></div>
-<div class="search-result-group" data-result-type="case"><div class="search-result-head"><h2>案例 <span>2</span></h2><a href="cases.html">查看全部 →</a></div><div class="search-result-grid"><a class="search-result-card" href="case-wren-kitchens.html" data-search-text="Wren 厨房 零售 制造 物流 技术合作"><small>案例结构参考</small><h3>大型零售：从紧急扩容到长期技术合作</h3><p>挑战、接管、模块、公开影响与可复用经验。</p><span>查看案例 →</span></a><a class="search-result-card" href="cases.html#ihub" data-search-text="物流 数据 Agent 自然语言 报表 iHub"><small>公开 GenAI 案例</small><h3>物流：自然语言数据 Agent</h3><p>用对话查询多源数据，减少人工报表处理。</p><span>查看案例 →</span></a></div></div>
+<div class="search-result-group" data-result-type="case"><div class="search-result-head"><h2>案例 <span>{search_case_count()}</span></h2><a href="cases.html">查看全部 →</a></div><div class="search-result-grid">{render_search_case_cards()}</div></div>
 <div class="search-empty" data-search-empty hidden><h2>没有找到完全匹配的内容。</h2><p>可以尝试“Agent”“数据治理”“培训”“HR”或“Playbook”。</p><a class="btn btn--green" href="navigator.html">改用场景诊断 →</a></div></div></section>
 '''
 (ROOT/'search.html').write_text(page('搜索','搜索 ForFlow 企业服务、场景、资料与案例。','',search_body,'search-page'),encoding='utf-8')
@@ -506,3 +833,4 @@ for _name in ('index.html', 'playbook.html', 'README.md'):
     _template = ROOT / 'templates' / _name
     if _template.exists():
         copyfile(_template, ROOT / _name)
+version_asset_links()

@@ -1,10 +1,13 @@
-import json, time, base64
+import json, os, sys, time, base64
 from pathlib import Path
+
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / '.python-deps'))
+
 import requests, websocket
 
-PORT=9226
-BASE='http://127.0.0.1:8765/'
-ROOT=Path(__file__).resolve().parents[1]
+PORT=int(os.environ.get('CDP_PORT','9226'))
+BASE=os.environ.get('BASE_URL','http://127.0.0.1:8765/').rstrip('/') + '/'
 SHOTS=ROOT/'tests'/'screenshots'
 SHOTS.mkdir(parents=True,exist_ok=True)
 
@@ -132,16 +135,27 @@ def test_case_and_search():
     c=CDP()
     try:
         c.goto('cases.html')
+        linked=c.eval("({pid:!!document.querySelector('#pid[href=\"case-manufacturing-pid-intelligence.html\"]'),healthcare:!!document.querySelector('#healthcare-agent-roi[href=\"case-healthcare-agent-roi.html\"]'),automotive:!!document.querySelector('#automotive-dfmea-ontology-agent[href=\"case-automotive-dfmea-ontology-agent.html\"]'),total:document.querySelectorAll('[data-case-tags]').length})")
+        assert linked['pid'] and linked['healthcare'] and linked['automotive'] and linked['total']>=9
         c.eval("document.querySelector('[data-case-filter=\"education\"]').click()")
         visible=int(c.eval("[...document.querySelectorAll('[data-case-tags]')].filter(x=>!x.hidden).length"))
         assert visible==2
-        c.goto('search.html?search=agent')
+        c.eval("document.querySelector('[data-case-filter=\"service\"]').click()")
+        healthcare_visible=c.eval("!document.querySelector('#healthcare-agent-roi').hidden")
+        assert healthcare_visible
+        c.goto('search.html?search=Agent')
         counts=c.eval("({all:document.querySelector('[data-count-all]').textContent,service:document.querySelector('[data-count-service]').textContent,resource:document.querySelector('[data-count-resource]').textContent})")
         assert int(counts['all'])>=2 and int(counts['service'])>=1
+        c.goto('search.html?search=医疗')
+        medical_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,healthcare:!!document.querySelector('a[href=\"case-healthcare-agent-roi.html\"]:not([hidden])')})")
+        assert int(medical_case['caseCount'])>=1 and medical_case['healthcare']
+        c.goto('search.html?search=DFMEA')
+        automotive_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
+        assert int(automotive_case['caseCount'])>=1 and automotive_case['automotive']
         c.eval("document.querySelector('[data-search-tab=\"case\"]').click()")
         shown=c.eval("[...document.querySelectorAll('[data-result-type]')].filter(x=>!x.hidden).map(x=>x.dataset.resultType)")
         assert shown==['case']
-        ok('案例与搜索筛选',f'教育案例 {visible}；agent 搜索 {counts["all"]} 条')
+        ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；DFMEA 搜索案例 {automotive_case["caseCount"]} 条')
     finally:c.close()
 
 for fn in [test_search_overlay,test_mobile_menu,test_navigator_flow,test_faq_and_filters,test_case_and_search]:

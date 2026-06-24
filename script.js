@@ -83,11 +83,17 @@
     if (!nav || !sections.length || !('IntersectionObserver' in window)) return;
 
     const links = qsa('a[href^="#"]', nav);
+    const canCenterActiveLink = () => {
+      const styles = window.getComputedStyle(nav);
+      return window.innerWidth <= 900
+        && styles.flexWrap !== 'wrap'
+        && nav.scrollWidth > nav.clientWidth + 2;
+    };
     const setActive = (id) => {
       links.forEach((link) => {
         const active = link.getAttribute('href') === `#${id}`;
         link.classList.toggle('is-active', active);
-        if (active && window.innerWidth <= 900) {
+        if (active && canCenterActiveLink()) {
           link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
       });
@@ -686,20 +692,125 @@
     if (!root) return;
     const params = new URLSearchParams(window.location.search);
     const query = (params.get('search') || '').trim();
-    const normalized = query.toLocaleLowerCase('zh-CN');
     const input = qs('[data-search-page-input]', root);
     if (input) input.value = query;
     if (query) document.title = `${query} 的搜索结果｜ForFlow 萬維流形`;
 
+    const normalize = (value) => (value || '')
+      .normalize('NFKC')
+      .toLocaleLowerCase('zh-CN')
+      .replace(/&/g, ' and ')
+      .replace(/[|/\\·•、，。！？；：:;,()[\]{}<>《》“”"'\-—_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const compact = (value) => normalize(value).replace(/\s+/g, '');
+    const rawTokens = normalize(query).split(/\s+/).filter(Boolean);
+    const compactQuery = compact(query);
+    const aliasMap = {
+      ai: ['人工智能', '生成式', 'genai', '大模型'],
+      agent: ['智能体', '代理', 'agentic', '工作流'],
+      智能体: ['agent', 'agentic', '代理'],
+      dfmea: ['fmea', '失效模式', '本体', 'rflp', 'b柱', 'b 柱', '安全关键'],
+      fmea: ['dfmea', '失效模式', '风险分析', 'ap', 'rpn'],
+      b柱: ['b 柱', 'b-pillar', 'bpillar', '汽车', '安全关键'],
+      汽车: ['b柱', 'b 柱', 'dfmea', 'fmea', '本体', '安全关键'],
+      本体: ['ontology', '知识图谱', '工程推理', 'dfmea'],
+      pid: ['p&id', 'p id', '管线', '图纸', '工厂'],
+      'p&id': ['pid', '管线', '图纸', '工厂'],
+      医疗: ['患者', 'ehr', '保险', '预约', 'healthlake', 'aws'],
+      数据: ['data', '治理', '指标', '知识库', '报表'],
+      培训: ['training', '课程', '角色', '工作坊'],
+      playbook: ['手册', '指南', 'genai', '生成式'],
+      aws: ['agentcore', 'bedrock', 'strands', 'healthlake'],
+      agentcore: ['aws', 'bedrock', 'strands', '智能体运行时'],
+      strands: ['agentcore', 'bedrock', 'aws', '智能体']
+    };
+    const expandedTerms = [...new Set(rawTokens.flatMap((token) => [token, ...(aliasMap[token] || [])]))]
+      .filter((token) => token.length > 1 || /^[a-z0-9]+$/i.test(token));
+    if (compactQuery && compactQuery.length > 1) expandedTerms.unshift(compactQuery);
+
+    const scoreItem = (item) => {
+      if (!query) return Number(item.dataset.searchPriority || 0);
+      const title = qs('h3', item)?.textContent || '';
+      const summary = qs('p', item)?.textContent || '';
+      const meta = qs('small', item)?.textContent || '';
+      const keywords = item.dataset.searchText || '';
+      const titleNorm = normalize(title);
+      const summaryNorm = normalize(summary);
+      const metaNorm = normalize(meta);
+      const keywordNorm = normalize(keywords);
+      const haystack = `${titleNorm} ${summaryNorm} ${metaNorm} ${keywordNorm}`;
+      const haystackCompact = compact(haystack);
+      let score = 0;
+      if (compactQuery && haystackCompact.includes(compactQuery)) score += 70;
+      if (compactQuery && compact(title).includes(compactQuery)) score += 110;
+      expandedTerms.forEach((term) => {
+        const termNorm = normalize(term);
+        const termCompact = compact(term);
+        if (!termNorm) return;
+        if (titleNorm.includes(termNorm) || compact(title).includes(termCompact)) score += 34;
+        if (keywordNorm.includes(termNorm) || compact(keywords).includes(termCompact)) score += 22;
+        if (summaryNorm.includes(termNorm) || compact(summary).includes(termCompact)) score += 12;
+        if (metaNorm.includes(termNorm) || compact(meta).includes(termCompact)) score += 9;
+      });
+      return score;
+    };
+
+    const restoreAndHighlight = (item) => {
+      ['small', 'h3', 'p'].forEach((selector) => {
+        const node = qs(selector, item);
+        if (!node) return;
+        if (!node.dataset.originalText) node.dataset.originalText = node.textContent || '';
+        node.textContent = node.dataset.originalText;
+      });
+      if (!query || !expandedTerms.length) return;
+      const highlightTerms = [...new Set([query, ...rawTokens])]
+        .map((term) => term.trim())
+        .filter((term) => term.length >= 2);
+      if (!highlightTerms.length) return;
+      ['h3', 'p'].forEach((selector) => {
+        const node = qs(selector, item);
+        if (!node) return;
+        const source = node.dataset.originalText || node.textContent || '';
+        const fragment = document.createDocumentFragment();
+        let remaining = source;
+        while (remaining) {
+          const match = highlightTerms
+            .map((term) => ({ term, index: remaining.toLocaleLowerCase('zh-CN').indexOf(term.toLocaleLowerCase('zh-CN')) }))
+            .filter((entry) => entry.index >= 0)
+            .sort((a, b) => a.index - b.index || b.term.length - a.term.length)[0];
+          if (!match) {
+            fragment.append(document.createTextNode(remaining));
+            break;
+          }
+          if (match.index > 0) fragment.append(document.createTextNode(remaining.slice(0, match.index)));
+          const mark = document.createElement('mark');
+          mark.className = 'search-mark';
+          mark.textContent = remaining.slice(match.index, match.index + match.term.length);
+          fragment.append(mark);
+          remaining = remaining.slice(match.index + match.term.length);
+        }
+        node.replaceChildren(fragment);
+      });
+    };
+
     const groups = qsa('[data-result-type]', root);
     const searchable = qsa('[data-search-text]', root);
     searchable.forEach((item) => {
-      const haystack = `${item.dataset.searchText || ''} ${item.textContent || ''}`.toLocaleLowerCase('zh-CN');
-      item.hidden = Boolean(normalized) && !haystack.includes(normalized);
+      const score = scoreItem(item);
+      item.dataset.searchScore = String(score);
+      item.hidden = Boolean(query) && score <= 0;
+      item.classList.toggle('is-top-hit', Boolean(query) && score >= 85);
+      restoreAndHighlight(item);
     });
 
     const typeCounts = {};
     groups.forEach((group) => {
+      const items = qsa('[data-search-text]', group);
+      items
+        .slice()
+        .sort((a, b) => Number(b.dataset.searchScore || 0) - Number(a.dataset.searchScore || 0))
+        .forEach((item) => item.parentElement?.appendChild(item));
       const type = group.dataset.resultType;
       typeCounts[type] = qsa('[data-search-text]', group).filter((item) => !item.hidden).length;
       const headingCount = qs('.search-result-head h2 span', group);
@@ -711,6 +822,7 @@
 
     const tabs = qsa('[data-search-tab]', root);
     const empty = qs('[data-search-empty]', root);
+    const summary = qs('[data-search-summary]', root);
     const renderTab = (tab) => {
       let visibleGroups = 0;
       groups.forEach((group) => {
@@ -722,6 +834,11 @@
       });
       tabs.forEach((button) => button.classList.toggle('is-active', button.dataset.searchTab === tab));
       if (empty) empty.hidden = visibleGroups > 0;
+      if (summary) {
+        summary.textContent = query
+          ? `找到 ${total} 个与“${query}”相关的结果，已按标题、关键词和内容相关度排序。`
+          : `当前展示 ${total} 个可检索入口，可输入行业、技术、场景或案例关键词。`;
+      }
     };
     function setCount(type, value) {
       const node = qs(`[data-count-${type}]`, root);

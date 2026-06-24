@@ -8,8 +8,8 @@
 <meta content="万维流形与 AWS 标杆实践整理：复杂医疗工作流中的受限多智能体架构、护理点数据流、患者语音智能体、SFT/RLFT 训练路径与 ROI 验证。" name="description"/>
 <title>万维流形与 AWS：医疗受限多智能体架构与 ROI 验证｜ForFlow 萬維流形</title>
 <link href="assets/forflow-mark.png" rel="icon"/>
-<link href="styles.css" rel="stylesheet"/>
-<script defer="" src="script.js"></script>
+<link href="styles.css?v=20260625-case-scroll-v3" rel="stylesheet"/>
+<script defer="" src="script.js?v=20260625-case-scroll-v3"></script>
 </head>
 <body class="case-detail-page case-theme--healthcare case-study-v2">
 <a class="skip-link" href="#main">跳至主要内容</a>
@@ -138,8 +138,8 @@
 <p class="case-study-lead">从护理点就诊前、就诊中、就诊后链路，到患者语音智能体的身份验证、保险核查、预约管理和 EHR 写入，把医疗 AI 从“好玩的 Demo”收束成可追踪、可接管、可验收的生产级流程。</p>
 <div class="case-study-actions"><a class="btn btn--green" href="#overview">先看交付结构 <span aria-hidden="true">↓</span></a><a class="btn btn--ghost" href="#workflow">查看流程图 <span aria-hidden="true">↘</span></a></div>
 </div>
-<figure class="case-study-hero__media case-study-hero__media--contain">
-<img alt="就诊前、就诊中、就诊后的护理点 AI 工作流图" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/healthcare-point-of-care-workflow.png"/>
+<figure class="case-study-hero__media case-study-hero__media--scene">
+<img alt="中国医院护理点工作台场景图" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/healthcare-care-chain-sana-plain.png"/>
 <figcaption>护理点工作流全链路：患者洞察、临床记录、编码计费和就诊后总结在同一条证据链中流动。</figcaption>
 </figure>
 </div>
@@ -171,16 +171,14 @@
 <ol class="case-value-chain"><li><span>01</span><div><strong>场景评估</strong><p>确认流程是否可分段、可授权、可回放、可验收</p></div></li><li><span>02</span><div><strong>受限架构</strong><p>用状态机和工具权限限制智能体行动边界</p></div></li><li><span>03</span><div><strong>模型专项化</strong><p>用 SFT 与多阶段强化学习优化明确任务</p></div></li><li><span>04</span><div><strong>证据验收</strong><p>用完成率、成本、合规问题和人工接管验证 ROI</p></div></li></ol>
 </div>
 </section>
-
 <section class="case-section" data-section="" id="workflow">
 <p class="eyebrow">Point-of-care workflow</p>
 <h2>把就诊前、就诊中、就诊后拆成三个可验收子场景。</h2>
 <p>这条链路的价值在于数据连续流动：就诊前形成患者背景，就诊中成为临床记录的上下文，就诊后再进入编码计费和患者总结，而不是三个彼此割裂的工具。</p>
-<div class="case-figure-grid"><figure class="case-figure case-figure--contain"><a aria-label="打开护理点工作流全链路图" href="assets/cases/healthcare-point-of-care-workflow.png" rel="noopener" target="_blank"><img alt="护理点工作流全链路图" decoding="async" loading="eager" src="assets/cases/healthcare-point-of-care-workflow.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>图示：就诊前的患者洞察、就诊中的医疗记录生成、就诊后的编码与总结，共同构成一条可审计的数据链。</figcaption></figure></div>
+<div class="case-figure-grid"><figure class="case-figure case-figure--contain"><a aria-label="打开护理点工作流全链路中文图解" href="assets/cases/healthcare-point-of-care-workflow-zh.png" rel="noopener" target="_blank"><img alt="护理点工作流全链路中文图解" decoding="async" loading="eager" src="assets/cases/healthcare-point-of-care-workflow-zh.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>中文图解：患者洞察、临床记录、编码计费和就诊后总结在同一条证据链中流动。</figcaption></figure></div>
 <ol class="case-process"><li><span>01</span><div><h3>就诊前：患者洞察生成</h3><p>患者电子病历从 AWS HealthLake 数据存储中调取，经由 LLM 患者洞察生成模块处理，输出结构化的就诊前患者洞察摘要，供医生在接诊前主动查看。医生拿到的不是原始病历堆叠，而是经过提取、去重和临床相关性排序的洞察报告。</p></div></li><li><span>02</span><div><h3>就诊中：环境文档生成</h3><p>进入诊室后，在患者知情同意的前提下，系统激活环境监听模式。自动语音识别 ASR 实时捕捉医患对话并生成转录文本；患者背景信息 Patient Context 和医生偏好模板 Provider Preferred Template 同步注入，最终由专项微调的 LLM 生成符合格式要求的临床医疗记录 Medical Note。</p></div></li><li><span>03</span><div><h3>就诊后：编码计费与患者总结</h3><p>医疗记录完成后，同样由专项微调的 LLM 接管医疗编码任务，输出 ICD 诊断代码和 CPT 手术代码，包含修饰符，用于计费；同时生成患者友好的 After Visit Summary 并发送给患者。计费编码与临床摘要生成共用同一批训练好的模型资产，以保证文档与计费的一致性。</p></div></li></ol>
 <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>关键判断</small><h3>三个阶段不是三套工具，而是一条上下文传递管线。</h3><p>就诊前的患者背景成为就诊中模型输入；就诊中生成的医疗记录进入就诊后的编码模型，文档、计费和患者总结共享同一条证据链。</p></div></aside>
 </section>
-
 <section class="case-section" data-section="" id="model">
 <p class="eyebrow">Model strategy</p>
 <h2>核心工程突破：小型专项模型与多阶段强化学习。</h2>
@@ -189,21 +187,21 @@
 <div class="case-subhead"><small>发现一</small><h3>领域微调的小型语言模型，在上下文学习中性能远超大型基础模型。</h3></div>
 <div class="case-value-cards"><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><small>生成速度</small><h3>提升 2.2 倍</h3><p>面向高频接诊流程，延迟改善直接影响医生使用意愿。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><small>文档合规性问题</small><h3>减少 50%</h3><p>格式、章节、模板和指令遵循被纳入评估流水线。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cost"></use></svg></span><small>推理成本</small><h3>降低 180 倍</h3><p>小模型专项化让大规模日常处理具备商业可行性。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><small>笔记长度</small><h3>缩短 35%</h3><p>在临床信息完整性持平前提下，压缩冗余内容。</p></article></div>
 <p>这一结果印证了一个在企业 AI 交付中被严重低估的结论：在任务边界明确、有高质量领域数据的场景下，轻量级专项模型的性价比远超通用大模型。模型选型不应该从“哪个最强”出发，而应该从“这个任务需要什么”出发。</p>
+<div class="case-figure-grid"><figure class="case-figure case-figure--scene"><a aria-label="打开临床记录模型评估复核场景插图" href="assets/cases/healthcare-model-evaluation-sana-plain.png" rel="noopener" target="_blank"><img alt="临床记录模型评估复核场景插图" decoding="async" loading="lazy" src="assets/cases/healthcare-model-evaluation-sana-plain.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>场景插图：专项模型训练不是一次调参，而是临床记录、评估指标和人工复核共同组成的闭环。</figcaption></figure></div>
 <div class="case-subhead"><small>发现二</small><h3>多阶段强化学习叠加 SFT，让小型语言模型超越 SFT 本身。</h3></div>
 <p>完成 SFT 之后，进一步追问强化学习能否在小模型上继续提升。答案是肯定的，但前提是强化学习的阶段设计方式至关重要。模型选择参数量低于 10B 的小型语言模型作为基础模型，通过链式 SFT + 组相对策略优化 GRPO 的强化学习微调 RLFT 流程进行训练。</p>
 <div class="case-decision-grid"><article class="case-decision-card"><small>第一次尝试</small><h3>所有奖励函数合并优化</h3><p>将医学完整性、简洁性、合规性、格式正确性等目标放在同一个强化学习步骤中合并优化。结果无法超越 SFT 基线模型，并出现明显奖励作弊：模型找到了同时满足多个奖励函数表面指标、但不符合临床质量的捷径。</p></article><article class="case-decision-card"><small>第二次尝试</small><h3>多个连续强化学习阶段</h3><p>将奖励函数拆开，设计多个连续的强化学习阶段，每个阶段专注优化一个目标，形成链式 RLFT 流程。在所有自动化评估指标上，多阶段 RLFT 全面优于仅使用 SFT 的模型，并最大限度压制奖励作弊行为。</p></article><article class="case-decision-card"><small>人工偏好</small><h3>A/B Test 手动投票</h3><p>在人工偏好评分上，多阶段 RLFT 获得同等或更高评分，说明自动化指标提升没有牺牲人类审阅者对临床记录质量的整体判断。</p></article></div>
 <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-brain"></use></svg></span><div><small>工程意义</small><h3>产品实现了与底层基础模型解耦。</h3><p>当基础模型从 7B 迭代到更新版本时，这套链式 SFT + 多阶段 GRPO 训练流程可以重新套用，快速适配新模型，无需从零重建，极大降低长期维护成本。</p></div></aside>
 </section>
-
 <section class="case-section" data-section="" id="voice-agent">
 <p class="eyebrow">Voice agent state machine</p>
 <h2>患者交互侧不是纯生成式对话，而是四段式状态机。</h2>
 <p>在患者交互侧，方案没有采用纯生成式对话，而是设计了一套严格的四段式状态机流程。每个状态都有明确条件判断和人工升级路径，最终把操作结果写入电子健康档案 EHR 或患者管理系统，形成闭环。</p>
-<div class="case-figure-grid"><figure class="case-figure case-figure--contain"><a aria-label="打开患者语音智能体状态机图" href="assets/cases/healthcare-voice-agent-state-machine.png" rel="noopener" target="_blank"><img alt="患者语音智能体状态机流程图" decoding="async" loading="eager" src="assets/cases/healthcare-voice-agent-state-machine.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>图示：请求接入、患者身份验证、保险验证、预约管理和 EHR 写入形成受控状态机。</figcaption></figure></div>
+<div class="case-figure-grid"><figure class="case-figure case-figure--contain"><a aria-label="打开患者语音智能体全流程中文图解" href="assets/cases/healthcare-voice-agent-state-machine-zh.png" rel="noopener" target="_blank"><img alt="患者语音智能体全流程中文图解" decoding="async" loading="eager" src="assets/cases/healthcare-voice-agent-state-machine-zh.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>中文图解：语音请求、身份验证、保险验证、预约管理和系统写入组成受控状态机。</figcaption></figure></div>
 <ol class="case-process"><li><span>01</span><div><h3>请求接入 Start</h3><p>患者通过语音发起请求，系统完成 Speech to Text 和 Text to Speech 的双向处理，进入智能体工作流。这里的重点不是让模型自由聊天，而是把语音入口接入后续身份、保险和预约状态。</p></div></li><li><span>02</span><div><h3>患者身份验证 Patient Authentication</h3><p>身份验证不依赖单一信息，而是要求患者从五个维度中至少确认三个：电话号码、出生日期、社会安全号码末四位、邮政编码、病历号。这种多因子验证设计，使得单一信息泄露无法直接通过验证，同时提升安全性。</p></div></li><li><span>03</span><div><h3>保险验证 Insurance Verification</h3><p>系统执行完整的六步保险核查流程：对患者人口统计信息进行标准化处理，例如将“丈夫”统一归类为“配偶”关系；查找指定付款方；选择对应保险方案；核查资格有效性；查询自付额 Copay；对未成功完成的案例自动触发升级 Escalation。整个流程通过 MCP 工具调用与 EHR 系统实时交互，所有步骤均留有完整操作日志。</p></div></li><li><span>04</span><div><h3>预约管理 Appointment Scheduling</h3><p>系统首先对用户意图进行分类，支持四类操作：新增预约、重新安排 Reschedule、取消预约、查找现有预约。每一步操作结果最终写回电子健康档案 EHR 或患者管理系统。</p></div></li></ol>
+<div class="case-figure-grid"><figure class="case-figure case-figure--scene"><a aria-label="打开患者语音智能体服务台场景插图" href="assets/cases/healthcare-voice-agent-service-desk-sana-plain.png" rel="noopener" target="_blank"><img alt="患者语音智能体服务台场景插图" decoding="async" loading="lazy" src="assets/cases/healthcare-voice-agent-service-desk-sana-plain.png"/><span aria-hidden="true" class="case-figure-zoom">↗</span></a><figcaption>场景插图：患者语音入口背后是预约、保险、EHR 写入和人工升级共同约束的运营工作台。</figcaption></figure></div>
 <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-security"></use></svg></span><div><small>边界控制</small><h3>出现医疗紧急情况、主动转人工、情绪不满或连续 3 次失败时，必须升级人工。</h3><p>这类系统不能强制让 AI 继续处理超出边界的请求，人工升级路径本身就是交付成果的一部分。</p></div></aside>
 </section>
-
 <section class="case-section" data-section="" id="evidence">
 <p class="eyebrow">Evidence &amp; ROI</p>
 <h2>ROI 验证要同时看任务完成、处理时长和合规问题。</h2>
@@ -211,14 +209,12 @@
 <div class="case-value-cards"><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-check"></use></svg></span><small>患者身份验证</small><h3>92.3%</h3><p>多因子身份校验流程的测试完成率。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><small>保险验证</small><h3>88.5%</h3><p>完整六步保险核查流程，行业对照 IVR 均值约 70%。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><small>预约管理</small><h3>78.2%</h3><p>覆盖新增、改期、取消和查找预约，行业对照 IVR 均值约 70%。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-clock"></use></svg></span><small>平均处理时长</small><h3>缩短 20%</h3><p>通过语音入口、状态机控制和工具调用压缩行政处理时长。</p></article></div>
 <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>Q2Q 视角</small><h3>这不是“AI 会不会回答”的测试。</h3><p>真正要验证的是 Human + Agent 工作单元能否在权限、系统、证据和人工接管边界内完成任务。</p></div></aside>
 </section>
-
 <section class="case-section" data-section="" id="assets">
 <p class="eyebrow">Reusable assets</p>
 <h2>真正可复用的是工程资产，而不是一次演示。</h2>
 <p>万维流形与 AWS 此次合作沉淀的，不只是一套可运行系统，而是一组可以跨行业复用的工程资产：训练管线、数据流规范、评估体系和高合规受限智能体架构蓝本。</p>
 <div class="case-adoption-grid"><article><span>01</span><small>训练资产</small><h3>领域 SFT + 多阶段 GRPO 训练管线</h3><p>可套用于任何任务边界明确、具有高质量标注数据的企业场景。通过链式 SFT 与多阶段 GRPO RLFT，把专项小模型训练成低延迟、低成本、可持续迭代的生产模型。</p></article><article><span>02</span><small>流程资产</small><h3>三阶段智能体协作数据流规范</h3><p>就诊前患者背景、就诊中文档生成、就诊后编码计费形成上下文传递机制，适用于任何需要“前置决策 → 过程记录 → 事后结算”的复杂业务链路。</p></article><article><span>03</span><small>评估资产</small><h3>LLM 作为评判者的定制评估体系</h3><p>用于医学摘要准确性、编码合规性和用户偏好的自动化闭环验证。摘要句子与原始记录的准确匹配率达到 99% 以上。</p></article><article><span>04</span><small>架构资产</small><h3>高合规行业受限智能体架构蓝本</h3><p>四段式状态机设计、多因子边界策略、自动升级路径、完整 Trace 规范，可作为金融、法律、政务等高合规场景的参考架构。</p></article></div>
 </section>
-
 <section class="case-section case-application" data-section="" id="boundary">
 <p class="eyebrow">Core conclusion</p>
 <h2>企业 AI 转型的真正壁垒，不是选到了哪个最强的基础模型。</h2>
