@@ -48,6 +48,22 @@ python -m http.server 8080
 
 打开 `http://localhost:8080/`。
 
+## Veee 代理应急
+
+如果切换 Veee 节点后 GitHub、Netlify、npm 或 curl 连接异常，先用项目内包装器自动刷新当前代理端口：
+
+```bash
+tools/with-veee-proxy.sh gh auth status -h github.com
+tools/with-veee-proxy.sh git ls-remote https://github.com/octocat/Hello-World.git HEAD
+tools/with-veee-proxy.sh curl -I --max-time 12 https://github.com
+```
+
+也可以把当前 Veee 端口导入当前 shell：
+
+```bash
+eval "$(tools/veee-proxy-env.sh)"
+```
+
 ## 复核与测试
 
 - `tests/static-check-report.txt`：13 个 HTML 页面、本地资源、必需模块检查
