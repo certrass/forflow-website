@@ -17,6 +17,13 @@ def load_case_items():
             return ast.literal_eval(node.value)
     return []
 
+def load_assignment(name):
+    tree = ast.parse((ROOT / 'build_site.py').read_text(encoding='utf-8'))
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(getattr(target, 'id', '') == name for target in node.targets):
+            return ast.literal_eval(node.value)
+    return None
+
 def case_target(item):
     if item.get('href'):
         return item['href']
@@ -25,6 +32,7 @@ def case_target(item):
     return 'cases.html'
 
 case_items = load_case_items()
+asset_version = load_assignment('ASSET_VERSION')
 for path in html_files:
     soup=BeautifulSoup(path.read_text(encoding='utf-8'),'html.parser')
     ids=[tag.get('id') for tag in soup.find_all(attrs={'id':True}) if tag.get('id')]
@@ -71,6 +79,22 @@ if not pb.select_one('.playbook-cover-art img[src="assets/forflow-lockup.png"]')
 
 cases_soup=BeautifulSoup((ROOT/'cases.html').read_text(encoding='utf-8'),'html.parser')
 search_soup=BeautifulSoup((ROOT/'search.html').read_text(encoding='utf-8'),'html.parser')
+search_index_path=ROOT/'search-index.json'
+if not search_index_path.exists():
+    errors.append('missing search-index.json')
+    search_index={'items':[]}
+else:
+    search_index=json.loads(search_index_path.read_text(encoding='utf-8'))
+    if search_index.get('version') != asset_version:
+        errors.append('search-index.json: version does not match ASSET_VERSION')
+    if not isinstance(search_index.get('items'), list) or not search_index['items']:
+        errors.append('search-index.json: missing searchable items')
+if not search_soup.select_one('[data-search-index]'):
+    errors.append('search.html: missing data-search-index')
+index_hrefs={item.get('href') for item in search_index.get('items', [])}
+index_type_counts={}
+for entry in search_index.get('items', []):
+    index_type_counts[entry.get('type')] = index_type_counts.get(entry.get('type'), 0) + 1
 for item in case_items:
     if item.get('id') and not cases_soup.select_one(f'#{item["id"]}'):
         errors.append(f'cases.html: missing case item #{item["id"]}')
@@ -78,9 +102,15 @@ for item in case_items:
         errors.append(f'cases.html: missing linked case {item["href"]}')
     if item.get('search') and not search_soup.select_one(f'a[href="{case_target(item)}"]'):
         errors.append(f'search.html: missing search case {case_target(item)}')
+    if item.get('search') and case_target(item) not in index_hrefs:
+        errors.append(f'search-index.json: missing search case {case_target(item)}')
 case_count_label=search_soup.select_one('[data-result-type="case"] .search-result-head h2 span')
 if case_count_label and int(case_count_label.get_text(strip=True) or '0') != sum(1 for item in case_items if item.get('search')):
     errors.append('search.html: case search count does not match CASE_LIBRARY_ITEMS')
+for result_type in ['category','service','resource','case']:
+    label=search_soup.select_one(f'[data-result-type="{result_type}"] .search-result-head h2 span')
+    if label and int(label.get_text(strip=True) or '0') != index_type_counts.get(result_type, 0):
+        errors.append(f'search.html: {result_type} count does not match search-index.json')
 
 maintenance_docs={
     'docs/maintenance/update-log.md': ['# ForFlow 网站更新记录', '## 2026-06-25', '## 2026-06-24', '### 验证'],

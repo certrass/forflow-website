@@ -144,18 +144,43 @@ def test_case_and_search():
         healthcare_visible=c.eval("!document.querySelector('#healthcare-agent-roi').hidden")
         assert healthcare_visible
         c.goto('search.html?search=Agent')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
         counts=c.eval("({all:document.querySelector('[data-count-all]').textContent,service:document.querySelector('[data-count-service]').textContent,resource:document.querySelector('[data-count-resource]').textContent})")
         assert int(counts['all'])>=2 and int(counts['service'])>=1
         c.goto('search.html?search=医疗')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
         medical_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,healthcare:!!document.querySelector('a[href=\"case-healthcare-agent-roi.html\"]:not([hidden])')})")
         assert int(medical_case['caseCount'])>=1 and medical_case['healthcare']
         c.goto('search.html?search=DFMEA')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
         automotive_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
         assert int(automotive_case['caseCount'])>=1 and automotive_case['automotive']
+        c.goto('search.html?search=B柱')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        b_pillar_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])'),summary:document.querySelector('[data-search-summary]').textContent,marks:document.querySelectorAll('.search-mark').length})")
+        assert int(b_pillar_case['caseCount'])>=1 and b_pillar_case['automotive'] and 'B柱' in b_pillar_case['summary'] and b_pillar_case['marks']>=1
+        c.goto('search.html?search=AgentCore')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        agentcore_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
+        assert int(agentcore_case['caseCount'])>=1 and agentcore_case['automotive']
+        c.goto('search.html?search=知识流失')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        knowledge_loss_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
+        assert int(knowledge_loss_case['caseCount'])>=1 and knowledge_loss_case['automotive']
+        c.goto('search.html?search=P%26ID')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        pid_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,pid:!!document.querySelector('a[href=\"case-manufacturing-pid-intelligence.html\"]:not([hidden])')})")
+        assert int(pid_case['caseCount'])>=1 and pid_case['pid']
         c.eval("document.querySelector('[data-search-tab=\"case\"]').click()")
         shown=c.eval("[...document.querySelectorAll('[data-result-type]')].filter(x=>!x.hidden).map(x=>x.dataset.resultType)")
         assert shown==['case']
-        ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；DFMEA 搜索案例 {automotive_case["caseCount"]} 条')
+        c.goto('search.html')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        c.eval("const input=document.querySelector('[data-search-page-input]'); input.value='RFLP'; input.dispatchEvent(new Event('input',{bubbles:true}))")
+        c.wait("document.querySelector('[data-count-case]').textContent !== '0' && decodeURIComponent(location.search).includes('RFLP')")
+        live_search=c.eval("({source:document.querySelector('.search-page').dataset.searchSource,version:document.querySelector('.search-page').dataset.searchVersion,caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
+        assert live_search['source']=='json-index' and live_search['version'] and int(live_search['caseCount'])>=1 and live_search['automotive']
+        ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；JSON 索引 {live_search["version"]}；DFMEA/B柱/AgentCore/知识流失/P&ID/RFLP 均命中')
     finally:c.close()
 
 for fn in [test_search_overlay,test_mobile_menu,test_navigator_flow,test_faq_and_filters,test_case_and_search]:

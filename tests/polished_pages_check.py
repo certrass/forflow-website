@@ -99,6 +99,23 @@ async def inspect_page(browser, name, path, viewport):
             position: getComputedStyle(toc).position,
           };
         }"""),
+        'caseHeadingMetrics': await page.evaluate("""() => {
+          if (!document.body.classList.contains('case-detail-page')) return [];
+          return [...document.querySelectorAll('.case-section > h2')].map((heading) => {
+            const styles = getComputedStyle(heading);
+            const box = heading.getBoundingClientRect();
+            const fontSize = Number.parseFloat(styles.fontSize);
+            const lineHeight = Number.parseFloat(styles.lineHeight);
+            return {
+              id: heading.closest('.case-section')?.id || '',
+              text: heading.textContent.trim().slice(0, 80),
+              fontSize,
+              lineHeight,
+              lineHeightRatio: lineHeight / fontSize,
+              height: box.height,
+            };
+          });
+        }"""),
         'verticalScroll': vertical_scroll,
         'scrollIntoViewCalls': await page.evaluate("window.__ffScrollIntoViewCalls || []"),
         'missingImages': await page.evaluate("[...document.images].filter(i => !i.complete || !i.naturalWidth).map(i => i.getAttribute('src'))"),
@@ -118,6 +135,10 @@ async def main():
         report['pages']['playbook-mobile'] = await inspect_page(browser, 'playbook-mobile-viewport', '/playbook.html', {'width': 390, 'height': 844})
         report['pages']['cases-desktop'] = await inspect_page(browser, 'cases-desktop-viewport', '/cases.html', {'width': 1440, 'height': 1000})
         report['pages']['cases-mobile'] = await inspect_page(browser, 'cases-mobile-viewport', '/cases.html', {'width': 390, 'height': 844})
+        report['pages']['wren-case-desktop'] = await inspect_page(browser, 'wren-case-desktop-viewport', '/case-wren-kitchens.html', {'width': 1440, 'height': 1000})
+        report['pages']['wren-case-mobile'] = await inspect_page(browser, 'wren-case-mobile-viewport', '/case-wren-kitchens.html', {'width': 390, 'height': 844})
+        report['pages']['pid-case-desktop'] = await inspect_page(browser, 'pid-case-desktop-viewport', '/case-manufacturing-pid-intelligence.html', {'width': 1440, 'height': 1000})
+        report['pages']['pid-case-mobile'] = await inspect_page(browser, 'pid-case-mobile-viewport', '/case-manufacturing-pid-intelligence.html', {'width': 390, 'height': 844})
         report['pages']['healthcare-case-desktop'] = await inspect_page(browser, 'healthcare-case-desktop-viewport', '/case-healthcare-agent-roi.html', {'width': 1440, 'height': 1000})
         report['pages']['healthcare-case-mobile'] = await inspect_page(browser, 'healthcare-case-mobile-viewport', '/case-healthcare-agent-roi.html', {'width': 390, 'height': 844})
         report['pages']['automotive-case-desktop'] = await inspect_page(browser, 'automotive-case-desktop-viewport', '/case-automotive-dfmea-ontology-agent.html', {'width': 1440, 'height': 1000})
@@ -208,6 +229,14 @@ async def main():
             failures.append(f'{name}: case toc horizontal scroll')
         if 'case-' in name and 'mobile' in name and data.get('scrollIntoViewCalls'):
             failures.append(f'{name}: scrollspy nudged page {data["scrollIntoViewCalls"]}')
+        if 'case-' in name and 'mobile' in name:
+            for heading in data.get('caseHeadingMetrics', []):
+                if heading['fontSize'] > 40:
+                    failures.append(f'{name}: case heading too large {heading}')
+                if heading['lineHeightRatio'] < 1.16:
+                    failures.append(f'{name}: case heading line-height too tight {heading}')
+                if heading['height'] > 180:
+                    failures.append(f'{name}: case heading too tall {heading}')
         if not data['verticalScroll']['reachedBottom']: failures.append(f'{name}: vertical scroll did not reach bottom')
         if not data['verticalScroll']['returnedTop']: failures.append(f'{name}: vertical scroll did not return to top')
         if data['missingImages']: failures.append(f'{name}: missing images {data["missingImages"]}')

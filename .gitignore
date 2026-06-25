@@ -8,3 +8,7 @@ tests/screenshots/
 tests/polished/
 tests/*-report.json
 tests/*-report.txt
+node_modules/
+.next/
+out/
+.vercel/

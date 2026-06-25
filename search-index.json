@@ -1,0 +1,244 @@
+{
+  "version": "20260625-owner-resonance-v8",
+  "types": [
+    {
+      "type": "category",
+      "label": "方案分类"
+    },
+    {
+      "type": "service",
+      "label": "企业服务"
+    },
+    {
+      "type": "resource",
+      "label": "资料"
+    },
+    {
+      "type": "case",
+      "label": "案例"
+    }
+  ],
+  "items": [
+    {
+      "id": "category-hrms",
+      "type": "category",
+      "href": "category-hrms.html",
+      "kicker": "方案分类",
+      "title": "人力资源与组织效率",
+      "description": "招聘、入职、员工服务、培训、绩效与 HR 数据分析场景。",
+      "action": "查看分类 →",
+      "priority": 8,
+      "keywords": [
+        "人力资源",
+        "HR",
+        "招聘",
+        "入职",
+        "员工",
+        "Agent",
+        "培训",
+        "绩效",
+        "员工服务"
+      ]
+    },
+    {
+      "id": "service-agent-build",
+      "type": "service",
+      "href": "service-agent-build.html",
+      "kicker": "企业服务",
+      "title": "企业 Agent 搭建",
+      "description": "连接知识、系统和规则，完成多步业务任务。",
+      "action": "2 周验证起步 →",
+      "priority": 8,
+      "keywords": [
+        "企业 Agent",
+        "智能体",
+        "搭建",
+        "RAG",
+        "系统集成",
+        "自动化",
+        "工作流",
+        "工具调用",
+        "审批",
+        "人工复核"
+      ]
+    },
+    {
+      "id": "service-data-governance",
+      "type": "service",
+      "href": "service-data-governance.html",
+      "kicker": "企业服务",
+      "title": "数据治理",
+      "description": "资产、口径、质量、管道、权限与 AI 数据层。",
+      "action": "查看详情 →",
+      "priority": 7,
+      "keywords": [
+        "数据治理",
+        "数据工程",
+        "RAG",
+        "知识库",
+        "指标",
+        "质量",
+        "权限",
+        "口径",
+        "数据资产"
+      ]
+    },
+    {
+      "id": "service-ai-enablement",
+      "type": "service",
+      "href": "service-ai-enablement.html",
+      "kicker": "企业服务",
+      "title": "企业 AI 赋能计划",
+      "description": "把零散试用变成可衡量的团队能力。",
+      "action": "查看详情 →",
+      "priority": 6,
+      "keywords": [
+        "AI 赋能",
+        "采用",
+        "组织",
+        "团队",
+        "绩效",
+        "场景诊断",
+        "Q2Q",
+        "试点",
+        "扩展"
+      ]
+    },
+    {
+      "id": "service-ai-training",
+      "type": "service",
+      "href": "service-ai-training.html",
+      "kicker": "企业服务",
+      "title": "企业 AI 培训",
+      "description": "按角色和岗位定制，学完即用。",
+      "action": "查看详情 →",
+      "priority": 6,
+      "keywords": [
+        "AI 培训",
+        "课程",
+        "管理层",
+        "业务",
+        "技术",
+        "提示词",
+        "工作坊",
+        "角色训练"
+      ]
+    },
+    {
+      "id": "resource-playbook",
+      "type": "resource",
+      "href": "document-viewer.html?doc=playbook",
+      "kicker": "PDF",
+      "title": "企业生成式 AI 实战手册",
+      "description": "GenAI、RAG、买还是建、风险治理和落地步骤。",
+      "action": "在线查看 →",
+      "priority": 6,
+      "keywords": [
+        "GenAI",
+        "生成式 AI",
+        "playbook",
+        "手册",
+        "RAG",
+        "风险",
+        "买还是建"
+      ]
+    },
+    {
+      "id": "resource-solutions",
+      "type": "resource",
+      "href": "document-viewer.html?doc=solutions",
+      "kicker": "PDF",
+      "title": "方案搜索结果参考页面",
+      "description": "用户提供的 SMEs Go Digital 搜索结果 PDF，用于布局与交互参考。",
+      "action": "在线查看 →",
+      "priority": 4,
+      "keywords": [
+        "方案",
+        "搜索",
+        "解决方案",
+        "SMEs",
+        "digital"
+      ]
+    },
+    {
+      "id": "wren",
+      "type": "case",
+      "href": "case-wren-kitchens.html",
+      "kicker": "案例结构参考",
+      "title": "大型零售：从紧急扩容到长期技术合作",
+      "description": "挑战、接管、模块、公开影响与可复用经验。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "Wren 厨房 零售 制造 物流 技术合作 跨模块 软件交付",
+        "从紧急团队扩容，到跨物流、安装与内部系统的战略合作",
+        "公开案例摘要：快速接管、嵌入内部团队、优化关键流程，并逐步扩展到多个业务模块。",
+        "retail manufacturing data"
+      ]
+    },
+    {
+      "id": "ihub",
+      "type": "case",
+      "href": "cases.html#ihub",
+      "kicker": "公开 GenAI 案例",
+      "title": "物流：自然语言数据 Agent",
+      "description": "用对话查询多源数据，减少人工报表处理。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "物流 数据 Agent 自然语言 报表 iHub 供应链 多源数据",
+        "用自然语言查询多源供应链数据",
+        "减少手工提取和整理，计划加入图表、摘要和多轮查询。",
+        "data"
+      ]
+    },
+    {
+      "id": "pid",
+      "type": "case",
+      "href": "case-manufacturing-pid-intelligence.html",
+      "kicker": "案例 Blog 模板",
+      "title": "制造业：P&ID 智能化扩展工厂运营",
+      "description": "把静态管线图纸变成可查询、可关联、可由工程师复核的运营知识网络。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "制造业 P&ID 工厂运营 工业知识资产化 工程师复核 图纸 查询 关联",
+        "P&ID 智能化扩展工厂运营",
+        "把静态管线图纸变成可查询、可关联、可由工程师复核的运营知识网络。",
+        "manufacturing data"
+      ]
+    },
+    {
+      "id": "healthcare-agent-roi",
+      "type": "case",
+      "href": "case-healthcare-agent-roi.html",
+      "kicker": "高合规医疗 · 受限多智能体",
+      "title": "医疗：受限多智能体架构与 ROI 验证",
+      "description": "把就诊前中后和患者语音入口拆成可验收、可追踪、可升级人工的生产级流程。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "医疗 医院 诊所 AWS Amazon Connect Health 受限多智能体 ROI 患者语音 EHR EMR 保险验证 预约管理 HealthLake SFT GRPO 临床记录 医疗编码 CPT ICD 就诊前 就诊中 就诊后 状态机 人工升级",
+        "复杂医疗工作流中的智能体落地与 ROI 验证",
+        "把就诊前中后和患者语音入口拆成可验收、可追踪、可升级人工的生产级流程。",
+        "healthcare service data"
+      ]
+    },
+    {
+      "id": "automotive-dfmea-ontology-agent",
+      "type": "case",
+      "href": "case-automotive-dfmea-ontology-agent.html",
+      "kicker": "汽车工程 · 本体智能体 DFMEA",
+      "title": "汽车：本体智能体重塑 B 柱 DFMEA",
+      "description": "从电子表格 DFMEA 到工程本体推理，解释 AI 如何发现组合失效并沉淀组织知识。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "汽车 汽车工程 B柱 B 柱 B-pillar 安全关键零部件 侧面碰撞 车顶抗压 安全带锚固 DFMEA FMEA 本体 Ontology 知识图谱 智能体 Agent AI RFLP AgentCore Strands SDK AWS Bedrock 22MnB5 硼钢 热冲压 氢脆 疲劳 腐蚀 电偶腐蚀 粘接失效 失效模式 RPN AP ECO 工程变更 工程推理 知识流失 老师傅经验 组织记忆 经验断档 机构记忆 跨项目迁移 供应商教训 设计变更复评 FMVSS 214 FMVSS 216 Euro NCAP IIHS AIAG VDA",
+        "本体智能体如何重塑安全关键零部件 DFMEA",
+        "以 B 柱为例，把材料、工艺、失效机理和法规要求连成可推理、可追溯、可复评的风险情报系统。",
+        "automotive manufacturing data"
+      ]
+    }
+  ]
+}

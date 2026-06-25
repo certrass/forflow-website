@@ -691,21 +691,28 @@
     const root = qs('.search-page');
     if (!root) return;
     const params = new URLSearchParams(window.location.search);
-    const query = (params.get('search') || '').trim();
     const input = qs('[data-search-page-input]', root);
-    if (input) input.value = query;
-    if (query) document.title = `${query} 的搜索结果｜ForFlow 萬維流形`;
+    const form = qs('.search-page-form', root);
+    const indexHost = qs('[data-search-index]', root);
+    const groups = qsa('[data-result-type]', root);
+    const tabs = qsa('[data-search-tab]', root);
+    const empty = qs('[data-search-empty]', root);
+    const summary = qs('[data-search-summary]', root);
+    let activeTab = 'all';
+    let searchTimer = null;
 
-    const normalize = (value) => (value || '')
-      .normalize('NFKC')
-      .toLocaleLowerCase('zh-CN')
-      .replace(/&/g, ' and ')
-      .replace(/[|/\\·•、，。！？；：:;,()[\]{}<>《》“”"'\-—_]+/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-    const compact = (value) => normalize(value).replace(/\s+/g, '');
-    const rawTokens = normalize(query).split(/\s+/).filter(Boolean);
-    const compactQuery = compact(query);
+    const getQuery = () => (input?.value || '').trim();
+    const initialQuery = (params.get('search') || '').trim();
+    if (input) input.value = initialQuery;
+    if (initialQuery) document.title = `${initialQuery} 的搜索结果｜ForFlow 萬維流形`;
+
+    const typeLabels = {
+      category: '方案分类',
+      service: '企业服务',
+      resource: '资料',
+      case: '案例'
+    };
+
     const aliasMap = {
       ai: ['人工智能', '生成式', 'genai', '大模型'],
       agent: ['智能体', '代理', 'agentic', '工作流'],
@@ -725,21 +732,119 @@
       agentcore: ['aws', 'bedrock', 'strands', '智能体运行时'],
       strands: ['agentcore', 'bedrock', 'aws', '智能体']
     };
-    const expandedTerms = [...new Set(rawTokens.flatMap((token) => [token, ...(aliasMap[token] || [])]))]
-      .filter((token) => token.length > 1 || /^[a-z0-9]+$/i.test(token));
-    if (compactQuery && compactQuery.length > 1) expandedTerms.unshift(compactQuery);
 
-    const scoreItem = (item) => {
+    const normalize = (value) => (value || '')
+      .normalize('NFKC')
+      .toLocaleLowerCase('zh-CN')
+      .replace(/&/g, ' and ')
+      .replace(/[|/\\·•、，。！？；：:;,()[\]{}<>《》“”"'\-—_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const compact = (value) => normalize(value).replace(/\s+/g, '');
+
+    const getSearchContext = (value) => {
+      const query = (value || '').trim();
+      const rawTokens = normalize(query).split(/\s+/).filter(Boolean);
+      const compactQuery = compact(query);
+      const expandedTerms = [...new Set(rawTokens.flatMap((token) => [token, ...(aliasMap[token] || [])]))]
+        .filter((token) => token.length > 1 || /^[a-z0-9]+$/i.test(token));
+      if (compactQuery && compactQuery.length > 1) expandedTerms.unshift(compactQuery);
+      return { query, rawTokens, compactQuery, expandedTerms };
+    };
+
+    const setCount = (type, value) => {
+      const node = qs(`[data-count-${type}]`, root);
+      if (node) node.textContent = String(value);
+    };
+
+    const searchTextForEntry = (entry) => {
+      const keywords = Array.isArray(entry.keywords) ? entry.keywords.join(' ') : (entry.keywords || '');
+      return [
+        entry.title,
+        entry.description,
+        entry.kicker,
+        keywords,
+        entry.tags,
+      ].filter(Boolean).join(' ');
+    };
+
+    const createResultCard = (entry) => {
+      const card = document.createElement('a');
+      card.className = 'search-result-card';
+      card.href = entry.href || '#';
+      card.dataset.searchText = searchTextForEntry(entry);
+      card.dataset.searchPriority = String(entry.priority || 0);
+      if (entry.id) card.dataset.searchId = entry.id;
+      card.dataset.searchSource = 'json';
+
+      const small = document.createElement('small');
+      small.textContent = entry.kicker || typeLabels[entry.type] || entry.type || '结果';
+      const title = document.createElement('h3');
+      title.textContent = entry.title || '未命名结果';
+      const description = document.createElement('p');
+      description.textContent = entry.description || '';
+      const action = document.createElement('span');
+      action.textContent = entry.action || '查看 →';
+
+      card.append(small, title, description, action);
+      return card;
+    };
+
+    const renderIndexItems = (items) => {
+      if (!Array.isArray(items) || !items.length) return false;
+      const grids = {};
+      groups.forEach((group) => {
+        const type = group.dataset.resultType;
+        [...group.children].forEach((child) => {
+          if (!child.classList.contains('search-result-head')) child.remove();
+        });
+        const grid = document.createElement('div');
+        grid.className = 'search-result-grid';
+        grid.dataset.searchGrid = type || '';
+        group.appendChild(grid);
+        grids[type] = grid;
+      });
+      items.forEach((entry) => {
+        const grid = grids[entry.type];
+        if (!grid) return;
+        grid.appendChild(createResultCard(entry));
+      });
+      root.dataset.searchSource = 'json-index';
+      return true;
+    };
+
+    const loadSearchIndex = async () => {
+      const source = indexHost?.dataset.searchIndex;
+      if (!source || !window.fetch) {
+        root.dataset.searchSource = 'html-fallback';
+        return false;
+      }
+      try {
+        const response = await fetch(source, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Search index HTTP ${response.status}`);
+        const payload = await response.json();
+        if (!renderIndexItems(payload.items)) throw new Error('Search index has no items');
+        root.dataset.searchVersion = payload.version || '';
+        return true;
+      } catch (error) {
+        root.dataset.searchSource = 'html-fallback';
+        root.dataset.searchError = error.message || 'Search index failed';
+        return false;
+      }
+    };
+
+    const scoreItem = (item, context) => {
+      const { query, compactQuery, expandedTerms } = context;
       if (!query) return Number(item.dataset.searchPriority || 0);
       const title = qs('h3', item)?.textContent || '';
-      const summary = qs('p', item)?.textContent || '';
+      const description = qs('p', item)?.textContent || '';
       const meta = qs('small', item)?.textContent || '';
       const keywords = item.dataset.searchText || '';
       const titleNorm = normalize(title);
-      const summaryNorm = normalize(summary);
+      const descriptionNorm = normalize(description);
       const metaNorm = normalize(meta);
       const keywordNorm = normalize(keywords);
-      const haystack = `${titleNorm} ${summaryNorm} ${metaNorm} ${keywordNorm}`;
+      const haystack = `${titleNorm} ${descriptionNorm} ${metaNorm} ${keywordNorm}`;
       const haystackCompact = compact(haystack);
       let score = 0;
       if (compactQuery && haystackCompact.includes(compactQuery)) score += 70;
@@ -750,13 +855,14 @@
         if (!termNorm) return;
         if (titleNorm.includes(termNorm) || compact(title).includes(termCompact)) score += 34;
         if (keywordNorm.includes(termNorm) || compact(keywords).includes(termCompact)) score += 22;
-        if (summaryNorm.includes(termNorm) || compact(summary).includes(termCompact)) score += 12;
+        if (descriptionNorm.includes(termNorm) || compact(description).includes(termCompact)) score += 12;
         if (metaNorm.includes(termNorm) || compact(meta).includes(termCompact)) score += 9;
       });
-      return score;
+      return score > 0 ? score + Number(item.dataset.searchPriority || 0) : 0;
     };
 
-    const restoreAndHighlight = (item) => {
+    const restoreAndHighlight = (item, context) => {
+      const { query, rawTokens, expandedTerms } = context;
       ['small', 'h3', 'p'].forEach((selector) => {
         const node = qs(selector, item);
         if (!node) return;
@@ -764,7 +870,7 @@
         node.textContent = node.dataset.originalText;
       });
       if (!query || !expandedTerms.length) return;
-      const highlightTerms = [...new Set([query, ...rawTokens])]
+      const highlightTerms = [...new Set([query, ...rawTokens, ...expandedTerms])]
         .map((term) => term.trim())
         .filter((term) => term.length >= 2);
       if (!highlightTerms.length) return;
@@ -775,8 +881,9 @@
         const fragment = document.createDocumentFragment();
         let remaining = source;
         while (remaining) {
+          const lower = remaining.toLocaleLowerCase('zh-CN');
           const match = highlightTerms
-            .map((term) => ({ term, index: remaining.toLocaleLowerCase('zh-CN').indexOf(term.toLocaleLowerCase('zh-CN')) }))
+            .map((term) => ({ term, index: lower.indexOf(term.toLocaleLowerCase('zh-CN')) }))
             .filter((entry) => entry.index >= 0)
             .sort((a, b) => a.index - b.index || b.term.length - a.term.length)[0];
           if (!match) {
@@ -794,45 +901,54 @@
       });
     };
 
-    const groups = qsa('[data-result-type]', root);
-    const searchable = qsa('[data-search-text]', root);
-    searchable.forEach((item) => {
-      const score = scoreItem(item);
-      item.dataset.searchScore = String(score);
-      item.hidden = Boolean(query) && score <= 0;
-      item.classList.toggle('is-top-hit', Boolean(query) && score >= 85);
-      restoreAndHighlight(item);
-    });
+    const syncUrl = (query) => {
+      const url = new URL(window.location.href);
+      if (query) url.searchParams.set('search', query);
+      else url.searchParams.delete('search');
+      window.history.replaceState({}, '', url);
+    };
 
-    const typeCounts = {};
-    groups.forEach((group) => {
-      const items = qsa('[data-search-text]', group);
-      items
-        .slice()
-        .sort((a, b) => Number(b.dataset.searchScore || 0) - Number(a.dataset.searchScore || 0))
-        .forEach((item) => item.parentElement?.appendChild(item));
-      const type = group.dataset.resultType;
-      typeCounts[type] = qsa('[data-search-text]', group).filter((item) => !item.hidden).length;
-      const headingCount = qs('.search-result-head h2 span', group);
-      if (headingCount) headingCount.textContent = String(typeCounts[type]);
-    });
-    const total = Object.values(typeCounts).reduce((sum, value) => sum + value, 0);
-    setCount('all', total);
-    Object.entries(typeCounts).forEach(([type, value]) => setCount(type, value));
+    const renderSearch = ({ updateUrl = false } = {}) => {
+      const query = getQuery();
+      const context = getSearchContext(query);
+      if (query) document.title = `${query} 的搜索结果｜ForFlow 萬維流形`;
+      else document.title = '搜索｜ForFlow 萬維流形';
+      if (updateUrl) syncUrl(query);
 
-    const tabs = qsa('[data-search-tab]', root);
-    const empty = qs('[data-search-empty]', root);
-    const summary = qs('[data-search-summary]', root);
-    const renderTab = (tab) => {
+      const searchable = qsa('[data-search-text]', root);
+      searchable.forEach((item) => {
+        const score = scoreItem(item, context);
+        item.dataset.searchScore = String(score);
+        item.hidden = Boolean(query) && score <= 0;
+        item.classList.toggle('is-top-hit', Boolean(query) && score >= 85);
+        restoreAndHighlight(item, context);
+      });
+
+      const typeCounts = {};
+      groups.forEach((group) => {
+        const items = qsa('[data-search-text]', group);
+        items
+          .slice()
+          .sort((a, b) => Number(b.dataset.searchScore || 0) - Number(a.dataset.searchScore || 0))
+          .forEach((item) => item.parentElement?.appendChild(item));
+        const type = group.dataset.resultType;
+        typeCounts[type] = qsa('[data-search-text]', group).filter((item) => !item.hidden).length;
+        const headingCount = qs('.search-result-head h2 span', group);
+        if (headingCount) headingCount.textContent = String(typeCounts[type]);
+      });
+      const total = Object.values(typeCounts).reduce((sum, value) => sum + value, 0);
+      setCount('all', total);
+      Object.entries(typeCounts).forEach(([type, value]) => setCount(type, value));
+
       let visibleGroups = 0;
       groups.forEach((group) => {
         const type = group.dataset.resultType;
         const hasVisible = (typeCounts[type] || 0) > 0;
-        const show = hasVisible && (tab === 'all' || tab === type);
+        const show = hasVisible && (activeTab === 'all' || activeTab === type);
         group.hidden = !show;
         if (show) visibleGroups += 1;
       });
-      tabs.forEach((button) => button.classList.toggle('is-active', button.dataset.searchTab === tab));
+      tabs.forEach((button) => button.classList.toggle('is-active', button.dataset.searchTab === activeTab));
       if (empty) empty.hidden = visibleGroups > 0;
       if (summary) {
         summary.textContent = query
@@ -840,12 +956,21 @@
           : `当前展示 ${total} 个可检索入口，可输入行业、技术、场景或案例关键词。`;
       }
     };
-    function setCount(type, value) {
-      const node = qs(`[data-count-${type}]`, root);
-      if (node) node.textContent = String(value);
-    }
-    tabs.forEach((button) => button.addEventListener('click', () => renderTab(button.dataset.searchTab || 'all')));
-    renderTab('all');
+
+    tabs.forEach((button) => button.addEventListener('click', () => {
+      activeTab = button.dataset.searchTab || 'all';
+      renderSearch();
+    }));
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      renderSearch({ updateUrl: true });
+    });
+    input?.addEventListener('input', () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => renderSearch({ updateUrl: true }), 140);
+    });
+
+    loadSearchIndex().then(() => renderSearch());
   }
 
   function initDocumentViewer() {
