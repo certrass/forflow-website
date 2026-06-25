@@ -98,10 +98,18 @@ def test_navigator_flow():
     c=CDP(1280,900)
     try:
         c.goto('navigator.html')
+        placeholder_free=c.eval("!['原型说明','内容映射占位','内容占位说明','DETAIL / CMS SLOT','正式上线时可接','响应式企业网站原型'].some((phrase)=>document.body.textContent.includes(phrase))")
+        assert placeholder_free
+        assert c.eval("document.querySelector('[data-next]').disabled")
         c.eval("document.querySelector('#challenge-knowledge').click()")
+        assert not c.eval("document.querySelector('[data-next]').disabled")
         c.eval("document.querySelector('[data-next]').click()")
         c.wait("document.querySelector('.step-panel[data-step=\"2\"]').classList.contains('is-active')")
         c.eval("document.querySelector('#goal-speed').click(); document.querySelector('#goal-quality').click(); document.querySelector('#readiness-process').click()")
+        c.eval("document.querySelector('[data-next]').click()")
+        c.wait("document.querySelector('.step-panel[data-step=\"3\"]').classList.contains('is-active')")
+        c.eval("document.querySelector('[data-progress-step=\"2\"]').click()")
+        c.wait("document.querySelector('.step-panel[data-step=\"2\"]').classList.contains('is-active')")
         c.eval("document.querySelector('[data-next]').click()")
         c.wait("document.querySelector('.step-panel[data-step=\"3\"]').classList.contains('is-active')")
         c.eval("document.querySelector('#deployment-hybrid').click(); document.querySelector('#timeline-30').click(); document.querySelector('#constraint-sensitive').click()")
@@ -110,8 +118,10 @@ def test_navigator_flow():
         c.wait("document.querySelector('[data-result-challenge]')?.textContent.includes('企业知识')")
         context=c.eval("({title:document.title,challenge:document.querySelector('[data-result-challenge]').textContent,goal:document.querySelector('[data-result-goal]').textContent,deployment:document.querySelector('[data-result-deployment]').textContent,video:!!document.querySelector('video[controls]')})")
         assert context['video'] and '提高质量' in context['goal'] and '混合部署' in context['deployment']
+        result_placeholder_free=c.eval("!['原型说明','内容映射占位','内容占位说明','DETAIL / CMS SLOT','正式上线时可接','响应式企业网站原型'].some((phrase)=>document.body.textContent.includes(phrase))")
+        assert result_placeholder_free
         assert not c.exceptions
-        ok('Navigator 端到端','问卷成功跳转并个性化结果；视频控件存在')
+        ok('Navigator 端到端','问卷可回退修改、成功跳转并个性化结果；视频控件存在')
     finally:c.close()
 
 def test_faq_and_filters():
@@ -135,8 +145,8 @@ def test_case_and_search():
     c=CDP()
     try:
         c.goto('cases.html')
-        linked=c.eval("({pid:!!document.querySelector('#pid[href=\"case-manufacturing-pid-intelligence.html\"]'),healthcare:!!document.querySelector('#healthcare-agent-roi[href=\"case-healthcare-agent-roi.html\"]'),automotive:!!document.querySelector('#automotive-dfmea-ontology-agent[href=\"case-automotive-dfmea-ontology-agent.html\"]'),total:document.querySelectorAll('[data-case-tags]').length})")
-        assert linked['pid'] and linked['healthcare'] and linked['automotive'] and linked['total']>=9
+        linked=c.eval("({pid:!!document.querySelector('#pid[href=\"case-manufacturing-pid-intelligence.html\"]'),healthcare:!!document.querySelector('#healthcare-agent-roi[href=\"case-healthcare-agent-roi.html\"]'),automotive:!!document.querySelector('#automotive-dfmea-ontology-agent[href=\"case-automotive-dfmea-ontology-agent.html\"]'),supply:!!document.querySelector('#supply-chain-agentic-decision[href=\"case-supply-chain-agentic-decision.html\"]'),financial:!!document.querySelector('#financial-bda-document-automation[href=\"case-financial-bda-document-automation.html\"]'),total:document.querySelectorAll('[data-case-tags]').length})")
+        assert linked['pid'] and linked['healthcare'] and linked['automotive'] and linked['supply'] and linked['financial'] and linked['total']>=11
         c.eval("document.querySelector('[data-case-filter=\"education\"]').click()")
         visible=int(c.eval("[...document.querySelectorAll('[data-case-tags]')].filter(x=>!x.hidden).length"))
         assert visible==2
@@ -167,6 +177,18 @@ def test_case_and_search():
         c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
         knowledge_loss_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
         assert int(knowledge_loss_case['caseCount'])>=1 and knowledge_loss_case['automotive']
+        c.goto('search.html?search=供应链')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        supply_chain_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,supply:!!document.querySelector('a[href=\"case-supply-chain-agentic-decision.html\"]:not([hidden])')})")
+        assert int(supply_chain_case['caseCount'])>=1 and supply_chain_case['supply']
+        c.goto('search.html?search=BDA')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        financial_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,financial:!!document.querySelector('a[href=\"case-financial-bda-document-automation.html\"]:not([hidden])')})")
+        assert int(financial_case['caseCount'])>=1 and financial_case['financial']
+        c.goto('search.html?search=金融文档')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        financial_doc_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,financial:!!document.querySelector('a[href=\"case-financial-bda-document-automation.html\"]:not([hidden])')})")
+        assert int(financial_doc_case['caseCount'])>=1 and financial_doc_case['financial']
         c.goto('search.html?search=P%26ID')
         c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
         pid_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,pid:!!document.querySelector('a[href=\"case-manufacturing-pid-intelligence.html\"]:not([hidden])')})")
@@ -180,7 +202,7 @@ def test_case_and_search():
         c.wait("document.querySelector('[data-count-case]').textContent !== '0' && decodeURIComponent(location.search).includes('RFLP')")
         live_search=c.eval("({source:document.querySelector('.search-page').dataset.searchSource,version:document.querySelector('.search-page').dataset.searchVersion,caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
         assert live_search['source']=='json-index' and live_search['version'] and int(live_search['caseCount'])>=1 and live_search['automotive']
-        ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；JSON 索引 {live_search["version"]}；DFMEA/B柱/AgentCore/知识流失/P&ID/RFLP 均命中')
+        ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；JSON 索引 {live_search["version"]}；DFMEA/B柱/AgentCore/知识流失/供应链/BDA/金融文档/P&ID/RFLP 均命中')
     finally:c.close()
 
 for fn in [test_search_overlay,test_mobile_menu,test_navigator_flow,test_faq_and_filters,test_case_and_search]:

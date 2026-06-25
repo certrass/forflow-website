@@ -13,7 +13,7 @@ import re
 
 SEARCH_ICON = '''<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg>'''
 ARROW = '<span class="arrow" aria-hidden="true">→</span>'
-ASSET_VERSION = '20260625-case-quality-v9'
+ASSET_VERSION = '20260625-financial-bda-case-v16'
 CSS_VERSION = ASSET_VERSION
 SCRIPT_VERSION = ASSET_VERSION
 
@@ -141,6 +141,21 @@ CASE_LIBRARY_ITEMS = [
         'search_kicker': '零售供应链 · 多智能体决策',
         'search_title': '供应链：多智能体 AI 把数据转化为行动',
         'search_description': '从数据可见性到自动查询、分析、根因归因和行动通知，解释供应链控制塔之后的 Agent 架构。',
+    },
+    {
+        'id': 'financial-bda-document-automation',
+        'href': 'case-financial-bda-document-automation.html',
+        'tags': ['finance', 'data', 'service'],
+        'kicker': '金融文档 · Bedrock Data Automation',
+        'title': '用 BDA 自动化提取金融文档数据',
+        'description': '围绕银行对账单、W-2、1099-B 和供应商合同，讲清 Blueprint 如何把文档提取变成可复用工作流。',
+        'visual': {'type': 'media', 'src': 'assets/cases/financial-bda-document-automation-hero.png', 'label': '金融文档自动化'},
+        'link_label': '阅读案例 <b>↗</b>',
+        'search': True,
+        'search_text': '金融 文档 金融文档 Amazon Bedrock Data Automation BDA Blueprint 蓝图 OCR IDP 智能文档处理 银行对账单 bank statement W-2 W2 1099-B 1099B 税务表格 供应商合同 vendor contract 结构化提取 JSON CSV 置信度 视觉定位 visual grounding 幻觉缓解 字段验证 会计 对账 税务 合同管理',
+        'search_kicker': '金融文档 · Bedrock Data Automation',
+        'search_title': '金融：用 BDA 自动化提取文档数据',
+        'search_description': '从四类金融文档到自定义 Blueprint，说明如何提取、验证并接入会计、税务和合同工作流。',
     },
     {
         'tags': ['data', 'service'],
@@ -501,7 +516,7 @@ def footer():
       <a href="navigator.html">开始诊断</a>
     </div>
   </div>
-  <div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>响应式企业网站原型 · CMS / CRM / 报价接口已预留</span></div>
+  <div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span></div>
 </footer>'''
 
 def search_modal():
@@ -585,6 +600,10 @@ def version_asset_links():
     for path in ROOT.glob('*.html'):
         soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
         changed = False
+        footer_note = soup.select_one('.footer-bottom span:last-child')
+        if footer_note and footer_note.get_text(strip=True) == '响应式企业网站原型 · CMS / CRM / 报价接口已预留':
+            footer_note.string = '企业 AI 场景工程 · 诊断、案例与交付路径持续更新'
+            changed = True
         for sheet in soup.find_all('link', rel=lambda x: x and 'stylesheet' in x):
             href = sheet.get('href', '')
             if href.split('?')[0] == 'styles.css':
@@ -601,6 +620,66 @@ def version_asset_links():
 # Patch existing pages instead of rebuilding them.
 patch_existing('index.html', 'home')
 patch_existing('navigator.html', 'navigator')
+
+def polish_navigator_page():
+    path = ROOT / 'navigator.html'
+    soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+    hero_intro = soup.select_one('.navigator-hero-inner > p')
+    if hero_intro:
+        hero_intro.string = '从业务挑战、价值目标、组织准备度和部署偏好出发，生成一张可讨论的场景卡。填写过程约 3 分钟，可直接带入后续项目梳理。'
+
+    sidebar_rows = [
+        ('业务挑战', '选择最需要改善的环节'),
+        ('价值与准备度', '明确目标和现状'),
+        ('部署边界', '约束、周期和数据条件'),
+        ('生成场景卡', '确认路径与下一步动作'),
+    ]
+    for item, (title, text) in zip(soup.select('.step-item'), sidebar_rows):
+        strong = item.select_one('.step-copy strong')
+        span = item.select_one('.step-copy span')
+        if strong:
+            strong.string = title
+        if span:
+            span.string = text
+
+    trust = soup.select_one('.sidebar-trust')
+    if trust:
+        icon = trust.select_one('.trust-icon')
+        title = trust.find('h3')
+        body = trust.find('p')
+        if icon:
+            icon.string = 'Q2Q'
+        if title:
+            title.string = '诊断口径'
+        if body:
+            body.string = '输出不替代正式方案，而是先把业务问题、数据边界、责任人和验收指标摆清楚，便于判断下一步是否值得投入。'
+
+    tag_texts = [
+        '诊断 01 · 业务挑战',
+        '诊断 02 · 价值与准备度',
+        '诊断 03 · 部署边界',
+        '诊断 04 · 生成建议',
+    ]
+    for tag, text in zip(soup.select('.step-panel-head .step-tag'), tag_texts):
+        tag.string = text
+
+    for label in soup.find_all('label'):
+        label_text = label.get_text(strip=True)
+        if label_text == '所属行业（内容映射占位）':
+            label.string = '所属行业'
+        elif label_text == '需要连接的系统数量（占位）':
+            label.string = '需要连接的系统数量'
+
+    result_intro = soup.select_one('.step-panel[data-step="4"] .step-panel-head p')
+    if result_intro:
+        result_intro.string = '系统会把你的回答整理成第一版场景路径，用于讨论优先级、试点边界和后续验证动作。'
+    disclaimer = soup.select_one('.result-disclaimer')
+    if disclaimer:
+        disclaimer.string = '建议用于项目沟通前的初筛：正式进入试点前，还需要补充真实流程、样本数据、权限边界、负责人和验收指标。'
+
+    path.write_text(str(soup), encoding='utf-8')
+
+polish_navigator_page()
 
 # Add the four-SKU section into the existing homepage frame.
 index_path = ROOT / 'index.html'
@@ -677,7 +756,7 @@ navigator_results_body = '''
 </section>
 <section class="results-listing section-pad">
   <div class="container">
-    <div class="section-head"><div><p class="eyebrow">Recommended solutions</p><h2 class="section-title">先做最值得验证的，<br>再扩展到组织级能力。</h2></div><p class="section-lead">可按“最匹配、最快见效、基础优先”排序。正式上线时可接方案库、报价、CRM 与收藏功能。</p></div>
+    <div class="section-head"><div><p class="eyebrow">Recommended solutions</p><h2 class="section-title">先做最值得验证的，<br>再扩展到组织级能力。</h2></div><p class="section-lead">可按“最匹配、最快见效、基础优先”排序，用来确定先做哪条工作流、需要哪些数据边界，以及谁负责复核与验收。</p></div>
     <div class="results-panel">
       <aside class="sort-sidebar"><small>排序方式</small><button class="is-active" data-sort="match">最匹配</button><button data-sort="speed">最快见效</button><button data-sort="foundation">基础优先</button></aside>
       <div class="solution-list">
@@ -831,7 +910,7 @@ cases_body=f'''
 
 case_detail_body='''
 <section class="case-detail-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例</a><span>/</span><strong>Wren Kitchens</strong></nav><p class="eyebrow">Public case reference</p><h1>Wren Kitchens：<br>从紧急团队扩容到长期技术合作。</h1><p>这是一篇公开案例的结构化解读，用来说明企业在高速增长、系统复杂和内部团队承压时，如何先稳住关键流程，再把外部技术能力沉淀为长期协作能力。</p><div class="case-detail-metrics"><div><strong>31</strong><span>公开资料中的合作团队规模</span></div><div><strong>1 分钟 → 约 5 秒</strong><span>关键产品浏览服务加载优化</span></div><div><strong>多业务模块</strong><span>安装、物流、产品、QA、移动应用</span></div></div><div class="case-detail-visual case-art--wren"><span>MANUFACTURING × RETAIL × SOFTWARE DELIVERY</span></div></div></section>
-<div class="container case-detail-shell"><aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#challenge">业务挑战</a><a href="#takeover">快速接管</a><a href="#modules">合作模块</a><a href="#impact">公开影响</a><a href="#lessons">可复用经验</a></nav></div></aside><article>
+<div class="container case-detail-shell case-story-shell"><aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#challenge">业务挑战</a><a href="#takeover">快速接管</a><a href="#modules">合作模块</a><a href="#impact">公开影响</a><a href="#lessons">可复用经验</a></nav></div></aside><article>
 <section id="challenge" data-section class="case-section"><p class="eyebrow">Challenge</p><h2>增长很快的企业，最怕系统能力追不上业务节奏。</h2><p>公开案例显示，Wren Kitchens 在结束上一家供应商合作后，需要快速补充开发能力，同时保持质量、可靠性和按期交付。当地专业人才有限，路线图又会随业务变化，因此企业不仅需要“人手”，还需要能接管知识、处理高风险工作并灵活扩缩的伙伴。</p><ul><li>需要立即补充大量 PHP 开发能力</li><li>短期与长期项目并存，团队规模需要灵活变化</li><li>未来几个季度的技术工作难以完全提前规划</li><li>关键业务要求稳定、准时且可持续交付</li></ul></section>
 <section id="takeover" data-section class="case-section"><p class="eyebrow">Project takeover</p><h2>没有完整交接窗口，也要先稳住业务，再谈优化。</h2><p>新团队直接进入已有内部 IT 组织。由于客户拥有清晰文档和技术责任，新伙伴可以从第一天建立可靠知识基础。重点不是立即大改系统，而是确认责任、运行风险、关键流程和可快速改善的事项。</p><div class="case-quote"><blockquote>先建立稳定交付与信任，再逐步承担更复杂、更关键的业务模块。</blockquote><footer>案例页面结构总结</footer></div></section>
 <section id="modules" data-section class="case-section"><p class="eyebrow">Workstreams</p><h2>合作扩展到安装、物流、产品、质量和移动应用。</h2><div class="case-modules"><article class="case-module"><h3>安装流程</h3><p>支持安装人员网络、测量、预约、日期和客户验收等完整生命周期。</p></article><article class="case-module"><h3>物流与交付</h3><p>优化影响夜间运行和标签准确性的关键流程，减少异常与处罚。</p></article><article class="case-module"><h3>产品与知识交接</h3><p>协助新内部开发人员理解领域知识、系统和责任边界。</p></article><article class="case-module"><h3>质量与移动应用</h3><p>完善上线前验证、QA 标准和 iPad 内部应用的稳定与持续交付。</p></article></div></section>
@@ -912,8 +991,9 @@ automotive_dfmea_body='''
       <h2>“电子表格 AI”为什么必然失败？因为它继承的是历史记录，不是工程因果。</h2>
       <p>很多 AI 辅助 DFMEA 的直觉方案，是把历史 DFMEA 电子表格喂给大语言模型，期待它生成新的失效模式。这条路最多得到一个自动补全引擎。它能复述历史上常见的词，但无法真正判断新的材料、工艺、界面和载荷组合会带来什么风险。</p>
       <div class="case-decision-grid"><article class="case-decision-card"><small>失败原因一</small><h3>继承知识盲区</h3><p>如果历史 DFMEA 本来就遗漏了某类失效模式，模型会把这个遗漏当作正常分布继承下来。未被记录的失效，无法从表格里学到。</p></article><article class="case-decision-card"><small>失败原因二</small><h3>缺乏因果理解</h3><p>模型可能写出“焊接失效”，却分不清是阴极浸涂后的氢脆、焊趾疲劳裂纹，还是激光焊接参数漂移导致熔合不足。</p></article><article class="case-decision-card"><small>失败原因三</small><h3>无法推断组合失效</h3><p>最危险的失效模式往往来自多个因素交互，而这些因素可能从未在历史项目中同时出现过。</p></article></div>
-      <div class="case-subhead"><small>本体编码的是关系</small><h3>材料 → 工艺 → 失效机理 → 影响效应。</h3></div>
+      <div class="case-subhead case-subhead--relation"><small>本体编码的是关系</small><h3>材料 → 工艺 → 失效机理 → 影响效应。</h3></div>
       <p>工程本体的作用，是把知识从“事实列表”变成“关系网络”。当本体知道 22MnB5 硼钢经过约 900°C 奥氏体化热冲压，随后进入涂装、焊接和服役环境，它就能把热影响区、涂层状态、氢敏感性、残余应力、腐蚀暴露和疲劳载荷连到同一条推理路径上。</p>
+      <div class="case-reading-note"><strong>企业主应该先看什么</strong><p>本体试点不必一开始覆盖整车。先看四类资料是否能拿出来：历史 DFMEA 和设计变更记录、关键材料与工艺窗口、试验/仿真/保修证据、供应商变更与现场质量反馈。如果这些资料散在不同系统和个人经验里，B 柱这样的安全关键件就值得先做一个小范围本体化试点。</p></div>
       <div class="case-board-questions"><div><small>AI 推理上下文</small><h3>本体给智能体的不是答案，而是工程背景。</h3><p>当专项 AI 代理被要求识别 B 柱车顶纵梁焊缝的失效模式时，本体提供五类上下文，让 AI 可以沿因果链判断，而不是在历史表格里做关键词联想。</p></div><ol><li><span>01</span><p>材料上下文：22MnB5、奥氏体化、淬火、热影响区、强度梯度、氢敏感性曲线。</p></li><li><span>02</span><p>工艺上下文：激光焊接、焊点几何、热输入、残余应力、涂层连续性和熔合质量。</p></li><li><span>03</span><p>环境上下文：道路盐分、水分循环、底盘暴露、涂层缺陷处的腐蚀机制。</p></li><li><span>04</span><p>载荷上下文：侧面冲击的瞬态载荷、路面振动的循环载荷、热胀冷缩的日变化载荷。</p></li><li><span>05</span><p>历史上下文：过去 B 柱或相邻结构项目中的焊缝失效、失效里程、试验条件、保修索赔和供应商批次。</p></li></ol></div>
       <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-risk"></use></svg></span><div><small>B 柱焊缝示例</small><h3>“焊缝失效”不该是分析终点，而应该是推理起点。</h3><p>车顶纵梁焊缝把热冲压 B 柱与不同钢种连接在一起；焊接改变局部微观结构；接头同时承受道路振动和碰撞冲击；焊渣飞溅可能降低涂层附着；腐蚀萌生后又可能在持续载荷下发展为应力腐蚀开裂。只有这些条件同时出现时，真正危险的组合失效才会显形。</p></div></aside>
     </section>
@@ -1000,8 +1080,8 @@ supply_chain_agentic_body='''
       <p class="eyebrow">Decision quality</p>
       <h2>供应链竞争力，最后会落到每一天的决策质量上。</h2>
       <p>供应链既是零售企业最重要的竞争优势之一，也是运营上最复杂的环节之一。每一个决策都有可量化的成本代价：库存周转时间缩短一天、缺货率降低一个百分点、提前一小时发现物流异常，这些收益都会在规模里叠加。</p>
-      <p>真正的问题不是企业有没有数据，而是在正确的时间，基于正确的信息，做出正确判断。大型语言模型已经能够可靠调用工具，编排框架也日趋成熟，多智能体架构开始有能力以生产级质量完成复杂的查询、分析、根因归因和行动协同。</p>
-      <div class="case-question-panel"><div><small>老板视角</small><h3>如果一个问题要半天才查清，很多异常根本不会被调查。</h3><p>当提问成本很高，团队只会追几个固定 KPI；当提问成本降到一句话和几十秒，供应链团队才会追踪更多边角异常，决策覆盖范围才会扩大。</p></div><div class="case-goal"><small>目标工作单元</small><h3>收集 → 查询 → 洞察 → 行动</h3><p>数据收集已经基本解决，Agent 要补的是后面三步：自动查询、自动分析、把结论变成可执行动作。</p></div></div>
+      <p>真正的问题不是企业有没有数据，而是在正确的时间，基于正确的信息，做出正确判断。如今，这种能力已经触手可及：大型语言模型已经能够可靠调用各类工具，编排框架也日趋成熟，足以协调多个专项智能体以生产级质量完成复杂流程。</p>
+      <div class="case-question-panel"><div><small>老板视角</small><h3>如果一个问题要半天才查清，很多异常根本不会被调查。</h3><p>当提问成本很高，团队只会追几个固定 KPI；当回答一个供应链问题的最小单位从“一名分析师加半天时间”降到“一句话加 30 秒”，团队才会追踪更多边角异常，决策覆盖范围才会扩大。</p></div><div class="case-goal"><small>目标工作单元</small><h3>收集 → 查询 → 洞察 → 行动</h3><p>数据收集已经基本解决，Agent 要补的是后面三步：自动查询、自动分析、把结论变成可执行动作。</p></div></div>
     </section>
 
     <section class="case-section" data-section id="bottleneck">
@@ -1009,6 +1089,7 @@ supply_chain_agentic_body='''
       <h2>数据可见性，不等于数据驱动决策。</h2>
       <p>经过多年数字化投资，大多数零售商已经建立了相当完整的数据基础设施：ERP、WMS、TMS、数据湖和各类仪表盘一应俱全。控制塔把多源数据聚合起来，提供可视化和告警，解决了“看见数据”的问题。</p>
       <p>但控制塔本质上仍然偏被动：分析逻辑在构建时就已固化，只能展示预定义指标，无法主动推理；迭代周期常常以周或月计。业务人员仍然要通过数据工程团队提需求、等结果，在电子表格里做分析，再靠邮件和会议推动行动。</p>
+      <p>智能体 AI 代表的是控制塔之后的下一步：从“看数据”到“查数据”，从“被动展示”到“主动推理”。供应链团队无需等待分析师重新做仪表盘或临时写查询，直接用自然语言提出问题，获得结构化分析、根因归因和可立即执行的行动方案。</p>
       <div class="case-value-cards case-value-cards--triple"><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><small>查询障碍</small><h3>业务人员难以自助获取数据</h3><p>SQL 技能门槛、不一致的业务定义和复杂多表关联，让很多问题停在“能不能帮我拉一下数”。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-brain"></use></svg></span><small>洞察差距</small><h3>原始数据不能自动变成结论</h3><p>异常检测、多维钻取和根因归因仍然依赖人工经验，分析质量和速度跟人强相关。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><small>行动脱节</small><h3>洞察留在报告里，行动靠人协调</h3><p>即使结论清楚，后续仍要发邮件、拉群、开会和追审批，响应时间以天计。</p></article></div>
       <div class="case-comparison-table"><div><span>决策瓶颈</span><span>控制塔的局限</span><span>智能体 AI 的解法</span><strong>查询障碍</strong><p>需要 SQL 技能和数据工程支持</p><p>自动将自然语言翻译成 SQL 查询</p><strong>洞察差距</strong><p>只展示预定义指标</p><p>执行异常检测、多维钻取和根因归因</p><strong>行动脱节</strong><p>分析留在报告里，行动依赖人工协调</p><p>生成可执行材料并通知相关团队</p></div></div>
     </section>
@@ -1017,6 +1098,14 @@ supply_chain_agentic_body='''
       <p class="eyebrow">Supervisor-worker architecture</p>
       <h2>架构的关键，是让主管代理理解意图，让专项代理各自做好一件事。</h2>
       <p>基于一家全球鞋服零售商的匿名化场景，可以把系统拆成九个核心组件：用户接入层、智能体核心层、数据访问与网关层、可观测性层。它不是在现有数据平台旁边再做一个“更漂亮的仪表盘”，而是在数据基础设施之上自动化整条推理链。</p>
+      <div class="case-layer-notes"><article><small>用户接入层 · 组件 01-05</small><p>业务用户通过 Web UI 访问 Chatbot App，前后端经由 API Gateway 与 Lambda 集成；Amazon Cognito User Pools 统一处理用户认证；DynamoDB 保存对话历史和应用配置，让会话上下文可以持续。</p></article><article><small>智能体核心层 · 组件 06-07</small><p>智能体应用基于 Strands 框架构建，部署在 AgentCore Runtime 上，大模型能力由 Amazon Bedrock 提供。AgentCore Identity 负责认证流程和第三方 API 密钥管理，外发认证通过 Outbound Auth 的 Client Credentials 机制完成。</p></article><article><small>数据与可观测性层 · 组件 08-09</small><p>AgentCore Gateway 通过 MCP 访问外部数据源，支持 API 目标和 Lambda 目标；AgentCore Observability 覆盖运行状态、工具调用和执行链路，方便后续审计和质量复盘。</p></article></div>
+      <figure class="case-figure case-figure--contain case-figure--wide-diagram">
+        <a href="assets/cases/supply-chain-agentcore-architecture.png" target="_blank" rel="noopener" aria-label="打开供应链多智能体架构图原图">
+          <img src="assets/cases/supply-chain-agentcore-architecture.png" alt="供应链多智能体架构图：从用户访问、认证、DynamoDB 数据存储，到 AgentCore Runtime、Bedrock、Identity、Gateway、MCP 数据源和 Observability 的九个组件。" loading="lazy" decoding="async">
+          <span class="case-figure-zoom" aria-hidden="true">↗</span>
+        </a>
+        <figcaption>供应链多智能体架构原图：左侧是用户接入、认证和会话数据，中间是 AgentCore Runtime、Bedrock、Identity、Gateway 和 Observability，右侧通过 Lambda、自定义数据库与外部 MCP/API 数据源完成工具访问。手机端可在图内左右滑动查看完整细节。</figcaption>
+      </figure>
       <div class="case-architecture-map" aria-label="供应链多智能体架构九组件">
         <article><span>01</span><h3>Web UI</h3><p>业务用户用自然语言发起供应链问题。</p></article>
         <article><span>02</span><h3>Chatbot App</h3><p>承接对话、上下文和前端状态。</p></article>
@@ -1028,20 +1117,20 @@ supply_chain_agentic_body='''
         <article><span>08</span><h3>AgentCore Gateway + MCP</h3><p>通过 API 目标和 Lambda 目标访问外部数据源。</p></article>
         <article><span>09</span><h3>AgentCore Observability</h3><p>追踪智能体状态、工具调用和执行链路。</p></article>
       </div>
-      <div class="case-board-questions"><div><small>代理分工</small><h3>职责拆开，准确性才有空间提升。</h3><p>实践中的一个重要经验是：把所有能力塞进单一智能体提示词，提示词越长，SQL 生成准确性越容易下降。拆成主管-员工模式后，每个代理可以有自己的语义、工具、错误重试和质量检查。</p></div><ol><li><span>01</span><p>主管代理：解读用户意图，判断简单查询还是复杂分析，并协调流程。</p></li><li><span>02</span><p>查询代理：自然语言转 SQL，执行基准查询和周期比较。</p></li><li><span>03</span><p>详细代理：发现异常后，按类别、时间段和区域执行多维钻取。</p></li><li><span>04</span><p>研究代理：从多个角度调查根因。</p></li><li><span>05</span><p>汇总代理：将结果整理为结构化业务报告。</p></li><li><span>06</span><p>行动代理：生成通知、审批摘要和工单。</p></li></ol></div>
+      <div class="case-board-questions"><div><small>代理分工</small><h3>职责拆开，准确性才有空间提升。</h3><p>实践中的一个重要经验是：把所有能力塞进单一智能体提示词，提示词越长，SQL 生成准确性越容易下降。拆成主管-员工模式后，每个代理可以有自己的语义、工具、错误重试和质量检查；查询代理还能分析 SQL 报错并自动重试，而不是把错误直接甩给业务人员。</p></div><ol><li><span>01</span><p>主管代理：解读用户意图，判断简单查询还是复杂分析，并协调流程。</p></li><li><span>02</span><p>查询代理：自然语言转 SQL，执行基准查询和周期比较。</p></li><li><span>03</span><p>详细代理：发现异常后，按类别、时间段和区域执行多维钻取。</p></li><li><span>04</span><p>研究代理：从多个角度调查根因。</p></li><li><span>05</span><p>汇总代理：将结果整理为结构化业务报告。</p></li><li><span>06</span><p>行动代理：生成通知、审批摘要和工单。</p></li></ol></div>
     </section>
 
     <section class="case-section" data-section id="design-decisions">
       <p class="eyebrow">Semantic layer + MCP</p>
       <h2>两个设计决策，决定系统能不能长期可靠运行。</h2>
-      <div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>业务术语语义层</small><h3>最常见错误不是 SQL 语法，而是业务定义误解。</h3><ul><li>“滞销库存”“履行率”“未付款订单”在不同企业有不同口径</li><li>把业务术语到 SQL 表达式的映射注入查询代理</li><li>例如将“履行率”定义为已交付订单数 / 全部订单数</li><li>强制所有查询包含日期筛选器，避免无边界扫描</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>MCP 数据源解耦</small><h3>智能体不直接绑死某个数据库或查询引擎。</h3><ul><li>AgentCore Gateway 将 API、Lambda 和现有服务转换为 MCP 工具</li><li>底层查询引擎迁移时，优先替换 MCP 服务器实现</li><li>渠道伙伴和数据源变化时，智能体代码不必反复改</li><li>认证、凭据交换和工具发现由网关层统一处理</li></ul></article></div>
+      <div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>业务术语语义层</small><h3>最常见错误不是 SQL 语法，而是业务定义误解。</h3><ul><li>“滞销库存”“履行率”“未付款订单”在不同企业有不同口径</li><li>把业务术语到 SQL 表达式的映射直接注入查询代理的提示词</li><li>例如将“履行率”定义为 <code>COUNT(status='delivered') / COUNT(*)</code></li><li>强制所有查询包含日期筛选器，避免无边界扫描</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>MCP 数据源解耦</small><h3>智能体不直接绑死某个数据库或查询引擎。</h3><ul><li>AgentCore Gateway 将 API、Lambda 和现有服务转换为 MCP 工具</li><li>底层查询引擎迁移时，优先替换 MCP 服务器实现</li><li>渠道伙伴和数据源变化时，智能体代码不必反复改</li><li>认证、凭据交换、工具发现和外发调用由网关与身份层统一处理</li></ul></article></div>
       <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>企业级边界</small><h3>Agent 能行动，不代表可以无限行动。</h3><p>供应链场景里的工具调用要绑定身份、权限、日期范围、业务口径和审批边界。可以让 Agent 生成订单放行请求摘要，但是否放行、放行多少、由谁审批，仍要回到企业的责任体系。</p></div></aside>
     </section>
 
     <section class="case-section" data-section id="workflow">
       <p class="eyebrow">Channel fulfillment analysis</p>
       <h2>一次“渠道履行情况如何”的提问，可以形成从查询到行动的完整链路。</h2>
-      <p>月度运营回顾中，运营经理提出问题：“我们渠道合作伙伴上个月的订单履行情况如何？有哪些需要关注？”过去这类问题往往需要半天时间、电子表格分析和多轮邮件协调。多智能体流程把它拆成可复盘的步骤。</p>
+      <p>以下场景基于零售商实际运营数据做匿名化处理。月度运营回顾中，运营经理提出问题：“我们渠道合作伙伴上个月的订单履行情况如何？有哪些需要关注？”过去这类问题往往需要半天时间、电子表格分析和多轮邮件协调。多智能体流程把它拆成可复盘的步骤。</p>
       <ol class="case-process"><li><span>01</span><div><h3>主管代理识别复杂分析请求</h3><p>它不直接给一句笼统回答，而是将任务路由给查询代理，先建立可计算基线。</p></div></li><li><span>02</span><div><h3>查询代理映射业务定义并执行 SQL</h3><p>“履行绩效”被映射到语义层定义，按渠道执行查询，并与上月数据进行比较。</p></div></li><li><span>03</span><div><h3>渠道 B 履行率异常，环比下降 6.8%</h3><p>系统识别这不是普通波动，需要进入详细代理的多维钻取。</p></div></li><li><span>04</span><div><h3>详细代理定位到品类与时间窗口</h3><p>异常集中在鞋类，并且主要发生在当月第二周和第三周。</p></div></li><li><span>05</span><div><h3>研究代理发现信用控制触发</h3><p>渠道 B 的未付款订单率从 8% 上升到 22%，约 340 个订单因此被冻结。</p></div></li><li><span>06</span><div><h3>汇总与行动代理推动后续处理</h3><p>系统生成根因报告、行动建议、渠道客户经理通知、信用控制团队通知和订单放行请求摘要，进入审批流程。</p></div></li></ol>
       <div class="case-metric-strip"><div><strong>30 秒</strong><span>从提问到结构化分析和行动材料</span></div><div><strong>-6.8%</strong><span>渠道 B 履行率环比异常</span></div><div><strong>8% → 22%</strong><span>未付款订单率上升触发信用控制</span></div><div><strong>约 340</strong><span>被冻结订单进入后续放行判断</span></div></div>
     </section>
@@ -1077,6 +1166,193 @@ supply_chain_agentic_body='''
 '''
 (ROOT/'case-supply-chain-agentic-decision.html').write_text(page('多智能体 AI 如何将供应链数据转化为决策与行动','以零售供应链为例，解释多智能体 AI、语义层和 MCP 如何把数据可见性推进到查询、洞察和行动闭环。','case-supply-chain-agentic-decision',supply_chain_agentic_body,'case-detail-page case-theme--supply case-study-v2'),encoding='utf-8')
 
+financial_bda_body='''
+<section class="case-study-hero case-study-hero--financial">
+  <div class="container">
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例</a><span>/</span><strong>金融文档自动化</strong></nav>
+    <div class="case-study-hero__grid">
+      <div>
+        <div class="case-study-meta"><span>金融文档</span><span>Bedrock Data Automation</span><span>Blueprint 蓝图</span><span>JSON / CSV 输出</span></div>
+        <h1>用 Amazon Bedrock Data Automation 自动化提取金融文档数据。</h1>
+        <p class="case-study-lead">金融机构每天处理数以千计的文档：税务表格、贷款报表、采购订单、银行对账单和合同。每一种文档都有独特格式、结构和字段命名，传统 OCR 很难把它们稳定变成可执行数据。BDA 的价值，是把“看见文字”推进到“理解结构、提取字段、验证输出、接入流程”。</p>
+        <div class="case-study-actions"><a class="btn btn--green" href="#blueprint">先看蓝图设计 ↓</a><a class="btn btn--ghost" href="#documents">查看四类文档 ↘</a></div>
+      </div>
+      <figure class="case-study-hero__media case-study-hero__media--scene">
+        <img alt="中国金融运营团队审核文档自动化提取结果的办公场景" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/financial-bda-document-automation-hero.png">
+        <figcaption>文档自动化不是把纸面内容搬进系统，而是让业务字段、验证规则和下游动作可以被稳定复用。</figcaption>
+      </figure>
+    </div>
+    <div aria-label="本案例的交付证据结构" class="case-proof-rail"><div><strong>4 类文档</strong><span>银行对账单、W-2、1099-B、供应商合同</span></div><div><strong>Blueprint</strong><span>用字段、类型、说明和验证规则定义提取地图</span></div><div><strong>JSON / CSV</strong><span>输出直接进入会计、税务、合同和审查流程</span></div><div><strong>可解释性</strong><span>用置信度与视觉定位帮助人工复核关键字段</span></div></div>
+    <p class="case-proof-note">本文以四类常见金融文档为例，说明如何用自定义 Blueprint 设计结构化提取流程。目标不是展示“AI 能读 PDF”，而是让金融运营、财务、税务、法务和风控团队获得可复用、可验证、可接入下游系统的数据资产。</p>
+  </div>
+</section>
+<div class="container case-detail-shell case-story-shell">
+  <aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#overview">业务问题</a><a href="#blueprint">Blueprint 蓝图</a><a href="#documents">四类文档</a><a href="#bank">银行对账单</a><a href="#w2">W-2 表格</a><a href="#b1099">1099-B</a><a href="#contract">供应商合同</a><a href="#design">蓝图策略</a><a href="#production">生产落地</a><a href="#references">官方资料</a></nav><a class="case-toc-source" href="#case-source">案例价值 ↘</a></div></aside>
+  <article>
+    <section class="case-section case-overview" data-section id="overview">
+      <p class="eyebrow">Document operations</p>
+      <h2>金融文档自动化的难点，不是 OCR 识别率，而是字段能否进入真实业务流程。</h2>
+      <p>金融机构每天处理数以千计的文档：税务表格、贷款报表、采购订单、银行对账单和供应商合同。文档看起来都是“表格和文字”，但真正进入业务系统时，每一种文档都有不同字段、不同版式、不同章节结构、不同命名方式，以及不同的校验要求。</p>
+      <p>传统 OCR 通常解决的是“把图片里的字识别出来”。但业务团队真正需要的是：每笔交易的日期、金额和描述是否完整；W-2 的联邦税、州税、Box 12 代码和 Box 14 自由填写项是否被正确分组；1099-B 里同一证券在不同页面、不同描述下能否保持一致；供应商合同里的参与方、义务、期限和终止条件能否被结构化输出。</p>
+      <p>Amazon Bedrock Data Automation（BDA）不是简单的 OCR 升级。它依托基础模型理解文档上下文、章节逻辑和字段关系，把原始文档转换为可执行结构化数据；同时通过自定义提取配置、置信度评分、视觉定位和幻觉缓解机制，帮助团队把 AI 提取结果纳入可复核的生产工作流。</p>
+      <div class="case-question-panel">
+        <div><small>本篇核心问题</small><h3>如何把“金融文档被读懂”，变成“字段被验证、结果可接入、异常可复核”？</h3></div>
+        <div class="case-goal"><small>企业主视角</small><p>真正要买的不是一次 PDF 解析能力，而是一套能持续处理不同文档、稳定输出字段、让人工只复核低置信度或高风险项的运营能力。</p></div>
+      </div>
+      <div class="case-fact-grid">
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>文档类型</small><strong>对账单、税表、交易报表、合同</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><div><small>核心资产</small><strong>按业务流程设计的自定义 Blueprint</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>风险控制</small><strong>字段验证、置信度、视觉定位与人工复核</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>下游动作</small><strong>会计入账、税务处理、合同审查、风控校验</strong></div></div>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="blueprint">
+      <p class="eyebrow">Blueprint</p>
+      <h2>Blueprint 蓝图，是把金融文档提取变成稳定工作流的配置地图。</h2>
+      <p>BDA 的核心配置单元是蓝图 Blueprint。它不是普通提示词，而是一份定义数据提取方式的配置模板：说明正在处理哪类文档，需要提取哪些字段，字段属于什么类型，如何组织数组或自定义对象，以及输出应该如何进入下游系统。</p>
+      <div class="case-blueprint-flow" aria-label="BDA 自定义蓝图工作流">
+        <article><small>01</small><h3>文档类型</h3><p>银行对账单、W-2、1099-B、合同等。</p></article>
+        <span aria-hidden="true">→</span>
+        <article><small>02</small><h3>Blueprint</h3><p>字段、类型、说明、验证规则和输出结构。</p></article>
+        <span aria-hidden="true">→</span>
+        <article><small>03</small><h3>BDA 提取</h3><p>理解版式、章节、上下文和表格关系。</p></article>
+        <span aria-hidden="true">→</span>
+        <article><small>04</small><h3>验证复核</h3><p>置信度、视觉定位、规则校验和人工处理。</p></article>
+        <span aria-hidden="true">→</span>
+        <article><small>05</small><h3>JSON / CSV</h3><p>进入会计、税务、合同或风控系统。</p></article>
+      </div>
+      <p>可以把蓝图理解为一张“提取地图”：它精确告诉 BDA 需要从哪里找什么信息，以什么类型表达，如何把多行表格、多组税务字段和自由文本条款变成结构化结果。BDA 提供内置目录蓝图，也支持自定义蓝图；在金融生产场景里，自定义蓝图尤其重要，因为字段口径和下游流程往往因企业而异。</p>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>判断标准</small><h3>蓝图设计质量，决定提取结果的准确性上限。</h3><p>字段是否拆得足够细、数组和对象是否符合业务系统、自由文本是否单独归类、金额字段是否定义为数字、同类文档是否需要多份蓝图，这些决定了输出能不能直接进入下游，而不是停留在“AI 看起来读出来了”。</p></div></aside>
+    </section>
+
+    <section class="case-section" data-section id="documents">
+      <p class="eyebrow">Four document families</p>
+      <h2>四类文档，分别验证交易明细、税务字段、上下文一致性和合同条款提取。</h2>
+      <div class="case-document-grid">
+        <article><span>01</span><small>Bank statement</small><h3>银行对账单</h3><p>跨页交易明细、借贷金额、描述和参考编号。</p></article>
+        <article><span>02</span><small>W-2</small><h3>薪资税务表格</h3><p>联邦税、州税、Box 12 代码金额对和 Box 14 自由项。</p></article>
+        <article><span>03</span><small>1099-B</small><h3>证券交易税表</h3><p>同一证券跨页面、跨描述的一致识别和交易字段提取。</p></article>
+        <article><span>04</span><small>Vendor contract</small><h3>供应商合同</h3><p>非标准版式下的参与方、义务、期限、保密和终止条款。</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="bank">
+      <p class="eyebrow">Scenario 01</p>
+      <h2>银行对账单：核心任务是把跨页交易明细稳定送入会计工作流。</h2>
+      <p>银行对账单记录账户在特定周期内的全部金融活动，包括存款、取款和手续费。它的挑战在于交易记录数量大、经常跨越多页、格式和描述方式因银行而异。对财务团队而言，核心不是“读完整份 PDF”，而是精确捕获每笔交易的日期、金额、描述和参考编号，再输入自动化会计分类或对账流程。</p>
+      <div class="case-schema-block"><div><small>蓝图设计</small><h3>主字段与自定义类型</h3></div><pre><code>主字段：
+- transactions: [TRANSACTION_DETAILS]
+
+TRANSACTION_DETAILS：
+  - date（日期）
+  - description（描述）
+  - debit（借方）: number
+  - credit（贷方）: number</code></pre></div>
+      <p>提取结果能够以 CSV、JSON 和原始数据格式输出，便于对接下游会计系统。对企业来说，这类场景的收益最直接：减少人工录入错误、缩短对账周期，并把异常交易留给人工重点复核。</p>
+    </section>
+
+    <section class="case-section" data-section id="w2">
+      <p class="eyebrow">Scenario 02</p>
+      <h2>W-2 表格：标准表格不等于简单表格，关键在字段分组和代码配对。</h2>
+      <p>W-2 表格用于报告收入和已预扣税款。它的结构看似标准，但信息维度复杂：联邦税和州税信息在表格上不一定以业务系统需要的方式分组；Box 12 可能包含多个代码，每个代码都对应不同薪酬或福利类型；Box 14 是自由填写项，雇主可以写入不属于其他专属格的信息，必须单独归类，不能污染结构化字段。</p>
+      <div class="case-schema-block"><div><small>蓝图设计</small><h3>字段组与自定义类型</h3></div><pre><code>主字段：
+- employer_info: EmployerInfo
+- employee_general_info: EmployeeInfo
+- federal_tax_info: FederalTaxInfo
+- federal_wage_info: FederalWageInfo
+- filing_info: FilingInfo
+- state_taxes_table: [StateTaxInfo]
+- codes: [CodeAmount]
+- nonqualified_plans_income: number
+- other
+
+自定义类型：
+1. EmployerInfo：ein、雇主名称、地址、邮编、控制编号
+2. EmployeeInfo：社安号、姓名、地址、邮编
+3. FederalWageInfo：应税工资、社保工资、医保工资、社保小费
+4. FederalTaxInfo：联邦所得税、社保税、医保税、分配小费
+5. StateTaxInfo：州名、雇主州税 ID、州应税工资、州所得税、地方工资、地方所得税、地方名称
+6. CodeAmount：code、amount: number
+7. FilingInfo：OMB 编号、验证码</code></pre></div>
+      <p>提取结果重点解决三类复杂场景：联邦税和州税信息被正确关联分组；Box 12 的多个代码-金额对被准确配对；Box 14 的自由填写内容被单独归类。这样输出才能进入税务处理，而不是让人工重新拆字段。</p>
+    </section>
+
+    <section class="case-section" data-section id="b1099">
+      <p class="eyebrow">Scenario 03</p>
+      <h2>1099-B：真正考验的是跨交易记录的上下文一致性。</h2>
+      <p>IRS 1099-B 用于追踪证券交易活动、经纪商促成的交易以及易货交易。它的复杂性在于，同一证券的多笔交易记录可能使用不同描述方式出现，系统需要在整个文档处理过程中保持上下文一致性，正确识别并关联同一证券的不同交易。</p>
+      <div class="case-schema-block"><div><small>蓝图设计</small><h3>交易字段结构</h3></div><pre><code>TRANSACTION_DETAILS：
+  - security_description（证券描述）
+  - quantity_sold（卖出数量）: number
+  - date_acquired（取得日期）
+  - date_sold_or_disposed（卖出或处置日期）
+  - proceeds（所得金额）: number
+  - cost_or_other_basis（成本或其他基础）: number
+  - gainloss_amount（盈亏金额）: number
+  - additional_information（附加信息）</code></pre></div>
+      <p>在该场景中，系统需要统一识别同一证券描述符，即使它以不同方式出现在不同交易记录中。这验证的是 BDA 的文档级上下文理解能力，而不是逐行孤立解析能力。对税务和投资运营团队来说，这类一致性直接影响成本基础、盈亏计算和后续申报质量。</p>
+    </section>
+
+    <section class="case-section" data-section id="contract">
+      <p class="eyebrow">Scenario 04</p>
+      <h2>供应商合同：没有标准模板时，自定义蓝图就是业务规则的载体。</h2>
+      <p>供应商合同没有统一行业模板，每家企业都需要根据自身运营工作流和法务审查需求定义字段。这是典型的“无内置蓝图”场景，完全依赖自定义蓝图把非标准文本转换为结构化条款。</p>
+      <div class="case-schema-block"><div><small>蓝图设计</small><h3>合同要素提取</h3></div><pre><code>主字段：
+- PARTICIPANT_DETAILS: PARTICIPANT_DETAILS
+- effective_date（生效日期）
+- time_period（时间周期）
+- participant_requirements: PARTICIPANT_REQUIREMENTS
+- confidentiality_obligations（保密义务）
+- TERM_AND_TERMINATION: TERM_AND_TERMINATION
+
+自定义类型：
+1. PARTICIPANT_DETAILS：参与方名称、授权代表
+2. PARTICIPANT_REQUIREMENTS：分配资源、参与方义务、参与方限制
+3. TERM_AND_TERMINATION：合同期限、终止条件</code></pre></div>
+      <p>提取结果输出为结构化 JSON，可对接合同管理系统或法务审查工作流。对合同场景来说，不能只看字段是否提取出来，还要看低置信度条款、缺失条款、异常终止条件和高风险义务是否能进入人工复核队列。</p>
+    </section>
+
+    <section class="case-section" data-section id="design">
+      <p class="eyebrow">Blueprint strategy</p>
+      <h2>一份蓝图还是多份蓝图，取决于工作流差异和文档版式差异。</h2>
+      <p>通常情况下，针对特定文档类型创建一份自定义蓝图即可满足提取需求。但如果同类文档服务于不同工作流，或者不同来源文档版式差异显著，就应考虑创建多份蓝图。</p>
+      <div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>适合一份蓝图</small><h3>字段目标稳定，格式差异可控。</h3><ul><li>同类银行对账单只需要交易明细</li><li>W-2 输出字段稳定，差异集中在缺失项</li><li>下游系统能容忍可选字段为空</li><li>人工复核主要关注低置信度字段</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>适合多份蓝图</small><h3>工作流或版式差异会改变输出结构。</h3><ul><li>同样是对账单，一个流程只要交易明细，另一个还要账户汇总</li><li>不同银行对账单版式差异过大</li><li>合同按采购、外包、渠道合作需要不同条款集合</li><li>高风险字段需要不同验证规则和人工升级路径</li></ul></article></div>
+      <p>蓝图创建完成后，可以作为工作流标准组件复用。对于同一蓝图，如果输入文档包含不同数据字段，BDA 可能返回略有差异的结构化输出。由于输出是 JSON，下游规则可以处理可选字段、缺失字段和低置信度字段；关键是提前定义哪些字段可以为空，哪些字段必须触发人工复核。</p>
+    </section>
+
+    <section class="case-section" data-section id="production">
+      <p class="eyebrow">Production workflow</p>
+      <h2>生产环境里的文档 AI，必须同时考虑准确性、可解释性、成本和合规。</h2>
+      <p>金融文档处理的终点不是“模型回答正确”，而是“字段进入系统后不会制造新的运营风险”。因此，生产化需要把确定性规则与 AI 提取结合起来：标准格式字段可以用规则和类型约束处理；需要上下文理解的内容，例如合同义务、1099-B 证券描述、自由填写项归类，则交给模型理解，再通过置信度、视觉定位和人工复核闭环控制风险。</p>
+      <ol class="case-process"><li><span>01</span><div><h3>文档分类与蓝图匹配</h3><p>先判断文档类型，再使用对应自定义 Blueprint，避免用一个泛化提示词处理所有格式。</p></div></li><li><span>02</span><div><h3>字段提取与类型约束</h3><p>金额、日期、代码、数组和对象都要按业务系统需要输出，而不是只返回自然语言摘要。</p></div></li><li><span>03</span><div><h3>置信度与视觉定位复核</h3><p>低置信度字段、高金额字段、关键合同条款和税务代码进入人工复核队列。</p></div></li><li><span>04</span><div><h3>下游系统集成</h3><p>JSON / CSV 输出进入会计、税务、合同管理和风控系统，异常项保留可追溯记录。</p></div></li></ol>
+      <div class="case-reading-note"><strong>三个核心收获</strong><p>第一，自定义蓝图的设计质量决定输出可用性；第二，混合确定性规则与 AI 上下文提取，通常比单一路径更可靠；第三，输出即集成，只有 JSON / CSV 结构能直接对接业务系统，文档 AI 才能从演示走向运营。</p></div>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>敏感数据提醒</small><h3>金融文档含有高度敏感信息，生产环境必须按机构安全和合规要求设计。</h3><p>处理税务、银行、合同和个人身份信息时，应遵循所在机构的网络安全、隐私、数据留存、访问控制和适用地区监管要求，例如 GDPR 或行业特定规则。系统设计要把权限、审计、加密、人工复核和异常升级作为默认能力，而不是上线后补丁。</p></div></aside>
+    </section>
+
+    <section class="case-section" data-section id="references">
+      <p class="eyebrow">Technical context</p>
+      <h2>BDA 的价值，是让文档理解能力成为可配置、可复用、可审计的工作流组件。</h2>
+      <p>在企业项目中，BDA 适合承担“从非结构化/半结构化金融文档到结构化字段”的入口层；后续仍需要结合企业自己的数据治理、权限体系、复核机制和系统集成来完成闭环。</p>
+      <div class="case-reference-list"><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda.html" target="_blank" rel="noopener">Amazon Bedrock Data Automation 官方文档</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-custom-output-idp.html" target="_blank" rel="noopener">BDA 自定义输出与 Blueprint 配置</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-blueprints.html" target="_blank" rel="noopener">BDA Blueprints 官方说明</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-output-documents.html" target="_blank" rel="noopener">BDA 文档输出结构</a></div>
+    </section>
+  </article>
+</div>
+<section class="case-related">
+  <div class="container">
+    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例 →</a></div>
+    <div class="case-related-grid">
+      <a class="case-related-card" href="case-supply-chain-agentic-decision.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/supply-chain-agentic-decision-hero.png"><div><small>供应链决策系统</small><h3>多智能体 AI 如何把数据转化为行动</h3><p>语义层、MCP、根因归因和行动通知</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="case-manufacturing-pid-intelligence.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/thumb-manufacturing-pid.webp"><div><small>制造业知识资产化</small><h3>P&amp;ID 图纸如何变成可查询运营知识</h3><p>静态图纸、知识图谱、工程师复核和可追溯问答</p><span>继续阅读 <b>↗</b></span></div></a>
+    </div>
+  </div>
+</section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一类高频金融文档，把字段、复核和下游系统串起来。</h2><p>用一次 Q2Q 场景诊断，判断你的文档类型、蓝图粒度、人工复核边界和系统集成路径。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例中心</a></div></div></section>
+<section class="case-source-foot" id="case-source" aria-labelledby="financial-case-source-title"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>案例价值</small><h2 id="financial-case-source-title">文档自动化的核心不是少录几个字段，而是让金融运营获得可复用的数据入口。</h2><p>当 Blueprint、置信度、视觉定位、验证规则和下游 JSON / CSV 接口被设计清楚后，文档处理才会从“人工录入外包”升级为企业自己的数据自动化能力。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+'''
+(ROOT/'case-financial-bda-document-automation.html').write_text(page('用 Amazon Bedrock Data Automation 自动化提取金融文档数据','围绕银行对账单、W-2、1099-B 和供应商合同，说明 BDA Blueprint 如何把金融文档提取变成可复用、可验证、可接入下游系统的工作流。','case-financial-bda-document-automation',financial_bda_body,'case-detail-page case-theme--financial case-study-v2'),encoding='utf-8')
+
 write_search_index()
 
 search_body=f'''
@@ -1096,7 +1372,7 @@ viewer_body='''
 (ROOT/'document-viewer.html').write_text(page('PDF 阅读器','在线查看和下载企业 AI 参考 PDF。','document-viewer',viewer_body,'viewer-page'),encoding='utf-8')
 
 # README
-readme='''# ForFlow 萬維流形企业网站原型\n\n这是在已有 `index.html` 与 `navigator.html` 基础上继续扩展的静态响应式网站，不依赖前端框架。\n\n## 页面\n\n- `index.html`：主页（保留原有框架并加入四项企业服务）\n- `navigator.html`：3 分钟 AI 场景诊断\n- `navigator-results.html`：推荐结果、品牌视频控件与方案排序\n- `playbook.html`：中文企业生成式 AI 实战手册\n- `service-ai-enablement.html`：企业 AI 赋能计划\n- `service-data-governance.html`：数据治理\n- `service-agent-build.html`：企业 Agent 搭建\n- `service-ai-training.html`：企业 AI 培训\n- `category-hrms.html`：HR AI 场景分类页\n- `cases.html`：案例中心\n- `case-wren-kitchens.html`：Wren Kitchens 公开案例结构参考\n- `case-manufacturing-pid-intelligence.html`：制造业 P&ID 智能化案例\n- `case-healthcare-agent-roi.html`：医疗智能体 ROI 案例\n- `case-automotive-dfmea-ontology-agent.html`：汽车 DFMEA 本体智能体案例\n- `case-supply-chain-agentic-decision.html`：供应链多智能体决策案例\n- `search.html`：全站搜索结果页\n- `document-viewer.html`：PDF 在线阅读器\n\n## 运行\n\n```bash\npython -m http.server 8080\n```\n\n打开 `http://localhost:8080/`。\n\n## 说明\n\n- 使用用户提供的 ForFlow + 萬維流形完整标识，不使用黑色方形图标。\n- Navigator 结果页的动效视频由完整品牌标识制作，带原生视频控件。\n- 所有服务页包含服务流程、交付物、FAQ 与相关路径。\n- 搜索弹层、搜索结果、PDF 展示、筛选、排序、FAQ、移动菜单和目录均为前端可交互原型。\n- 案例中的公开企业资料仅作为结构参考，正式发布前需复核授权和最新数据。\n'''
+readme='''# ForFlow 萬維流形企业网站原型\n\n这是在已有 `index.html` 与 `navigator.html` 基础上继续扩展的静态响应式网站，不依赖前端框架。\n\n## 页面\n\n- `index.html`：主页（保留原有框架并加入四项企业服务）\n- `navigator.html`：3 分钟 AI 场景诊断\n- `navigator-results.html`：推荐结果、品牌视频控件与方案排序\n- `playbook.html`：中文企业生成式 AI 实战手册\n- `service-ai-enablement.html`：企业 AI 赋能计划\n- `service-data-governance.html`：数据治理\n- `service-agent-build.html`：企业 Agent 搭建\n- `service-ai-training.html`：企业 AI 培训\n- `category-hrms.html`：HR AI 场景分类页\n- `cases.html`：案例中心\n- `case-wren-kitchens.html`：Wren Kitchens 公开案例结构参考\n- `case-manufacturing-pid-intelligence.html`：制造业 P&ID 智能化案例\n- `case-healthcare-agent-roi.html`：医疗智能体 ROI 案例\n- `case-automotive-dfmea-ontology-agent.html`：汽车 DFMEA 本体智能体案例\n- `case-supply-chain-agentic-decision.html`：供应链多智能体决策案例\n- `case-financial-bda-document-automation.html`：金融文档 BDA 自动化案例\n- `search.html`：全站搜索结果页\n- `document-viewer.html`：PDF 在线阅读器\n\n## 运行\n\n```bash\npython -m http.server 8080\n```\n\n打开 `http://localhost:8080/`。\n\n## 说明\n\n- 使用用户提供的 ForFlow + 萬維流形完整标识，不使用黑色方形图标。\n- Navigator 结果页的动效视频由完整品牌标识制作，带原生视频控件。\n- 所有服务页包含服务流程、交付物、FAQ 与相关路径。\n- 搜索弹层、搜索结果、PDF 展示、筛选、排序、FAQ、移动菜单和目录均为前端可交互原型。\n- 案例中的公开企业资料仅作为结构参考，正式发布前需复核授权和最新数据。\n'''
 (ROOT/'README.md').write_text(readme,encoding='utf-8')
 print('site pages generated')
 

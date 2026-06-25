@@ -110,18 +110,18 @@
   }
 
   function initPlaceholderActions() {
-    qsa('a[aria-label*="占位"], a[href="#"]').forEach((link) => {
+    qsa('a[href="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         const href = link.getAttribute('href');
         if (href === '#') {
           event.preventDefault();
-          createToast('该入口为内容或接口占位，可在上线阶段接入。');
+          createToast('该入口将在沟通确认后接入对应资料或系统。');
         }
       });
     });
 
     qsa('.lang-btn').forEach((button) => {
-      button.addEventListener('click', () => createToast('语言切换入口已预留；当前原型为中文版本。'));
+      button.addEventListener('click', () => createToast('语言切换将在国际化版本开放；当前为中文内容。'));
     });
   }
 
@@ -179,6 +179,27 @@
     const validChallenge = challengeInputs.find((input) => input.value === preselectedChallenge);
     if (validChallenge) validChallenge.checked = true;
 
+    const goToStep = (targetStep) => {
+      if (!targetStep || targetStep === currentStep) return;
+      if (targetStep > currentStep) {
+        createToast('请先完成当前步骤，再继续。');
+        return;
+      }
+      currentStep = targetStep;
+      updateStepUI({ scroll: true });
+    };
+
+    progressItems.forEach((item) => {
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.addEventListener('click', () => goToStep(Number(item.dataset.progressStep)));
+      item.addEventListener('keydown', (event) => {
+        if (!['Enter', ' '].includes(event.key)) return;
+        event.preventDefault();
+        goToStep(Number(item.dataset.progressStep));
+      });
+    });
+
     function isStepValid(step) {
       if (step === 1) return checkedValues('challenge').length >= 1;
       if (step === 2) return checkedValues('goal').length >= 1 && Boolean(checkedValue('readiness'));
@@ -214,6 +235,7 @@
     }
 
     function updateStepUI({ scroll = false } = {}) {
+      root.dataset.currentStep = String(currentStep);
       panels.forEach((panel) => {
         const active = Number(panel.dataset.step) === currentStep;
         panel.classList.toggle('is-active', active);
@@ -222,8 +244,13 @@
 
       progressItems.forEach((item) => {
         const step = Number(item.dataset.progressStep);
+        const active = step === currentStep;
+        const complete = step < currentStep;
         item.classList.toggle('is-active', step === currentStep);
         item.classList.toggle('is-complete', step < currentStep);
+        item.setAttribute('aria-current', active ? 'step' : 'false');
+        item.setAttribute('aria-disabled', step > currentStep ? 'true' : 'false');
+        item.setAttribute('aria-label', complete ? `返回第 ${step} 步` : `第 ${step} 步`);
       });
 
       prevButton.disabled = currentStep === 1;
@@ -399,7 +426,7 @@
               <p>${item.description}</p>
               <div class="micro-tags">${item.tags.map((tag) => `<span>${tag}</span>`).join('')}</div>
             </div>
-            <span class="recommendation-slot">DETAIL / CMS SLOT</span>
+            <span class="recommendation-slot">进入评估清单</span>
           </article>
         `).join('');
       }

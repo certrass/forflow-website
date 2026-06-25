@@ -35,6 +35,10 @@ case_items = load_case_items()
 asset_version = load_assignment('ASSET_VERSION')
 for path in html_files:
     soup=BeautifulSoup(path.read_text(encoding='utf-8'),'html.parser')
+    visible_text=soup.get_text(' ',strip=True)
+    for phrase in ['原型说明','内容映射占位','内容占位说明','DETAIL / CMS SLOT','正式上线时可接','响应式企业网站原型']:
+        if phrase in visible_text:
+            errors.append(f'{path.name}: customer-facing prototype placeholder remains: {phrase}')
     ids=[tag.get('id') for tag in soup.find_all(attrs={'id':True}) if tag.get('id')]
     dups=sorted({x for x in ids if ids.count(x)>1})
     if dups: errors.append(f'{path.name}: duplicate ids {dups}')
@@ -63,7 +67,7 @@ for path in html_files:
     }
 
 # acceptance checks
-required=['index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','search.html','document-viewer.html']
+required=['index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','case-supply-chain-agentic-decision.html','case-financial-bda-document-automation.html','search.html','document-viewer.html']
 for name in required:
     if not (ROOT/name).exists(): errors.append(f'missing required page: {name}')
 for name in required[4:8]:
@@ -111,6 +115,20 @@ for result_type in ['category','service','resource','case']:
     label=search_soup.select_one(f'[data-result-type="{result_type}"] .search-result-head h2 span')
     if label and int(label.get_text(strip=True) or '0') != index_type_counts.get(result_type, 0):
         errors.append(f'search.html: {result_type} count does not match search-index.json')
+
+for case_path in sorted(ROOT.glob('case-*.html')):
+    case_soup=BeautifulSoup(case_path.read_text(encoding='utf-8'),'html.parser')
+    body=case_soup.body
+    if not body or 'case-detail-page' not in body.get('class', []):
+        errors.append(f'{case_path.name}: missing case-detail-page body class')
+        continue
+    shell=case_soup.select_one('.case-detail-shell')
+    if not shell:
+        errors.append(f'{case_path.name}: missing case-detail-shell')
+    elif 'case-story-shell' not in shell.get('class', []):
+        errors.append(f'{case_path.name}: case detail shell should include case-story-shell for shared mobile spacing')
+    if not case_soup.select_one('.case-toc nav[data-scrollspy]'):
+        errors.append(f'{case_path.name}: missing case toc scrollspy nav')
 
 maintenance_docs={
     'docs/maintenance/update-log.md': ['# ForFlow 网站更新记录', '## 2026-06-25', '## 2026-06-24', '### 验证'],

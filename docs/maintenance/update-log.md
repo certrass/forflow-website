@@ -13,10 +13,94 @@
 
 ### 变更范围
 
+- 供应链案例详情页 `case-supply-chain-agentic-decision.html`、供应链正文架构图资源、生成脚本 `build_site.py`、样式 `styles.css`、搜索索引与维护记录。
+
+### 主要变更
+
+- 将用户提供的 AgentCore / Strands 多智能体供应链架构图作为正文证据图加入“架构设计：带语义层的主管-员工模式”章节，资源落到 `assets/cases/supply-chain-agentcore-architecture.png`，不替换 hero 场景图。
+- 在 `build_site.py` 中为供应链案例新增 `case-figure--wide-diagram` figure，配套 alt、原图打开链接和说明文字，明确图中九个组件与左中右架构关系。
+- 在 `styles.css` 新增宽 diagram 专用规则：桌面端完整收敛到正文宽度，手机端图片保持可读宽度并只在 figure 内部横向滚动，避免整页横向漂移。
+- 将全站静态资源版本推进到 `v=20260625-supply-architecture-figure-v15`，刷新生成 HTML、CSS/JS 引用和 `search-index.json`。
+
+### 验证
+
+- `python3 build_site.py`
+- `node --check script.js`
+- `python3 -m json.tool search-index.json >/tmp/forflow-search-index-json-ok.json && echo json-ok`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- in-app Browser 复核：`case-supply-chain-agentic-decision.html?qa=supply-architecture-figure-v15#architecture` 加载 `styles.css?v=20260625-supply-architecture-figure-v15`，页面身份正确、正文 figure 存在、无 console error、当前窄视口下整页无横向溢出。
+- 系统 Chrome 只读渲染复核：桌面 1440×1000 下架构图加载成功，图片自然尺寸 `1430×431`，页面 `docScroll=1440`；手机 390×844 下图片自然尺寸 `1430×431`，整页 `docScroll=390`，figure 内部 `clientWidth=386 / scrollWidth=653 / overflowX=auto`，符合图内横向查看预期。
+
+### 后续
+
+- 如果后续需要把这张英文原图中文化，应新增 `assets/cases/*-zh.png` 并替换正文 figure，保留原图作为结构参考；不要用泛化场景图替代正文 diagram。
+
+## 2026-06-25
+
+### 变更范围
+
+- AI 场景诊断页 `navigator.html`、诊断结果页 `navigator-results.html`、全站页脚口径、生成脚本 `build_site.py`、交互脚本 `script.js`、样式 `styles.css`、静态/交互/视觉 QA 测试。
+
+### 主要变更
+
+- 将诊断页从“前端原型说明/占位槽”改为客户可见的正式诊断入口：侧栏改为 `诊断口径`，步骤标签改为中文诊断语境，行业和系统字段删除“占位”字样，推荐说明改为项目初筛与场景卡表达。
+- 在 `build_site.py` 新增 `polish_navigator_page()`，并把全站页脚旧文案统一改为“企业 AI 场景工程 · 诊断、案例与交付路径持续更新”；同时在 `version_asset_links()` 清理历史 HTML 旧页脚，避免模板拷贝后回退。
+- 优化问卷点击体验：左侧步骤支持键盘和鼠标回退修改，未完成的后续步骤会提示先完成当前步骤；下一步按钮禁用、状态提示、选中卡片、单选/多选 hover 与 focus 状态都更新为更正式的可用表单反馈。
+- 结果页说明从“正式上线时可接方案库/CRM”改为“用来确定先做哪条工作流、需要哪些数据边界、谁负责复核与验收”；脚本生成的推荐卡 CTA 从 `DETAIL / CMS SLOT` 改为“进入评估清单”。
+- 更新 `tests/static_check.py`，扫描所有 HTML 的客户可见文本，禁止 `原型说明`、`内容映射占位`、`DETAIL / CMS SLOT`、`响应式企业网站原型` 等占位文案回归。
+- 更新 `tests/interaction_check.py`，新增 Navigator 初始禁用态、选择解锁、步骤回退修改、结果页无占位文案断言。
+- 更新 `tests/polished_pages_check.py`，把 `navigator.html` 与带查询参数的 `navigator-results.html` 加入桌面/手机截图、上下滑动、横向溢出、缺图、console error 和占位文案巡检。
+- 将全站静态资源版本推进到 `v=20260625-navigator-ux-v14`，刷新 HTML、CSS、JS 和 `search-index.json`。
+
+### 验证
+
+- `python3 build_site.py`
+- `node --check script.js`
+- `python3 -m json.tool search-index.json`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 PYTHONPATH=.python-deps python3 tests/interaction_check.py`
+- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 PYTHONPATH=.python-deps python3 tests/polished_pages_check.py`
+- 浏览器 QA 使用稳定本地服务 `http://127.0.0.1:8765` 与独立 Chrome CDP `9227`；`navigator-desktop`、`navigator-mobile`、`navigator-results-desktop`、`navigator-results-mobile` 均无横向溢出、无缺图、无 console error、无客户可见占位文案，上下滑动能到顶到底。
+
+### 后续
+
+- 后续如果把诊断结果接入真实方案库或 CRM，应继续沿用 `build_site.py` 的 Navigator 维护入口，并给交互测试补充真实提交/收藏/导出路径。
+
+## 2026-06-25
+
+### 变更范围
+
 - 案例中心、搜索页、医疗案例详情页、汽车 DFMEA 案例详情页、案例视觉资源、生成脚本、静态检查、交互检查、视觉/滚动检查、维护文档。
 
 ### 主要变更
 
+- 将案例详情目录间距修复推进到 `v=20260625-case-toc-gap-v13`，刷新全站生成页、搜索索引、CSS 与 JS 缓存。
+- 将旧 Wren 案例的 Python 生成结构从单独 `.case-detail-shell` 改为共享 `.case-detail-shell.case-story-shell`，让旧页面和新版案例详情使用同一套移动端目录间距、滚动和回归检查。
+- 将移动端 `.case-detail-shell` 的顶部间距从清零改为 `clamp(22px,7vw,34px)`，避免未来新增旧模板或未带新版 proof note 的案例详情再次出现目录标签贴边。
+- 更新 `tests/static_check.py`，要求所有 `case-*.html` 案例详情页必须包含 `case-detail-page`、`.case-detail-shell.case-story-shell` 和目录 `data-scrollspy`。
+- 更新 `tests/polished_pages_check.py`，新增 `caseTocSpacing` 度量；手机端案例目录距离案例壳顶部小于 20px 时直接失败。
+- 将案例详情移动端目录间距修复推进到 `v=20260625-case-toc-gap-v12`，刷新全站生成页、搜索索引、CSS 与 JS 缓存。
+- 确认“决策问题”等目录标签贴近上方色块不是供应链页个例，而是新版 `case-study-v2` 案例详情通用结构在手机端把 `.case-story-shell` 顶部间距清零导致；统一为新版案例详情补充移动端顶部缓冲，覆盖供应链、医疗、汽车 DFMEA 与 P&ID 案例，旧 Wren 模板不受影响。
+- 将汽车 DFMEA 案例质量复核后推进到 `v=20260625-ontology-subhead-v11`，刷新全站生成页、搜索索引、CSS 与 JS 缓存。
+- 将汽车案例中“本体编码的是关系”从普通小标题调整为独立关系卡片 `case-subhead--relation`，增加上下间距、绿色浅底、边框和移动端专用行高，解决该小标题与上下段落粘连的问题。
+- 在汽车案例本体章节补充“企业主应该先看什么”段落，明确小范围本体化试点前应先盘点历史 DFMEA / ECO、材料与工艺窗口、试验/仿真/保修证据、供应商变更和现场质量反馈，让文章更容易被制造业老板理解和判断。
+- 新增 `case-subhead--relation` 桌面与移动端样式，避免关系卡片在手机端撑宽页面。
+- 将供应链案例二次质检后推进到 `v=20260625-supply-quality-v10`，补回原文中被压薄的技术细节，刷新全站生成页、搜索索引、CSS 与 JS 缓存。
+- 供应链案例正文补充“从一名分析师加半天时间”到“一句话加 30 秒”的决策成本变化，并明确“从看数据到查数据、从被动展示到主动推理”的控制塔升级逻辑。
+- 供应链架构章节补充分层说明：用户接入层、智能体核心层、数据访问与网关层、可观测性层；恢复 AgentCore Identity、Outbound Auth、Client Credentials、API 目标、Lambda 目标和 AgentCore Observability 等工程细节。
+- 供应链语义层章节补回精确计算口径示例：`COUNT(status='delivered') / COUNT(*)`，并强调查询代理可分析 SQL 错误并自动重试。
+- 新增 `.case-layer-notes` 与案例正文 `code` 样式，保证新增架构分层说明在桌面与手机端均可读、不撑宽页面。
+- 将本轮内容版本推进到 `v=20260625-case-quality-v9`，刷新全站生成页、案例中心、搜索页、CSS 与 JS 缓存。
+- 新增供应链多智能体案例 `case-supply-chain-agentic-decision.html`，保留用户提供的完整技术叙事骨架，并补齐企业主可读的业务问题、控制塔局限、主管-员工多智能体架构、语义层、MCP 解耦、渠道履行分析链路和落地起步方式。
+- 调用 imagegen 生成供应链案例 hero 图 `assets/cases/supply-chain-agentic-decision-hero.png`，画面保持中国零售/供应链运营场景、无可读文字、无英文 UI，避免把正文技术 diagram 误替换成泛化场景图。
+- 将供应链案例加入 `CASE_LIBRARY_ITEMS`、`cases.html`、`search.html` 和 `search-index.json`，新增 `供应链` 搜索入口，确保案例卡片、分类、JSON 搜索和关键词命中联动。
+- 更新旧模板 `case-wren-kitchens.html`：从“案例详情示范”改成客户可见的 Wren Kitchens 案例表达，补强增长压力、交接窗口、长期合作和知识交接语境，并纳入新版案例详情页行距与手机端 QA。
+- 删除汽车 DFMEA 案例中不适合客户展示的内部说明句“结合用户提供的原文结构，并补充查阅公开资料……”，改为客户可见的“公开资料适合用于理解基础概念，真正落地以企业自身数据为准”的参考资料说明。
+- 继续强化汽车 DFMEA 案例的制造业老板共鸣点：首屏和正文保留“知识流失、老师傅经验断档、组织记忆、ECO 复评、供应商换线、历史项目迁移”等表达，同时不删减 B 柱、22MnB5、DFMEA、本体、RFLP、多智能体和 AgentCore / Strands 技术细节。
+- 修复“本体编码的是关系”等案例小标题间距：统一 `.case-subhead` 的上下间距、中文小标题行高、技术词换行和移动端标题比例，避免小标题贴得过紧或在手机端挤成一团。
+- 统一旧案例与新案例的中文阅读标准：放宽 `.case-detail-hero h1`、`.case-section h2`、段落、列表、quote、legacy 模板正文和移动端 H2 行高，解决旧页面没有随新版模板一起修复的行距问题。
+- 新增供应链案例专用的对比表、架构组件栅格、指标条和响应式布局规则；手机端强制单列/横向表格安全区，保证上下滑动不会被横向溢出干扰。
+- 更新 `tests/static_check.py`、`tests/interaction_check.py`、`tests/polished_pages_check.py`，把供应链案例、Wren 旧模板、搜索页 JSON 索引、案例行距、桌面/手机滚动、截图和交互检查全部纳入回归。
 - 将案例中心的内容入口收敛到 `build_site.py` 的 `CASE_LIBRARY_ITEMS`，让 `cases.html` 和 `search.html` 可以通过同一份 Python 清单联动更新。
 - 将 `case-healthcare-agent-roi.html` 纳入案例中心和搜索结果；保留 P&ID 案例为同一套案例 Blog 模板的样例。
 - 医疗案例 hero 使用无可读文字的 Sana 风格场景图，正文证据图保留 diagram 性质。
@@ -57,12 +141,39 @@
 
 ### 验证
 
+- in-app Browser 复核：`case-automotive-dfmea-ontology-agent.html?qa=toc-gap-v13#overview` 加载 `styles.css?v=20260625-case-toc-gap-v13`，手机视口下目录壳为 `container case-detail-shell case-story-shell`，目录间距约 29.67px，无横向溢出，无 console 错误。
+- in-app Browser 复核：`case-wren-kitchens.html`、`case-supply-chain-agentic-decision.html`、`case-healthcare-agent-roi.html`、`case-manufacturing-pid-intelligence.html` 均加载 v13，手机视口下目录间距约 29.67px，旧 Wren 也已使用共享壳。
+- `python3 build_site.py`
+- `node --check script.js`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `python3 -m json.tool search-index.json`
+- `python3 -c "import json; idx=json.load(open('search-index.json')); print(idx.get('version'), len(idx.get('items', [])))"`
+- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 PYTHONPATH=.python-deps python3 tests/polished_pages_check.py`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `node --check script.js`
+- `python3 -m json.tool search-index.json`
+- `python3 -c "import json; idx=json.load(open('search-index.json')); print(idx.get('version'), len(idx.get('items', [])))"`
+- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 PYTHONPATH=.python-deps python3 tests/polished_pages_check.py`
+- 浏览器截图复核：`tests/polished/supply-chain-case-mobile-toc-gap-v12.png` 显示供应链案例手机端目录标签与上方说明块之间已有清楚白场缓冲；临时 Chrome CDP 端口 `9227` 已关闭。
 - `python3 build_site.py`
 - `node --check script.js`
 - `python3 -m json.tool search-index.json >/dev/null`
 - `PYTHONPATH=.python-deps python3 tests/static_check.py`
 - `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 python3 tests/interaction_check.py`
 - `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 python3 tests/polished_pages_check.py`
+- `python3 -c "import ast, pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('tests').glob('*.py')]"`
+- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 PYTHONPATH=.python-deps python3 tests/interaction_check.py`
+- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9227 PYTHONPATH=.python-deps python3 tests/polished_pages_check.py`
+- `rg -n "COUNT\\(status='delivered'\\)|Client Credentials|Outbound Auth|AgentCore Identity|自我纠错|自动重试|一名分析师加半天|从“看数据”到“查数据”|实际运营数据做匿名化" case-supply-chain-agentic-decision.html search-index.json`
+- `rg -n "case-subhead--relation|企业主应该先看什么|20260625-ontology-subhead-v11|本体试点不必一开始覆盖整车" build_site.py case-automotive-dfmea-ontology-agent.html styles.css search-index.json`
+- in-app Browser 复核：`case-automotive-dfmea-ontology-agent.html?qa=ontology-subhead-v11#ontology` 加载 `styles.css?v=20260625-ontology-subhead-v11` 与 `script.js?v=20260625-ontology-subhead-v11`，关系卡片存在、企业主段落存在、无页面控制台错误。
+- in-app Browser 复核：汽车案例手机宽度下关系卡片和企业主段落均未撑宽页面，`scrollWidth` 与 `innerWidth` 一致。
+- in-app Browser 复核：`case-supply-chain-agentic-decision.html?qa=supply-quality-v10` 加载 `styles.css?v=20260625-supply-quality-v10` 与 `script.js?v=20260625-supply-quality-v10`，正文命中 `COUNT(status='delivered') / COUNT(*)`、Client Credentials、Outbound Auth、自动重试和 3 个架构分层说明。
+- in-app Browser 复核：`search.html?search=供应链&qa=supply-quality-v10` 使用 JSON 索引 `20260625-supply-quality-v10`，供应链案例可见且点击可进入详情页。
+- in-app Browser 复核：`case-supply-chain-agentic-decision.html?qa=v9-browser` 页面身份、首屏、hero 图、9 个架构组件、4 个指标项、控制台和横向溢出。
+- in-app Browser 复核：`case-wren-kitchens.html?qa=v9-browser` 旧模板已加载 `case-study-legacy`，H1/H2 行距正常，桌面端无横向溢出。
+- in-app Browser 复核：`case-automotive-dfmea-ontology-agent.html?qa=v9-browser` 不再包含内部说明句，参考资料段落为客户可见版本，“本体编码的是关系”等小标题行距正常。
+- in-app Browser 复核：`search.html?search=供应链&qa=v9-browser` 使用 JSON 索引 `20260625-case-quality-v9` 命中供应链案例。
 - in-app browser 复核：`case-automotive-dfmea-ontology-agent.html?qa=case-heading-v7-iab` 加载 `styles.css?v=20260625-case-heading-v7`，`#industry-pressure` H2 字号约 30.5px、行高约 36.6px、标题高度约 110px、`scroll-margin-top=110px`。
 - in-app browser 复核：`case-automotive-dfmea-ontology-agent.html?qa=search-reading-v4` 与 `search.html?search=B柱` 均加载 `styles.css?v=20260625-search-reading-v4`、`script.js?v=20260625-search-reading-v4`。
 - in-app browser 复核：`case-healthcare-agent-roi.html?qa=case-reading-v5-iab` 加载 `styles.css?v=20260625-case-reading-v5`，无横向溢出；`cases.html?qa=case-reading-v5-iab` 点选“医疗与高合规”后只展示 `healthcare-agent-roi`。
@@ -72,6 +183,29 @@
 
 验证结果：
 
+- v13 静态检查通过：17 个 HTML 页面、本地资源、案例详情共享壳、目录 scrollspy 和案例搜索联动均通过；`search-index.json` 版本为 `20260625-case-toc-gap-v13`，索引 13 条。
+- v13 in-app Browser 检查通过：汽车、Wren、供应链、医疗、P&ID 五个案例详情页手机视口均加载 v13，目录间距约 29.67px，`scrollWidth` 与 `innerWidth` 一致，无相关 console 错误。
+- v13 视觉/滚动回归通过：首页、Playbook、案例中心、Wren、P&ID、医疗、汽车、供应链案例在桌面与手机端均无横向溢出、无坏图、无控制台错误；五个案例详情手机端 `caseTocSpacing.topGap=27.3px`，上下滑动可到底并回顶，`scrollIntoViewCalls=[]`。
+- v12 静态检查通过：17 个 HTML 页面、本地资源和案例搜索联动均通过；`search-index.json` 版本为 `20260625-case-toc-gap-v12`，索引 13 条。
+- v12 视觉/滚动回归通过：首页、Playbook、案例中心、Wren、P&ID、医疗、汽车、供应链案例在桌面与手机端均无横向溢出、无坏图、无控制台错误；新版案例手机端目录 `scrollWidth=362`、`clientWidth=362`，上下滑动可到底并回顶，`scrollIntoViewCalls=[]`。
+- v12 供应链手机目录截图通过：`决策问题 / 控制塔瓶颈 / 架构设计 / 关键设计 / 履行分析 / 企业落地 / 技术背景` 标签行与上方色块之间不再贴边。
+- v11 静态检查通过：17 个 HTML 页面、本地资源和案例搜索联动均通过；汽车 DFMEA 案例中文正文约 6026 字。
+- v11 搜索索引通过：`search-index.json` 版本为 `20260625-ontology-subhead-v11`，索引 13 条。
+- v11 in-app Browser 检查通过：汽车 DFMEA 本体章节的关系卡片上方约 34px、下方约 26px，独立卡片样式生效；新增“企业主应该先看什么”段落命中；无页面控制台错误。
+- v11 视觉/滚动回归通过：首页、Playbook、案例中心、Wren、P&ID、医疗、汽车、供应链案例在桌面与手机端均无横向溢出、无坏图、无控制台错误；汽车手机端 `scrollWidth=390`、`innerWidth=390`，`reachedBottom=true` 且 `returnedTop=true`。
+- v10 静态检查通过：17 个 HTML 页面、本地资源和案例搜索联动均通过；供应链案例中文正文约 4147 字。
+- v10 搜索索引通过：`search-index.json` 版本为 `20260625-supply-quality-v10`，索引 13 条，包含 `supply-chain-agentic-decision`。
+- v10 in-app Browser 检查通过：供应链详情页首屏非空、hero 图加载、无页面控制台错误、无横向溢出；补回的 SQL 公式、Client Credentials、Outbound Auth、自动重试等细节均在页面中命中。
+- v10 搜索交互通过：`search.html?search=供应链` 使用 JSON 索引，供应链案例可见，点击结果进入 `case-supply-chain-agentic-decision.html`，详情页仍保留 SQL 公式。
+- v10 交互回归通过：搜索、手机菜单、Navigator、FAQ、案例筛选、医疗搜索、供应链搜索、DFMEA/B柱/AgentCore/知识流失/P&ID/RFLP 均命中。
+- v10 视觉/滚动回归通过：首页、Playbook、案例中心、Wren、P&ID、医疗、汽车、供应链案例在桌面与手机端均无横向溢出、无坏图、无控制台错误；供应链手机端 `scrollWidth=390`、`innerWidth=390`，`reachedBottom=true` 且 `returnedTop=true`。
+- v9 静态检查通过：17 个 HTML 页面、本地资源、案例清单、供应链新案例、Wren 旧模板和搜索联动均通过。
+- v9 语法检查通过：`script.js` 通过 `node --check`，测试脚本通过 AST 语法检查；`py_compile` 因沙盒无法写入默认缓存目录，改用无副作用 AST 检查。
+- v9 in-app Browser 检查通过：供应链案例首屏非空、hero 图加载、9 个架构组件和 4 个指标项完整；Wren 旧模板行距正常；汽车案例内部说明句已移除；搜索页通过 JSON 索引命中供应链案例。
+- v9 交互检查通过：桌面搜索弹层、手机菜单、Navigator、FAQ、案例筛选、医疗搜索、供应链搜索、DFMEA/B柱/AgentCore/知识流失/P&ID/RFLP 均命中。
+- v9 视觉/滚动检查通过：首页、Playbook、案例中心、Wren、P&ID、医疗、汽车、供应链案例在桌面和手机端均无横向溢出、无坏图、无控制台错误；每页 `reachedBottom=true` 且 `returnedTop=true`。
+- v9 Wren 手机端复核：`.case-detail-shell` 在手机端不再保持桌面两列宽度，`scrollWidth=390`、`innerWidth=390`，H2 行高比例约 1.24。
+- v9 供应链案例复核：手机端 `scrollWidth=390`、`innerWidth=390`，架构组件、指标条和表格响应式正常，页面可上下滑动到底并返回顶部。
 - 静态检查通过：16 个 HTML 页面、本地资源、案例清单与搜索联动均通过。
 - 交互检查通过：桌面搜索弹层、手机菜单、Navigator、FAQ、案例筛选、医疗搜索与 DFMEA 搜索均通过。
 - 强化搜索复核：`DFMEA`、`B柱`、`AgentCore` 命中汽车 DFMEA 案例，`P&ID` 命中制造业 P&ID 案例；`B柱` 查询显示 1 条案例结果和 2 处命中高亮。

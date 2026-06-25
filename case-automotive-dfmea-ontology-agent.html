@@ -8,8 +8,8 @@
 <meta content="以 B 柱 DFMEA 为例，解释工程本体、RFLP、智能体 AI 和多项目知识迁移如何重塑安全关键汽车零部件风险分析。" name="description"/>
 <title>基于本体的智能体 AI 如何重塑安全关键型汽车零部件的 DFMEA（上篇）｜ForFlow 萬維流形</title>
 <link href="assets/forflow-mark.png" rel="icon"/>
-<link href="styles.css?v=20260625-owner-resonance-v8" rel="stylesheet"/>
-<script defer="" src="script.js?v=20260625-owner-resonance-v8"></script>
+<link href="styles.css?v=20260625-supply-architecture-figure-v15" rel="stylesheet"/>
+<script defer="" src="script.js?v=20260625-supply-architecture-figure-v15"></script>
 </head>
 <body class="case-detail-page case-theme--automotive case-study-v2">
 <a class="skip-link" href="#main">跳至主要内容</a>
@@ -104,7 +104,7 @@
 <a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br/>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></span></a>
 <div class="mega-insight-list">
 <a href="cases.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
-<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>案例详情示范</b><small>查看完整案例页面的信息层级</small></div></a>
+<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>Wren Kitchens 案例</b><small>从紧急扩容到长期技术合作</small></div></a>
 <a href="document-viewer.html?doc=playbook"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
 </div>
 </div>
@@ -193,8 +193,9 @@
 <h2>“电子表格 AI”为什么必然失败？因为它继承的是历史记录，不是工程因果。</h2>
 <p>很多 AI 辅助 DFMEA 的直觉方案，是把历史 DFMEA 电子表格喂给大语言模型，期待它生成新的失效模式。这条路最多得到一个自动补全引擎。它能复述历史上常见的词，但无法真正判断新的材料、工艺、界面和载荷组合会带来什么风险。</p>
 <div class="case-decision-grid"><article class="case-decision-card"><small>失败原因一</small><h3>继承知识盲区</h3><p>如果历史 DFMEA 本来就遗漏了某类失效模式，模型会把这个遗漏当作正常分布继承下来。未被记录的失效，无法从表格里学到。</p></article><article class="case-decision-card"><small>失败原因二</small><h3>缺乏因果理解</h3><p>模型可能写出“焊接失效”，却分不清是阴极浸涂后的氢脆、焊趾疲劳裂纹，还是激光焊接参数漂移导致熔合不足。</p></article><article class="case-decision-card"><small>失败原因三</small><h3>无法推断组合失效</h3><p>最危险的失效模式往往来自多个因素交互，而这些因素可能从未在历史项目中同时出现过。</p></article></div>
-<div class="case-subhead"><small>本体编码的是关系</small><h3>材料 → 工艺 → 失效机理 → 影响效应。</h3></div>
+<div class="case-subhead case-subhead--relation"><small>本体编码的是关系</small><h3>材料 → 工艺 → 失效机理 → 影响效应。</h3></div>
 <p>工程本体的作用，是把知识从“事实列表”变成“关系网络”。当本体知道 22MnB5 硼钢经过约 900°C 奥氏体化热冲压，随后进入涂装、焊接和服役环境，它就能把热影响区、涂层状态、氢敏感性、残余应力、腐蚀暴露和疲劳载荷连到同一条推理路径上。</p>
+<div class="case-reading-note"><strong>企业主应该先看什么</strong><p>本体试点不必一开始覆盖整车。先看四类资料是否能拿出来：历史 DFMEA 和设计变更记录、关键材料与工艺窗口、试验/仿真/保修证据、供应商变更与现场质量反馈。如果这些资料散在不同系统和个人经验里，B 柱这样的安全关键件就值得先做一个小范围本体化试点。</p></div>
 <div class="case-board-questions"><div><small>AI 推理上下文</small><h3>本体给智能体的不是答案，而是工程背景。</h3><p>当专项 AI 代理被要求识别 B 柱车顶纵梁焊缝的失效模式时，本体提供五类上下文，让 AI 可以沿因果链判断，而不是在历史表格里做关键词联想。</p></div><ol><li><span>01</span><p>材料上下文：22MnB5、奥氏体化、淬火、热影响区、强度梯度、氢敏感性曲线。</p></li><li><span>02</span><p>工艺上下文：激光焊接、焊点几何、热输入、残余应力、涂层连续性和熔合质量。</p></li><li><span>03</span><p>环境上下文：道路盐分、水分循环、底盘暴露、涂层缺陷处的腐蚀机制。</p></li><li><span>04</span><p>载荷上下文：侧面冲击的瞬态载荷、路面振动的循环载荷、热胀冷缩的日变化载荷。</p></li><li><span>05</span><p>历史上下文：过去 B 柱或相邻结构项目中的焊缝失效、失效里程、试验条件、保修索赔和供应商批次。</p></li></ol></div>
 <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-risk"></use></svg></span><div><small>B 柱焊缝示例</small><h3>“焊缝失效”不该是分析终点，而应该是推理起点。</h3><p>车顶纵梁焊缝把热冲压 B 柱与不同钢种连接在一起；焊接改变局部微观结构；接头同时承受道路振动和碰撞冲击；焊渣飞溅可能降低涂层附着；腐蚀萌生后又可能在持续载荷下发展为应力腐蚀开裂。只有这些条件同时出现时，真正危险的组合失效才会显形。</p></div></aside>
 </section>
@@ -223,7 +224,7 @@
 <section class="case-section" data-section="" id="references">
 <p class="eyebrow">Public technical context</p>
 <h2>公开资料用于校准技术背景，项目实施仍要回到企业自己的设计、试验和质量数据。</h2>
-<p>这篇文章中的技术叙事结合了用户提供的原文结构，并补充查阅了公开资料来校准 B 柱安全功能、22MnB5 热冲压、FMEA 方法和 AgentCore / Strands 的技术背景。</p>
+<p>下面这些公开资料适合用于理解法规测试、材料工艺、FMEA 方法和智能体平台的基础概念。真正落地时，风险判断仍应以企业自己的设计数据、试验记录、工艺窗口、供应商信息和质量反馈为准。</p>
 <div class="case-reference-list"><a href="https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/809004" rel="noopener" target="_blank">NHTSA FMVSS 214 侧碰保护评估</a><a href="https://www.iihs.org/media/46940e89-46cb-4e6e-81ee-8230bb3b5dd9/0dx8eA/Ratings/Protocols/current/test_protocol_roof.pdf" rel="noopener" target="_blank">IIHS Roof Strength Test Protocol</a><a href="https://crashstats.nhtsa.dot.gov/Api/Public/Publication/813027" rel="noopener" target="_blank">NHTSA FMVSS 216a Roof Crush Resistance 评估</a><a href="https://ahssinsights.org/tag/hot-stamped-boron/" rel="noopener" target="_blank">AHSS Guidelines：热冲压硼钢与 B 柱案例</a><a href="https://www.open-access.bcu.ac.uk/6942/" rel="noopener" target="_blank">22MnB5 热冲压超高强钢论文摘要</a><a href="https://www.aiag.org/training-and-resources/manuals/details/FMEAAV-1" rel="noopener" target="_blank">AIAG &amp; VDA FMEA Handbook 训练资料</a><a href="https://docs.aws.amazon.com/bedrock-agentcore/" rel="noopener" target="_blank">Amazon Bedrock AgentCore 文档</a><a href="https://aws.amazon.com/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/" rel="noopener" target="_blank">AWS：Strands Agents SDK 介绍</a></div>
 </section>
 <section class="case-section" data-section="" id="next">
@@ -267,12 +268,12 @@
 </div>
 <div class="footer-col"><h3>案例与行动</h3>
 <a href="cases.html">案例中心</a>
-<a href="case-wren-kitchens.html">案例详情示范</a>
+<a href="case-wren-kitchens.html">Wren Kitchens 案例</a>
 <button class="footer-search search-trigger" type="button">全站搜索</button>
 <a href="navigator.html">开始诊断</a>
 </div>
 </div>
-<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>响应式企业网站原型 · CMS / CRM / 报价接口已预留</span></div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span></div>
 </footer>
 <div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
 <div class="search-modal-backdrop" data-search-close=""></div>
@@ -284,7 +285,7 @@
 <button class="btn btn--green" type="submit">搜索</button>
 </form>
 <button class="search-modal-close" data-search-close="" type="button">关闭 <span aria-hidden="true">×</span></button>
-<div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+<div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=供应链">供应链</a><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
 </div>
 </div>
 </body></html>

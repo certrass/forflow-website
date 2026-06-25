@@ -8,8 +8,8 @@
 <meta content="ForFlow AI Navigator——从业务挑战出发，定位第一条 AI 增长流。" name="description"/>
 <title>AI Navigator｜ForFlow.ai</title>
 <link href="assets/forflow-mark.png" rel="icon"/>
-<link href="styles.css?v=20260625-owner-resonance-v8" rel="stylesheet"/>
-<script defer="" src="script.js?v=20260625-owner-resonance-v8"></script>
+<link href="styles.css?v=20260625-supply-architecture-figure-v15" rel="stylesheet"/>
+<script defer="" src="script.js?v=20260625-supply-architecture-figure-v15"></script>
 </head>
 <body class="navigator-page">
 <a class="skip-link" href="#navigator-main">跳至诊断内容</a>
@@ -102,7 +102,7 @@
 <a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br/>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></span></a>
 <div class="mega-insight-list">
 <a href="cases.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
-<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>案例详情示范</b><small>查看完整案例页面的信息层级</small></div></a>
+<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>Wren Kitchens 案例</b><small>从紧急扩容到长期技术合作</small></div></a>
 <a href="document-viewer.html?doc=playbook"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
 </div>
 </div>
@@ -130,7 +130,7 @@
 <a href="index.html">首页</a><span>/</span><a href="index.html#resources">AI 工具</a><span>/</span><strong>AI Navigator</strong>
 </nav>
 <h1>找到你的第一条<br/>AI 增长流。</h1>
-<p>从业务挑战、价值目标、组织准备度和部署偏好出发，获得一版可讨论的场景建议。填写过程约 3 分钟。</p>
+<p>从业务挑战、价值目标、组织准备度和部署偏好出发，生成一张可讨论的场景卡。填写过程约 3 分钟，可直接带入后续项目梳理。</p>
 </div>
 </section>
 <div class="container navigator-shell" data-navigator="">
@@ -148,17 +148,17 @@
 </li>
 <li class="step-item" data-progress-step="3">
 <span class="step-marker">03</span>
-<span class="step-copy"><strong>部署偏好</strong><span>约束、周期和数据条件</span></span>
+<span class="step-copy"><strong>部署边界</strong><span>约束、周期和数据条件</span></span>
 </li>
 <li class="step-item" data-progress-step="4">
 <span class="step-marker">04</span>
-<span class="step-copy"><strong>推荐结果</strong><span>查看场景与下一步</span></span>
+<span class="step-copy"><strong>生成场景卡</strong><span>确认路径与下一步动作</span></span>
 </li>
 </ol>
 <div class="sidebar-trust">
-<span class="trust-icon">✓</span>
-<h3>原型说明</h3>
-<p>本页面为前端交互原型。推荐逻辑、产品库、表单提交和 CRM 接口均已留出替换位置。</p>
+<span class="trust-icon">Q2Q</span>
+<h3>诊断口径</h3>
+<p>输出不替代正式方案，而是先把业务问题、数据边界、责任人和验收指标摆清楚，便于判断下一步是否值得投入。</p>
 </div>
 </div>
 </aside>
@@ -171,7 +171,7 @@
 <div class="workspace-card">
 <section aria-labelledby="step-1-title" class="step-panel is-active" data-step="1">
 <div class="step-panel-head">
-<span class="step-tag">Step 01 / Business challenge</span>
+<span class="step-tag">诊断 01 · 业务挑战</span>
 <h2 id="step-1-title">你现在最想改善哪一段业务？</h2>
 <p>请选择 1–2 个最优先的挑战。后续推荐会围绕这些业务环节展开。</p>
 </div>
@@ -229,7 +229,7 @@
 </section>
 <section aria-labelledby="step-2-title" class="step-panel" data-step="2">
 <div class="step-panel-head">
-<span class="step-tag">Step 02 / Value &amp; readiness</span>
+<span class="step-tag">诊断 02 · 价值与准备度</span>
 <h2 id="step-2-title">你希望 AI 先带来什么结果？</h2>
 <p>选择 1–2 个价值目标，并说明组织当前所处阶段。</p>
 </div>
@@ -276,7 +276,7 @@
 </select>
 </div>
 <div class="select-field">
-<label for="industry">所属行业（内容映射占位）</label>
+<label for="industry">所属行业</label>
 <select id="industry" name="industry">
 <option value="">请选择</option>
 <option value="retail">零售 / 消费</option>
@@ -292,7 +292,7 @@
 </section>
 <section aria-labelledby="step-3-title" class="step-panel" data-step="3">
 <div class="step-panel-head">
-<span class="step-tag">Step 03 / Deployment preference</span>
+<span class="step-tag">诊断 03 · 部署边界</span>
 <h2 id="step-3-title">什么样的部署方式更适合你？</h2>
 <p>这些信息用于过滤不合适的方案，并决定试点与生产架构的边界。</p>
 </div>
@@ -337,7 +337,7 @@
 <div class="form-section">
 <div class="inline-selects">
 <div class="select-field">
-<label for="systems">需要连接的系统数量（占位）</label>
+<label for="systems">需要连接的系统数量</label>
 <select id="systems" name="systems">
 <option value="">请选择</option>
 <option value="none">暂无系统连接</option>
@@ -360,9 +360,9 @@
 </section>
 <section aria-labelledby="step-4-title" class="step-panel" data-step="4">
 <div class="step-panel-head">
-<span class="step-tag">Step 04 / Recommendation</span>
+<span class="step-tag">诊断 04 · 生成建议</span>
 <h2 id="step-4-title">你的 AI 增长流建议。</h2>
-<p>推荐根据当前原型规则生成，用于展示结果页结构；正式版可替换为真实方案库、评分模型与 CRM 提交。</p>
+<p>系统会把你的回答整理成第一版场景路径，用于讨论优先级、试点边界和后续验证动作。</p>
 </div>
 <div id="result-output">
 <div class="result-summary">
@@ -380,7 +380,7 @@
 <div class="recommendation-list" data-recommendation-list="">
 <!-- JS injects recommendation cards here. -->
 </div>
-<p class="result-disclaimer">内容占位说明：推荐名称、匹配度、能力标签、方案详情、服务商/产品映射、报价入口和留资表单都可由 CMS 或后端接口替换。</p>
+<p class="result-disclaimer">建议用于项目沟通前的初筛：正式进入试点前，还需要补充真实流程、样本数据、权限边界、负责人和验收指标。</p>
 </div>
 </section>
 </div>
@@ -415,12 +415,12 @@
 </div>
 <div class="footer-col"><h3>案例与行动</h3>
 <a href="cases.html">案例中心</a>
-<a href="case-wren-kitchens.html">案例详情示范</a>
+<a href="case-wren-kitchens.html">Wren Kitchens 案例</a>
 <button class="footer-search search-trigger" type="button">全站搜索</button>
 <a href="navigator.html">开始诊断</a>
 </div>
 </div>
-<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>响应式企业网站原型 · CMS / CRM / 报价接口已预留</span></div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span></div>
 </footer>
 <div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
 <div class="search-modal-backdrop" data-search-close=""></div>

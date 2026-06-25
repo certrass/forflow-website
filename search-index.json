@@ -1,5 +1,5 @@
 {
-  "version": "20260625-owner-resonance-v8",
+  "version": "20260625-supply-architecture-figure-v15",
   "types": [
     {
       "type": "category",
@@ -165,14 +165,14 @@
       "type": "case",
       "href": "case-wren-kitchens.html",
       "kicker": "案例结构参考",
-      "title": "大型零售：从紧急扩容到长期技术合作",
+      "title": "Wren Kitchens：从紧急扩容到长期技术合作",
       "description": "挑战、接管、模块、公开影响与可复用经验。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
-        "Wren 厨房 零售 制造 物流 技术合作 跨模块 软件交付",
-        "从紧急团队扩容，到跨物流、安装与内部系统的战略合作",
-        "公开案例摘要：快速接管、嵌入内部团队、优化关键流程，并逐步扩展到多个业务模块。",
+        "Wren 厨房 零售 制造 物流 技术合作 跨模块 软件交付 知识交接 长期合作",
+        "Wren Kitchens：从紧急团队扩容，到长期技术合作",
+        "公开案例摘要：先稳住关键系统，再把安装、物流、产品、QA 和移动应用纳入长期协作。",
         "retail manufacturing data"
       ]
     },
@@ -238,6 +238,22 @@
         "本体智能体如何重塑安全关键零部件 DFMEA",
         "以 B 柱为例，把材料、工艺、失效机理和法规要求连成可推理、可追溯、可复评的风险情报系统。",
         "automotive manufacturing data"
+      ]
+    },
+    {
+      "id": "supply-chain-agentic-decision",
+      "type": "case",
+      "href": "case-supply-chain-agentic-decision.html",
+      "kicker": "零售供应链 · 多智能体决策",
+      "title": "供应链：多智能体 AI 把数据转化为行动",
+      "description": "从数据可见性到自动查询、分析、根因归因和行动通知，解释供应链控制塔之后的 Agent 架构。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "供应链 零售 鞋服 库存 SKU 控制塔 control tower 多智能体 Agent AgentCore Strands MCP Gateway 语义层 自然语言 SQL 履行率 渠道履行 订单 冻结 信用控制 DynamoDB Cognito API Gateway Lambda Bedrock Observability 决策 行动",
+        "多智能体 AI 如何将供应链数据转化为决策与行动",
+        "从控制塔的数据可见性，走向自然语言查询、异常钻取、根因归因和行动协同的完整决策链。",
+        "retail data service"
       ]
     }
   ]

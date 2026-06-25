@@ -99,6 +99,18 @@ async def inspect_page(browser, name, path, viewport):
             position: getComputedStyle(toc).position,
           };
         }"""),
+        'caseTocSpacing': await page.evaluate("""() => {
+          const shell = document.querySelector('.case-detail-shell');
+          const toc = document.querySelector('.case-toc');
+          if (!shell || !toc) return null;
+          const shellBox = shell.getBoundingClientRect();
+          const tocBox = toc.getBoundingClientRect();
+          return {
+            topGap: Math.round((tocBox.top - shellBox.top) * 100) / 100,
+            shellPaddingTop: getComputedStyle(shell).paddingTop,
+            shellClasses: shell.className,
+          };
+        }"""),
         'caseHeadingMetrics': await page.evaluate("""() => {
           if (!document.body.classList.contains('case-detail-page')) return [];
           return [...document.querySelectorAll('.case-section > h2')].map((heading) => {
@@ -118,6 +130,11 @@ async def inspect_page(browser, name, path, viewport):
         }"""),
         'verticalScroll': vertical_scroll,
         'scrollIntoViewCalls': await page.evaluate("window.__ffScrollIntoViewCalls || []"),
+        'prototypePlaceholders': await page.evaluate("""() => {
+          const text = document.body.textContent || '';
+          const phrases = ['原型说明','内容映射占位','内容占位说明','DETAIL / CMS SLOT','正式上线时可接','响应式企业网站原型'];
+          return phrases.filter((phrase) => text.includes(phrase));
+        }"""),
         'missingImages': await page.evaluate("[...document.images].filter(i => !i.complete || !i.naturalWidth).map(i => i.getAttribute('src'))"),
         'consoleErrors': errors,
     }
@@ -135,6 +152,10 @@ async def main():
         report['pages']['playbook-mobile'] = await inspect_page(browser, 'playbook-mobile-viewport', '/playbook.html', {'width': 390, 'height': 844})
         report['pages']['cases-desktop'] = await inspect_page(browser, 'cases-desktop-viewport', '/cases.html', {'width': 1440, 'height': 1000})
         report['pages']['cases-mobile'] = await inspect_page(browser, 'cases-mobile-viewport', '/cases.html', {'width': 390, 'height': 844})
+        report['pages']['navigator-desktop'] = await inspect_page(browser, 'navigator-desktop-viewport', '/navigator.html', {'width': 1440, 'height': 1000})
+        report['pages']['navigator-mobile'] = await inspect_page(browser, 'navigator-mobile-viewport', '/navigator.html', {'width': 390, 'height': 844})
+        report['pages']['navigator-results-desktop'] = await inspect_page(browser, 'navigator-results-desktop-viewport', '/navigator-results.html?challenge=knowledge&goal=speed&goal=quality&readiness=process&deployment=hybrid&timeline=30d', {'width': 1440, 'height': 1000})
+        report['pages']['navigator-results-mobile'] = await inspect_page(browser, 'navigator-results-mobile-viewport', '/navigator-results.html?challenge=knowledge&goal=speed&goal=quality&readiness=process&deployment=hybrid&timeline=30d', {'width': 390, 'height': 844})
         report['pages']['wren-case-desktop'] = await inspect_page(browser, 'wren-case-desktop-viewport', '/case-wren-kitchens.html', {'width': 1440, 'height': 1000})
         report['pages']['wren-case-mobile'] = await inspect_page(browser, 'wren-case-mobile-viewport', '/case-wren-kitchens.html', {'width': 390, 'height': 844})
         report['pages']['pid-case-desktop'] = await inspect_page(browser, 'pid-case-desktop-viewport', '/case-manufacturing-pid-intelligence.html', {'width': 1440, 'height': 1000})
@@ -143,6 +164,10 @@ async def main():
         report['pages']['healthcare-case-mobile'] = await inspect_page(browser, 'healthcare-case-mobile-viewport', '/case-healthcare-agent-roi.html', {'width': 390, 'height': 844})
         report['pages']['automotive-case-desktop'] = await inspect_page(browser, 'automotive-case-desktop-viewport', '/case-automotive-dfmea-ontology-agent.html', {'width': 1440, 'height': 1000})
         report['pages']['automotive-case-mobile'] = await inspect_page(browser, 'automotive-case-mobile-viewport', '/case-automotive-dfmea-ontology-agent.html', {'width': 390, 'height': 844})
+        report['pages']['supply-chain-case-desktop'] = await inspect_page(browser, 'supply-chain-case-desktop-viewport', '/case-supply-chain-agentic-decision.html', {'width': 1440, 'height': 1000})
+        report['pages']['supply-chain-case-mobile'] = await inspect_page(browser, 'supply-chain-case-mobile-viewport', '/case-supply-chain-agentic-decision.html', {'width': 390, 'height': 844})
+        report['pages']['financial-case-desktop'] = await inspect_page(browser, 'financial-case-desktop-viewport', '/case-financial-bda-document-automation.html', {'width': 1440, 'height': 1000})
+        report['pages']['financial-case-mobile'] = await inspect_page(browser, 'financial-case-mobile-viewport', '/case-financial-bda-document-automation.html', {'width': 390, 'height': 844})
 
         context = await browser.new_context(viewport={'width': 1440, 'height': 1000})
         page = await context.new_page(); page.set_default_timeout(8000)
@@ -200,20 +225,34 @@ async def main():
         healthcare_visible = await page.locator('#healthcare-agent-roi').is_visible()
         pid_present = await page.locator('#pid[href="case-manufacturing-pid-intelligence.html"]').count() == 1
         automotive_present = await page.locator('#automotive-dfmea-ontology-agent[href="case-automotive-dfmea-ontology-agent.html"]').count() == 1
+        supply_present = await page.locator('#supply-chain-agentic-decision[href="case-supply-chain-agentic-decision.html"]').count() == 1
+        financial_present = await page.locator('#financial-bda-document-automation[href="case-financial-bda-document-automation.html"]').count() == 1
         await page.goto(BASE + '/search.html?search=医疗', wait_until='networkidle')
         case_count = await page.locator('[data-count-case]').inner_text()
         healthcare_search = await page.locator('a[href="case-healthcare-agent-roi.html"]').is_visible()
         await page.goto(BASE + '/search.html?search=DFMEA', wait_until='networkidle')
         automotive_case_count = await page.locator('[data-count-case]').inner_text()
         automotive_search = await page.locator('a[href="case-automotive-dfmea-ontology-agent.html"]').is_visible()
+        await page.goto(BASE + '/search.html?search=供应链', wait_until='networkidle')
+        supply_case_count = await page.locator('[data-count-case]').inner_text()
+        supply_search = await page.locator('a[href="case-supply-chain-agentic-decision.html"]').is_visible()
+        await page.goto(BASE + '/search.html?search=金融文档', wait_until='networkidle')
+        financial_case_count = await page.locator('[data-count-case]').inner_text()
+        financial_search = await page.locator('a[href="case-financial-bda-document-automation.html"]').is_visible()
         report['interactions']['cases'] = {
             'healthcareVisibleAfterServiceFilter': healthcare_visible,
             'pidCardPresent': pid_present,
             'automotiveCardPresent': automotive_present,
+            'supplyChainCardPresent': supply_present,
+            'financialCaseCardPresent': financial_present,
             'medicalSearchHasCase': int(case_count) >= 1,
             'healthcareSearchResultVisible': healthcare_search,
             'dfmeaSearchHasCase': int(automotive_case_count) >= 1,
             'automotiveSearchResultVisible': automotive_search,
+            'supplyChainSearchHasCase': int(supply_case_count) >= 1,
+            'supplyChainSearchResultVisible': supply_search,
+            'financialSearchHasCase': int(financial_case_count) >= 1,
+            'financialSearchResultVisible': financial_search,
         }
         await context.close()
 
@@ -227,6 +266,9 @@ async def main():
         toc = data.get('caseTocOverflow')
         if 'case-' in name and 'mobile' in name and toc and toc['scrollWidth'] > toc['clientWidth'] + 1:
             failures.append(f'{name}: case toc horizontal scroll')
+        spacing = data.get('caseTocSpacing')
+        if 'case-' in name and 'mobile' in name and spacing and spacing['topGap'] < 20:
+            failures.append(f'{name}: case toc too close to previous block {spacing}')
         if 'case-' in name and 'mobile' in name and data.get('scrollIntoViewCalls'):
             failures.append(f'{name}: scrollspy nudged page {data["scrollIntoViewCalls"]}')
         if 'case-' in name and 'mobile' in name:
@@ -239,6 +281,7 @@ async def main():
                     failures.append(f'{name}: case heading too tall {heading}')
         if not data['verticalScroll']['reachedBottom']: failures.append(f'{name}: vertical scroll did not reach bottom')
         if not data['verticalScroll']['returnedTop']: failures.append(f'{name}: vertical scroll did not return to top')
+        if data.get('prototypePlaceholders'): failures.append(f'{name}: prototype placeholders visible {data["prototypePlaceholders"]}')
         if data['missingImages']: failures.append(f'{name}: missing images {data["missingImages"]}')
         if data['consoleErrors']: failures.append(f'{name}: console errors {data["consoleErrors"]}')
     if not all(report['interactions']['desktopNavigation'].values()): failures.append('desktop navigation interaction failed')
