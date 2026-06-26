@@ -168,6 +168,10 @@ async def main():
         report['pages']['supply-chain-case-mobile'] = await inspect_page(browser, 'supply-chain-case-mobile-viewport', '/case-supply-chain-agentic-decision.html', {'width': 390, 'height': 844})
         report['pages']['financial-case-desktop'] = await inspect_page(browser, 'financial-case-desktop-viewport', '/case-financial-bda-document-automation.html', {'width': 1440, 'height': 1000})
         report['pages']['financial-case-mobile'] = await inspect_page(browser, 'financial-case-mobile-viewport', '/case-financial-bda-document-automation.html', {'width': 390, 'height': 844})
+        report['pages']['vanguard-case-desktop'] = await inspect_page(browser, 'vanguard-case-desktop-viewport', '/case-vanguard-virtual-analyst.html', {'width': 1440, 'height': 1000})
+        report['pages']['vanguard-case-mobile'] = await inspect_page(browser, 'vanguard-case-mobile-viewport', '/case-vanguard-virtual-analyst.html', {'width': 390, 'height': 844})
+        report['pages']['agent-evaluation-case-desktop'] = await inspect_page(browser, 'agent-evaluation-case-desktop-viewport', '/case-agent-evaluation-first.html', {'width': 1440, 'height': 1000})
+        report['pages']['agent-evaluation-case-mobile'] = await inspect_page(browser, 'agent-evaluation-case-mobile-viewport', '/case-agent-evaluation-first.html', {'width': 390, 'height': 844})
 
         context = await browser.new_context(viewport={'width': 1440, 'height': 1000})
         page = await context.new_page(); page.set_default_timeout(8000)
@@ -227,6 +231,8 @@ async def main():
         automotive_present = await page.locator('#automotive-dfmea-ontology-agent[href="case-automotive-dfmea-ontology-agent.html"]').count() == 1
         supply_present = await page.locator('#supply-chain-agentic-decision[href="case-supply-chain-agentic-decision.html"]').count() == 1
         financial_present = await page.locator('#financial-bda-document-automation[href="case-financial-bda-document-automation.html"]').count() == 1
+        vanguard_present = await page.locator('#vanguard-virtual-analyst[href="case-vanguard-virtual-analyst.html"]').count() == 1
+        agent_eval_present = await page.locator('#agent-evaluation-first[href="case-agent-evaluation-first.html"]').count() == 1
         await page.goto(BASE + '/search.html?search=医疗', wait_until='networkidle')
         case_count = await page.locator('[data-count-case]').inner_text()
         healthcare_search = await page.locator('a[href="case-healthcare-agent-roi.html"]').is_visible()
@@ -239,12 +245,20 @@ async def main():
         await page.goto(BASE + '/search.html?search=金融文档', wait_until='networkidle')
         financial_case_count = await page.locator('[data-count-case]').inner_text()
         financial_search = await page.locator('a[href="case-financial-bda-document-automation.html"]').is_visible()
+        await page.goto(BASE + '/search.html?search=虚拟分析师', wait_until='networkidle')
+        vanguard_case_count = await page.locator('[data-count-case]').inner_text()
+        vanguard_search = await page.locator('a[href="case-vanguard-virtual-analyst.html"]').is_visible()
+        await page.goto(BASE + '/search.html?search=Evaluation', wait_until='networkidle')
+        agent_eval_case_count = await page.locator('[data-count-case]').inner_text()
+        agent_eval_search = await page.locator('a[href="case-agent-evaluation-first.html"]').is_visible()
         report['interactions']['cases'] = {
             'healthcareVisibleAfterServiceFilter': healthcare_visible,
             'pidCardPresent': pid_present,
             'automotiveCardPresent': automotive_present,
             'supplyChainCardPresent': supply_present,
             'financialCaseCardPresent': financial_present,
+            'vanguardCaseCardPresent': vanguard_present,
+            'agentEvaluationCaseCardPresent': agent_eval_present,
             'medicalSearchHasCase': int(case_count) >= 1,
             'healthcareSearchResultVisible': healthcare_search,
             'dfmeaSearchHasCase': int(automotive_case_count) >= 1,
@@ -253,6 +267,10 @@ async def main():
             'supplyChainSearchResultVisible': supply_search,
             'financialSearchHasCase': int(financial_case_count) >= 1,
             'financialSearchResultVisible': financial_search,
+            'vanguardSearchHasCase': int(vanguard_case_count) >= 1,
+            'vanguardSearchResultVisible': vanguard_search,
+            'agentEvaluationSearchHasCase': int(agent_eval_case_count) >= 1,
+            'agentEvaluationSearchResultVisible': agent_eval_search,
         }
         await context.close()
 

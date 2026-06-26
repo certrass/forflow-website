@@ -35,11 +35,16 @@
 - `service-agent-build.html`：企业 Agent 搭建
 - `service-ai-training.html`：企业 AI 培训
 - `category-hrms.html`：HR AI 场景分类页
-- `cases.html`：案例中心
+- `cases.html`：案例&博客
 - `case-wren-kitchens.html`：案例详情结构示范
 - `case-manufacturing-pid-intelligence.html`：P&ID 智能化案例 Blog
 - `case-healthcare-agent-roi.html`：医疗受限多智能体案例 Blog
 - `case-automotive-dfmea-ontology-agent.html`：汽车 B 柱 DFMEA 本体智能体案例 Blog
+- `case-supply-chain-agentic-decision.html`：供应链多智能体决策案例 Blog
+- `case-financial-bda-document-automation.html`：金融文档 BDA 自动化案例 Blog
+- `case-vanguard-virtual-analyst.html`：先锋集团虚拟分析师案例 Blog
+- `case-agent-evaluation-first.html`：企业 Agent 评估先行案例 Blog
+- `contact.html`：方案沟通与联系方式
 - `search.html`：全站搜索结果页
 - `document-viewer.html`：PDF 在线阅读器
 
@@ -69,10 +74,10 @@ eval "$(tools/veee-proxy-env.sh)"
 
 ## 复核与测试
 
-- `python3 build_site.py`：根据 Python 清单重建一级页面、案例中心和搜索页
+- `python3 build_site.py`：根据 Python 清单重建一级页面、案例&博客和搜索页
 - `python3 tests/static_check.py`：15 个 HTML 页面、本地资源、必需模块、案例清单联动检查
 - `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9226 python3 tests/interaction_check.py`：搜索、手机菜单、Navigator、FAQ、筛选、案例与搜索联动等全站交互
-- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9226 python3 tests/polished_pages_check.py`：首页、Playbook、案例中心和医疗案例的视口、图片、控制台与关键交互复核
+- `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9226 python3 tests/polished_pages_check.py`：首页、Playbook、案例&博客和医疗案例的视口、图片、控制台与关键交互复核
 - 专项视口：桌面 `1440 × 1000`、手机 `390 × 844`
 - 如果本地服务或调试浏览器端口变化，只改 `BASE_URL`、`CDP_PORT` 或 `CDP_URL`
 
@@ -80,7 +85,7 @@ eval "$(tools/veee-proxy-env.sh)"
 
 `build_site.py` 继续负责其余页面的静态生成；精修后的首页、Playbook 和 README 保存于 `templates/`，重新执行生成脚本时会自动恢复，避免复杂页面被旧模板覆盖。
 
-案例中心由 `build_site.py` 里的 `CASE_LIBRARY_ITEMS` 统一维护。新增案例时先创建 `case-*.html` 详情页和封面图，再在清单里补一条数据；运行 `python3 build_site.py` 后，`cases.html`、`search.html`、导航 active 状态和静态检查会同步更新。
+案例&博客由 `build_site.py` 里的 `CASE_LIBRARY_ITEMS` 统一维护。新增案例或博客时先创建 `case-*.html` 详情页和封面图，再在清单里补一条数据；运行 `python3 build_site.py` 后，`cases.html`、`search.html`、导航 active 状态和静态检查会同步更新。
 
 完整网站维护治理见 `docs/maintenance/site-governance.md`。每次更新页面、样式、图片、脚本、测试或部署后，都要在 `docs/maintenance/update-log.md` 追加记录，写清变更范围、主要变更、真实验证结果和后续事项。
 

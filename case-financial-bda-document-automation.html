@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="围绕银行对账单、W-2、1099-B 和供应商合同，说明 BDA Blueprint 如何把金融文档提取变成可复用、可验证、可接入下游系统的工作流。" name="description"/>
+<title>用 Amazon Bedrock Data Automation 自动化提取金融文档数据｜ForFlow 萬維流形</title>
+<link href="assets/forflow-mark.png" rel="icon"/>
+<link href="styles.css?v=20260626-contact-page-v26" rel="stylesheet"/>
+<script defer="" src="script.js?v=20260626-contact-page-v26"></script>
+</head>
+<body class="case-detail-page case-theme--financial case-study-v2">
+<a class="skip-link" href="#main">跳至主要内容</a>
+<svg aria-hidden="true" class="ff-symbols" focusable="false">
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.3 15.3 5.2 5.2"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m7 9 5 5 5-5"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"></path></symbol>
+<symbol id="i-download" viewbox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"></path></symbol>
+<symbol id="i-compass" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"></path></symbol>
+<symbol id="i-layers" viewbox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></symbol>
+<symbol id="i-data" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></symbol>
+<symbol id="i-agent" viewbox="0 0 24 24"><rect height="11" rx="3" width="14" x="5" y="7"></rect><path d="M9 11h.01M15 11h.01M9 15h6M12 7V4m-2 0h4M3 12H1m22 0h-2"></path></symbol>
+<symbol id="i-training" viewbox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"></path><path d="M7 12v4c2.8 2.2 7.2 2.2 10 0v-4M21 9v6"></path></symbol>
+<symbol id="i-book" viewbox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"></path></symbol>
+<symbol id="i-cases" viewbox="0 0 24 24"><rect height="15" rx="2" width="18" x="3" y="5"></rect><path d="M8 5V3h8v2M3 10h18M9 14h6"></path></symbol>
+<symbol id="i-people" viewbox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2"></circle><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M14 14c3.5 0 6 2.2 6 6"></path></symbol>
+<symbol id="i-customer" viewbox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"></path><path d="M8 9h8M8 12h5"></path></symbol>
+<symbol id="i-marketing" viewbox="0 0 24 24"><path d="M4 13v-2l12-5v12L4 13Z"></path><path d="M7 14v5h4l-1-5M19 9c1 1 1 5 0 6"></path></symbol>
+<symbol id="i-knowledge" viewbox="0 0 24 24"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"></path><path d="M9 19h6M10 15v2h4v-2M4 8H2m20 0h-2M5 3 3.5 1.5M19 3l1.5-1.5"></path></symbol>
+<symbol id="i-operations" viewbox="0 0 24 24"><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><path d="M9 12h4l3-4M13 12l3 4"></path></symbol>
+<symbol id="i-finance" viewbox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"></path><path d="m3 8 6-5 6 7 6-5"></path></symbol>
+<symbol id="i-chart" viewbox="0 0 24 24"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 16v-5"></path><path d="M12 16V8"></path><path d="M16 16v-3"></path><path d="m7 9 4-4 3 3 5-5"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></symbol>
+<symbol id="i-growth" viewbox="0 0 24 24"><path d="M4 19V5m0 14h16"></path><path d="m7 15 4-4 3 2 5-6M15 7h4v4"></path></symbol>
+<symbol id="i-flow" viewbox="0 0 24 24"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"></path><circle cx="3" cy="7" r="1.5"></circle><circle cx="21" cy="17" r="1.5"></circle></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="i-spark" viewbox="0 0 24 24"><path d="m12 2 1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6L12 2ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"></path></symbol>
+<symbol id="i-brain" viewbox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2.2A3.4 3.4 0 0 0 4 12a3.4 3.4 0 0 0 2 5.8A3 3 0 0 0 12 18V6a3 3 0 0 0-3-2Z"></path><path d="M15 4a3 3 0 0 1 5 2.2A3.4 3.4 0 0 1 20 12a3.4 3.4 0 0 1-2 5.8A3 3 0 0 1 12 18V6a3 3 0 0 1 3-2ZM8 8h4m-5 5h5m4-5h-4m5 5h-5"></path></symbol>
+<symbol id="i-bulb" viewbox="0 0 24 24"><path d="M9 18h6M10 21h4M8.5 15.5A7 7 0 1 1 15.5 15.5c-.9.7-1.5 1.3-1.5 2.5h-4c0-1.2-.6-1.8-1.5-2.5Z"></path><path d="M12 6v4m-2 0h4"></path></symbol>
+<symbol id="i-split" viewbox="0 0 24 24"><path d="M12 21V7M7 12l5-5 5 5M4 4h5M15 4h5"></path></symbol>
+<symbol id="i-cart" viewbox="0 0 24 24"><path d="M3 4h2l2 11h10l3-7H6"></path><circle cx="9" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle><path d="M13 5h7M16.5 2v6"></path></symbol>
+<symbol id="i-build" viewbox="0 0 24 24"><path d="M4 19 15 8M13 4l7 7M3 20l4-1-3-3-1 4Z"></path><path d="m15 3 6 6-2 2-6-6 2-2Z"></path></symbol>
+<symbol id="i-reference" viewbox="0 0 24 24"><path d="M6 3h10l3 3v15H6V3Z"></path><path d="M16 3v4h4M9 11h7M9 15h7M9 19h4"></path></symbol>
+<symbol id="i-text" viewbox="0 0 24 24"><path d="M4 5h16M12 5v14M8 19h8"></path></symbol>
+<symbol id="i-image" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><circle cx="9" cy="9" r="2"></circle><path d="m4 17 5-5 4 4 2-2 5 5"></path></symbol>
+<symbol id="i-audio" viewbox="0 0 24 24"><path d="M9 18V6l10-2v12"></path><circle cx="6" cy="18" r="3"></circle><circle cx="16" cy="16" r="3"></circle></symbol>
+<symbol id="i-video" viewbox="0 0 24 24"><rect height="14" rx="2" width="14" x="3" y="5"></rect><path d="m17 10 4-3v10l-4-3v-4Z"></path></symbol>
+<symbol id="i-translate" viewbox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 5c3 0 6-3 6-6M6 8c1 2 3 4 6 5M14 19l3-8 3 8M15 16h4"></path></symbol>
+<symbol id="i-code" viewbox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"></path></symbol>
+<symbol id="i-cube" viewbox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></symbol>
+<symbol id="i-speech" viewbox="0 0 24 24"><path d="M5 4h14v12H9l-4 4V4Z"></path><path d="M9 8v4m3-6v8m3-5v3"></path></symbol>
+<symbol id="i-document" viewbox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z"></path><path d="M14 3v5h5M9 12h6M9 16h6"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+<symbol id="i-cost" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15 8.5c-.7-.7-1.7-1-3-1-2 0-3 .9-3 2s1.1 1.7 3 2 3 .9 3 2-1 2-3 2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"></path></symbol>
+<symbol id="i-requirements" viewbox="0 0 24 24"><path d="M5 4h14v16H5V4Z"></path><path d="m8 9 1.5 1.5L12 8m2 2h3m-9 5 1.5 1.5L12 14m2 2h3"></path></symbol>
+<symbol id="i-experience" viewbox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6Z"></path><path d="M9 19c.5 1.3 1.5 2 3 2s2.5-.7 3-2M12 7v4"></path></symbol>
+<symbol id="i-settings" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19 13.5v-3l-2-.7-.6-1.5.9-1.9-2.1-2.1-1.9.9-1.5-.6L10.5 3h-3l-.7 2-1.5.6-1.9-.9-2.1 2.1.9 1.9-.6 1.5-2 .7v3l2 .7.6 1.5-.9 1.9 2.1 2.1 1.9-.9 1.5.6.7 2h3l.7-2 1.5-.6 1.9.9 2.1-2.1-.9-1.9.6-1.5 2-.7Z" transform="translate(2 0) scale(.82)"></path></symbol>
+<symbol id="i-risk" viewbox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 9v5m0 3h.01"></path></symbol>
+<symbol id="i-security" viewbox="0 0 24 24"><rect height="11" rx="2" width="14" x="5" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"></path></symbol>
+<symbol id="i-leadership" viewbox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10H4Z"></path><path d="M9 20v-6h6v6M8 9h8"></path></symbol>
+<symbol id="i-quote" viewbox="0 0 24 24"><path d="M4 6h7v7H7c0 3-1 5-4 6 2-2 2-4 1-6V6Zm10 0h7v7h-4c0 3-1 5-4 6 2-2 2-4 1-6V6Z"></path></symbol>
+</svg>
+<div class="ff-utility-bar">
+<div class="container ff-utility-inner">
+<span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
+<nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例&amp;博客</a><a href="contact.html">联系</a></nav>
+</div>
+</div>
+<header class="site-header ff-header" data-header="">
+<div class="container header-inner">
+<a aria-label="ForFlow 萬維流形首页" class="brand" href="index.html">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+</a>
+<nav aria-label="主导航" class="primary-nav ff-mega-nav" data-mega-root="">
+<ul>
+<li><a href="index.html">首页</a></li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">企业服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--services" data-mega-panel="">
+<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>四条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-link-grid">
+<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>01</em></a>
+<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>02</em></a>
+<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>03</em></a>
+<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>04</em></a>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">场景与工具 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--tools" data-mega-panel="">
+<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-feature-stack">
+<a class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+<a class="mega-feature" href="category-hrms.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-people"></use></svg></span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+<button class="mega-feature search-trigger" type="button"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料、案例与博客</small></div><em>搜索</em></button>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">手册与洞察 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--insights" data-mega-panel="">
+<a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br/>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></span></a>
+<div class="mega-insight-list">
+<a href="cases.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><b>案例&amp;博客</b><small>按问题、过程和结果阅读案例与文章</small></div></a>
+<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>Wren Kitchens 案例</b><small>从紧急扩容到长期技术合作</small></div></a>
+<a href="document-viewer.html?doc=playbook"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
+</div>
+</div>
+</li>
+<li><a aria-current="page" href="cases.html">案例&amp;博客</a></li>
+<li><a href="contact.html">联系</a></li>
+</ul>
+</nav>
+<div class="header-actions">
+<button aria-label="打开全站搜索" class="icon-btn search-trigger" type="button"><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></button>
+<a class="btn btn--green header-cta" href="navigator.html">开始诊断 <span aria-hidden="true">→</span></a>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="打开菜单" class="menu-toggle" type="button"><span></span></button>
+</div>
+</header>
+<div aria-hidden="true" class="mobile-menu-panel ff-mobile-menu" id="mobile-menu">
+<a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
+<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div></details>
+<details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
+<details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例&amp;博客</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
+<a aria-current="page" href="cases.html">案例&amp;博客 <span>05</span></a>
+<a href="contact.html">联系 <span>06</span></a>
+<a class="btn btn--green" href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">→</span></a>
+</div>
+<main id="main">
+<section class="case-study-hero case-study-hero--financial">
+<div class="container">
+<nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&amp;博客</a><span>/</span><strong>金融文档自动化</strong></nav>
+<div class="case-study-hero__grid">
+<div>
+<div class="case-study-meta"><span>金融文档</span><span>Bedrock Data Automation</span><span>Blueprint 蓝图</span><span>JSON / CSV 输出</span></div>
+<h1>用 Amazon Bedrock Data Automation 自动化提取金融文档数据。</h1>
+<p class="case-study-lead">金融机构每天处理数以千计的文档：税务表格、贷款报表、采购订单、银行对账单和合同。每一种文档都有独特格式、结构和字段命名，传统 OCR 很难把它们稳定变成可执行数据。BDA 的价值，是把“看见文字”推进到“理解结构、提取字段、验证输出、接入流程”。</p>
+<div class="case-study-actions"><a class="btn btn--green" href="#blueprint">先看蓝图设计 ↓</a><a class="btn btn--ghost" href="#documents">查看四类文档 ↘</a></div>
+</div>
+<figure class="case-study-hero__media case-study-hero__media--scene">
+<img alt="中国金融运营团队审核文档自动化提取结果的办公场景" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/financial-bda-document-automation-hero.png"/>
+<figcaption>文档自动化不是把纸面内容搬进系统，而是让业务字段、验证规则和下游动作可以被稳定复用。</figcaption>
+</figure>
+</div>
+<div aria-label="本案例的交付证据结构" class="case-proof-rail"><div><strong>4 类文档</strong><span>银行对账单、W-2、1099-B、供应商合同</span></div><div><strong>Blueprint</strong><span>用字段、类型、说明和验证规则定义提取地图</span></div><div><strong>JSON / CSV</strong><span>输出直接进入会计、税务、合同和审查流程</span></div><div><strong>可解释性</strong><span>用置信度与视觉定位帮助人工复核关键字段</span></div></div>
+<p class="case-proof-note">本文以四类常见金融文档为例，说明如何用自定义 Blueprint 设计结构化提取流程。目标不是展示“AI 能读 PDF”，而是让金融运营、财务、税务、法务和风控团队获得可复用、可验证、可接入下游系统的数据资产。</p>
+</div>
+</section>
+<div class="container case-detail-shell case-story-shell">
+<aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy=""><a class="is-active" href="#overview">业务问题</a><a href="#blueprint">Blueprint 蓝图</a><a href="#documents">四类文档</a><a href="#bank">银行对账单</a><a href="#w2">W-2 表格</a><a href="#b1099">1099-B</a><a href="#contract">供应商合同</a><a href="#design">蓝图策略</a><a href="#production">生产落地</a><a href="#references">官方资料</a></nav><a class="case-toc-source" href="#case-source">案例价值 ↘</a></div></aside>
+<article>
+<section class="case-section case-overview" data-section="" id="overview">
+<p class="eyebrow">Document operations</p>
+<h2>金融文档自动化的难点，不是 OCR 识别率，而是字段能否进入真实业务流程。</h2>
+<p>金融机构每天处理数以千计的文档：税务表格、贷款报表、采购订单、银行对账单和供应商合同。文档看起来都是“表格和文字”，但真正进入业务系统时，每一种文档都有不同字段、不同版式、不同章节结构、不同命名方式，以及不同的校验要求。</p>
+<p>传统 OCR 通常解决的是“把图片里的字识别出来”。但业务团队真正需要的是：每笔交易的日期、金额和描述是否完整；W-2 的联邦税、州税、Box 12 代码和 Box 14 自由填写项是否被正确分组；1099-B 里同一证券在不同页面、不同描述下能否保持一致；供应商合同里的参与方、义务、期限和终止条件能否被结构化输出。</p>
+<p>Amazon Bedrock Data Automation（BDA）不是简单的 OCR 升级。它依托基础模型理解文档上下文、章节逻辑和字段关系，把原始文档转换为可执行结构化数据；同时通过自定义提取配置、置信度评分、视觉定位和幻觉缓解机制，帮助团队把 AI 提取结果纳入可复核的生产工作流。</p>
+<div class="case-question-panel">
+<div><small>本篇核心问题</small><h3>如何把“金融文档被读懂”，变成“字段被验证、结果可接入、异常可复核”？</h3></div>
+<div class="case-goal"><small>企业主视角</small><p>真正要买的不是一次 PDF 解析能力，而是一套能持续处理不同文档、稳定输出字段、让人工只复核低置信度或高风险项的运营能力。</p></div>
+</div>
+<div class="case-fact-grid">
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>文档类型</small><strong>对账单、税表、交易报表、合同</strong></div></div>
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><div><small>核心资产</small><strong>按业务流程设计的自定义 Blueprint</strong></div></div>
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>风险控制</small><strong>字段验证、置信度、视觉定位与人工复核</strong></div></div>
+<div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>下游动作</small><strong>会计入账、税务处理、合同审查、风控校验</strong></div></div>
+</div>
+</section>
+<section class="case-section" data-section="" id="blueprint">
+<p class="eyebrow">Blueprint</p>
+<h2>Blueprint 蓝图，是把金融文档提取变成稳定工作流的配置地图。</h2>
+<p>BDA 的核心配置单元是蓝图 Blueprint。它不是普通提示词，而是一份定义数据提取方式的配置模板：说明正在处理哪类文档，需要提取哪些字段，字段属于什么类型，如何组织数组或自定义对象，以及输出应该如何进入下游系统。</p>
+<div aria-label="BDA 自定义蓝图工作流" class="case-blueprint-flow">
+<article><small>01</small><h3>文档类型</h3><p>银行对账单、W-2、1099-B、合同等。</p></article>
+<span aria-hidden="true">→</span>
+<article><small>02</small><h3>Blueprint</h3><p>字段、类型、说明、验证规则和输出结构。</p></article>
+<span aria-hidden="true">→</span>
+<article><small>03</small><h3>BDA 提取</h3><p>理解版式、章节、上下文和表格关系。</p></article>
+<span aria-hidden="true">→</span>
+<article><small>04</small><h3>验证复核</h3><p>置信度、视觉定位、规则校验和人工处理。</p></article>
+<span aria-hidden="true">→</span>
+<article><small>05</small><h3>JSON / CSV</h3><p>进入会计、税务、合同或风控系统。</p></article>
+</div>
+<p>可以把蓝图理解为一张“提取地图”：它精确告诉 BDA 需要从哪里找什么信息，以什么类型表达，如何把多行表格、多组税务字段和自由文本条款变成结构化结果。BDA 提供内置目录蓝图，也支持自定义蓝图；在金融生产场景里，自定义蓝图尤其重要，因为字段口径和下游流程往往因企业而异。</p>
+<aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>判断标准</small><h3>蓝图设计质量，决定提取结果的准确性上限。</h3><p>字段是否拆得足够细、数组和对象是否符合业务系统、自由文本是否单独归类、金额字段是否定义为数字、同类文档是否需要多份蓝图，这些决定了输出能不能直接进入下游，而不是停留在“AI 看起来读出来了”。</p></div></aside>
+</section>
+<section class="case-section" data-section="" id="documents">
+<p class="eyebrow">Four document families</p>
+<h2>四类文档，分别验证交易明细、税务字段、上下文一致性和合同条款提取。</h2>
+<div class="case-document-grid">
+<article><span>01</span><small>Bank statement</small><h3>银行对账单</h3><p>跨页交易明细、借贷金额、描述和参考编号。</p></article>
+<article><span>02</span><small>W-2</small><h3>薪资税务表格</h3><p>联邦税、州税、Box 12 代码金额对和 Box 14 自由项。</p></article>
+<article><span>03</span><small>1099-B</small><h3>证券交易税表</h3><p>同一证券跨页面、跨描述的一致识别和交易字段提取。</p></article>
+<article><span>04</span><small>Vendor contract</small><h3>供应商合同</h3><p>非标准版式下的参与方、义务、期限、保密和终止条款。</p></article>
+</div>
+</section>
+<section class="case-section" data-section="" id="bank">
+<p class="eyebrow">Scenario 01</p>
+<h2>银行对账单：核心任务是把跨页交易明细稳定送入会计工作流。</h2>
+<p>银行对账单记录账户在特定周期内的全部金融活动，包括存款、取款和手续费。它的挑战在于交易记录数量大、经常跨越多页、格式和描述方式因银行而异。对财务团队而言，核心不是“读完整份 PDF”，而是精确捕获每笔交易的日期、金额、描述和参考编号，再输入自动化会计分类或对账流程。</p>
+<div class="case-schema-block"><div><small>蓝图设计</small><h3>主字段与自定义类型</h3></div><pre><code>主字段：
+- transactions: [TRANSACTION_DETAILS]
+
+TRANSACTION_DETAILS：
+  - date（日期）
+  - description（描述）
+  - debit（借方）: number
+  - credit（贷方）: number</code></pre></div>
+<p>提取结果能够以 CSV、JSON 和原始数据格式输出，便于对接下游会计系统。对企业来说，这类场景的收益最直接：减少人工录入错误、缩短对账周期，并把异常交易留给人工重点复核。</p>
+</section>
+<section class="case-section" data-section="" id="w2">
+<p class="eyebrow">Scenario 02</p>
+<h2>W-2 表格：标准表格不等于简单表格，关键在字段分组和代码配对。</h2>
+<p>W-2 表格用于报告收入和已预扣税款。它的结构看似标准，但信息维度复杂：联邦税和州税信息在表格上不一定以业务系统需要的方式分组；Box 12 可能包含多个代码，每个代码都对应不同薪酬或福利类型；Box 14 是自由填写项，雇主可以写入不属于其他专属格的信息，必须单独归类，不能污染结构化字段。</p>
+<div class="case-schema-block"><div><small>蓝图设计</small><h3>字段组与自定义类型</h3></div><pre><code>主字段：
+- employer_info: EmployerInfo
+- employee_general_info: EmployeeInfo
+- federal_tax_info: FederalTaxInfo
+- federal_wage_info: FederalWageInfo
+- filing_info: FilingInfo
+- state_taxes_table: [StateTaxInfo]
+- codes: [CodeAmount]
+- nonqualified_plans_income: number
+- other
+
+自定义类型：
+1. EmployerInfo：ein、雇主名称、地址、邮编、控制编号
+2. EmployeeInfo：社安号、姓名、地址、邮编
+3. FederalWageInfo：应税工资、社保工资、医保工资、社保小费
+4. FederalTaxInfo：联邦所得税、社保税、医保税、分配小费
+5. StateTaxInfo：州名、雇主州税 ID、州应税工资、州所得税、地方工资、地方所得税、地方名称
+6. CodeAmount：code、amount: number
+7. FilingInfo：OMB 编号、验证码</code></pre></div>
+<p>提取结果重点解决三类复杂场景：联邦税和州税信息被正确关联分组；Box 12 的多个代码-金额对被准确配对；Box 14 的自由填写内容被单独归类。这样输出才能进入税务处理，而不是让人工重新拆字段。</p>
+</section>
+<section class="case-section" data-section="" id="b1099">
+<p class="eyebrow">Scenario 03</p>
+<h2>1099-B：真正考验的是跨交易记录的上下文一致性。</h2>
+<p>IRS 1099-B 用于追踪证券交易活动、经纪商促成的交易以及易货交易。它的复杂性在于，同一证券的多笔交易记录可能使用不同描述方式出现，系统需要在整个文档处理过程中保持上下文一致性，正确识别并关联同一证券的不同交易。</p>
+<div class="case-schema-block"><div><small>蓝图设计</small><h3>交易字段结构</h3></div><pre><code>TRANSACTION_DETAILS：
+  - security_description（证券描述）
+  - quantity_sold（卖出数量）: number
+  - date_acquired（取得日期）
+  - date_sold_or_disposed（卖出或处置日期）
+  - proceeds（所得金额）: number
+  - cost_or_other_basis（成本或其他基础）: number
+  - gainloss_amount（盈亏金额）: number
+  - additional_information（附加信息）</code></pre></div>
+<p>在该场景中，系统需要统一识别同一证券描述符，即使它以不同方式出现在不同交易记录中。这验证的是 BDA 的文档级上下文理解能力，而不是逐行孤立解析能力。对税务和投资运营团队来说，这类一致性直接影响成本基础、盈亏计算和后续申报质量。</p>
+</section>
+<section class="case-section" data-section="" id="contract">
+<p class="eyebrow">Scenario 04</p>
+<h2>供应商合同：没有标准模板时，自定义蓝图就是业务规则的载体。</h2>
+<p>供应商合同没有统一行业模板，每家企业都需要根据自身运营工作流和法务审查需求定义字段。这是典型的“无内置蓝图”场景，完全依赖自定义蓝图把非标准文本转换为结构化条款。</p>
+<div class="case-schema-block"><div><small>蓝图设计</small><h3>合同要素提取</h3></div><pre><code>主字段：
+- PARTICIPANT_DETAILS: PARTICIPANT_DETAILS
+- effective_date（生效日期）
+- time_period（时间周期）
+- participant_requirements: PARTICIPANT_REQUIREMENTS
+- confidentiality_obligations（保密义务）
+- TERM_AND_TERMINATION: TERM_AND_TERMINATION
+
+自定义类型：
+1. PARTICIPANT_DETAILS：参与方名称、授权代表
+2. PARTICIPANT_REQUIREMENTS：分配资源、参与方义务、参与方限制
+3. TERM_AND_TERMINATION：合同期限、终止条件</code></pre></div>
+<p>提取结果输出为结构化 JSON，可对接合同管理系统或法务审查工作流。对合同场景来说，不能只看字段是否提取出来，还要看低置信度条款、缺失条款、异常终止条件和高风险义务是否能进入人工复核队列。</p>
+</section>
+<section class="case-section" data-section="" id="design">
+<p class="eyebrow">Blueprint strategy</p>
+<h2>一份蓝图还是多份蓝图，取决于工作流差异和文档版式差异。</h2>
+<p>通常情况下，针对特定文档类型创建一份自定义蓝图即可满足提取需求。但如果同类文档服务于不同工作流，或者不同来源文档版式差异显著，就应考虑创建多份蓝图。</p>
+<div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>适合一份蓝图</small><h3>字段目标稳定，格式差异可控。</h3><ul><li>同类银行对账单只需要交易明细</li><li>W-2 输出字段稳定，差异集中在缺失项</li><li>下游系统能容忍可选字段为空</li><li>人工复核主要关注低置信度字段</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>适合多份蓝图</small><h3>工作流或版式差异会改变输出结构。</h3><ul><li>同样是对账单，一个流程只要交易明细，另一个还要账户汇总</li><li>不同银行对账单版式差异过大</li><li>合同按采购、外包、渠道合作需要不同条款集合</li><li>高风险字段需要不同验证规则和人工升级路径</li></ul></article></div>
+<p>蓝图创建完成后，可以作为工作流标准组件复用。对于同一蓝图，如果输入文档包含不同数据字段，BDA 可能返回略有差异的结构化输出。由于输出是 JSON，下游规则可以处理可选字段、缺失字段和低置信度字段；关键是提前定义哪些字段可以为空，哪些字段必须触发人工复核。</p>
+</section>
+<section class="case-section" data-section="" id="production">
+<p class="eyebrow">Production workflow</p>
+<h2>生产环境里的文档 AI，必须同时考虑准确性、可解释性、成本和合规。</h2>
+<p>金融文档处理的终点不是“模型回答正确”，而是“字段进入系统后不会制造新的运营风险”。因此，生产化需要把确定性规则与 AI 提取结合起来：标准格式字段可以用规则和类型约束处理；需要上下文理解的内容，例如合同义务、1099-B 证券描述、自由填写项归类，则交给模型理解，再通过置信度、视觉定位和人工复核闭环控制风险。</p>
+<ol class="case-process"><li><span>01</span><div><h3>文档分类与蓝图匹配</h3><p>先判断文档类型，再使用对应自定义 Blueprint，避免用一个泛化提示词处理所有格式。</p></div></li><li><span>02</span><div><h3>字段提取与类型约束</h3><p>金额、日期、代码、数组和对象都要按业务系统需要输出，而不是只返回自然语言摘要。</p></div></li><li><span>03</span><div><h3>置信度与视觉定位复核</h3><p>低置信度字段、高金额字段、关键合同条款和税务代码进入人工复核队列。</p></div></li><li><span>04</span><div><h3>下游系统集成</h3><p>JSON / CSV 输出进入会计、税务、合同管理和风控系统，异常项保留可追溯记录。</p></div></li></ol>
+<div class="case-reading-note"><strong>三个核心收获</strong><p>第一，自定义蓝图的设计质量决定输出可用性；第二，混合确定性规则与 AI 上下文提取，通常比单一路径更可靠；第三，输出即集成，只有 JSON / CSV 结构能直接对接业务系统，文档 AI 才能从演示走向运营。</p></div>
+<aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>敏感数据提醒</small><h3>金融文档含有高度敏感信息，生产环境必须按机构安全和合规要求设计。</h3><p>处理税务、银行、合同和个人身份信息时，应遵循所在机构的网络安全、隐私、数据留存、访问控制和适用地区监管要求，例如 GDPR 或行业特定规则。系统设计要把权限、审计、加密、人工复核和异常升级作为默认能力，而不是上线后补丁。</p></div></aside>
+</section>
+<section class="case-section" data-section="" id="references">
+<p class="eyebrow">Technical context</p>
+<h2>BDA 的价值，是让文档理解能力成为可配置、可复用、可审计的工作流组件。</h2>
+<p>在企业项目中，BDA 适合承担“从非结构化/半结构化金融文档到结构化字段”的入口层；后续仍需要结合企业自己的数据治理、权限体系、复核机制和系统集成来完成闭环。</p>
+<div class="case-reference-list"><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda.html" rel="noopener" target="_blank">Amazon Bedrock Data Automation 官方文档</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-custom-output-idp.html" rel="noopener" target="_blank">BDA 自定义输出与 Blueprint 配置</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-blueprints.html" rel="noopener" target="_blank">BDA Blueprints 官方说明</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-output-documents.html" rel="noopener" target="_blank">BDA 文档输出结构</a></div>
+</section>
+</article>
+</div>
+<section class="case-related">
+<div class="container">
+<div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例&amp;博客 →</a></div>
+<div class="case-related-grid">
+<a class="case-related-card" href="case-supply-chain-agentic-decision.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/supply-chain-agentic-decision-hero.png"/><div><small>供应链决策系统</small><h3>多智能体 AI 如何把数据转化为行动</h3><p>语义层、MCP、根因归因和行动通知</p><span>继续阅读 <b>↗</b></span></div></a>
+<a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"/><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
+<a class="case-related-card" href="case-manufacturing-pid-intelligence.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/thumb-manufacturing-pid.webp"/><div><small>制造业知识资产化</small><h3>P&amp;ID 图纸如何变成可查询运营知识</h3><p>静态图纸、知识图谱、工程师复核和可追溯问答</p><span>继续阅读 <b>↗</b></span></div></a>
+</div>
+</div>
+</section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一类高频金融文档，把字段、复核和下游系统串起来。</h2><p>用一次 Q2Q 场景诊断，判断你的文档类型、蓝图粒度、人工复核边界和系统集成路径。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&amp;博客</a></div></div></section>
+<section aria-labelledby="financial-case-source-title" class="case-source-foot" id="case-source"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>案例价值</small><h2 id="financial-case-source-title">文档自动化的核心不是少录几个字段，而是让金融运营获得可复用的数据入口。</h2><p>当 Blueprint、置信度、视觉定位、验证规则和下游 JSON / CSV 接口被设计清楚后，文档处理才会从“人工录入外包”升级为企业自己的数据自动化能力。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+</main>
+<footer class="site-footer">
+<div class="container footer-main">
+<div class="footer-brand">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+<p>面向企业的 AI 原生增长运行层。<br/>从高价值场景、安全落地到持续运营。</p>
+</div>
+<div class="footer-col"><h3>企业服务</h3>
+<a href="service-ai-enablement.html">企业 AI 赋能计划</a>
+<a href="service-data-governance.html">数据治理</a>
+<a href="service-agent-build.html">企业 Agent 搭建</a>
+<a href="service-ai-training.html">企业 AI 培训</a>
+</div>
+<div class="footer-col"><h3>工具与资源</h3>
+<a href="navigator.html">AI 场景诊断</a>
+<a href="playbook.html">企业 AI 实战手册</a>
+<a href="category-hrms.html">HR AI 场景地图</a>
+<a href="document-viewer.html?doc=playbook">PDF 阅读器</a>
+</div>
+<div class="footer-col"><h3>案例&amp;博客与行动</h3>
+<a href="cases.html">案例&amp;博客</a>
+<a href="case-wren-kitchens.html">Wren Kitchens 案例</a>
+<button class="footer-search search-trigger" type="button">全站搜索</button>
+<a href="navigator.html">开始诊断</a>
+<a href="contact.html">联系</a>
+</div>
+</div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span></div>
+</footer>
+<div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
+<div class="search-modal-backdrop" data-search-close=""></div>
+<div class="search-modal-panel">
+<h2 class="sr-only" id="search-modal-title">搜索 ForFlow</h2>
+<form action="search.html" class="search-modal-form" method="get">
+<span class="search-modal-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg></span>
+<input aria-label="搜索关键词" autocomplete="off" name="search" placeholder="输入服务、场景或资料，例如：Agent" type="search"/>
+<button class="btn btn--green" type="submit">搜索</button>
+</form>
+<button class="search-modal-close" data-search-close="" type="button">关闭 <span aria-hidden="true">×</span></button>
+<div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=供应链">供应链</a><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+</div>
+</div>
+</body></html>

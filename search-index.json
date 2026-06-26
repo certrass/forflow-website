@@ -1,5 +1,5 @@
 {
-  "version": "20260625-supply-architecture-figure-v15",
+  "version": "20260626-contact-page-v26",
   "types": [
     {
       "type": "category",
@@ -15,7 +15,7 @@
     },
     {
       "type": "case",
-      "label": "案例"
+      "label": "案例&博客"
     }
   ],
   "items": [
@@ -144,6 +144,28 @@
       ]
     },
     {
+      "id": "contact",
+      "type": "resource",
+      "href": "contact.html",
+      "kicker": "联系方式",
+      "title": "联系 ForFlow 萬維流形",
+      "description": "ForFlow 萬維流形联系方式：邮件联系 hello@forflow.ai，北京、上海、深圳可沟通。",
+      "action": "查看联系方式 →",
+      "priority": 7,
+      "keywords": [
+        "联系",
+        "联系方式",
+        "邮箱",
+        "咨询",
+        "合作",
+        "万维流形",
+        "ForFlow",
+        "北京",
+        "上海",
+        "深圳"
+      ]
+    },
+    {
       "id": "resource-solutions",
       "type": "resource",
       "href": "document-viewer.html?doc=solutions",
@@ -254,6 +276,54 @@
         "多智能体 AI 如何将供应链数据转化为决策与行动",
         "从控制塔的数据可见性，走向自然语言查询、异常钻取、根因归因和行动协同的完整决策链。",
         "retail data service"
+      ]
+    },
+    {
+      "id": "financial-bda-document-automation",
+      "type": "case",
+      "href": "case-financial-bda-document-automation.html",
+      "kicker": "金融文档 · Bedrock Data Automation",
+      "title": "金融：用 BDA 自动化提取文档数据",
+      "description": "从四类金融文档到自定义 Blueprint，说明如何提取、验证并接入会计、税务和合同工作流。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "金融 文档 金融文档 Amazon Bedrock Data Automation BDA Blueprint 蓝图 OCR IDP 智能文档处理 银行对账单 bank statement W-2 W2 1099-B 1099B 税务表格 供应商合同 vendor contract 结构化提取 JSON CSV 置信度 视觉定位 visual grounding 幻觉缓解 字段验证 会计 对账 税务 合同管理",
+        "用 BDA 自动化提取金融文档数据",
+        "围绕银行对账单、W-2、1099-B 和供应商合同，讲清 Blueprint 如何把文档提取变成可复用工作流。",
+        "finance data service"
+      ]
+    },
+    {
+      "id": "vanguard-virtual-analyst",
+      "type": "case",
+      "href": "case-vanguard-virtual-analyst.html",
+      "kicker": "金融分析 · AI-ready data",
+      "title": "金融：先锋集团虚拟分析师与 AI 就绪数据",
+      "description": "八项原则解释为什么企业对话式分析的关键不是换模型，而是数据产品、语义层、质量和持续评估。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "先锋集团 Vanguard 虚拟分析师 AI-ready data AI 就绪数据 金融分析师 SQL 自助分析 数据架构 数据产品 运营模式 元数据目录 语义层 业务元数据 技术元数据 示例库 回归测试 数据质量 变更控制 持续评估 Bedrock Guardrails ECS DynamoDB S3 SageMaker Redshift Glue 知识图谱 RAG 合规 安全",
+        "先锋集团虚拟分析师：AI 就绪数据的八项原则",
+        "从 SQL 等待、指标口径和数据治理出发，说明金融企业如何把对话式 AI 建在可靠数据基础上。",
+        "finance data service"
+      ]
+    },
+    {
+      "id": "agent-evaluation-first",
+      "type": "case",
+      "href": "case-agent-evaluation-first.html",
+      "kicker": "企业 Agent · Evaluation-first",
+      "title": "企业 Agent：为什么评估是一切的起点",
+      "description": "解释企业智能体从 Demo 走向生产时，为什么要先建立评估基线、ADLC 飞轮、Trace 和可评估架构。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "企业智能体 Agent AI Agent Evaluation 评估 评测 ADLC Agent Development Lifecycle 原型 生产可信赖 单元测试 非确定性 Prompt 变更 静默漂移 CI CD LLM-as-a-Judge 基准数据集 工具选择 参数提取 拒绝准确率 延迟 Token 可观测性 Trace OpenTelemetry 漂移检测 A/B测试 多智能体 解耦 Supervisor MCP A2A Gateway Policy 安全 个性化",
+        "企业智能体之旅：为什么评估是一切的起点",
+        "从原型到生产的鸿沟、ADLC 飞轮、持续评估、可观测性和可评估架构。",
+        "service data"
       ]
     }
   ]

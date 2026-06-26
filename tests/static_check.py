@@ -42,6 +42,18 @@ for path in html_files:
     ids=[tag.get('id') for tag in soup.find_all(attrs={'id':True}) if tag.get('id')]
     dups=sorted({x for x in ids if ids.count(x)>1})
     if dups: errors.append(f'{path.name}: duplicate ids {dups}')
+    symbol_ids={tag.get('id') for tag in soup.find_all('symbol') if tag.get('id')}
+    icon_refs={
+        ref[1:]
+        for ref in (
+            (use.get('href') or use.get('xlink:href') or '')
+            for use in soup.find_all('use')
+        )
+        if ref.startswith('#')
+    }
+    missing_icons=sorted(icon_refs-symbol_ids)
+    if missing_icons:
+        errors.append(f'{path.name}: missing svg symbols {missing_icons}')
     if not soup.find('meta',attrs={'name':'viewport'}): errors.append(f'{path.name}: missing viewport')
     if not soup.find('link',attrs={'rel':lambda x:x and 'stylesheet' in x}): errors.append(f'{path.name}: missing stylesheet')
     if not soup.find(attrs={'data-search-modal':True}): errors.append(f'{path.name}: missing search modal')
@@ -67,7 +79,7 @@ for path in html_files:
     }
 
 # acceptance checks
-required=['index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','case-supply-chain-agentic-decision.html','case-financial-bda-document-automation.html','search.html','document-viewer.html']
+required=['index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','case-supply-chain-agentic-decision.html','case-financial-bda-document-automation.html','case-vanguard-virtual-analyst.html','case-agent-evaluation-first.html','search.html','document-viewer.html']
 for name in required:
     if not (ROOT/name).exists(): errors.append(f'missing required page: {name}')
 for name in required[4:8]:

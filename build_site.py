@@ -13,7 +13,7 @@ import re
 
 SEARCH_ICON = '''<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg>'''
 ARROW = '<span class="arrow" aria-hidden="true">→</span>'
-ASSET_VERSION = '20260625-financial-bda-case-v16'
+ASSET_VERSION = '20260626-contact-page-v26'
 CSS_VERSION = ASSET_VERSION
 SCRIPT_VERSION = ASSET_VERSION
 
@@ -22,7 +22,7 @@ NAV_ITEMS = [
     ('index.html#services', '企业服务', 'services'),
     ('navigator.html', 'AI 场景诊断', 'navigator'),
     ('playbook.html', '企业 AI 手册', 'playbook'),
-    ('cases.html', '案例', 'cases'),
+    ('cases.html', '案例&博客', 'cases'),
 ]
 
 SERVICE_LINKS = [
@@ -158,6 +158,36 @@ CASE_LIBRARY_ITEMS = [
         'search_description': '从四类金融文档到自定义 Blueprint，说明如何提取、验证并接入会计、税务和合同工作流。',
     },
     {
+        'id': 'vanguard-virtual-analyst',
+        'href': 'case-vanguard-virtual-analyst.html',
+        'tags': ['finance', 'data', 'service'],
+        'kicker': '金融分析 · AI-ready data',
+        'title': '先锋集团虚拟分析师：AI 就绪数据的八项原则',
+        'description': '从 SQL 等待、指标口径和数据治理出发，说明金融企业如何把对话式 AI 建在可靠数据基础上。',
+        'visual': {'type': 'media', 'src': 'assets/cases/vanguard-virtual-analyst-hero.png', 'label': '虚拟分析师'},
+        'link_label': '阅读案例 <b>↗</b>',
+        'search': True,
+        'search_text': '先锋集团 Vanguard 虚拟分析师 AI-ready data AI 就绪数据 金融分析师 SQL 自助分析 数据架构 数据产品 运营模式 元数据目录 语义层 业务元数据 技术元数据 示例库 回归测试 数据质量 变更控制 持续评估 Bedrock Guardrails ECS DynamoDB S3 SageMaker Redshift Glue 知识图谱 RAG 合规 安全',
+        'search_kicker': '金融分析 · AI-ready data',
+        'search_title': '金融：先锋集团虚拟分析师与 AI 就绪数据',
+        'search_description': '八项原则解释为什么企业对话式分析的关键不是换模型，而是数据产品、语义层、质量和持续评估。',
+    },
+    {
+        'id': 'agent-evaluation-first',
+        'href': 'case-agent-evaluation-first.html',
+        'tags': ['service', 'data'],
+        'kicker': '企业 Agent · Evaluation-first',
+        'title': '企业智能体之旅：为什么评估是一切的起点',
+        'description': '从原型到生产的鸿沟、ADLC 飞轮、持续评估、可观测性和可评估架构。',
+        'visual': {'type': 'media', 'src': 'assets/cases/agent-evaluation-first-hero.png', 'label': 'Agent 评估'},
+        'link_label': '阅读案例 <b>↗</b>',
+        'search': True,
+        'search_text': '企业智能体 Agent AI Agent Evaluation 评估 评测 ADLC Agent Development Lifecycle 原型 生产可信赖 单元测试 非确定性 Prompt 变更 静默漂移 CI CD LLM-as-a-Judge 基准数据集 工具选择 参数提取 拒绝准确率 延迟 Token 可观测性 Trace OpenTelemetry 漂移检测 A/B测试 多智能体 解耦 Supervisor MCP A2A Gateway Policy 安全 个性化',
+        'search_kicker': '企业 Agent · Evaluation-first',
+        'search_title': '企业 Agent：为什么评估是一切的起点',
+        'search_description': '解释企业智能体从 Demo 走向生产时，为什么要先建立评估基线、ADLC 飞轮、Trace 和可评估架构。',
+    },
+    {
         'tags': ['data', 'service'],
         'kicker': '文档流程 · TSH 公开案例引用',
         'title': '文档审阅与投标 Agent',
@@ -177,7 +207,7 @@ SEARCH_TYPE_LABELS = {
     'category': '方案分类',
     'service': '企业服务',
     'resource': '资料',
-    'case': '案例',
+    'case': '案例&博客',
 }
 
 SEARCH_CORE_ITEMS = [
@@ -246,6 +276,17 @@ SEARCH_CORE_ITEMS = [
         'action': '在线查看 →',
         'priority': 6,
         'keywords': ['GenAI', '生成式 AI', 'playbook', '手册', 'RAG', '风险', '买还是建'],
+    },
+    {
+        'id': 'contact',
+        'type': 'resource',
+        'href': 'contact.html',
+        'kicker': '联系方式',
+        'title': '联系 ForFlow 萬維流形',
+        'description': 'ForFlow 萬維流形联系方式：邮件联系 hello@forflow.ai，北京、上海、深圳可沟通。',
+        'action': '查看联系方式 →',
+        'priority': 7,
+        'keywords': ['联系', '联系方式', '邮箱', '咨询', '合作', '万维流形', 'ForFlow', '北京', '上海', '深圳'],
     },
     {
         'id': 'resource-solutions',
@@ -425,7 +466,7 @@ def header(active=''):
 <div class="ff-utility-bar">
   <div class="container ff-utility-inner">
     <span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
-    <nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例中心</a><a href="index.html#contact">方案沟通</a></nav>
+    <nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例&博客</a><a href="contact.html">联系</a></nav>
   </div>
 </div>
 <header class="site-header ff-header" data-header>
@@ -455,7 +496,7 @@ def header(active=''):
             <div class="mega-feature-stack">
               <a class="mega-feature" href="navigator.html"{current_attr(active in {'navigator', 'navigator-results'})}><span>{ff_icon('i-compass')}</span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
               <a class="mega-feature" href="category-hrms.html"{current_attr(active == 'category-hrms')}><span>{ff_icon('i-people')}</span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
-              <button class="mega-feature search-trigger" type="button"><span>{ff_icon('i-search')}</span><div><b>全站搜索</b><small>查找服务、场景、资料与案例</small></div><em>搜索</em></button>
+              <button class="mega-feature search-trigger" type="button"><span>{ff_icon('i-search')}</span><div><b>全站搜索</b><small>查找服务、场景、资料、案例与博客</small></div><em>搜索</em></button>
             </div>
           </div>
         </li>
@@ -464,13 +505,14 @@ def header(active=''):
           <div class="mega-panel mega-panel--insights" data-mega-panel>
             <a class="mega-editorial" href="playbook.html"{current_attr(active == 'playbook')}><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 {ff_icon('i-arrow')}</span></a>
             <div class="mega-insight-list">
-              <a href="cases.html"><span>{ff_icon('i-cases')}</span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
+              <a href="cases.html"><span>{ff_icon('i-cases')}</span><div><b>案例&博客</b><small>按问题、过程和结果阅读案例与文章</small></div></a>
               <a href="case-wren-kitchens.html"><span>{ff_icon('i-growth')}</span><div><b>Wren Kitchens 案例</b><small>从紧急扩容到长期技术合作</small></div></a>
               <a href="document-viewer.html?doc=playbook"{current_attr(active == 'document-viewer')}><span>{ff_icon('i-document')}</span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
             </div>
           </div>
         </li>
-        <li><a href="cases.html"{current_attr(cases_active)}>案例</a></li>
+        <li><a href="cases.html"{current_attr(cases_active)}>案例&博客</a></li>
+        <li><a href="contact.html"{current_attr(active == 'contact')}>联系</a></li>
       </ul>
     </nav>
     <div class="header-actions">
@@ -484,8 +526,9 @@ def header(active=''):
   <a class="mobile-menu-home" href="index.html"{current_attr(active == 'home')}>首页 <span>01</span></a>
   <details{' open' if services_active else ''}><summary>企业服务 <span>02</span></summary><div class="mobile-subnav">{service_mobile}</div></details>
   <details{' open' if tools_active else ''}><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html"{current_attr(active in {'navigator', 'navigator-results'})}>AI 场景诊断</a><a href="category-hrms.html"{current_attr(active == 'category-hrms')}>HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
-  <details{' open' if insights_active else ''}><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html"{current_attr(active == 'playbook')}>企业 AI 实战手册</a><a href="cases.html">案例中心</a><a href="document-viewer.html?doc=playbook"{current_attr(active == 'document-viewer')}>PDF 阅读器</a></div></details>
-  <a href="cases.html"{current_attr(cases_active)}>案例 <span>05</span></a>
+  <details{' open' if insights_active else ''}><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html"{current_attr(active == 'playbook')}>企业 AI 实战手册</a><a href="cases.html">案例&博客</a><a href="document-viewer.html?doc=playbook"{current_attr(active == 'document-viewer')}>PDF 阅读器</a></div></details>
+  <a href="cases.html"{current_attr(cases_active)}>案例&博客 <span>05</span></a>
+  <a href="contact.html"{current_attr(active == 'contact')}>联系 <span>06</span></a>
   <a class="btn btn--green" href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">→</span></a>
 </div>'''
 
@@ -509,11 +552,12 @@ def footer():
       <a href="category-hrms.html">HR AI 场景地图</a>
       <a href="document-viewer.html?doc=playbook">PDF 阅读器</a>
     </div>
-    <div class="footer-col"><h3>案例与行动</h3>
-      <a href="cases.html">案例中心</a>
+    <div class="footer-col"><h3>案例&博客与行动</h3>
+      <a href="cases.html">案例&博客</a>
       <a href="case-wren-kitchens.html">Wren Kitchens 案例</a>
       <button class="footer-search search-trigger" type="button">全站搜索</button>
       <a href="navigator.html">开始诊断</a>
+      <a href="contact.html">联系</a>
     </div>
   </div>
   <div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span></div>
@@ -898,18 +942,18 @@ category_body='''
 (ROOT/'category-hrms.html').write_text(page('人力资源与组织效率场景','招聘、入职、员工服务、培训、绩效与 HR 分析的 AI 场景地图。','category-hrms',category_body,'category-page'),encoding='utf-8')
 
 cases_body=f'''
-<section class="cases-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>案例</strong></nav><p class="eyebrow">Case studies</p><h1>从业务问题到<br>可验证结果。</h1><p>案例页不只展示技术，而是回答为什么做、如何做、谁参与、怎样验证，以及下一步怎么扩展。</p><div class="case-filter-bar"><button class="is-active" data-case-filter="all">全部</button><button data-case-filter="manufacturing">工业与制造</button><button data-case-filter="healthcare">医疗与高合规</button><button data-case-filter="service">客户服务</button><button data-case-filter="education">教育</button><button data-case-filter="data">数据与运营</button></div></div></section>
+<section class="cases-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>案例&博客</strong></nav><p class="eyebrow">Case studies &amp; blog</p><h1>从业务问题到<br>可验证结果。</h1><p>案例&博客不只展示技术细节，也回答为什么做、如何做、谁参与、怎样验证，以及下一步如何扩展。</p><div class="case-filter-bar"><button class="is-active" data-case-filter="all">全部</button><button data-case-filter="manufacturing">工业与制造</button><button data-case-filter="healthcare">医疗与高合规</button><button data-case-filter="service">客户服务</button><button data-case-filter="education">教育</button><button data-case-filter="data">数据与运营</button></div></div></section>
 <section class="section-pad"><div class="container case-library">
 {render_case_library(featured=True)}
 <div class="case-library-grid">
 {render_case_library(featured=False)}
-</div><p class="source-note">案例中心持续收录可拆解、可复用、可验证的企业 AI 落地样板，帮助团队把标杆实践转化为自己的场景诊断与交付路径。</p></div></section>
+</div><p class="source-note">案例&博客持续收录可拆解、可复用、可验证的企业 AI 落地样板，帮助团队把标杆实践转化为自己的场景诊断与交付路径。</p></div></section>
 <section class="case-method section-pad section-ink"><div class="container"><div class="section-head"><div><p class="eyebrow eyebrow--light">A useful case study</p><h2 class="section-title">一个可信案例，<br>至少回答五个问题。</h2></div></div><ol class="case-method-list"><li><span>01</span><p>原来的业务问题和基线是什么？</p></li><li><span>02</span><p>为什么选择这个场景和方法？</p></li><li><span>03</span><p>数据、系统、团队和风险如何处理？</p></li><li><span>04</span><p>用哪些指标证明效果？</p></li><li><span>05</span><p>下一步如何运营和扩展？</p></li></ol></div></section>
 '''
-(ROOT/'cases.html').write_text(page('企业 AI 案例中心','企业 AI、数据、Agent 和组织赋能案例结构与公开案例摘要。','cases',cases_body,'cases-page'),encoding='utf-8')
+(ROOT/'cases.html').write_text(page('企业 AI 案例&博客','企业 AI、数据、Agent 和组织赋能案例与博客索引。','cases',cases_body,'cases-page'),encoding='utf-8')
 
 case_detail_body='''
-<section class="case-detail-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例</a><span>/</span><strong>Wren Kitchens</strong></nav><p class="eyebrow">Public case reference</p><h1>Wren Kitchens：<br>从紧急团队扩容到长期技术合作。</h1><p>这是一篇公开案例的结构化解读，用来说明企业在高速增长、系统复杂和内部团队承压时，如何先稳住关键流程，再把外部技术能力沉淀为长期协作能力。</p><div class="case-detail-metrics"><div><strong>31</strong><span>公开资料中的合作团队规模</span></div><div><strong>1 分钟 → 约 5 秒</strong><span>关键产品浏览服务加载优化</span></div><div><strong>多业务模块</strong><span>安装、物流、产品、QA、移动应用</span></div></div><div class="case-detail-visual case-art--wren"><span>MANUFACTURING × RETAIL × SOFTWARE DELIVERY</span></div></div></section>
+<section class="case-detail-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&博客</a><span>/</span><strong>Wren Kitchens</strong></nav><p class="eyebrow">Public case reference</p><h1>Wren Kitchens：<br>从紧急团队扩容到长期技术合作。</h1><p>这是一篇公开案例的结构化解读，用来说明企业在高速增长、系统复杂和内部团队承压时，如何先稳住关键流程，再把外部技术能力沉淀为长期协作能力。</p><div class="case-detail-metrics"><div><strong>31</strong><span>公开资料中的合作团队规模</span></div><div><strong>1 分钟 → 约 5 秒</strong><span>关键产品浏览服务加载优化</span></div><div><strong>多业务模块</strong><span>安装、物流、产品、QA、移动应用</span></div></div><div class="case-detail-visual case-art--wren"><span>MANUFACTURING × RETAIL × SOFTWARE DELIVERY</span></div></div></section>
 <div class="container case-detail-shell case-story-shell"><aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#challenge">业务挑战</a><a href="#takeover">快速接管</a><a href="#modules">合作模块</a><a href="#impact">公开影响</a><a href="#lessons">可复用经验</a></nav></div></aside><article>
 <section id="challenge" data-section class="case-section"><p class="eyebrow">Challenge</p><h2>增长很快的企业，最怕系统能力追不上业务节奏。</h2><p>公开案例显示，Wren Kitchens 在结束上一家供应商合作后，需要快速补充开发能力，同时保持质量、可靠性和按期交付。当地专业人才有限，路线图又会随业务变化，因此企业不仅需要“人手”，还需要能接管知识、处理高风险工作并灵活扩缩的伙伴。</p><ul><li>需要立即补充大量 PHP 开发能力</li><li>短期与长期项目并存，团队规模需要灵活变化</li><li>未来几个季度的技术工作难以完全提前规划</li><li>关键业务要求稳定、准时且可持续交付</li></ul></section>
 <section id="takeover" data-section class="case-section"><p class="eyebrow">Project takeover</p><h2>没有完整交接窗口，也要先稳住业务，再谈优化。</h2><p>新团队直接进入已有内部 IT 组织。由于客户拥有清晰文档和技术责任，新伙伴可以从第一天建立可靠知识基础。重点不是立即大改系统，而是确认责任、运行风险、关键流程和可快速改善的事项。</p><div class="case-quote"><blockquote>先建立稳定交付与信任，再逐步承担更复杂、更关键的业务模块。</blockquote><footer>案例页面结构总结</footer></div></section>
@@ -924,7 +968,7 @@ case_detail_body='''
 automotive_dfmea_body='''
 <section class="case-study-hero">
   <div class="container">
-    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例中心</a><span>/</span><strong>汽车工程与安全关键零部件</strong></nav>
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&博客</a><span>/</span><strong>汽车工程与安全关键零部件</strong></nav>
     <div class="case-study-hero__grid">
       <div class="case-study-hero__copy">
         <div class="case-study-meta"><span>案例 Blog · 上篇</span><span>汽车安全关键件</span><span>B 柱 DFMEA</span><span>知识流失治理</span></div>
@@ -1040,7 +1084,7 @@ automotive_dfmea_body='''
 </div>
 <section class="case-related">
   <div class="container">
-    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例 →</a></div>
+    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例&博客 →</a></div>
     <div class="case-related-grid">
       <a class="case-related-card" href="case-manufacturing-pid-intelligence.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/thumb-manufacturing-pid.webp"><div><small>制造业知识资产化</small><h3>P&amp;ID 图纸如何变成可查询运营知识</h3><p>静态图纸、知识图谱、工程师复核和可追溯问答</p><span>继续阅读 <b>↗</b></span></div></a>
       <a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
@@ -1048,7 +1092,7 @@ automotive_dfmea_body='''
     </div>
   </div>
 </section>
-<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>不要先问用哪个模型，先问知识能否被推理和复评。</h2><p>把真实流程、材料工艺、历史失效和验证责任带进一次场景诊断，判断这个 AI 工作单元是否具备上线资格。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例中心</a></div></div></section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>不要先问用哪个模型，先问知识能否被推理和复评。</h2><p>把真实流程、材料工艺、历史失效和验证责任带进一次场景诊断，判断这个 AI 工作单元是否具备上线资格。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&博客</a></div></div></section>
 <section class="case-source-foot" id="case-source" aria-labelledby="case-source-title"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-reference"></use></svg></span><div><small>案例价值</small><h2 id="case-source-title">这不是“AI 写 DFMEA”，而是把安全关键工程知识变成可复用资产。</h2><p>对企业来说，真正的收益来自三件事：减少遗漏，统一判断口径，保留工程经验。本体智能体让 DFMEA 从一次性会议和静态表格，变成随设计、法规、现场反馈和工程变更持续演进的风险情报系统。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
 '''
 (ROOT/'case-automotive-dfmea-ontology-agent.html').write_text(page('基于本体的智能体 AI 如何重塑安全关键型汽车零部件的 DFMEA（上篇）','以 B 柱 DFMEA 为例，解释工程本体、RFLP、智能体 AI 和多项目知识迁移如何重塑安全关键汽车零部件风险分析。','case-automotive-dfmea-ontology-agent',automotive_dfmea_body,'case-detail-page case-theme--automotive case-study-v2'),encoding='utf-8')
@@ -1056,7 +1100,7 @@ automotive_dfmea_body='''
 supply_chain_agentic_body='''
 <section class="case-study-hero case-study-hero--supply">
   <div class="container">
-    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例中心</a><span>/</span><strong>零售供应链与多智能体决策</strong></nav>
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&博客</a><span>/</span><strong>零售供应链与多智能体决策</strong></nav>
     <div class="case-study-hero__grid">
       <div class="case-study-hero__copy">
         <div class="case-study-meta"><span>案例 Blog</span><span>零售供应链</span><span>多智能体 AI</span><span>从洞察到行动</span></div>
@@ -1074,7 +1118,7 @@ supply_chain_agentic_body='''
   </div>
 </section>
 <div class="container case-detail-shell case-story-shell">
-  <aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#challenge">决策问题</a><a href="#bottleneck">控制塔瓶颈</a><a href="#architecture">架构设计</a><a href="#design-decisions">关键设计</a><a href="#workflow">履行分析</a><a href="#operating-model">企业落地</a><a href="#references">技术背景</a></nav><a class="case-toc-source" href="cases.html">返回案例中心</a></div></aside>
+  <aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#challenge">决策问题</a><a href="#bottleneck">控制塔瓶颈</a><a href="#architecture">架构设计</a><a href="#design-decisions">关键设计</a><a href="#workflow">履行分析</a><a href="#operating-model">企业落地</a><a href="#references">技术背景</a></nav><a class="case-toc-source" href="cases.html">返回案例&博客</a></div></aside>
   <article>
     <section class="case-section" data-section id="challenge">
       <p class="eyebrow">Decision quality</p>
@@ -1153,7 +1197,7 @@ supply_chain_agentic_body='''
 </div>
 <section class="case-related">
   <div class="container">
-    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例 →</a></div>
+    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例&博客 →</a></div>
     <div class="case-related-grid">
       <a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
       <a class="case-related-card" href="case-automotive-dfmea-ontology-agent.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/automotive-dfmea-bpillar-hero.png"><div><small>汽车工程知识资产</small><h3>B 柱 DFMEA 如何沉淀组织记忆</h3><p>工程本体、RFLP、多智能体和知识流失治理</p><span>继续阅读 <b>↗</b></span></div></a>
@@ -1161,7 +1205,7 @@ supply_chain_agentic_body='''
     </div>
   </div>
 </section>
-<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先找一个供应链问题，把“看见数据”推进到“采取行动”。</h2><p>用一次 Q2Q 场景诊断，把数据源、业务口径、行动边界和验收指标摆清楚，判断这个 Agent 工作单元是否值得进入试点。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例中心</a></div></div></section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先找一个供应链问题，把“看见数据”推进到“采取行动”。</h2><p>用一次 Q2Q 场景诊断，把数据源、业务口径、行动边界和验收指标摆清楚，判断这个 Agent 工作单元是否值得进入试点。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&博客</a></div></div></section>
 <section class="case-source-foot" id="case-source" aria-labelledby="supply-case-source-title"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>案例价值</small><h2 id="supply-case-source-title">这不是“AI 问数”，而是把供应链决策变成可复盘的行动系统。</h2><p>对企业来说，真正的收益来自三件事：降低提问成本、缩短根因定位时间、让行动材料直接进入责任人流程。多智能体 AI 的价值，只有在业务口径、权限和人工审批都被设计清楚后，才会稳定释放。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
 '''
 (ROOT/'case-supply-chain-agentic-decision.html').write_text(page('多智能体 AI 如何将供应链数据转化为决策与行动','以零售供应链为例，解释多智能体 AI、语义层和 MCP 如何把数据可见性推进到查询、洞察和行动闭环。','case-supply-chain-agentic-decision',supply_chain_agentic_body,'case-detail-page case-theme--supply case-study-v2'),encoding='utf-8')
@@ -1169,7 +1213,7 @@ supply_chain_agentic_body='''
 financial_bda_body='''
 <section class="case-study-hero case-study-hero--financial">
   <div class="container">
-    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例</a><span>/</span><strong>金融文档自动化</strong></nav>
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&博客</a><span>/</span><strong>金融文档自动化</strong></nav>
     <div class="case-study-hero__grid">
       <div>
         <div class="case-study-meta"><span>金融文档</span><span>Bedrock Data Automation</span><span>Blueprint 蓝图</span><span>JSON / CSV 输出</span></div>
@@ -1340,7 +1384,7 @@ TRANSACTION_DETAILS：
 </div>
 <section class="case-related">
   <div class="container">
-    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例 →</a></div>
+    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例&博客 →</a></div>
     <div class="case-related-grid">
       <a class="case-related-card" href="case-supply-chain-agentic-decision.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/supply-chain-agentic-decision-hero.png"><div><small>供应链决策系统</small><h3>多智能体 AI 如何把数据转化为行动</h3><p>语义层、MCP、根因归因和行动通知</p><span>继续阅读 <b>↗</b></span></div></a>
       <a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
@@ -1348,22 +1392,574 @@ TRANSACTION_DETAILS：
     </div>
   </div>
 </section>
-<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一类高频金融文档，把字段、复核和下游系统串起来。</h2><p>用一次 Q2Q 场景诊断，判断你的文档类型、蓝图粒度、人工复核边界和系统集成路径。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例中心</a></div></div></section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一类高频金融文档，把字段、复核和下游系统串起来。</h2><p>用一次 Q2Q 场景诊断，判断你的文档类型、蓝图粒度、人工复核边界和系统集成路径。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&博客</a></div></div></section>
 <section class="case-source-foot" id="case-source" aria-labelledby="financial-case-source-title"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>案例价值</small><h2 id="financial-case-source-title">文档自动化的核心不是少录几个字段，而是让金融运营获得可复用的数据入口。</h2><p>当 Blueprint、置信度、视觉定位、验证规则和下游 JSON / CSV 接口被设计清楚后，文档处理才会从“人工录入外包”升级为企业自己的数据自动化能力。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
 '''
 (ROOT/'case-financial-bda-document-automation.html').write_text(page('用 Amazon Bedrock Data Automation 自动化提取金融文档数据','围绕银行对账单、W-2、1099-B 和供应商合同，说明 BDA Blueprint 如何把金融文档提取变成可复用、可验证、可接入下游系统的工作流。','case-financial-bda-document-automation',financial_bda_body,'case-detail-page case-theme--financial case-study-v2'),encoding='utf-8')
 
+vanguard_virtual_analyst_body='''
+<section class="case-study-hero case-study-hero--vanguard">
+  <div class="container">
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&博客</a><span>/</span><strong>先锋集团虚拟分析师</strong></nav>
+    <div class="case-study-hero__grid">
+      <div>
+        <div class="case-study-meta"><span>金融分析</span><span>AI-ready data</span><span>语义层</span><span>治理与评估</span></div>
+        <h1>先锋集团虚拟分析师：AI 就绪数据的八项原则与实践。</h1>
+        <p class="case-study-lead">当金融分析师需要查询复杂数据集时，即使是基本问题也可能变成复杂 SQL、排队需求和数天等待。对话式 AI 看似可以提供即时响应，但真正的瓶颈往往不是底层模型，而是企业有没有一套能被 AI 可靠理解、查询、治理和持续评估的数据基础设施。</p>
+        <div class="case-study-actions"><a class="btn btn--green" href="#principles">查看八项原则 ↓</a><a class="btn btn--ghost" href="#stack">查看技术栈 ↘</a></div>
+      </div>
+      <figure class="case-study-hero__media case-study-hero__media--scene">
+        <img alt="中国金融分析团队围绕 AI 就绪数据和虚拟分析师工作台协作" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/vanguard-virtual-analyst-hero.png">
+        <figcaption>虚拟分析师的可靠性，取决于数据产品、语义定义、质量检查和持续评估能否先被组织化。</figcaption>
+      </figure>
+    </div>
+    <div aria-label="本案例的交付证据结构" class="case-proof-rail"><div><strong>SQL 等待</strong><span>分析师基本问题也要依赖复杂查询和数据团队排期</span></div><div><strong>数据架构</strong><span>项目重点从模型选择转向 AI 就绪型数据基础</span></div><div><strong>八项原则</strong><span>数据产品、治理、元数据、语义层、示例库和评估</span></div><div><strong>可复制框架</strong><span>从单个虚拟分析师扩展到多个业务部门</span></div></div>
+    <p class="case-proof-note">本文把先锋集团虚拟分析师项目拆成企业可复用的建设逻辑：先让数据资产、业务口径和安全边界变得可被 AI 调用，再让对话式分析进入生产。</p>
+  </div>
+</section>
+<div class="container case-detail-shell case-story-shell">
+  <aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#overview">核心认知</a><a href="#collaboration">组织协作</a><a href="#stack">AWS 技术栈</a><a href="#principles">八项原则</a><a href="#metadata">元数据目录</a><a href="#semantic-layer">语义层与示例库</a><a href="#quality">质量与评估</a><a href="#outcomes">可衡量成果</a><a href="#next-step">下一步</a><a href="#references">参考资料</a></nav><a class="case-toc-source" href="#case-source">案例价值 ↘</a></div></aside>
+  <article>
+    <section class="case-section case-overview" data-section id="overview">
+      <p class="eyebrow">Core insight</p>
+      <h2>这是数据架构挑战，不是机器学习挑战。</h2>
+      <p>先锋集团是一家全球投资管理公司，采用独特的投资者所有制结构，为个人投资者、机构投资者和金融专业人士提供投资选择、咨询服务和退休服务。其使命围绕维护投资者利益、公平对待每一位投资者，并帮助投资者实现长期投资成功展开。</p>
+      <p>当金融分析师需要查询复杂数据集时，他们面对的是一个令人沮丧的现实：即使是基础问题，也要写复杂 SQL，或者把需求交给数据团队排期，响应时间有时长达数天。对话式 AI 可以把“提问到答案”的时间压缩到分钟级，但前提是模型背后有足够清晰、可信、可治理的数据基础。</p>
+      <p>随着虚拟分析师项目推进，团队形成了一个根本判断：构建高效的对话式 AI，最复杂的部分不是模型选择，而是数据架构。即使是能力最强的基础模型，如果没有合适的数据产品、元数据、业务定义、权限边界和评估机制，也无法稳定产出企业可依赖的答案。</p>
+      <div class="case-question-panel">
+        <div><small>本篇核心问题</small><h3>如何让虚拟分析师回答金融问题时，既快、又准、还可审计？</h3></div>
+        <div class="case-goal"><small>企业主视角</small><p>真正要建设的不是一个“会聊天的数据助手”，而是一套能把指标口径、权限规则、质量状态和业务语义同时交给 AI 的数据基础设施。</p></div>
+      </div>
+      <div class="case-fact-grid">
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>业务压力</small><strong>复杂 SQL、数据团队排队、洞察获取慢</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><div><small>方法转变</small><strong>从模型功能转向 AI-ready data</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>金融约束</small><strong>身份、权限、合规、安全与审计缺一不可</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>可复制资产</small><strong>数据产品、语义层、示例库和评估套件</strong></div></div>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="collaboration">
+      <p class="eyebrow">Operating model</p>
+      <h2>协作是前提：虚拟分析师先要求组织打破数据、业务和合规之间的墙。</h2>
+      <p>构建虚拟分析师团队，需要解决许多企业都面临的组织难题：让传统上各自为政的团队真正协同运作。先锋集团将数据工程师、业务分析师、合规官、安全团队和业务利益相关者汇聚在一起，让每个团队把不可替代的专业知识放进同一套数据工作流。</p>
+      <div class="case-value-cards case-value-cards--triple">
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><small>数据工程师</small><h3>维护技术基础设施。</h3><p>负责数据管道、仓库、目录、低延迟会话和可扩展计算，让虚拟分析师有稳定数据入口。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><small>业务分析师</small><h3>定义财务指标语义。</h3><p>解释指标含义、常见查询模式、业务规则和上下文，让模型知道问题真正指向什么。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><small>合规与安全</small><h3>把边界前置。</h3><p>建立身份、角色、查询级授权、数据保留和审计机制，让 AI 能进入金融场景而不越界。</p></article>
+      </div>
+      <p>这种跨职能协作奠定了 AI 的组织基础。它建立了清晰的所有权模型、语义定义和质量标准。团队意识到：如果没有所有人都能理解和参与的共识，AI 解决方案就缺乏可靠地基。虚拟分析师项目催生的新流程和框架，其价值也超出了最初的 AI 应用本身。</p>
+    </section>
+
+    <section class="case-section" data-section id="stack">
+      <p class="eyebrow">AWS stack</p>
+      <h2>AWS 技术栈承担的是金融级安全、对话、持久化、实验和数据整合能力。</h2>
+      <p>先锋集团选择 AWS，是因为其集成服务套件能够满足金融服务行业对安全、合规、扩展和数据处理的要求。虚拟分析师的核心组件不是孤立工具，而是一条从自然语言理解、输入输出防护、会话持久化、实验环境、数据仓库到 ETL 编目的完整链路。</p>
+      <div class="case-document-grid">
+        <article><span>01</span><small>Amazon Bedrock</small><h3>自然语言理解</h3><p>为虚拟分析师提供基础模型能力，负责理解问题、生成查询路径和组织回答。</p></article>
+        <article><span>02</span><small>Bedrock Guardrails</small><h3>输入输出防护</h3><p>保护 AI 输入和输出，帮助敏感财务数据处理保持边界。</p></article>
+        <article><span>03</span><small>ECS / DynamoDB</small><h3>运行与会话</h3><p>ECS 提供可扩展计算，DynamoDB 低延迟保存会话上下文。</p></article>
+        <article><span>04</span><small>S3 / SageMaker</small><h3>存储与实验</h3><p>S3 存储相关资产，SageMaker 支持实验与模型评估。</p></article>
+        <article><span>05</span><small>Redshift</small><h3>集中式数据仓库</h3><p>承载可查询的数据基础，让分析问题能转化为结构化查询。</p></article>
+        <article><span>06</span><small>AWS Glue</small><h3>数据编目与 ETL</h3><p>用于数据目录和大量 ETL 作业，把准确数据整合到可查询环境。</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="principles">
+      <p class="eyebrow">Eight principles</p>
+      <h2>AI 就绪数据的八项原则，来自让 AI 可靠处理企业数据时遇到的真实挑战。</h2>
+      <p>这些原则建立在现有数据能力之上，并面向 AI 场景进行扩展。它们解决的不是“如何让模型更聪明”，而是“如何让模型面对企业数据时，有清晰责任、准确语义、可控权限、可测质量和可回归评估”。</p>
+      <ol class="case-process">
+        <li><span>01</span><div><h3>建立清晰的数据产品和运营模式</h3><p>更高质量的数据需要明确责任归属。数据产品负责人确保数据与业务目标一致，工程管理人员维护技术质量。为关键数据资产指定业务负责人和技术负责人，并书面记录职责范围。</p></div></li>
+        <li><span>02</span><div><h3>尽早制定治理和安全措施</h3><p>在项目早期与合规、安全团队协作，建立企业身份管理、基于角色的数据访问控制、查询级授权和数据保留策略；必要时实施行级和列级安全。</p></div></li>
+        <li><span>03</span><div><h3>构建统一技术与业务上下文的元数据目录</h3><p>技术元数据描述表、列、类型、血缘、同义词和数据集关系；业务元数据记录指标定义、领域术语、所有权和使用上下文。两者融合，AI 才能同时理解结构与含义。</p></div></li>
+        <li><span>04</span><div><h3>实现语义层，让业务元数据真正落地</h3><p>语义层把业务定义、规则和本体转化为可运行逻辑，规范关键指标的定义和数据元素关系，让自然语言问题可以被解释成结构化 SQL 查询。</p></div></li>
+        <li><span>05</span><div><h3>开发真实示例库</h3><p>示例库包含问答对和正确数据库映射，可用于少样本提示、评估基准和回归测试。先覆盖最常见查询模式，再根据用户反馈和边缘情况扩充。</p></div></li>
+        <li><span>06</span><div><h3>实施自动化数据质量检查</h3><p>通过分布检查、参照检查、对账检查和新鲜度检查持续监控数据可靠性，避免虚拟分析师基于过期、异常或关系失效的数据作答。</p></div></li>
+        <li><span>07</span><div><h3>建立变更控制流程</h3><p>把语义定义、示例库和配置文件视为代码，纳入版本控制和 CI/CD。影响 KPI 或 SLA 的变更需要利益相关者审批，同时让改进可以安全上线。</p></div></li>
+        <li><span>08</span><div><h3>建立持续评估机制</h3><p>用节省的分析师工时、洞察获取时间、用户满意度和业务影响作为评估基准；维护回归测试套件和用户反馈闭环，并对性能下降自动告警。</p></div></li>
+      </ol>
+    </section>
+
+    <section class="case-section" data-section id="metadata">
+      <p class="eyebrow">Metadata catalog</p>
+      <h2>统一元数据目录，解决的是“技术表结构”和“业务问题”之间长期错位。</h2>
+      <p>大多数组织维护了完整的技术元数据，却缺乏集成的业务上下文，导致技术实现与业务需求长期错位。虚拟分析师需要一个统一的元数据和目录系统，集中管理技术元数据和业务元数据，并通过 API 对外开放。</p>
+      <div class="case-fit-grid">
+        <article class="case-fit-card case-fit-card--yes"><small>技术元数据</small><h3>让 AI 知道数据在哪里、如何连接。</h3><ul><li>表和列描述、数据类型</li><li>跨转换的数据血缘</li><li>同义词和分类标识</li><li>数据集之间的关系映射</li></ul></article>
+        <article class="case-fit-card case-fit-card--yes"><small>业务元数据</small><h3>让 AI 知道指标到底是什么意思。</h3><ul><li>业务定义和计算规则</li><li>领域专用术语和本体</li><li>业务所有权信息</li><li>使用场景和上下文</li></ul></article>
+      </div>
+      <p>单一目录将两类元数据融合，使 AI 系统能够生成同时符合技术结构和业务含义的准确查询。实操上，可以先从最常用的数据集入手，系统记录技术元数据，再扩展到其他数据源；对元数据进行版本控制，并持续衡量映射准确性。</p>
+    </section>
+
+    <section class="case-section" data-section id="semantic-layer">
+      <p class="eyebrow">Semantic layer & examples</p>
+      <h2>语义层和示例库，让业务知识从文档变成可执行逻辑。</h2>
+      <p>语义层是让元数据目录中定义的业务知识真正可执行的实现层。它将业务定义、规则和本体转化为可运行逻辑，规范关键指标的定义方式和数据元素之间的关系表达。有了这一层，业务分析师用自然语言表达的数据关系，才能被解释并转换为结构化 SQL 查询。</p>
+      <div class="case-reading-note"><strong>指标口径示例</strong><p>先锋集团的语义层通过执行业务用户定义的规则，在各部门和系统之间统一维护“客户生命周期价值”的定义。这个指标在不同团队之间历来容易产生争议，但对虚拟分析师来说，争议指标必须先被语义层标准化，才能稳定回答。</p></div>
+      <p>真实示例库是另一个关键组成部分。先锋集团构建了包含 50 多个示例的集合，用于三件事：作为少样本提示，引导模型生成正确响应；作为评估基准，衡量模型相对于已知正确答案的准确率；作为回归测试，验证新变更不会破坏现有功能。</p>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>落地建议</small><h3>先记录最常用 20 个指标，再建立 20 至 30 个高频查询示例。</h3><p>虚拟分析师初期不需要覆盖所有问题。更稳的方式是先覆盖最常问、最影响决策、最容易出错的指标和查询模式，再用用户反馈持续扩充示例库。</p></div></aside>
+    </section>
+
+    <section class="case-section" data-section id="quality">
+      <p class="eyebrow">Quality & change control</p>
+      <h2>数据质量、变更控制和持续评估，是让虚拟分析师长期可信的运营系统。</h2>
+      <p>先锋集团建立了可观测性工具，通过四类自动化检查持续监控数据可靠性：分布检查用于检测数值突然飙升或骤降；参照检查验证表之间关系是否持续有效；对账检查确认各系统间数据一致；新鲜度检查确认数据按计划更新。</p>
+      <div class="case-document-grid">
+        <article><span>01</span><small>分布检查</small><h3>发现异常模式</h3><p>检测数值突然飙升、骤降或分布漂移，避免异常数据进入回答。</p></article>
+        <article><span>02</span><small>参照检查</small><h3>验证关系有效</h3><p>确保表之间关系持续成立，例如订单必须指向有效客户。</p></article>
+        <article><span>03</span><small>对账检查</small><h3>确认系统一致</h3><p>比较源数据和仓库数据总量或关键金额，避免口径偏移。</p></article>
+        <article><span>04</span><small>新鲜度检查</small><h3>保证按时更新</h3><p>确认数据在计划窗口内完成更新，避免回答基于过期数据。</p></article>
+      </div>
+      <p>同时，语义定义、示例库和配置文件需要像代码一样进入版本控制。影响 KPI 或 SLA 的变更要经过阶梯式审批；上线前做同行评审和回归测试。持续评估则需要把业务指标提前设为基准，例如节省的分析师工时、洞察获取时间、用户满意度和可衡量业务影响。</p>
+    </section>
+
+    <section class="case-section" data-section id="outcomes">
+      <p class="eyebrow">Measured outcomes</p>
+      <h2>专注 AI 就绪数据后，虚拟分析师开始产生可衡量的业务结果。</h2>
+      <div class="case-value-cards case-value-cards--triple">
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><small>洞察速度</small><h3>从数天缩短至数分钟。</h3><p>复杂财务查询不再总是进入数据团队排队，分析师可以更快获得初步洞察。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><small>自助分析</small><h3>业务用户无需掌握 SQL。</h3><p>自然语言入口降低查询门槛，让分析覆盖面从少数会写查询的人扩展到更多业务用户。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><small>复用框架</small><h3>多业务部门采纳推广。</h3><p>元数据、语义层、示例库、质量检查和评估套件成为可复制的数据能力框架。</p></article>
+      </div>
+      <p>项目还显著减少了数据团队处理日常分析请求的工作量。通过元数据和语义层实现，AI 生成 SQL 查询达到高精度；更重要的是，企业形成了一套可复用框架，让虚拟分析师从单点应用变成数据基础能力的外显界面。</p>
+    </section>
+
+    <section class="case-section" data-section id="next-step">
+      <p class="eyebrow">Next</p>
+      <h2>下一步是知识图谱和 RAG：增强实体关系、跨领域上下文和可解释性。</h2>
+      <p>先锋集团正在评估如何利用知识图谱和 RAG 技术进一步增强虚拟分析师能力。知识图谱可以提供明确实体关系、规范化解析和跨领域上下文，从而提升模糊匹配能力、连接推理能力，并增强生成查询的可解释性。</p>
+      <p>基于 Amazon Bedrock 知识库的 RAG 系统可以利用示例库提高准确性，同时为智能反馈系统铺路。这类系统会随着使用积累持续改进模型质量和可靠性。项目最深刻的启示在于：它最初是一个 AI 项目，最终揭示的却是组织实现 AI 能力所需的数据基础。</p>
+      <div class="case-reading-note"><strong>结论</strong><p>成功的企业级 AI，不仅在于更优算法，更在于更强的数据基础。当数据工程、业务语义、治理合规和持续评估真正协同运作时，AI 模型能力才会转化为高管可以在关键决策中信赖的业务成果。</p></div>
+    </section>
+
+    <section class="case-section" data-section id="references">
+      <p class="eyebrow">Technical context</p>
+      <h2>虚拟分析师不是一个单点工具，而是数据产品化、语义治理和安全运行的组合工程。</h2>
+      <p>企业复用这类案例时，应先审视数据产品责任、核心指标口径、数据访问边界、示例库和回归评估，而不是先比较模型排行榜。</p>
+      <div class="case-reference-list"><a href="https://corporate.vanguard.com/content/corporatesite/us/en/corp/who-we-are.html" target="_blank" rel="noopener">Vanguard 官方介绍</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html" target="_blank" rel="noopener">Amazon Bedrock 官方文档</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html" target="_blank" rel="noopener">Amazon Bedrock Guardrails 官方文档</a><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html" target="_blank" rel="noopener">Amazon DynamoDB 官方文档</a><a href="https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html" target="_blank" rel="noopener">Amazon Redshift 官方文档</a><a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html" target="_blank" rel="noopener">AWS Glue 官方文档</a></div>
+    </section>
+  </article>
+</div>
+<section class="case-related">
+  <div class="container">
+    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例&博客 →</a></div>
+    <div class="case-related-grid">
+      <a class="case-related-card" href="case-financial-bda-document-automation.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/financial-bda-document-automation-hero.png"><div><small>金融文档自动化</small><h3>用 BDA 提取金融文档数据</h3><p>Blueprint、置信度、视觉定位和 JSON / CSV 输出</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="case-supply-chain-agentic-decision.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/supply-chain-agentic-decision-hero.png"><div><small>供应链决策系统</small><h3>多智能体 AI 如何把数据转化为行动</h3><p>语义层、MCP、根因归因和行动通知</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
+    </div>
+  </div>
+</section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一个高频分析问题，检查它背后的数据是否已经 AI-ready。</h2><p>用一次 Q2Q 场景诊断，把指标定义、数据权限、质量检查、示例库和评估基线摆清楚，再决定虚拟分析师是否值得进入试点。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&博客</a></div></div></section>
+<section class="case-source-foot" id="case-source" aria-labelledby="vanguard-case-source-title"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>案例价值</small><h2 id="vanguard-case-source-title">虚拟分析师的真正壁垒，是企业能否把数据变成 AI 可以安全调用的产品。</h2><p>模型只是入口。长期可用的虚拟分析师，依赖数据产品责任、语义层、质量检查、示例库、变更控制和持续评估这套组织能力。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+'''
+(ROOT/'case-vanguard-virtual-analyst.html').write_text(page('先锋集团虚拟分析师：AI 就绪数据的八项原则与实践','以先锋集团虚拟分析师为例，说明金融企业如何通过数据产品、元数据目录、语义层、示例库、质量检查和持续评估构建 AI-ready data。','case-vanguard-virtual-analyst',vanguard_virtual_analyst_body,'case-detail-page case-theme--financial case-study-v2'),encoding='utf-8')
+
+agent_evaluation_first_body='''
+<section class="case-study-hero case-study-hero--agent-eval">
+  <div class="container">
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&博客</a><span>/</span><strong>企业 Agent 评估</strong></nav>
+    <div class="case-study-hero__grid">
+      <div>
+        <div class="case-study-meta"><span>企业 Agent</span><span>Evaluation-first</span><span>ADLC</span><span>生产门控</span></div>
+        <h1>企业智能体之旅：为什么评估是一切的起点。</h1>
+        <p class="case-study-lead">当企业把 AI Agent 从“演示惊艳的原型”推向“生产可信赖的系统”时，评估就成了决定成败的关键一环。它既不同于传统软件的单元测试，也不同于单模型 benchmark。本文基于 Amazon 内部构建数千个生产级 Agent 的实战经验，拆解一套从原型验证到生产就绪的 Evaluation-first 路径。</p>
+        <div class="case-study-actions"><a class="btn btn--green" href="#adlc">查看 ADLC 飞轮 ↓</a><a class="btn btn--ghost" href="#metrics">查看评估指标 ↘</a></div>
+      </div>
+      <figure class="case-study-hero__media case-study-hero__media--scene">
+        <img alt="中国企业团队在上线前评审 AI Agent 评估结果和生产 Trace" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/agent-evaluation-first-hero.png">
+        <figcaption>Agent 从 Demo 进入生产，真正需要补上的不是一个新模型，而是一套评估、Trace、门控和持续改进机制。</figcaption>
+      </figure>
+    </div>
+    <div aria-label="本案例的交付证据结构" class="case-proof-rail"><div><strong>原型鸿沟</strong><span>Demo 反馈积极，但没人能回答是否生产就绪</span></div><div><strong>评估基线</strong><span>先定义成功、边界、工具和基准数据集</span></div><div><strong>ADLC 飞轮</strong><span>生产 Trace 回流评估集，持续挖掘失败案例</span></div><div><strong>可评估架构</strong><span>工具、代码、安全和多智能体都要能独立归因</span></div></div>
+    <p class="case-proof-note">这篇案例把“评估先行”的 Agent 工程纪律拆成企业可执行路径：先定义好坏，再把评估嵌入开发、上线门控、生产观测和改进循环，最后让工具、代码、安全和多智能体架构都变得可被评估。</p>
+    <div class="case-reading-map" aria-label="长文阅读路线">
+      <div><small>长文阅读路线</small><strong>不用一口气读完，按角色先抓住自己的判断点。</strong></div>
+      <a href="#overview"><span>决策层</span><b>先看原型鸿沟、ADLC 和结语，判断为什么评估是上线前置条件。</b></a>
+      <a href="#start-small"><span>业务负责人</span><b>重点看成功定义、三类 Agent 交付物和 PoC 如何避免范围蔓延。</b></a>
+      <a href="#architecture"><span>技术 / 平台团队</span><b>重点看工具策略、可观测性、安全外部化和多智能体解耦。</b></a>
+    </div>
+  </div>
+</section>
+<div class="container case-detail-shell case-story-shell">
+  <aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy><a class="is-active" href="#overview">核心问题</a><a href="#why-fail">传统测试为何失效</a><a href="#adlc">ADLC 飞轮</a><a href="#start-small">先定义成功</a><a href="#metrics">自动化评估</a><a href="#continuous">持续测试</a><a href="#observability">可观测性</a><a href="#architecture">可评估架构</a><a href="#security">安全与个性化</a><a href="#conclusion">结语</a></nav><a class="case-toc-source" href="#case-source">案例价值 ↘</a></div></aside>
+  <article>
+    <section class="case-section case-overview" data-section id="overview">
+      <p class="eyebrow">Production gap</p>
+      <h2>从原型到生产，企业真正缺的是一套持续判断质量的工程纪律。</h2>
+      <p>过去一年，AI 智能体已经从技术探索进入工程落地阶段。越来越多企业开始构建能够调用工具的 LLM 系统、串联多个 API 的编排流程，以及基于内部知识库的对话助手。原型阶段往往进展顺利，Demo 效果不错，业务方反馈积极。</p>
+      <p>但当团队尝试把系统推向生产时，关键问题浮现：它真的准备好上线了吗？大多数团队正是在这里遭遇瓶颈。制约因素并非模型能力本身，而是缺少一套工程化质量评判体系，一套能持续回答“它到底好不好”的方法。</p>
+      <p>传统软件有单元测试、CI/CD 流水线和明确的 pass/fail 标准。AI 智能体没有。同样的用户输入，今天跑出一个结果，明天换了模型版本，行为可能悄悄变了。开发者甚至无法用一行 assert 语句验证一个多步推理过程是否正确。这本质上是工程纪律问题，而不是模型能力问题。</p>
+      <p>本系列共四篇，主线是给企业一套完整的智能体工程纪律路线图。第一篇从评估开始，因为它是一切其他工程实践的地基：没有评估，团队既不知道自己在哪里，也不知道改了之后有没有变好；没有基线，任何 Prompt、工具、模型和检索策略的调整都只是凭感觉试错。</p>
+      <div class="case-question-panel">
+        <div><small>本篇核心问题</small><h3>如何在企业里判断一个 Agent 是否已经可上线、可回归、可监控、可持续改进？</h3></div>
+        <div class="case-goal"><small>企业主视角</small><p>评估不是上线前的形式检查，而是规格说明、质量门控、生产监控和改进驱动力。没有评估，团队既不知道自己在哪里，也不知道改动后有没有变好。</p></div>
+      </div>
+      <div class="case-fact-grid">
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>Demo 风险</small><strong>演示惊艳不等于生产可信赖</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><div><small>质量信号</small><strong>从断言输出转向评估行为分布</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>开发生命周期</small><strong>ADLC 把生产数据变成飞轮输入</strong></div></div>
+        <div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>上线边界</small><strong>不达阈值不上线，漂移前置告警</strong></div></div>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="why-fail">
+      <p class="eyebrow">Why SDLC fails</p>
+      <h2>传统软件工程方法对智能体会系统性失效，原因主要有三类。</h2>
+      <div class="case-value-cards case-value-cards--triple">
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><small>非确定性</small><h3>测试用例今天通过，明天可能失败。</h3><p>LLM 是概率模型。即使 temperature 设为 0，GPU 浮点运算、Mixture-of-Experts 路由和批处理顺序也可能引入差异；目前也没有任何主流模型提供商承诺完全确定性输出。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><small>Prompt 即代码</small><h3>自然语言改动会改变系统行为。</h3><p>系统 Prompt 末尾加一句话，就可能改变拒答边界、工具调用顺序或输出格式。没有评估，Prompt 工程就是在黑箱里射击。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><small>隐式依赖漂移</small><h3>代码没动，模型行为也会变。</h3><p>模型提供商可能更新安全策略、能力或系统提示。没有持续基线，某天早上 Agent 变得更保守、格式改变或工具倾向变化，团队很难及时发现。</p></article>
+      </div>
+      <p>软件工程师天然会把 AI 智能体当成“另一种软件”：写逻辑、做测试、上 CI/CD。这个直觉合理，但在 Agent 身上会系统性失效。传统测试假设“给定输入 A，断言输出 B”；智能体更像一个行为分布，应该衡量在一组真实输入和边界输入上的整体表现。</p>
+      <p>Prompt 也不再只是配置文本，而是会改变系统行为的源代码。传统代码有 Git diff、代码评审、版本历史和回滚路径；Prompt 改动往往缺少同等纪律。模型本身又是隐式依赖，和 <code>package.json</code> 里可锁定版本的依赖不同：安全微调、能力升级和系统提示调整可能没有详细 Changelog，却足以让业务行为发生变化，而代码库没有任何变更。</p>
+      <div class="case-data-table" role="region" aria-label="传统软件测试假设与智能体评估解法对照" tabindex="0">
+        <table>
+          <thead><tr><th>传统软件测试假设</th><th>Agent 现实</th><th>Evaluation-first 解法</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">输出可以被 assert 精确断言</th><td>同一输入可能产生多个合理回答，多步推理过程也可能有不同路径。</td><td>在基准数据集上衡量行为分布，评估工具选择、参数提取、边界拒绝和回答质量。</td></tr>
+            <tr><th scope="row">代码 diff 能解释行为变化</th><td>Prompt 是自然语言源代码，一句话可能改变拒答边界、工具顺序和输出格式。</td><td>每次 Prompt、工具、模型和检索策略变更都触发回归评估，指标未达阈值不上线。</td></tr>
+            <tr><th scope="row">依赖版本可以锁定</th><td>模型、安全策略和外部 API 是会漂移的隐式依赖，代码不动行为也可能改变。</td><td>用生产采样、Trace、漂移检测和告警持续监控质量曲线。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>关键判断</small><h3>企业 Agent 的 QA 不是“多写几个单元测试”，而是重建质量测量方式。</h3><p>传统 CI/CD 和 QA 框架不是为概率性、可变性、隐式依赖而设计的。评估体系要覆盖工具选择、参数提取、拒绝边界、延迟、成本、业务可用性和生产漂移。</p></div></aside>
+    </section>
+
+    <section class="case-section" data-section id="adlc">
+      <p class="eyebrow">ADLC</p>
+      <h2>ADLC 不是线性流水线，而是让生产 Trace 反哺评估集的持续飞轮。</h2>
+      <p>传统 SDLC 是线性的：需求、设计、开发、测试、上线。上线通常被视为阶段终点。智能体不同，它在生产环境里的每一次对话，都是关于真实行为的宝贵数据。因此，ADLC 更像一个持续运转的飞轮。</p>
+      <ol class="case-process">
+        <li><span>01</span><div><h3>定义“好”</h3><p>在动手构建之前，先明确什么叫成功：具体评估标准、阈值、边界和基准数据集，而不是一句抽象愿景。</p></div></li>
+        <li><span>02</span><div><h3>构建</h3><p>基于清晰定义搭建智能体系统，包括 Prompt、工具、知识源、权限和会话流程。</p></div></li>
+        <li><span>03</span><div><h3>评估</h3><p>用定义好的标准系统衡量行为，覆盖常见查询、边界查询、应拒绝或升级人工的查询。</p></div></li>
+        <li><span>04</span><div><h3>门控上线</h3><p>评估不只是报告，而是上线通行证。关键指标未达阈值，不部署。</p></div></li>
+        <li><span>05</span><div><h3>生产观测</h3><p>上线后持续追踪真实流量下的延迟、成功率、工具调用模式、用户反馈和成本。</p></div></li>
+        <li><span>06</span><div><h3>挖掘失败案例</h3><p>从生产 Trace 中找到失败或异常样本，加入评估集，让下一轮迭代更接近真实场景。</p></div></li>
+      </ol>
+      <figure class="case-figure case-figure--contain case-figure--wide-diagram case-figure--dark-diagram case-figure--mobile-fit">
+        <a href="assets/cases/agent-evaluation-dlc-loop.png" target="_blank" rel="noopener" aria-label="打开企业级智能体开发生命周期图原图">
+          <img src="assets/cases/agent-evaluation-dlc-loop.png" width="1860" height="958" alt="企业级智能体开发生命周期图：定义好、构建、评估、质量门禁与发布、生产环境观测、挖掘失败案例形成生产反馈飞轮。" loading="lazy" decoding="async">
+          <span class="case-figure-zoom" aria-hidden="true">↗</span>
+        </a>
+        <figcaption>企业级智能体开发生命周期：评估不是上线前的一次检查，而是从定义规范、质量门禁、生产观测到失败案例回流的持续飞轮。手机端可在图内左右滑动查看完整细节。</figcaption>
+      </figure>
+      <p>与传统 CI/CD 最关键的区别在于：生产不是终点，而是飞轮最有价值的输入。评估集也不是项目初期一次性定义的静态资产，而是随生产数据持续生长的动态系统。生产 Trace 可以变成评估数据，评估数据积累到一定规模后，还可能成为微调或蒸馏的训练数据。</p>
+      <div class="case-reading-note"><strong>定义“好”是第一步，不是上线后的复盘</strong><p>很多团队的真实顺序是先把 Demo 做出来，上线后等用户反馈，再回头想怎么衡量好坏。这通常带来显著返工成本：上线时没有评估基线，就无法判断下一次改动是变好了还是变坏了。ADLC 强制把“定义好”放在最前面，本质上是要求团队开工前先画图纸，而不是楼盖完之后再补验收标准。</p></div>
+    </section>
+
+    <section class="case-section" data-section id="start-small">
+      <p class="eyebrow">Start small</p>
+      <h2>启动智能体项目，第一问不是“它能做什么”，而是“我们要解决什么问题”。</h2>
+      <p>很多团队一开始就想覆盖所有场景，结果 Prompt 越写越复杂，Tool 选择越来越混乱，性能越来越难归因。更稳的方式是从问题出发，倒推 Agent 的职责边界：它应该处理什么，不应该处理什么。财务分析助手可以先只做查季度收入、计算增长率、生成摘要三件事，把这三件事做可靠，再扩展。</p>
+      <div class="case-document-grid">
+        <article><span>01</span><small>职责定义</small><h3>做什么，不做什么</h3><p>把智能体的职责边界写下来，与利益相关者分享，用它来拒绝功能蔓延。</p></article>
+        <article><span>02</span><small>语气与个性</small><h3>如何与用户交互</h3><p>明确正式或对话风格、如何问候用户、遇到范围外问题如何处理。</p></article>
+        <article><span>03</span><small>工具与知识源</small><h3>每个工具都要可理解</h3><p>工具、参数和知识源必须有明确定义，模糊描述会导致错误选择。</p></article>
+        <article><span>04</span><small>基准数据集</small><h3>评估体系的燃料</h3><p>覆盖常见查询、边缘情况、应拒绝回答和应升级人工的问题。</p></article>
+      </div>
+      <div class="case-reading-note"><strong>基准数据集不是上线后再补的东西</strong><p>它是整个评估体系的燃料。没有它，评估系统无从运转，团队也无法回答“智能体有没有进步”。在 PoC 阶段用真实用户测试，团队会立即发现没有预料到的问题：日期解析出错、缩写理解不好、问题换一种表达方式就调用错误工具。在 PoC 阶段学到这些，代价是几周时间；在生产阶段学到，代价是信誉和用户信任。</p></div>
+      <div class="case-agent-table" role="region" aria-label="三类智能体启动交付物对照表" tabindex="0">
+        <table>
+          <thead>
+            <tr><th>智能体类型</th><th>智能体定义</th><th>语气与个性</th><th>工具定义</th><th>基准数据集</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">财务分析智能体</th>
+              <td>帮助分析师查询 EMEA、APAC、AMER 各区域季度营收数据，计算增长指标，生成高管摘要。不提供投资建议，不执行交易，不访问员工薪酬数据。</td>
+              <td>专业但不失亲切，以名字称呼用户；主动承认数据局限；数据质量存疑时明确说明置信度；不用没有解释的金融行话。</td>
+              <td><p><code>getQuarterlyRevenue(Region, quarter)</code>：返回指定区域和季度的营收数据，单位为百万美元。</p><p><code>calculateGrowth(currentValue, previousValue)</code>：返回百分比变化。</p><p><code>getMarketData(Region, dataType)</code>：获取最新行业指标数据。</p></td>
+              <td>50 条，包括：“EMEA 第三季度的营收是多少？”“和上个季度相比增长了多少？”“亚太区表现怎么样？”“CEO 的奖金是多少？”（应拒绝回答）“对比 2024 年所有区域的表现”。</td>
+            </tr>
+            <tr>
+              <th scope="row">HR 政策助手</th>
+              <td>回答员工关于休假政策、请假申请、福利注册和公司政策的问题。不访问保密人事档案，不提供法律建议，不讨论个人薪酬或绩效评估。</td>
+              <td>友好且支持性；使用员工偏好的称呼；保持专业同时平易近人；遇到复杂政策时逐步分解说明；对敏感事项主动提出转接 HR 专员。</td>
+              <td><p><code>checkVacationBalance(employeeId)</code>：返回各类型可用天数。</p><p><code>getPolicy(policyName)</code>：从知识库获取政策文件。</p><p><code>createHRTicket(employeeId, category, description)</code>：升级复杂问题。</p><p><code>getUpcomingHolidays(year, region)</code>：返回公司假期日历。</p></td>
+              <td>45 条，包括：“我还有几天假？”“育儿假政策是什么？”“我下周能请假吗？”“为什么我的奖金比预期低？”（应升级处理）“怎么参加健康保险？”。</td>
+            </tr>
+            <tr>
+              <th scope="row">IT 支持智能体</th>
+              <td>协助员工处理密码重置、软件访问申请、VPN 故障排查和常见技术问题。不访问生产系统，不直接修改安全权限，不处理基础设施变更。</td>
+              <td>耐心清晰；避免技术行话；提供分步骤操作说明；移到下一步前确认理解；庆祝小进展；需要系统权限时升级给 IT 团队。</td>
+              <td><p><code>resetPassword(userId, system)</code>：触发密码重置流程。</p><p><code>checkVPNStatus(userId)</code>：验证 VPN 配置与连通性。</p><p><code>requestSoftwareAccess(userId, software, justification)</code>：创建访问申请工单。</p><p><code>searchKnowledgeBase(query)</code>：检索排障文档。</p></td>
+              <td>40 条，包括：“我登不上邮箱”“VPN 一直断线”“我需要访问 Salesforce”“能给我管理员权限吗？”（应拒绝）“笔记本连不上 Wi-Fi”“怎么安装 Slack？”。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="metrics">
+      <p class="eyebrow">Evaluation metrics</p>
+      <h2>自动化评估要同时追踪技术指标和业务指标。</h2>
+      <p>有了基准数据集，下一步是建立自动化评估机制，让它成为开发流程的一部分，而不是上线前临时跑一遍的检查清单。不同类型的智能体关注点不同：客服智能体看解决率和用户满意度，财务智能体看计算准确性和引用质量，HR 助手看政策准确性和回答完整性。</p>
+      <p>评估数据集至少要覆盖三类情况。第一，同一问题的多种表达：用户不会像 API 文档那样说话，“上季度欧洲收入”和“EMEA Q3 数字”应该触发相同工具调用。第二，应该拒绝或升级人工的查询：边界案例同样必须进入评估。第三，有歧义的查询：当一个问题有多个合理解读时，智能体应该追问、澄清，还是选择默认口径，也要被评估。</p>
+      <div class="case-data-table" role="region" aria-label="评估数据集覆盖类型" tabindex="0">
+        <table>
+          <thead><tr><th>覆盖类型</th><th>样例</th><th>评估要回答的问题</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">同义表达</th><td>“上季度欧洲收入”“EMEA Q3 数字”“欧洲今年整体表现怎么样”</td><td>是否稳定选择正确工具，是否把业务口语映射为标准参数。</td></tr>
+            <tr><th scope="row">拒绝或升级</th><td>“CEO 奖金是多少？”“给我管理员权限”“为什么我的奖金比预期低？”</td><td>是否识别权限边界、敏感数据和人工升级路径。</td></tr>
+            <tr><th scope="row">歧义查询</th><td>“亚太区表现怎么样？”“这个渠道上月是不是有问题？”</td><td>是否主动澄清指标口径、时间窗口和比较基线。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="case-fit-grid">
+        <article class="case-fit-card case-fit-card--yes"><small>技术指标</small><h3>判断系统是否稳定、可扩展、可控成本。</h3><ul><li>工具选择准确率，例如目标 ≥ 95%</li><li>参数提取准确率，例如目标 ≥ 98%</li><li>延迟 P50 / P95，例如 2 秒和 5 秒</li><li>每次查询 Token 用量和调用次数</li></ul></article>
+        <article class="case-fit-card case-fit-card--yes"><small>业务指标</small><h3>判断回答是否真的有用、可信、符合边界。</h3><ul><li>拒绝准确率，敏感问题应 100% 拒绝</li><li>回答质量和解释清晰度</li><li>引用质量和计算准确性</li><li>用户满意度和任务完成率</li></ul></article>
+      </div>
+      <div class="case-comparison-table"><div><span>评估维度</span><span>财务分析智能体例子</span><span>为什么重要</span><strong>工具选择准确率</strong><p>面对“上季度收入”类问题，是否选择 <code>getQuarterlyRevenue</code> 而不是 <code>getMarketData</code>；目标 ≥ 95%</p><p>工具选错，后面的计算和回答都会建立在错误入口上。</p><strong>参数提取准确率</strong><p>是否正确将 “EMEA” 和 “Q3 2024” 映射到区域与季度参数；目标 ≥ 98%</p><p>自然语言里的时间、区域、指标口径经常是业务错误来源。</p><strong>拒绝准确率</strong><p>面对“CEO 奖金是多少”，是否正确拒绝；目标 100%</p><p>边界失败比普通回答错误更危险，尤其涉及权限和敏感数据。</p><strong>回答质量</strong><p>解释是否清晰、有没有歧义，可用 LLM-as-a-Judge 评估</p><p>业务用户需要的是可执行判断，不只是原始数据。</p><strong>延迟和成本</strong><p>P50 低于 2 秒、P95 低于 5 秒；平均每次查询低于 5,000 tokens</p><p>答案正确但成本过高或太慢，也无法生产化。</p></div></div>
+      <p>评估必须嵌入开发流程：改了 Prompt，跑评估；加了新工具，跑评估；换了模型，跑评估。比如把模型从 Claude Sonnet 换成 Claude Haiku 后，工具选择准确率从 92% 降到 87%，但 P50 延迟从 3.2 秒降到 1.8 秒，团队就能基于数字判断速度提升是否值得那 5% 的准确率代价。</p>
+    </section>
+
+    <section class="case-section" data-section id="continuous">
+      <p class="eyebrow">Continuous testing</p>
+      <h2>上线不是测试结束，而是测试场景从预设样本变成真实世界。</h2>
+      <p>开发阶段只能测试团队预想到的场景。进入生产后，真实用户会用完全没预料到的方式提问，会触发新的边界，也会在特定时间和上下文下暴露问题。同时，模型后台更新、外部 API 行为变化都会在不知情的情况下影响表现。这就是静默漂移，它不会报错，只会让质量指标悄悄变差。</p>
+      <ol class="case-process">
+        <li><span>01</span><div><h3>每次变更触发回归测试</h3><p>改 Prompt、加工具、换模型，都要跑完整评估套件，确认没有引入回归。</p></div></li>
+        <li><span>02</span><div><h3>生产流量持续采样</h3><p>从真实用户交互中随机抽样，用离线评估相同指标体系打分，监控质量曲线。</p></div></li>
+        <li><span>03</span><div><h3>漂移检测与自动告警</h3><p>如果工具选择准确率从 92% 悄悄降到 84%，系统必须捕捉并告警。</p></div></li>
+        <li><span>04</span><div><h3>重大更新做 A/B 测试</h3><p>新版本先用部分流量验证，确认指标不差于旧版本，再逐步切换。</p></div></li>
+      </ol>
+      <div class="case-data-table case-data-table--wide" role="region" aria-label="持续测试机制表" tabindex="0">
+        <table>
+          <thead><tr><th>触发器</th><th>评估动作</th><th>核心信号</th><th>未通过时怎么处理</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Prompt / 工具 / 模型变更</th><td>跑完整回归评估集，并与上一个稳定版本比较。</td><td>工具选择准确率、参数提取、拒绝准确率、回答质量、延迟和成本。</td><td>阻断发布，回滚变更，定位是 Prompt、工具描述还是检索策略问题。</td></tr>
+            <tr><th scope="row">生产流量采样</th><td>抽取真实交互，用同一指标体系离线打分。</td><td>真实用户问题覆盖率、边界案例、任务完成率和投诉样本。</td><td>把失败样本加入评估集，补充反例和澄清规则。</td></tr>
+            <tr><th scope="row">质量曲线异常</th><td>触发漂移检测和告警，拉取相关 Trace。</td><td>两周内工具选择准确率从 92% 降到 84%，或外部 API 错误率异常上升。</td><td>先排查外部依赖和工具返回格式，再决定是否调 Prompt 或检索策略。</td></tr>
+            <tr><th scope="row">重大版本更新</th><td>做 A/B 测试或灰度流量验证。</td><td>新旧版本的准确率、延迟、成本和业务满意度差异。</td><td>新版本不优于旧版本时暂停切换，保留旧版作为生产基线。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>改进循环的正确姿势是：评估、定位问题、修改 Prompt 或工具定义或 Retrieval 策略、重新评估。对绝大多数企业智能体来说，大部分性能提升来自 Prompt、工具和 Retrieval 层面的优化，而不是立刻换模型或微调。</p>
+      <div class="case-reading-note"><strong>一个真实感更强的改进循环</strong><p>财务智能体上线后，通过生产采样发现一类查询的工具选择准确率从 78% 起步：用户问“欧洲今年整体表现怎么样”，智能体频繁调用 <code>getMarketData</code>，而不是 <code>getQuarterlyRevenue</code>。根因不是模型不够聪明，而是工具描述不够精确，<code>getMarketData</code> 描述里有 “market performance” 字样，和用户表达高度重合。修改方案是细化两个工具的描述，明确各自适用场景，并加入反例说明。改完重跑评估，准确率回升到 95%。整个循环没有动过一行模型代码。</p></div>
+      <p>第一个智能体上线只是里程碑。企业真正的价值，来自把这套能力在组织内规模化复制，而不是每次构建新智能体都从零开始。规模化有一个前提：单个智能体的质量基线必须先建立好。多个智能体协作时，问题可能来自任何一个环节，也可能来自交接过程本身；如果没有评估基线，出了问题几乎无从归因。</p>
+      <p>扩展到组织级时，团队需要从项目思维转向平台思维。单个项目关心“这个智能体能不能用”；平台团队还要关心“整个组织的智能体能不能统一治理”。这意味着要维护经过安全审查的工具目录，建立统一的可观测性和评估标准，并运行跨智能体集中监控，让成本、质量和风险曲线可以被及时发现。</p>
+      <p>生产数据是持续改进的原料。第一版上线时的 50 个基准样本，会随着真实用户交互不断扩充。生产中出现的新边界案例、新失败模式，都应该回流到评估集。规模化不是建更多智能体，而是建立一套让每个智能体都能持续变好的机制。</p>
+      <div class="case-document-grid">
+        <article><span>爬</span><small>爬行阶段</small><h3>内部小范围试点。</h3><p>核心目标是学习和迭代。失败成本低，错了可以快速改，重点建立第一套基准数据集、指标体系和 CI 门控。</p></article>
+        <article><span>走</span><small>行走阶段</small><h3>受控外部用户验证。</h3><p>更多用户带来更多反馈和边界案例，此前在可观测性和评估上的投入开始产生回报。</p></article>
+        <article><span>跑</span><small>奔跑阶段</small><h3>规模化上线。</h3><p>平台能力让其他团队更快构建自己的智能体，统一工具目录、可观测性和评估标准开始形成组织复利。</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" data-section id="observability">
+      <p class="eyebrow">Observability</p>
+      <h2>可观测性是评估的数据管道，必须从第一天就埋好。</h2>
+      <p>可观测性经常被推迟：先把功能做出来，上线再说。但等到意识到需要它时，往往已经有一个行为不透明的智能体跑在生产上，团队完全不知道它在做什么。可以有最好的评估框架，但没有 Trace 数据，在线评估无从采样，生产失败案例也无从挖掘。</p>
+      <div class="case-document-grid">
+        <article><span>01</span><small>开发者层</small><h3>用于调试</h3><p>从第一次测试查询开始，就能看到模型调用、工具选择、参数、推理步骤和错误。</p></article>
+        <article><span>02</span><small>平台层</small><h3>用于治理</h3><p>谁在用智能体、用了多少 Token、哪个团队成本增长、事故完整时序是什么。</p></article>
+        <article><span>03</span><small>运营层</small><h3>用于 SLA</h3><p>延迟百分位、错误率、工具调用成功率、用户会话完成率和告警触发。</p></article>
+        <article><span>04</span><small>标准协议</small><h3>OpenTelemetry</h3><p>把模型调用、工具调用和推理步骤结构化为 Trace，接入 CloudWatch、Datadog、Dynatrace、LangSmith 或 Langfuse 等观测基础设施。</p></article>
+      </div>
+      <div class="case-native-diagram" role="img" aria-label="从生产 Trace 到评估集回流的图解">
+        <div class="case-native-diagram__nodes">
+          <article><small>01</small><strong>用户请求</strong><span>真实业务问题、上下文、权限身份</span></article>
+          <article><small>02</small><strong>Agent 运行</strong><span>Prompt、模型调用、工具选择和参数</span></article>
+          <article><small>03</small><strong>Trace 采集</strong><span>延迟、错误、Token、工具返回和中间步骤</span></article>
+          <article><small>04</small><strong>自动评估</strong><span>离线指标、LLM-as-a-Judge、规则校验</span></article>
+          <article><small>05</small><strong>回流改进</strong><span>失败样本进入评估集，推动下一轮迭代</span></article>
+        </div>
+        <p>这条链路让生产不再只是上线终点，而是评估数据和训练数据的来源。</p>
+      </div>
+      <div class="case-data-table" role="region" aria-label="可观测性三层职责表" tabindex="0">
+        <table>
+          <thead><tr><th>层级</th><th>主要看什么</th><th>服务对象</th><th>产出</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">开发者层</th><td>模型调用、工具参数、推理步骤、错误堆栈</td><td>开发与调试团队</td><td>快速复现问题，判断是模型、工具还是业务规则错误。</td></tr>
+            <tr><th scope="row">平台层</th><td>Token 成本、调用量、团队归属、事故时序</td><td>平台团队与管理层</td><td>成本治理、容量规划、跨团队质量对比。</td></tr>
+            <tr><th scope="row">运营层</th><td>P50 / P95 延迟、错误率、会话完成率、用户反馈</td><td>业务负责人和运维团队</td><td>SLA、告警、自动回滚和生产健康度。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="case-reading-note"><strong>为什么顺序重要</strong><p>如果财务智能体上线三周后用户投诉“查询很慢、有时答错”，没有 Trace 时团队可能花四天排查是模型慢、数据库慢还是外部数据 API 变了。如果第一天就接入 Trace，就能直接看到那条查询耗时 12 秒，其中 10 秒来自外部 API，同时工具返回值解析错误率从 0 变成了 100%。</p></div>
+    </section>
+
+    <section class="case-section" data-section id="architecture">
+      <p class="eyebrow">Evaluable architecture</p>
+      <h2>系统架构要让每个错误能被归因，每个环节能被独立评估。</h2>
+      <p>评估不是只跑在模型输出上，它要求整个系统架构本身可被评估。工具定义要清晰，确定性操作要交给代码，多智能体协作要解耦，协议和协作模式要分清。否则，出问题时团队无法判断是模型失败、工具描述歧义、业务规则错误，还是交接上下文丢失。</p>
+      <div class="case-value-cards case-value-cards--triple">
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><small>工具策略</small><h3>工具定义比工具数量更重要。</h3><p>完整工具定义应包含名称、参数、返回格式、错误条件和使用指引。模糊的“获取收入数据”会让 Agent 猜错工具；精确描述能显著降低误用。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><small>确定性代码</small><h3>Agent 负责编排，代码负责计算。</h3><p>日期获取、增长率计算、格式验证和业务规则判断都应交给确定性代码。这样更快、更便宜，也更容易测试。</p></article>
+        <article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><small>多智能体解耦</small><h3>职责清晰，才能独立评估。</h3><p>顺序、层级、对等协作各有适用场景。交接点要监控上下文是否完整，协议如 A2A、MCP、HTTP 不等于协作模式。</p></article>
+      </div>
+      <div class="case-comparison-table"><div><span>工具定义要素</span><span>作用</span><span>示例</span><strong>清晰名称</strong><p>直接传达工具用途</p><p><code>getQuarterlyRevenue</code>，而不是 <code>getData</code></p><strong>明确参数</strong><p>消除输入歧义</p><p><code>region: EMEA|APAC|AMER</code>，<code>quarter: YYYY-QN</code></p><strong>返回格式</strong><p>明确输出结构和单位</p><p><code>{revenue: number, currency: "USD", period: string}</code></p><strong>错误条件</strong><p>记录失败场景</p><p>季度不存在返回 404，服务不可用返回 503</p><strong>使用指引</strong><p>说明何时用、何时不用</p><p>询问营收、销售或财务表现时使用；不适用于预测或趋势分析</p></div></div>
+      <p>当工具数量增长到二三十个时，工具目录管理就变得关键。不同团队不应该重复造同一个数据库连接器，建议维护一个经过安全审查、在生产中验证过的工具目录，新团队从目录取用。同时推荐用 MCP Server 暴露工具：Slack、GitHub、Salesforce 等服务已有现成 Server 可以接入，不必每次从零封装。工具还需要健壮错误处理：瞬时故障自动重试，可能时回退到缓存数据，服务完全不可用时主动告知用户。这样评估时也能区分“智能体做错决策”和“工具本身故障”。</p>
+      <div class="case-reading-note"><strong>工具定义要配代码示例</strong><p>每个工具都应该附调用示例和返回示例。开发者不应该靠猜来理解参数、输出结构或错误格式；完整示例能减少误用，也让评估失败时更容易判断是模型选错工具，还是工具描述本身有歧义。</p></div>
+      <div class="case-comparison-table"><div><span>实现方式</span><span>把当前日期做成 Agent 工具</span><span>用代码获取日期后传入</span><strong>智能体行为</strong><p>制定计划 → 调用 <code>get_current_date()</code> → 计算下个月 → 调用 <code>create_report()</code></p><p>代码获取今天日期 → 传入智能体 → 推断下个月 → 调用 <code>create_report()</code></p><strong>延迟</strong><p>约 12 秒</p><p>约 9 秒</p><strong>LLM 调用次数</strong><p>4 次</p><p>3 次</p><strong>总 Token 用量</strong><p>约 8,500</p><p>约 6,200</p></div></div>
+      <p>“获取当前日期”一行代码就能解决，用不着 LLM。如果把它设计成智能体工具，每次查询就多 1 次 LLM 调用、约 2,300 个 Token 和 3 秒延迟。乘以每天数千次查询，成本和延迟差距会非常可观。更重要的是，确定性操作的结果是二元对错，可以用程序直接验证，不需要 LLM-as-a-Judge。</p>
+      <p>正确的架构是智能体负责编排，代码负责计算。用户问“我们 EMEA 这季度增长了多少”，智能体用推理能力理解意图、决定调哪些数据，然后调用确定性函数执行计算，最后再用自然语言解释结果。LLM 只在需要模糊理解和表达的地方介入。</p>
+      <p>多智能体系统的拆分逻辑也类似组织分工：不会让一个人同时负责销售、工程、客服和财务，也不应该让一个 Agent 处理三十种任务。职责单一的智能体有更短的指令、更聚焦的工具集和更清晰的指标。最容易出问题的是交接点：上下文是否完整传递、哪个智能体处理了哪部分请求、延迟发生在哪个环节、用户已经提供的信息有没有被重复询问，都要进入 Trace 和评估。</p>
+      <div class="case-fit-grid">
+        <article class="case-fit-card case-fit-card--yes"><small>顺序模式</small><h3>任务有天然先后顺序。</h3><ul><li>第一个智能体取数据</li><li>第二个智能体分析</li><li>第三个智能体生成报告</li><li>适合稳定流程和明确交接</li></ul></article>
+        <article class="case-fit-card case-fit-card--yes"><small>层级模式</small><h3>需要智能路由和分发。</h3><ul><li>Supervisor 判断用户意图</li><li>分发给专门智能体</li><li>适合多业务入口</li><li>要重点评估路由准确率</li></ul></article>
+        <article class="case-fit-card case-fit-card--yes"><small>对等协作模式</small><h3>需要动态协同。</h3><ul><li>没有中央协调者</li><li>适合探索性任务</li><li>交接和上下文完整性更难评估</li><li>需要更强 Trace 和边界约束</li></ul></article>
+        <article class="case-fit-card case-fit-card--yes"><small>协议 vs 模式</small><h3>通信协议不等于协作模式。</h3><ul><li>A2A、MCP、HTTP 是协议</li><li>顺序、层级、对等是模式</li><li>同一协议可支持不同模式</li><li>分清两者才能避免基础设施和业务逻辑耦合</li></ul></article>
+      </div>
+      <div class="case-data-table case-data-table--wide" role="region" aria-label="多智能体协作模式与评估重点表" tabindex="0">
+        <table>
+          <thead><tr><th>模式</th><th>适用场景</th><th>主要风险</th><th>评估重点</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">顺序模式</th><td>任务有天然先后顺序：取数据、分析、生成报告。</td><td>上游结果错误会被下游放大，交接上下文可能丢失。</td><td>每一步的输入输出契约、失败重试、最终报告与原始数据的一致性。</td></tr>
+            <tr><th scope="row">层级模式</th><td>一个 Supervisor 判断用户意图，分发给专门智能体。</td><td>路由错误会让后续代理全部跑偏，Supervisor 容易变成复杂 Prompt 黑箱。</td><td>意图分类准确率、路由置信度、人工升级边界和错误归因。</td></tr>
+            <tr><th scope="row">对等协作</th><td>智能体之间动态协同，没有固定中央协调者。</td><td>协同路径更难预测，循环调用和责任不清风险更高。</td><td>Trace 完整性、协作终止条件、每个代理的责任边界和成本上限。</td></tr>
+            <tr><th scope="row">协议与模式分离</th><td>A2A、MCP、HTTP 是通信协议；顺序、层级、对等是协作模式。</td><td>把协议当业务模式，会让基础设施选型绑死业务编排。</td><td>通信契约、工具发现、权限边界和业务编排是否可独立替换。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>一个实用原则是：如果确定性代码能可靠解决问题，就用代码；如果需要推理或自然语言理解，才用智能体。最常见的错误是默认一切都应该 Agentic，结果成本高、延迟长、评估也更困难。</p>
+    </section>
+
+    <section class="case-section" data-section id="security">
+      <p class="eyebrow">Security & personalization</p>
+      <h2>安全控制不能写在 Prompt 里，必须外部化到 Gateway 和 Policy 层。</h2>
+      <p>从单用户原型扩展到数千用户的生产系统时，需要同时解决安全边界和个性化体验。前者确保用户只能访问自己有权限的数据；后者让智能体记住用户偏好和历史，提供更连贯响应。两者共用同一套基础设施：用户身份和权限隔离。</p>
+      <div class="case-fit-grid">
+        <article class="case-fit-card case-fit-card--no"><small>错误方式</small><h3>把规则写进 System Prompt。</h3><ul><li>依赖 LLM 自己判断是否遵守安全规则</li><li>Prompt 注入可能绕过限制</li><li>内部决策不可观测、不可审计</li><li>安全问题难以复现和系统测试</li></ul></article>
+        <article class="case-fit-card case-fit-card--yes"><small>正确方式</small><h3>把控制放到 Gateway 和 Policy 层。</h3><ul><li>认证层携带用户身份和权限 token</li><li>授权层在工具调用前拦截请求</li><li>会话隔离防止上下文跨用户泄露</li><li>个性化记忆按用户命名空间存储</li></ul></article>
+      </div>
+      <div class="case-document-grid">
+        <article><span>01</span><small>认证层</small><h3>身份先进入会话。</h3><p>用户通过现有 Identity Provider，例如 Cognito、Entra ID、Okta 完成身份验证，拿到携带权限信息的 token。这个 token 在整个会话中传递。</p></article>
+        <article><span>02</span><small>授权层</small><h3>工具调用前先拦截。</h3><p>Gateway 验证当前用户是否有权限以当前参数调用这个工具，也可以注入第三方 OAuth 凭证、执行限流和审计。</p></article>
+        <article><span>03</span><small>会话隔离</small><h3>上下文不能串用户。</h3><p>多用户并发时，每个用户会话必须完全独立。用户 A 的上下文和个性化记忆，不能泄露给用户 B。</p></article>
+        <article><span>04</span><small>用户记忆</small><h3>个性化也要受控。</h3><p>报告格式偏好、常用筛选条件和历史交互可以按用户命名空间存储，但检索同样必须经过授权层管控。</p></article>
+      </div>
+      <div class="case-native-diagram" role="img" aria-label="安全控制外部化到 Gateway 和 Policy 层的图解">
+        <div class="case-native-diagram__nodes case-native-diagram__nodes--security">
+          <article><small>身份</small><strong>Identity Provider</strong><span>用户身份、角色、权限 token</span></article>
+          <article><small>拦截</small><strong>Gateway</strong><span>工具调用前检查权限和参数</span></article>
+          <article><small>策略</small><strong>Policy Layer</strong><span>行级 / 列级访问、限流、审计和 OAuth 凭据</span></article>
+          <article><small>执行</small><strong>Tool / Database</strong><span>只有通过授权的请求才进入系统</span></article>
+          <article><small>留痕</small><strong>Trace / Audit</strong><span>记录谁在何时调用了什么</span></article>
+        </div>
+        <p>安全规则不交给模型“自觉遵守”，而是在工具调用之前由可审计的网关和策略层确定性执行。</p>
+      </div>
+      <div class="case-data-table" role="region" aria-label="安全控制方式对照表" tabindex="0">
+        <table>
+          <thead><tr><th>控制方式</th><th>优点</th><th>风险</th><th>适用判断</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">System Prompt 约束</th><td>实现快，适合原型阶段说明行为边界。</td><td>不可保证、不可审计、难复现，可能被 Prompt 注入绕过。</td><td>只能作为行为提示，不能作为生产权限控制。</td></tr>
+            <tr><th scope="row">Gateway / Policy 外部化</th><td>工具调用前确定性鉴权，能审计、能测试、能和企业 IAM 集成。</td><td>需要提前设计工具权限、参数规则和日志结构。</td><td>生产环境访问企业数据、财务、人事、客户或权限系统时必须采用。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>如果初级分析师试图查询高管薪酬数据，靠 System Prompt 多数情况下会拒绝，但无法保证每次都正确。把访问控制放在 Gateway 层，请求在到达数据库前就被策略拦截，结果是确定的，与模型当次推理无关。</p>
+    </section>
+
+    <section class="case-section" data-section id="conclusion">
+      <p class="eyebrow">Conclusion</p>
+      <h2>评估同时是规格说明、质量门控、生产监控和改进驱动力。</h2>
+      <p>企业智能体和传统软件有本质不同，传统 QA 框架在这里失效。ADLC 提供了一套新的方法论，把生产数据变成飞轮的驱动力；而三类工程实践，无论是把评估跑起来、让数据持续流入评估，还是让系统架构可被评估，最终都指向同一件事。</p>
+      <div class="case-document-grid">
+        <article><span>01</span><small>规格说明</small><h3>定义什么叫好</h3><p>基准数据集和指标体系是开发工作的起点，不是上线后的复盘。</p></article>
+        <article><span>02</span><small>质量门控</small><h3>不达阈值不上线</h3><p>每次变更触发评估，阻止回归悄悄进入生产。</p></article>
+        <article><span>03</span><small>生产监控</small><h3>捕捉静默漂移</h3><p>持续采样和漂移检测，让质量衰退在影响用户前被发现。</p></article>
+        <article><span>04</span><small>改进驱动力</small><h3>失败案例回流</h3><p>生产失败样本进入评估集，为下一轮优化提供有据可查的方向。</p></article>
+      </div>
+      <p>越早建立这套能力，它的复利效应越显著：每一次迭代都会让评估集更完整、指标体系更精准、整个飞轮转得更快。下一篇可以继续细化智能体评估到底有哪些维度、方法和从零构建路径；配套动手实验则可以把这里的基准数据集、工具定义和 Trace 回流做成可运行样例。</p>
+      <div class="case-reference-list"><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html" target="_blank" rel="noopener">Amazon Bedrock Agents 官方文档</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html" target="_blank" rel="noopener">Amazon Bedrock 模型评估官方文档</a><a href="https://opentelemetry.io/docs/" target="_blank" rel="noopener">OpenTelemetry 官方文档</a></div>
+    </section>
+  </article>
+</div>
+<section class="case-related">
+  <div class="container">
+    <div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻问题，建立完整判断。</h2></div><a class="text-link" href="cases.html">查看全部案例&博客 →</a></div>
+    <div class="case-related-grid">
+      <a class="case-related-card" href="case-supply-chain-agentic-decision.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/supply-chain-agentic-decision-hero.png"><div><small>多智能体生产架构</small><h3>供应链数据如何进入决策与行动</h3><p>语义层、主管代理、MCP 和行动闭环</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="case-vanguard-virtual-analyst.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/vanguard-virtual-analyst-hero.png"><div><small>AI-ready data</small><h3>先锋集团虚拟分析师</h3><p>数据产品、语义层、质量检查和持续评估</p><span>继续阅读 <b>↗</b></span></div></a>
+      <a class="case-related-card" href="case-healthcare-agent-roi.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/healthcare-care-chain-sana-plain.png"><div><small>高合规智能体</small><h3>医疗工作流中的受限多智能体架构</h3><p>状态机、人工升级、模型专项化和 ROI 验证</p><span>继续阅读 <b>↗</b></span></div></a>
+    </div>
+  </div>
+</section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一个 Agent 原型，补齐评估基线，再讨论扩展。</h2><p>用一次 Q2Q 场景诊断，把职责边界、工具定义、基准数据集、上线阈值和 Trace 采样机制摆清楚。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&博客</a></div></div></section>
+<section class="case-source-foot" id="case-source" aria-labelledby="agent-eval-case-source-title"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><div><small>案例价值</small><h2 id="agent-eval-case-source-title">企业 Agent 的第一项基础设施，不是模型，而是评估。</h2><p>只有先定义“好”、建立基准数据集和生产 Trace 回流，Agent 才能从演示系统变成可上线、可审计、可持续改进的工作系统。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+'''
+(ROOT/'case-agent-evaluation-first.html').write_text(page('企业智能体之旅：为什么评估是一切的起点','从 Agent 原型到生产可信赖系统，说明 Evaluation-first、ADLC、自动化评估、可观测性、工具策略、安全边界和多智能体解耦的工程路径。','case-agent-evaluation-first',agent_evaluation_first_body,'case-detail-page case-theme--agent case-study-v2'),encoding='utf-8')
+
+contact_body = '''
+<section class="contact-hero">
+  <div class="container contact-hero__inner">
+    <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>联系</strong></nav>
+    <div class="contact-hero__grid">
+      <div class="contact-hero__copy">
+        <h1>联系 ForFlow。</h1>
+        <p>商务合作、项目沟通或媒体咨询，请通过邮件联系。</p>
+      </div>
+      <aside class="contact-card" aria-label="联系 ForFlow">
+        <span>ForFlow 萬維流形</span>
+        <h2>邮箱</h2>
+        <a class="contact-email" href="mailto:hello@forflow.ai?subject=ForFlow%20%E8%81%94%E7%B3%BB">hello@forflow.ai</a>
+        <p>北京、上海、深圳均可安排沟通。来信请备注公司、姓名、联系方式和希望沟通的事项。</p>
+        <a class="btn btn--green" href="mailto:hello@forflow.ai?subject=ForFlow%20%E8%81%94%E7%B3%BB">发送邮件 <span aria-hidden="true">→</span></a>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="contact-cities">
+  <div class="container contact-cities__inner">
+    <div class="contact-cities__head">
+      <p class="eyebrow">City presence</p>
+      <h2>北京、上海、深圳。</h2>
+      <p>如需线下沟通，可在邮件中备注城市和时间安排。</p>
+    </div>
+    <div class="contact-city-grid" aria-label="城市沟通入口">
+      <article class="contact-city-card contact-city-card--beijing">
+        <figure class="contact-city-media">
+          <img src="assets/contact/contact-city-card-beijing.png" alt="北京商务沟通场景视觉" decoding="async" loading="eager">
+          <span>北京</span>
+        </figure>
+        <div class="contact-city-copy">
+          <small>Beijing</small>
+          <h3>北京</h3>
+          <p>如需在北京沟通，请在邮件中备注城市、时间和联系人。</p>
+        </div>
+      </article>
+      <article class="contact-city-card contact-city-card--shanghai">
+        <figure class="contact-city-media">
+          <img src="assets/contact/contact-city-card-shanghai.png" alt="上海业务运营场景视觉" decoding="async" loading="eager">
+          <span>上海</span>
+        </figure>
+        <div class="contact-city-copy">
+          <small>Shanghai</small>
+          <h3>上海</h3>
+          <p>如需在上海沟通，请在邮件中备注城市、时间和联系人。</p>
+        </div>
+      </article>
+      <article class="contact-city-card contact-city-card--shenzhen">
+        <figure class="contact-city-media">
+          <img src="assets/contact/contact-city-card-shenzhen.png" alt="深圳制造工程场景视觉" decoding="async" loading="eager">
+          <span>深圳</span>
+        </figure>
+        <div class="contact-city-copy">
+          <small>Shenzhen</small>
+          <h3>深圳</h3>
+          <p>如需在深圳沟通，请在邮件中备注城市、时间和联系人。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+'''
+(ROOT/'contact.html').write_text(page('联系','联系 ForFlow 萬維流形：hello@forflow.ai。','contact',contact_body,'contact-page'),encoding='utf-8')
+
 write_search_index()
 
 search_body=f'''
-<section class="search-page-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>搜索</strong></nav><form class="search-page-form" action="search.html" method="get"><span>{SEARCH_ICON}</span><input data-search-page-input type="search" name="search" value="" placeholder="输入行业、技术、场景或案例，例如：供应链 / DFMEA / 医疗" aria-label="搜索关键词"><button class="btn btn--green" type="submit">搜索</button></form><p class="search-live-summary" data-search-summary aria-live="polite">输入关键词后会按相关度排序。</p><div class="search-quick-links" aria-label="常用搜索"><span>试试：</span><a href="search.html?search=供应链">供应链</a><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=B柱">B 柱</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=AgentCore">AgentCore</a><a href="search.html?search=P%26ID">P&amp;ID</a><a href="search.html?search=数据治理">数据治理</a></div><div class="search-tabs"><button class="is-active" data-search-tab="all">全部 <span data-count-all>0</span></button><button data-search-tab="category">方案分类 <span data-count-category>0</span></button><button data-search-tab="service">企业服务 <span data-count-service>0</span></button><button data-search-tab="resource">资料 <span data-count-resource>0</span></button><button data-search-tab="case">案例 <span data-count-case>0</span></button></div></div></section>
+<section class="search-page-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>搜索</strong></nav><form class="search-page-form" action="search.html" method="get"><span>{SEARCH_ICON}</span><input data-search-page-input type="search" name="search" value="" placeholder="输入行业、技术、场景或案例/博客，例如：供应链 / DFMEA / 医疗" aria-label="搜索关键词"><button class="btn btn--green" type="submit">搜索</button></form><p class="search-live-summary" data-search-summary aria-live="polite">输入关键词后会按相关度排序。</p><div class="search-quick-links" aria-label="常用搜索"><span>试试：</span><a href="search.html?search=供应链">供应链</a><a href="search.html?search=Evaluation">Evaluation</a><a href="search.html?search=ADLC">ADLC</a><a href="search.html?search=虚拟分析师">虚拟分析师</a><a href="search.html?search=AI-ready">AI-ready</a><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=B柱">B 柱</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=AgentCore">AgentCore</a><a href="search.html?search=P%26ID">P&amp;ID</a><a href="search.html?search=数据治理">数据治理</a></div><div class="search-tabs"><button class="is-active" data-search-tab="all">全部 <span data-count-all>0</span></button><button data-search-tab="category">方案分类 <span data-count-category>0</span></button><button data-search-tab="service">企业服务 <span data-count-service>0</span></button><button data-search-tab="resource">资料 <span data-count-resource>0</span></button><button data-search-tab="case">案例&博客 <span data-count-case>0</span></button></div></div></section>
 <section class="search-results-page section-pad" data-search-index="search-index.json?v={ASSET_VERSION}"><div class="container"><div class="search-result-group" data-result-type="category"><div class="search-result-head"><h2>方案分类 <span>{search_type_count('category')}</span></h2><a href="category-hrms.html">查看全部 →</a></div><div class="search-result-grid" data-search-grid="category">{render_search_cards('category')}</div></div>
 <div class="search-result-group" data-result-type="service"><div class="search-result-head"><h2>企业服务 <span>{search_type_count('service')}</span></h2><a href="index.html#services">查看全部 →</a></div><div class="search-result-grid" data-search-grid="service">{render_search_cards('service')}</div></div>
 <div class="search-result-group" data-result-type="resource"><div class="search-result-head"><h2>资料 <span>{search_type_count('resource')}</span></h2><span>PDF / 在线手册</span></div><div class="search-result-grid" data-search-grid="resource">{render_search_cards('resource')}</div></div>
-<div class="search-result-group" data-result-type="case"><div class="search-result-head"><h2>案例 <span>{search_case_count()}</span></h2><a href="cases.html">查看全部 →</a></div><div class="search-result-grid" data-search-grid="case">{render_search_case_cards()}</div></div>
+<div class="search-result-group" data-result-type="case"><div class="search-result-head"><h2>案例&博客 <span>{search_case_count()}</span></h2><a href="cases.html">查看全部 →</a></div><div class="search-result-grid" data-search-grid="case">{render_search_case_cards()}</div></div>
 <div class="search-empty" data-search-empty hidden><h2>没有找到完全匹配的内容。</h2><p>可以尝试“Agent”“数据治理”“培训”“HR”或“Playbook”。</p><a class="btn btn--green" href="navigator.html">改用场景诊断 →</a></div></div></section>
 '''
-(ROOT/'search.html').write_text(page('搜索','搜索 ForFlow 企业服务、场景、资料与案例。','',search_body,'search-page'),encoding='utf-8')
+(ROOT/'search.html').write_text(page('搜索','搜索 ForFlow 企业服务、场景、资料、案例与博客。','',search_body,'search-page'),encoding='utf-8')
 
 viewer_body='''
 <section class="viewer-toolbar"><div class="container viewer-toolbar-inner"><div><a class="viewer-back" href="search.html">← 返回搜索</a><h1 data-doc-title>企业生成式 AI 实战手册</h1></div><div class="viewer-actions"><a class="btn btn--ghost" data-doc-open target="_blank" rel="noopener"><span>新窗口打开</span> ↗</a><a class="btn btn--green" data-doc-download download><span>下载 PDF</span> ↓</a></div></div></section>
@@ -1372,7 +1968,7 @@ viewer_body='''
 (ROOT/'document-viewer.html').write_text(page('PDF 阅读器','在线查看和下载企业 AI 参考 PDF。','document-viewer',viewer_body,'viewer-page'),encoding='utf-8')
 
 # README
-readme='''# ForFlow 萬維流形企业网站原型\n\n这是在已有 `index.html` 与 `navigator.html` 基础上继续扩展的静态响应式网站，不依赖前端框架。\n\n## 页面\n\n- `index.html`：主页（保留原有框架并加入四项企业服务）\n- `navigator.html`：3 分钟 AI 场景诊断\n- `navigator-results.html`：推荐结果、品牌视频控件与方案排序\n- `playbook.html`：中文企业生成式 AI 实战手册\n- `service-ai-enablement.html`：企业 AI 赋能计划\n- `service-data-governance.html`：数据治理\n- `service-agent-build.html`：企业 Agent 搭建\n- `service-ai-training.html`：企业 AI 培训\n- `category-hrms.html`：HR AI 场景分类页\n- `cases.html`：案例中心\n- `case-wren-kitchens.html`：Wren Kitchens 公开案例结构参考\n- `case-manufacturing-pid-intelligence.html`：制造业 P&ID 智能化案例\n- `case-healthcare-agent-roi.html`：医疗智能体 ROI 案例\n- `case-automotive-dfmea-ontology-agent.html`：汽车 DFMEA 本体智能体案例\n- `case-supply-chain-agentic-decision.html`：供应链多智能体决策案例\n- `case-financial-bda-document-automation.html`：金融文档 BDA 自动化案例\n- `search.html`：全站搜索结果页\n- `document-viewer.html`：PDF 在线阅读器\n\n## 运行\n\n```bash\npython -m http.server 8080\n```\n\n打开 `http://localhost:8080/`。\n\n## 说明\n\n- 使用用户提供的 ForFlow + 萬維流形完整标识，不使用黑色方形图标。\n- Navigator 结果页的动效视频由完整品牌标识制作，带原生视频控件。\n- 所有服务页包含服务流程、交付物、FAQ 与相关路径。\n- 搜索弹层、搜索结果、PDF 展示、筛选、排序、FAQ、移动菜单和目录均为前端可交互原型。\n- 案例中的公开企业资料仅作为结构参考，正式发布前需复核授权和最新数据。\n'''
+readme='''# ForFlow 萬維流形企业网站原型\n\n这是在已有 `index.html` 与 `navigator.html` 基础上继续扩展的静态响应式网站，不依赖前端框架。\n\n## 页面\n\n- `index.html`：主页（保留原有框架并加入四项企业服务）\n- `navigator.html`：3 分钟 AI 场景诊断\n- `navigator-results.html`：推荐结果、品牌视频控件与方案排序\n- `playbook.html`：中文企业生成式 AI 实战手册\n- `service-ai-enablement.html`：企业 AI 赋能计划\n- `service-data-governance.html`：数据治理\n- `service-agent-build.html`：企业 Agent 搭建\n- `service-ai-training.html`：企业 AI 培训\n- `category-hrms.html`：HR AI 场景分类页\n- `cases.html`：案例&博客\n- `case-wren-kitchens.html`：Wren Kitchens 公开案例结构参考\n- `case-manufacturing-pid-intelligence.html`：制造业 P&ID 智能化案例\n- `case-healthcare-agent-roi.html`：医疗智能体 ROI 案例\n- `case-automotive-dfmea-ontology-agent.html`：汽车 DFMEA 本体智能体案例\n- `case-supply-chain-agentic-decision.html`：供应链多智能体决策案例\n- `case-financial-bda-document-automation.html`：金融文档 BDA 自动化案例\n- `search.html`：全站搜索结果页\n- `document-viewer.html`：PDF 在线阅读器\n\n## 运行\n\n```bash\npython -m http.server 8080\n```\n\n打开 `http://localhost:8080/`。\n\n## 说明\n\n- 使用用户提供的 ForFlow + 萬維流形完整标识，不使用黑色方形图标。\n- Navigator 结果页的动效视频由完整品牌标识制作，带原生视频控件。\n- 所有服务页包含服务流程、交付物、FAQ 与相关路径。\n- 搜索弹层、搜索结果、PDF 展示、筛选、排序、FAQ、移动菜单和目录均为前端可交互原型。\n- 案例中的公开企业资料仅作为结构参考，正式发布前需复核授权和最新数据。\n'''
 (ROOT/'README.md').write_text(readme,encoding='utf-8')
 print('site pages generated')
 
@@ -1384,4 +1980,10 @@ for _name in ('index.html', 'playbook.html', 'README.md'):
     _template = ROOT / 'templates' / _name
     if _template.exists():
         copyfile(_template, ROOT / _name)
+for _filename, _active in (
+    ('case-manufacturing-pid-intelligence.html', 'case-manufacturing-pid-intelligence'),
+    ('case-healthcare-agent-roi.html', 'case-healthcare-agent-roi'),
+):
+    if (ROOT / _filename).exists():
+        patch_existing(_filename, _active)
 version_asset_links()

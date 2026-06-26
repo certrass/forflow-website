@@ -145,8 +145,8 @@ def test_case_and_search():
     c=CDP()
     try:
         c.goto('cases.html')
-        linked=c.eval("({pid:!!document.querySelector('#pid[href=\"case-manufacturing-pid-intelligence.html\"]'),healthcare:!!document.querySelector('#healthcare-agent-roi[href=\"case-healthcare-agent-roi.html\"]'),automotive:!!document.querySelector('#automotive-dfmea-ontology-agent[href=\"case-automotive-dfmea-ontology-agent.html\"]'),supply:!!document.querySelector('#supply-chain-agentic-decision[href=\"case-supply-chain-agentic-decision.html\"]'),financial:!!document.querySelector('#financial-bda-document-automation[href=\"case-financial-bda-document-automation.html\"]'),total:document.querySelectorAll('[data-case-tags]').length})")
-        assert linked['pid'] and linked['healthcare'] and linked['automotive'] and linked['supply'] and linked['financial'] and linked['total']>=11
+        linked=c.eval("({pid:!!document.querySelector('#pid[href=\"case-manufacturing-pid-intelligence.html\"]'),healthcare:!!document.querySelector('#healthcare-agent-roi[href=\"case-healthcare-agent-roi.html\"]'),automotive:!!document.querySelector('#automotive-dfmea-ontology-agent[href=\"case-automotive-dfmea-ontology-agent.html\"]'),supply:!!document.querySelector('#supply-chain-agentic-decision[href=\"case-supply-chain-agentic-decision.html\"]'),financial:!!document.querySelector('#financial-bda-document-automation[href=\"case-financial-bda-document-automation.html\"]'),vanguard:!!document.querySelector('#vanguard-virtual-analyst[href=\"case-vanguard-virtual-analyst.html\"]'),agentEval:!!document.querySelector('#agent-evaluation-first[href=\"case-agent-evaluation-first.html\"]'),total:document.querySelectorAll('[data-case-tags]').length})")
+        assert linked['pid'] and linked['healthcare'] and linked['automotive'] and linked['supply'] and linked['financial'] and linked['vanguard'] and linked['agentEval'] and linked['total']>=14
         c.eval("document.querySelector('[data-case-filter=\"education\"]').click()")
         visible=int(c.eval("[...document.querySelectorAll('[data-case-tags]')].filter(x=>!x.hidden).length"))
         assert visible==2
@@ -189,6 +189,22 @@ def test_case_and_search():
         c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
         financial_doc_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,financial:!!document.querySelector('a[href=\"case-financial-bda-document-automation.html\"]:not([hidden])')})")
         assert int(financial_doc_case['caseCount'])>=1 and financial_doc_case['financial']
+        c.goto('search.html?search=虚拟分析师')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        vanguard_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,vanguard:!!document.querySelector('a[href=\"case-vanguard-virtual-analyst.html\"]:not([hidden])')})")
+        assert int(vanguard_case['caseCount'])>=1 and vanguard_case['vanguard']
+        c.goto('search.html?search=AI-ready')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        ai_ready_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,vanguard:!!document.querySelector('a[href=\"case-vanguard-virtual-analyst.html\"]:not([hidden])')})")
+        assert int(ai_ready_case['caseCount'])>=1 and ai_ready_case['vanguard']
+        c.goto('search.html?search=Evaluation')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        evaluation_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,agentEval:!!document.querySelector('a[href=\"case-agent-evaluation-first.html\"]:not([hidden])')})")
+        assert int(evaluation_case['caseCount'])>=1 and evaluation_case['agentEval']
+        c.goto('search.html?search=ADLC')
+        c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
+        adlc_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,agentEval:!!document.querySelector('a[href=\"case-agent-evaluation-first.html\"]:not([hidden])')})")
+        assert int(adlc_case['caseCount'])>=1 and adlc_case['agentEval']
         c.goto('search.html?search=P%26ID')
         c.wait("document.querySelector('.search-page')?.dataset.searchSource === 'json-index'")
         pid_case=c.eval("({caseCount:document.querySelector('[data-count-case]').textContent,pid:!!document.querySelector('a[href=\"case-manufacturing-pid-intelligence.html\"]:not([hidden])')})")
@@ -202,7 +218,7 @@ def test_case_and_search():
         c.wait("document.querySelector('[data-count-case]').textContent !== '0' && decodeURIComponent(location.search).includes('RFLP')")
         live_search=c.eval("({source:document.querySelector('.search-page').dataset.searchSource,version:document.querySelector('.search-page').dataset.searchVersion,caseCount:document.querySelector('[data-count-case]').textContent,automotive:!!document.querySelector('a[href=\"case-automotive-dfmea-ontology-agent.html\"]:not([hidden])')})")
         assert live_search['source']=='json-index' and live_search['version'] and int(live_search['caseCount'])>=1 and live_search['automotive']
-        ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；JSON 索引 {live_search["version"]}；DFMEA/B柱/AgentCore/知识流失/供应链/BDA/金融文档/P&ID/RFLP 均命中')
+        ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；JSON 索引 {live_search["version"]}；DFMEA/B柱/AgentCore/知识流失/供应链/BDA/金融文档/虚拟分析师/AI-ready/Evaluation/ADLC/P&ID/RFLP 均命中')
     finally:c.close()
 
 for fn in [test_search_overlay,test_mobile_menu,test_navigator_flow,test_faq_and_filters,test_case_and_search]:

@@ -13,6 +13,167 @@
 
 ### 变更范围
 
+- 复核并补强企业 Agent 评估先行案例 `case-agent-evaluation-first.html`，同步更新维护入口 `build_site.py`、共享样式 `styles.css`、生成页面、`search-index.json` 和本维护日志。
+
+### 主要变更
+
+- 按用户提供的原文重新核对 Agent Evaluation 细节，补回此前遗漏的 Amazon 内部数千个生产级 Agent 经验、本系列四篇定位、Mixture-of-Experts 非确定性、`package.json` / `Changelog` 隐性依赖、Claude Sonnet / Claude Haiku 评估取舍、生产采样 78% 到 95% 的工具选择改进、外部数据 API Trace、CloudWatch / Datadog / Dynatrace / LangSmith / Langfuse、MCP Server、GitHub、工具代码示例、行级 / 列级安全、下一篇与动手实验等细节。
+- 在 hero 区新增“长文阅读路线”模块，按决策层、业务负责人、技术 / 平台团队拆分阅读入口，帮助长文读者先抓判断点，再进入完整正文。
+- 为 `.case-reading-map` 增加桌面四列、手机单列样式；手机端不产生整页横向滚动，保持案例详情页的上下滑动稳定性。
+- 将全站静态资源版本推进到 `v=20260625-agent-eval-readability-v24`，刷新生成 HTML、CSS/JS 引用和 JSON 搜索索引。
+
+### 验证
+
+- `python3 build_site.py`
+- 原文关键细节扫描：`missing_count=0`
+- `PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 -m py_compile build_site.py tests/static_check.py tests/interaction_check.py tests/polished_pages_check.py`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `python3 -m json.tool search-index.json >/tmp/forflow-search-v24.json`
+- `node --check script.js`
+- `git diff --check`
+- in-app Browser 桌面 DOM QA：`case-agent-evaluation-first.html?qa=readability-v24` 加载 `styles.css?v=20260625-agent-eval-readability-v24`，`case-reading-map` 入口数为 3，关键补充术语缺失数为 0，console 无 error / warn，整页无横向溢出。
+- in-app Browser 手机 QA：阅读路线在移动端为单列，`rootScrollWidth=424 / innerWidth=424`，整页无横向溢出，console 无 error / warn。
+- in-app Browser 交互 QA：点击阅读路线中的 `#architecture` 入口后，URL hash 为 `#architecture`，目标段落进入视窗附近，仍无横向溢出且 console 无 error / warn。
+- 说明：浏览器截图接口一度返回空白帧，最终页面证明以 DOM、布局数据、console 日志和真实点击状态为准；该截图异常未作为网站问题计入。
+
+### 后续
+
+- 用户后续补充本系列后续文章时，优先保持“原文细节完整 + 表格/图解辅助阅读”的模式；新增图只作为阅读证据层，不替代原有技术叙事。
+
+## 2026-06-25
+
+### 变更范围
+
+- 全站“案例”入口命名口径，覆盖 `build_site.py`、`templates/index.html`、`templates/playbook.html`、`templates/README.md`、`cases.html`、`search.html`、`README.md`，以及未由生成器重写的 `case-healthcare-agent-roi.html`、`case-manufacturing-pid-intelligence.html`。
+
+### 主要变更
+
+- 将顶部快捷链接、主导航、移动菜单、手册与洞察下拉、页脚、案例索引页、搜索页 tab / 分组、案例详情面包屑、返回按钮和相关案例入口统一为 `案例&博客`。
+- 将案例索引页 hero 文案调整为：`案例&博客不只展示技术细节，也回答为什么做、如何做、谁参与、怎样验证，以及下一步如何扩展。`
+- 将搜索入口说明统一为 `查找服务、场景、资料、案例与博客`，避免旧模板仍显示“资料与案例”。
+- 将全站静态资源版本推进到 `v=20260625-cases-blog-label-v23`，刷新生成 HTML、CSS/JS 引用和 `search-index.json`。
+
+### 验证
+
+- `python3 build_site.py`
+- `PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 -m py_compile build_site.py tests/static_check.py tests/interaction_check.py tests/polished_pages_check.py`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `python3 -m json.tool search-index.json`
+- `node --check script.js`
+- `git diff --check`
+- 交付页面与模板旧文案扫描：`案例中心`、`企业案例中心`、`返回案例中心`、`资料与案例`、`案例 <span>`、`案例页不只展示技术` 均无残留；维护日志里的历史记录不作为页面残留计入。
+
+### 后续
+
+- 后续新增案例或博客时继续从 `CASE_LIBRARY_ITEMS` 维护索引与搜索联动，一级导航不再新增单独“博客”入口，先合并到 `案例&博客`。
+
+## 2026-06-25
+
+### 变更范围
+
+- 新增企业 Agent 评估先行案例 `case-agent-evaluation-first.html`，同步更新 `build_site.py`、`CASE_LIBRARY_ITEMS`、`cases.html`、`search.html`、`search-index.json`、案例视觉资源、样式、README 模板与测试覆盖。
+- 追加 Agent DLC / ADLC 正文图 `assets/cases/agent-evaluation-dlc-loop.png`，并在不删减原文叙事的前提下，补充多组解释型表格与原生流程图，作为正文的证据和阅读辅助层。
+
+### 主要变更
+
+- 将用户提供的“企业智能体之旅：为什么评估（Evaluation）是一切的起点”整理为新版案例详情页，保留从原型到生产鸿沟、传统测试失效、ADLC 飞轮、先定义成功、自动化评估、持续测试、可观测性、可评估架构、安全与个性化、评估四重角色等主线。
+- 根据复核反馈补回原文关键细节：四篇系列定位、传统测试失效的三类原因展开、ADLC“先定义好”的返工逻辑、财务分析 / 人力资源政策助理 / IT 支持三类 Agent 的职责、语气、工具和基准样本、生产采样下工具选择从 78% 回升到 95% 的改进循环、组织级平台化扩展、OpenTelemetry Trace 三层可观测性、工具定义五要素、确定性代码替代 Agent 工具、多智能体交接点、安全 Gateway / Policy 外部化和用户记忆隔离。
+- 在 ADLC 段落后加入用户提供的中文 Agent DLC 飞轮图，作为正文 evidence figure；图片使用 `width="1860"` / `height="958"` 保留懒加载前的比例空间，避免手机端滚动时布局跳动。
+- 新增 `.case-agent-table` 和 `.case-figure--dark-diagram` 样式：桌面端完整阅读，手机端图和表格在各自容器内横向滚动，不造成整页横向溢出。
+- 在 `build_site.py` 新增 `agent-evaluation-first` 案例清单项，案例中心和搜索页从 `CASE_LIBRARY_ITEMS` 自动联动；搜索关键词覆盖 `Evaluation`、`ADLC`、`Prompt 变更`、`静默漂移`、`LLM-as-a-Judge`、`Trace`、`OpenTelemetry`、`A/B测试`、`MCP`、`A2A`、`Gateway`、`Policy` 等。
+- 调用 imagegen 生成无可读文字的中国企业 Agent 上线评审场景 hero 图，落到 `assets/cases/agent-evaluation-first-hero.png`，用于表达评估、Trace、质量门控和生产发布前复核。
+- 新增 `case-study-hero--agent-eval` 背景样式，正文复用现有案例组件，保持新版案例详情页的桌面与手机阅读标准。
+- 在传统测试失效、评估数据集、持续测试、可观测性、可评估架构、安全外部化等段落补充表格或原生图解；恢复多智能体协作模式原有卡片，新增表格仅作为补充对照，不替换正文和原有卡片。
+- 新增 `.case-data-table`、`.case-native-diagram` 样式，移动端采用组件内部横向滚动，避免整页横向晃动。
+- 修复 Agent Evaluation 案例新增图在手机端固定宽度显示不全的问题：ADLC 正文 PNG 通过 `.case-figure--mobile-fit` 在手机端完整按容器缩放；新增原生流程图在手机端改为纵向堆叠，避免必须横向拖动才能看全。
+- 修复共享 SVG sprite 缺少 `i-chart` symbol 导致部分案例卡片 icon 只显示黑色底块的问题；`templates/index.html` 补齐 `i-chart`，并在 `tests/static_check.py` 增加全站 `<use href="#...">` 与 `<symbol id="...">` 的匹配检查，防止后续新增页面再次出现缺失 icon。
+- 将全站静态资源版本推进到 `v=20260625-icon-symbol-fix-v22`，刷新生成 HTML、CSS/JS 引用和 JSON 搜索索引。
+
+### 验证
+
+- `python3 build_site.py`
+- `PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 -m py_compile build_site.py tests/static_check.py tests/interaction_check.py tests/polished_pages_check.py`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `python3 -m json.tool search-index.json`
+- `node --check script.js`
+- `git diff --check`
+- SVG symbol 回归扫描：全站 HTML 的 `<use href="#...">` 引用与 `<symbol id="...">` 定义对比结果为 `missing []`，`ref_count=46 / def_count=47`。
+- 现有 `tests/polished_pages_check.py` / `tests/interaction_check.py` 依赖 Chrome CDP `127.0.0.1:9226`；当前用户已关闭调试 Chrome，提升权限重跑后为 `ECONNREFUSED`，未作为页面失败计入。
+- Headless Google Chrome 渲染 QA：`case-agent-evaluation-first.html?qa=v20-supplemental` 桌面 `1440×1800` 与手机 `390×1600` 均无整页横向溢出；桌面 `rootScrollWidth=1440 / innerWidth=1440`，手机 `rootScrollWidth=390 / innerWidth=390`；新增 `.case-data-table` 数量为 6，`.case-native-diagram` 数量为 2，`#architecture .case-fit-card` 数量为 4，补充表格均为组件内部横向滚动。
+- Headless Google Chrome 手机图像回归 QA：`case-agent-evaluation-first.html?qa=mobile-fit-v21-final` 加载 `styles.css?v=20260625-agent-evaluation-mobile-figure-v21`；手机视口 `390×1600` 下整页无横向溢出，ADLC 图 `figureWidth=386 / imageWidth=386 / imageNaturalWidth=1860`，不再固定为 `920px`；两组 `.case-native-diagram` 均为纵向堆叠，`scrollWidth=clientWidth=386`。
+- in-app Browser 回归 QA：`case-agent-evaluation-first.html?qa=icon-symbol-v22#why-fail` 手机宽度下第一张“非确定性”卡片引用 `href="#i-chart"`，`symbol#i-chart` 存在，图标尺寸 `22×22`，颜色和描边均为 `rgb(108, 246, 126)`，console 无 error / warn，整页无横向溢出。
+- `CDP_PORT=9231 PYTHONPATH=.python-deps python3 tests/polished_pages_check.py > /tmp/forflow-polished-v18-expanded.log`
+- Playwright 渲染 QA 复核：`case-agent-evaluation-first.html` 桌面和手机视口均 HTTP 200，整页无横向溢出，手机端 `scrollWidth=390 / innerWidth=390`，可滑到底并返回顶部，目录无横向滚动，标题行高比为 `1.2`，无缺失图片、无页面 console error；案例中心和 `search.html?search=Evaluation` 均能检索到新案例。
+- Browser DOM 复核：`case-agent-evaluation-first.html?qa=agent-dlc-figure-table-v19-mobile-2` 手机视口无整页横向溢出，ADLC 图预留高度正常，`.case-agent-table` 内部横向滚动，关键术语 `getUpcomingHolidays`、`P50 低于 2 秒`、`从 92% 悄悄降到 84%`、`约 8,500`、`A2A、MCP、HTTP` 均存在，console 无 error / warn。
+- Playwright 截图复核：`/tmp/forflow-agent-eval-adlc-desktop-v19.png`、`/tmp/forflow-agent-eval-adlc-mobile-v19.png`、`/tmp/forflow-agent-eval-table-desktop-v19.png`、`/tmp/forflow-agent-eval-table-mobile-v19.png`；桌面和手机均加载 `agent-evaluation-dlc-loop.png` 原图尺寸 `1860×958`，手机端图容器和表格容器均为内部横向滚动，整页无横向溢出。
+
+### 后续
+
+- 用户后续会补充材料；补充后优先扩展正文细节和 evidence figure，不替换当前 hero 场景图的定位。
+
+## 2026-06-25
+
+### 变更范围
+
+- 新增先锋集团虚拟分析师案例 `case-vanguard-virtual-analyst.html`，同步更新 `build_site.py`、`CASE_LIBRARY_ITEMS`、`cases.html`、`search.html`、`search-index.json`、案例视觉资源、样式、README 模板与测试覆盖。
+
+### 主要变更
+
+- 将用户提供的“先锋集团虚拟分析师：AI 就绪数据的八项原则与实践”整理为案例详情页，保留核心认知、组织协作、AWS 技术栈、八项原则、元数据目录、语义层、示例库、数据质量、变更控制、持续评估、可衡量成果和知识图谱/RAG 下一步。
+- 在 `build_site.py` 新增 `vanguard-virtual-analyst` 案例清单项，案例中心和搜索页从 `CASE_LIBRARY_ITEMS` 自动联动；搜索关键词覆盖 `先锋集团`、`Vanguard`、`虚拟分析师`、`AI-ready`、`语义层`、`元数据目录`、`示例库`、`数据质量`、`Bedrock Guardrails`、`Redshift`、`Glue` 等。
+- 调用 imagegen 生成无可读文字的中国金融分析 / AI-ready data 场景 hero 图，落到 `assets/cases/vanguard-virtual-analyst-hero.png`，避免外文界面、虚构 logo 和科幻化数据大屏。
+- 新增 `case-study-hero--vanguard` 背景样式，正文复用现有案例组件，保持新版案例详情页的桌面与手机阅读标准。
+- 将全站静态资源版本推进到 `v=20260625-vanguard-analyst-case-v17`，刷新生成 HTML、CSS/JS 引用和 JSON 搜索索引。
+
+### 验证
+
+- `python3 build_site.py`
+- `PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 -m py_compile build_site.py tests/static_check.py tests/interaction_check.py tests/polished_pages_check.py`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `python3 -m json.tool search-index.json >/tmp/forflow-search-vanguard-v17.json`
+- `node --check script.js`
+- in-app Browser 复核：`case-vanguard-virtual-analyst.html?qa=vanguard-v17-*` 桌面与手机视口均加载 v17，标题、hero 图自然尺寸 `1672×941`、4 个 proof item、10 个目录项、8 项原则、6 个 AWS 技术栈卡、4 个质量检查卡、6 个参考链接和关键术语均存在，未发现页面 console error，未出现整页横向溢出。
+- in-app Browser 复核：`search.html?search=虚拟分析师&qa=vanguard-v17-search` 使用 `json-index`，索引版本为 `20260625-vanguard-analyst-case-v17`，新案例结果可见；点击结果可进入 `case-vanguard-virtual-analyst.html`。
+- in-app Browser 复核：手机视口下目录 `八项原则` 链接可滚动到 `#principles`，等待平滑滚动完成后目标标题位置正常，仍无横向溢出。
+- 说明：in-app Browser 截图 API 本轮仍出现一次 `Page.captureScreenshot` 超时，浏览器外层 Statsig 遥测也出现网络超时；两者均不来自网站脚本。页面验证改用 DOM、图片自然尺寸、控制台日志、滚动位置和横向溢出数据完成。
+
+### 后续
+
+- 如果后续拿到 Vanguard / AWS 原始架构图或截图，应按正文 evidence figure 单独补图；hero 场景图不替代技术结构图。
+
+## 2026-06-25
+
+### 变更范围
+
+- 新增金融文档 BDA 自动化案例 `case-financial-bda-document-automation.html`，同步更新 `build_site.py`、`CASE_LIBRARY_ITEMS`、`cases.html`、`search.html`、`search-index.json`、案例样式、测试覆盖、README 与案例视觉资源。
+
+### 主要变更
+
+- 将用户提供的 Bedrock Data Automation 金融文档提取文章整理为案例详情页，保留银行对账单、W-2、1099-B、供应商合同四类场景的 Blueprint 字段、复杂性和提取结果说明。
+- 在 `build_site.py` 新增 `financial-bda-document-automation` 案例清单项，案例中心和搜索页均从同一份 Python 清单联动生成，关键词覆盖 `BDA`、`Blueprint`、`金融文档`、`W-2`、`1099-B`、`供应商合同`、`JSON/CSV` 等入口。
+- 调用 imagegen 生成无可读文字的中国金融运营场景 hero 图，落到 `assets/cases/financial-bda-document-automation-hero.png`，正文保留文档自动化和 Blueprint 结构叙事，不用泛化场景图替代技术内容。
+- 新增 Blueprint 流程、四类文档场景卡和 schema 代码块样式；手机端 schema 在块内横向滚动，避免整页横向溢出。
+- 将全站静态资源版本推进到 `v=20260625-financial-bda-case-v16`，刷新生成 HTML、CSS/JS 引用和 JSON 搜索索引。
+
+### 验证
+
+- `python3 build_site.py`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `python3 -m json.tool search-index.json >/tmp/forflow-search-financial-v16.json`
+- `node --check script.js`
+- in-app Browser 复核：`case-financial-bda-document-automation.html?qa=financial-bda-v16-*` 桌面与手机视口均加载 v16，标题、4 个 schema block、4 类文档卡、AWS 官方资料链接、关键术语和 hero 图均存在，未发现页面 console error，未出现整页横向溢出。
+- in-app Browser 复核：`search.html?search=金融文档&qa=financial-bda-v16-search-noscreenshot` 使用 `json-index`，索引版本为 `20260625-financial-bda-case-v16`，金融案例结果可见；点击结果可进入 `case-financial-bda-document-automation.html`。
+- in-app Browser 复核：案例目录中 `Blueprint 蓝图` 链接在桌面和手机视口下均可滚动到 `#blueprint`，滚动后仍无横向溢出。
+- 说明：in-app Browser 截图 API 本轮出现一次 `Page.captureScreenshot` 超时，因此视觉证明改用 DOM、图片自然尺寸、控制台日志、滚动位置和横向溢出数据完成；该超时不来自网站脚本。
+
+### 后续
+
+- 如后续需要加入真实金融样本文档截图，应先脱敏并转为中文业务场景说明；不要放入可读个人、账户、税务或合同敏感信息。
+
+## 2026-06-25
+
+### 变更范围
+
 - 供应链案例详情页 `case-supply-chain-agentic-decision.html`、供应链正文架构图资源、生成脚本 `build_site.py`、样式 `styles.css`、搜索索引与维护记录。
 
 ### 主要变更
