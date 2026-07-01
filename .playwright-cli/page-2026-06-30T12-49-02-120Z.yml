@@ -1,0 +1,60 @@
+- generic [active] [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "您更希望今天之后发生什么？" [ref=e429]:
+      - generic [ref=e31]:
+        - button "返回上一步" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: 问题 8 / 8
+          - strong [ref=e37]: 行动意图
+        - button "重置" [ref=e38] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "08"
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 06 · NEXT MOVE
+            - heading "您更希望今天之后发生什么？" [level=2] [ref=e430]
+            - paragraph [ref=e47]: 这会影响结果页给出的下一步入口：保存结果、准备度审核、数据治理或原型验证。
+            - paragraph [ref=e48]: 诊断 转化不应该只靠“联系我们”。最后一步会把您的当前状态映射到最合适的下一次沟通方式。
+        - generic [ref=e49]:
+          - generic [ref=e431]:
+            - radio "先看路径说明 我想先知道为什么这样推荐，以及不该先做什么 ✓"
+            - generic [ref=e432] [cursor=pointer]:
+              - img [ref=e434]
+              - generic [ref=e437]:
+                - strong [ref=e438]: 先看路径说明
+                - generic [ref=e439]: 我想先知道为什么这样推荐，以及不该先做什么
+              - generic [ref=e440]: ✓
+          - generic [ref=e441]:
+            - radio "做 1–2 天准备度审核 需要一份短期路线图，推动内部共识 ✓"
+            - generic [ref=e442] [cursor=pointer]:
+              - img [ref=e444]
+              - generic [ref=e447]:
+                - strong [ref=e448]: 做 1–2 天准备度审核
+                - generic [ref=e449]: 需要一份短期路线图，推动内部共识
+              - generic [ref=e450]: ✓
+          - generic [ref=e451]:
+            - radio "两周内验证一个场景 已有明确问题，想快速做出可工作的版本 ✓"
+            - generic [ref=e452] [cursor=pointer]:
+              - img [ref=e454]
+              - generic [ref=e457]:
+                - strong [ref=e458]: 两周内验证一个场景
+                - generic [ref=e459]: 已有明确问题，想快速做出可工作的版本
+              - generic [ref=e460]: ✓
+          - generic [ref=e461]:
+            - radio "规划完整落地方案 希望把场景、数据、治理、系统和团队培训串起来 ✓"
+            - generic [ref=e462] [cursor=pointer]:
+              - img [ref=e464]
+              - generic [ref=e467]:
+                - strong [ref=e468]: 规划完整落地方案
+                - generic [ref=e469]: 希望把场景、数据、治理、系统和团队培训串起来
+              - generic [ref=e470]: ✓
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: 请选择一项
+        - button "查看结果" [disabled] [ref=e471]:
+          - generic [ref=e124]: 查看结果
+          - img [ref=e125]
+    - text: +
+  - status

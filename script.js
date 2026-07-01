@@ -666,6 +666,8 @@
     const inputs = qsa('[data-category-filter]', root);
     const count = qs('[data-category-count]', root);
     const sort = qs('[data-category-sort]', root);
+    const stageButtons = qsa('[data-hr-stage-filter]', root);
+    const stageValues = new Set(['recruit', 'onboard', 'service', 'develop', 'analytics']);
     const originalOrder = new Map(cards.map((card, index) => [card, index]));
 
     const selectedForGroup = (group) => qsa('input:checked', group).map((input) => input.value);
@@ -679,6 +681,15 @@
         if (show) visible += 1;
       });
       if (count) count.textContent = String(visible);
+      if (stageButtons.length) {
+        const checkedStages = inputs
+          .filter((input) => stageValues.has(input.value) && input.checked)
+          .map((input) => input.value);
+        const activeStage = checkedStages.length === 0 ? 'all' : checkedStages.length === 1 ? checkedStages[0] : '';
+        stageButtons.forEach((button) => {
+          button.classList.toggle('is-active', button.dataset.hrStageFilter === activeStage);
+        });
+      }
     };
     const sortCards = () => {
       const grid = qs('.product-grid', root);
@@ -693,6 +704,18 @@
     inputs.forEach((input) => input.addEventListener('change', apply));
     sort?.addEventListener('change', sortCards);
     qs('[data-filter-clear]', root)?.addEventListener('click', () => { inputs.forEach((input) => { input.checked = false; }); apply(); });
+    stageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const value = button.dataset.hrStageFilter || 'all';
+        inputs.forEach((input) => {
+          input.checked = value !== 'all' && input.value === value;
+        });
+        apply();
+        sortCards();
+        panel?.classList.remove('is-open');
+        qs('#scenarios', root)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
     qs('[data-filter-open]', root)?.addEventListener('click', () => panel?.classList.add('is-open'));
     qs('[data-filter-close]', root)?.addEventListener('click', () => panel?.classList.remove('is-open'));
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') panel?.classList.remove('is-open'); });

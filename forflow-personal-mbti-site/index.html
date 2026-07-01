@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>FORFLOW｜AI 职场人格测试 · 快测测你这碗饭 AI 多久会到手</title>
+<meta name="description" content="AI 锐评版职场 MBTI · 7 分钟破防 · 职场照妖镜。测完你就知道 AI 到底是你同事、你下属，还是你未来的替身。" />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link href="https://api.fontshare.com/v2/css?f[]=chillax@400,500,600,700&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="phone">
+  <!-- 进度条 -->
+  <div id="progressWrap" class="progress-wrap" hidden>
+    <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+    <div id="progressText" class="progress-text">1 / 20</div>
+  </div>
+
+  <!-- ============ 封面 ============ -->
+  <section id="screen-cover" class="screen screen-cover">
+    <div class="cover-deco deco-1">🍗</div>
+    <div class="cover-deco deco-2">🤖</div>
+    <div class="cover-deco deco-3">💀</div>
+    <div class="cover-deco deco-4">🪞</div>
+
+    <div class="brand">FORFLOW 出品</div>
+    <h1 class="cover-title">测测 AI 啥时候<br/><span class="hl">来端你的饭碗</span></h1>
+    <p class="cover-sub">AI 还没来开你，但它已经快学会你了</p>
+
+    <div class="chips" id="coverChips">
+      <span class="chip">🍗 专治嘴硬</span>
+      <span class="chip">🤖 7 分钟破防</span>
+      <span class="chip">🔪 AI 锐评版 MBTI</span>
+      <span class="chip">🪞 职场照妖镜</span>
+      <span class="chip">💀 测完别急着辞职</span>
+    </div>
+
+    <div class="cover-body">
+      有的人是公司大脑，有的人是人形接口，<br/>
+      还有的人，辛辛苦苦地找了一份辛辛苦苦的工作——<br/>
+      然后辛辛苦苦地等着被 AI 替掉。<br/>
+      测完你就知道——<br/>
+      AI 到底是你同事、你下属，还是你未来的替身。
+    </div>
+
+    <button class="btn-primary" id="startBtn">看看我这碗饭值不值钱 →</button>
+    <p class="cover-foot">放心，事情最多只是有了新的退展。</p>
+    <p class="cover-foot meta">共 20 题 · 约 7 分钟 · 含 1 个隐藏款 🎁</p>
+  </section>
+
+  <!-- ============ 答题 ============ -->
+  <section id="screen-quiz" class="screen screen-quiz" hidden>
+    <div class="q-stage" id="qStage"></div>
+  </section>
+
+  <!-- ============ 过场加载 ============ -->
+  <section id="screen-loading" class="screen screen-loading" hidden>
+    <div class="loader-emoji">🤖</div>
+    <div class="loader-ring"></div>
+    <p class="loader-text" id="loaderText">正在分析你这碗饭的成色……</p>
+  </section>
+
+  <!-- ============ 结果 ============ -->
+  <section id="screen-result" class="screen screen-result" hidden>
+    <div class="result-inner" id="resultInner"></div>
+  </section>
+</div>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

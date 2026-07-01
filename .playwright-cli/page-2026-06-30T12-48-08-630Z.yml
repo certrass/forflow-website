@@ -1,0 +1,60 @@
+- generic [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "AI 需要用到的资料和系统，现在处于什么状态？" [ref=e341]:
+      - generic [ref=e31]:
+        - button "返回上一步" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: 问题 6 / 8
+          - strong [ref=e37]: 数据条件
+        - button "重置" [ref=e38] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "06"
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 04 · DATA & SYSTEMS
+            - heading "AI 需要用到的资料和系统，现在处于什么状态？" [level=2] [ref=e342]
+            - paragraph [ref=e47]: 这里同时考虑可用性、权限、版本和可追溯性。
+            - paragraph [ref=e48]: 诊断 很多项目卡住不是因为模型不够强，而是资料散落、权限不清、更新责任不明，导致 AI 无法稳定回答或安全执行。
+        - generic [ref=e49]:
+          - generic [ref=e343]:
+            - radio "资料散落且版本混乱 文件、聊天记录与系统数据分散在多处 ✓" [checked] [active]
+            - generic [ref=e344] [cursor=pointer]:
+              - img [ref=e346]
+              - generic [ref=e352]:
+                - strong [ref=e353]: 资料散落且版本混乱
+                - generic [ref=e354]: 文件、聊天记录与系统数据分散在多处
+              - generic [ref=e355]: ✓
+          - generic [ref=e356]:
+            - radio "能查到，但需要人工整理 有资料来源，使用前仍要大量清洗与汇总 ✓"
+            - generic [ref=e357] [cursor=pointer]:
+              - img [ref=e359]
+              - generic [ref=e362]:
+                - strong [ref=e363]: 能查到，但需要人工整理
+                - generic [ref=e364]: 有资料来源，使用前仍要大量清洗与汇总
+              - generic [ref=e365]: ✓
+          - generic [ref=e366]:
+            - radio "已有统一知识库或接口 主要资料可检索，部分系统可以连接 ✓"
+            - generic [ref=e367] [cursor=pointer]:
+              - img [ref=e369]
+              - generic [ref=e372]:
+                - strong [ref=e373]: 已有统一知识库或接口
+                - generic [ref=e374]: 主要资料可检索，部分系统可以连接
+              - generic [ref=e375]: ✓
+          - generic [ref=e376]:
+            - radio "权限、版本与审计较清楚 数据来源、授权范围和更新机制已有规范 ✓"
+            - generic [ref=e377] [cursor=pointer]:
+              - img [ref=e379]
+              - generic [ref=e382]:
+                - strong [ref=e383]: 权限、版本与审计较清楚
+                - generic [ref=e384]: 数据来源、授权范围和更新机制已有规范
+              - generic [ref=e385]: ✓
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: 已选择，可继续
+        - button "继续" [ref=e123] [cursor=pointer]:
+          - generic [ref=e124]: 继续
+          - img [ref=e125]
+    - text: +
+  - status

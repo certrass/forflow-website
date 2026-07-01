@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "万维流形快速诊断" [ref=e4]:
+      - generic [ref=e7]:
+        - link "ForFlow 万维流形" [ref=e8] [cursor=pointer]:
+          - /url: "#"
+          - img "ForFlow 万维流形" [ref=e9]
+        - generic [ref=e12]: 展会限定版
+      - generic [ref=e13]:
+        - paragraph [ref=e14]: 万维流形 · QUICK DIAGNOSIS
+        - generic "万维流形快速诊断" [ref=e15]:
+          - generic [ref=e16]: 万维流形
+          - generic [ref=e17]: 快速诊断
+        - heading "2 分钟，判断 AI 下一步。" [level=1] [ref=e18]
+        - paragraph [ref=e19]: 回答 8 个问题，快速得到当前阶段、推荐路径和会后建议入口。
+        - generic "诊断说明" [ref=e20]:
+          - generic [ref=e21]: 8 个问题
+          - generic [ref=e22]: 非评分结果
+          - generic [ref=e23]: 扫码领取建议
+      - generic [ref=e24]:
+        - button "开始诊断" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]: 开始诊断
+          - img [ref=e27]
+        - paragraph [ref=e29]: 现场版不强制注册；完成后可以扫码填写会后对接，或自行保存结果。
+    - text: 诊断 +
+  - status

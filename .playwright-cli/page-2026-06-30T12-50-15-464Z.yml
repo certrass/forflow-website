@@ -1,0 +1,58 @@
+- generic [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - text: 诊断
+    - region "AI 准备度审核" [ref=e472]:
+      - generic [ref=e473]:
+        - img "ForFlow 万维流形" [ref=e474]
+        - generic [ref=e475]: 万维流形快速诊断
+      - generic [ref=e476]:
+        - paragraph [ref=e477]: 下一步动作 · 非评分结果
+        - heading "AI 准备度审核" [level=2] [ref=e478]
+        - paragraph [ref=e479]: 用 1–2 天把流程、数据、工具、风险和负责人对齐，产出一份可执行的短期路线图。
+        - generic "结果摘要" [ref=e480]:
+          - article [ref=e481]:
+            - generic [ref=e482]: 当前阶段
+            - strong [ref=e483]: 先校准
+            - generic [ref=e484]: 组织推动、责任人或目标还没清楚，建议先做 1–2 天准备度审核。
+          - article [ref=e485]:
+            - generic [ref=e486]: 企业类型
+            - strong [ref=e487]: 专业服务 / 咨询 / B2B 服务 · 1–20 人
+            - generic [ref=e488]: 工作变化：准备与校准型 · 判断可信度：中等
+        - generic [ref=e489]:
+          - text: 建议
+          - strong [ref=e490]: 先判断：近期最该改哪一段流程。
+          - paragraph [ref=e491]: 用 1–2 天把流程、数据、工具、风险和负责人对齐，产出一份可执行的短期路线图。 这只是现场粗筛，正式方案需要结合样本、系统、权限和团队访谈确认。
+          - generic [ref=e492]:
+            - generic [ref=e493]: 知识复用与交付效率
+            - generic [ref=e494]: 快速验证
+            - generic [ref=e495]: 准备与校准型
+            - generic [ref=e496]: 中等
+        - group [ref=e497]:
+          - generic "边界与判断依据 +" [ref=e498] [cursor=pointer]
+      - region "这个场景的真实负责人是谁，30 天内能不能推动一次小范围改变？ 第一批样本、基线和验收标准应该从哪里快速补起来？ 哪些资料可以直接使用，哪些需要先做权限、脱敏或版本治理？" [ref=e499]:
+        - paragraph [ref=e500]: 现场可以继续确认的 3 个问题
+        - list [ref=e501]:
+          - listitem [ref=e502]: 这个场景的真实负责人是谁，30 天内能不能推动一次小范围改变？
+          - listitem [ref=e503]: 第一批样本、基线和验收标准应该从哪里快速补起来？
+          - listitem [ref=e504]: 哪些资料可以直接使用，哪些需要先做权限、脱敏或版本治理？
+      - region "AI 转型会后对接" [ref=e505]:
+        - img "万维流形 AI 转型会后对接二维码" [ref=e507]
+        - generic [ref=e508]:
+          - heading "AI 转型会后对接" [level=3] [ref=e509]
+          - paragraph [ref=e510]: 扫码或点击补充联系方式和需求。我们会结合本次企业类型、工作变化和建议路径，给你一版更完整的行动建议。
+          - generic [ref=e511]:
+            - link "填写会后对接 ↗" [ref=e512] [cursor=pointer]:
+              - /url: https://zenithlink.feishu.cn/share/base/form/shrcnX80RM22yy6IxZYHCrkpwye?source=q2q_expo&event=%E5%B1%95%E4%BC%9A%E9%99%90%E5%AE%9A%E7%89%88&action=full&route=AI+%E5%87%86%E5%A4%87%E5%BA%A6%E5%AE%A1%E6%A0%B8&decision=%E5%85%88%E5%81%9A%E5%87%86%E5%A4%87%E5%BA%A6%E5%AE%A1%E6%A0%B8&stage=%E5%85%88%E6%A0%A1%E5%87%86&diagnostic_id=Q2Q-20260630-333H5B&transition=%E5%87%86%E5%A4%87%E4%B8%8E%E6%A0%A1%E5%87%86%E5%9E%8B&industry=%E4%B8%93%E4%B8%9A%E6%9C%8D%E5%8A%A1+%2F+%E5%92%A8%E8%AF%A2+%2F+B2B+%E6%9C%8D%E5%8A%A1&company_size=1%E2%80%9320+%E4%BA%BA&company_type=%E4%B8%93%E4%B8%9A%E6%9C%8D%E5%8A%A1+%2F+%E5%92%A8%E8%AF%A2+%2F+B2B+%E6%9C%8D%E5%8A%A1+%C2%B7+1%E2%80%9320+%E4%BA%BA
+            - link "预约会后诊断 ↗" [ref=e513] [cursor=pointer]:
+              - /url: https://zenithlink.feishu.cn/share/base/form/shrcnX80RM22yy6IxZYHCrkpwye?source=q2q_expo&event=%E5%B1%95%E4%BC%9A%E9%99%90%E5%AE%9A%E7%89%88&action=diagnosis&route=AI+%E5%87%86%E5%A4%87%E5%BA%A6%E5%AE%A1%E6%A0%B8&decision=%E5%85%88%E5%81%9A%E5%87%86%E5%A4%87%E5%BA%A6%E5%AE%A1%E6%A0%B8&stage=%E5%85%88%E6%A0%A1%E5%87%86&diagnostic_id=Q2Q-20260630-333H5B&transition=%E5%87%86%E5%A4%87%E4%B8%8E%E6%A0%A1%E5%87%86%E5%9E%8B&industry=%E4%B8%93%E4%B8%9A%E6%9C%8D%E5%8A%A1+%2F+%E5%92%A8%E8%AF%A2+%2F+B2B+%E6%9C%8D%E5%8A%A1&company_size=1%E2%80%9320+%E4%BA%BA&company_type=%E4%B8%93%E4%B8%9A%E6%9C%8D%E5%8A%A1+%2F+%E5%92%A8%E8%AF%A2+%2F+B2B+%E6%9C%8D%E5%8A%A1+%C2%B7+1%E2%80%9320+%E4%BA%BA
+      - generic [ref=e514]:
+        - button "分享本测试" [active] [ref=e515] [cursor=pointer]
+        - button "保存 / 打印" [ref=e516] [cursor=pointer]
+        - button "重新诊断 ↻" [ref=e517] [cursor=pointer]:
+          - generic [ref=e518]: 重新诊断
+          - generic [ref=e519]: ↻
+      - button "诊断编号：Q2Q-20260630-333H5B" [ref=e520] [cursor=pointer]
+      - generic [ref=e522]: ForFlow 万维流形 · AI Flows. Business Grows.
+  - status: CTA 测试链接已复制到剪切板

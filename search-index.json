@@ -1,5 +1,5 @@
 {
-  "version": "20260626-contact-page-v26",
+  "version": "20260627-nav-hr-map-v33",
   "types": [
     {
       "type": "category",
@@ -25,7 +25,7 @@
       "href": "category-hrms.html",
       "kicker": "方案分类",
       "title": "人力资源与组织效率",
-      "description": "招聘、入职、员工服务、培训、绩效与 HR 数据分析场景。",
+      "description": "招聘、入职、员工服务、培训、绩效与 HR 数据分析场景，包含优先级、证据链、人工复核和上线边界。",
       "action": "查看分类 →",
       "priority": 8,
       "keywords": [

@@ -1,0 +1,17 @@
+{
+  "name": "forflow-personal-mbti-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-static.cjs",
+    "check": "node --check app.js && node --check engine.js && node --check scripts/build-static.cjs && node --check tests/qa-capture-server.cjs && npm run typecheck && node tests/analyze-distribution.cjs 200000",
+    "qa:server": "node tests/qa-capture-server.cjs",
+    "typecheck": "tsc --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --types node netlify/functions/persona-mbti.mts"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^5.3.0",
+    "@types/node": "^26.0.1",
+    "typescript": "^6.0.3"
+  }
+}

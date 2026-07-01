@@ -1,0 +1,76 @@
+- generic [active] [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "您最想让 AI 先帮团队解决哪类问题？" [ref=e179]:
+      - generic [ref=e31]:
+        - button "返回上一步" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: 问题 3 / 8
+          - strong [ref=e37]: 业务瓶颈
+        - button "重置" [ref=e38] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "03"
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 01 · BUSINESS BOTTLENECK
+            - heading "您最想让 AI 先帮团队解决哪类问题？" [level=2] [ref=e180]
+            - paragraph [ref=e47]: 选最影响效率、体验或增长的一类。系统会先判断这类问题是否值得成为第一条 AI 路径。
+            - paragraph [ref=e48]: 诊断 先问“问题在哪里”，避免从模型和工具清单出发。企业转化通常发生在某个真实流程，而不是一个泛泛的 AI 想法。
+        - generic [ref=e49]:
+          - generic [ref=e181]:
+            - radio "客户触达与服务 咨询、线索、预约、售后响应慢，客户体验不稳定 ✓"
+            - generic [ref=e182] [cursor=pointer]:
+              - img [ref=e184]
+              - generic [ref=e187]:
+                - strong [ref=e188]: 客户触达与服务
+                - generic [ref=e189]: 咨询、线索、预约、售后响应慢，客户体验不稳定
+              - generic [ref=e190]: ✓
+          - generic [ref=e191]:
+            - radio "知识与决策 制度、产品、项目资料难找，经验依赖少数人 ✓"
+            - generic [ref=e192] [cursor=pointer]:
+              - img [ref=e194]
+              - generic [ref=e196]:
+                - strong [ref=e197]: 知识与决策
+                - generic [ref=e198]: 制度、产品、项目资料难找，经验依赖少数人
+              - generic [ref=e199]: ✓
+          - generic [ref=e200]:
+            - radio "文档与运营 表单、合同、订单、报告仍靠人工搬运和核对 ✓"
+            - generic [ref=e201] [cursor=pointer]:
+              - img [ref=e203]
+              - generic [ref=e206]:
+                - strong [ref=e207]: 文档与运营
+                - generic [ref=e208]: 表单、合同、订单、报告仍靠人工搬运和核对
+              - generic [ref=e209]: ✓
+          - generic [ref=e210]:
+            - radio "营销与增长 内容产出慢、素材复用差、活动效果复盘困难 ✓"
+            - generic [ref=e211] [cursor=pointer]:
+              - img [ref=e213]
+              - generic [ref=e215]:
+                - strong [ref=e216]: 营销与增长
+                - generic [ref=e217]: 内容产出慢、素材复用差、活动效果复盘困难
+              - generic [ref=e218]: ✓
+          - generic [ref=e219]:
+            - radio "财务与风控 票据、对账、审查、异常识别耗时且要求留痕 ✓"
+            - generic [ref=e220] [cursor=pointer]:
+              - img [ref=e222]
+              - generic [ref=e225]:
+                - strong [ref=e226]: 财务与风控
+                - generic [ref=e227]: 票据、对账、审查、异常识别耗时且要求留痕
+              - generic [ref=e228]: ✓
+          - generic [ref=e229]:
+            - radio "人才与协作 招聘、入职、培训、员工服务重复度高 ✓"
+            - generic [ref=e230] [cursor=pointer]:
+              - img [ref=e232]
+              - generic [ref=e236]:
+                - strong [ref=e237]: 人才与协作
+                - generic [ref=e238]: 招聘、入职、培训、员工服务重复度高
+              - generic [ref=e239]: ✓
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: 请选择一项
+        - button "继续" [disabled] [ref=e123]:
+          - generic [ref=e124]: 继续
+          - img [ref=e125]
+    - text: +
+  - status

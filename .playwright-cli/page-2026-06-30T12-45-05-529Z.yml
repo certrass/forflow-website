@@ -1,0 +1,68 @@
+- generic [active] [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "公司大概处在什么规模？" [ref=e127]:
+      - generic [ref=e31]:
+        - button "返回上一步" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: 问题 2 / 8
+          - strong [ref=e37]: 公司规模
+        - button "重置" [ref=e38] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "02"
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 00 · PROFILE B
+            - heading "公司大概处在什么规模？" [level=2] [ref=e128]
+            - paragraph [ref=e47]: 规模会影响试点范围、治理复杂度、上线节奏和谁来推动。
+            - paragraph [ref=e48]: 诊断 同样的 AI 场景，在 20 人团队和 500 人组织里的落地路径不同：前者要快，后者要更重视权限、标准和变更管理。
+        - generic [ref=e49]:
+          - generic [ref=e129]:
+            - radio "1–20 人 创始人或核心团队可直接参与，适合快速验证高频问题 ✓"
+            - generic [ref=e130] [cursor=pointer]:
+              - img [ref=e132]
+              - generic [ref=e134]:
+                - strong [ref=e135]: 1–20 人
+                - generic [ref=e136]: 创始人或核心团队可直接参与，适合快速验证高频问题
+              - generic [ref=e137]: ✓
+          - generic [ref=e138]:
+            - radio "21–100 人 部门职责开始分化，需要模板、流程和负责人 ✓"
+            - generic [ref=e139] [cursor=pointer]:
+              - img [ref=e141]
+              - generic [ref=e144]:
+                - strong [ref=e145]: 21–100 人
+                - generic [ref=e146]: 部门职责开始分化，需要模板、流程和负责人
+              - generic [ref=e147]: ✓
+          - generic [ref=e148]:
+            - radio "101–500 人 跨部门协作增多，数据、权限和培训需要同步设计 ✓"
+            - generic [ref=e149] [cursor=pointer]:
+              - img [ref=e151]
+              - generic [ref=e155]:
+                - strong [ref=e156]: 101–500 人
+                - generic [ref=e157]: 跨部门协作增多，数据、权限和培训需要同步设计
+              - generic [ref=e158]: ✓
+          - generic [ref=e159]:
+            - radio "500 人以上 治理、系统集成和风险控制成为首要约束 ✓"
+            - generic [ref=e160] [cursor=pointer]:
+              - img [ref=e162]
+              - generic [ref=e165]:
+                - strong [ref=e166]: 500 人以上
+                - generic [ref=e167]: 治理、系统集成和风险控制成为首要约束
+              - generic [ref=e168]: ✓
+          - generic [ref=e169]:
+            - radio "暂不确定 先根据现场信息给出保守建议 ✓"
+            - generic [ref=e170] [cursor=pointer]:
+              - img [ref=e172]
+              - generic [ref=e175]:
+                - strong [ref=e176]: 暂不确定
+                - generic [ref=e177]: 先根据现场信息给出保守建议
+              - generic [ref=e178]: ✓
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: 请选择一项
+        - button "继续" [disabled] [ref=e123]:
+          - generic [ref=e124]: 继续
+          - img [ref=e125]
+    - text: +
+  - status

@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="从业务、流程、数据、技术、治理与组织六个维度，形成企业 AI 当前状态和 30/90 天行动路线。">
+  <title>人工智能准备度审核｜ForFlow 万维流形</title>
+  <link rel="icon" href="assets/forflow-mark.png">
+  <link rel="stylesheet" href="styles.css?v=20260627-nav-hr-map-v33">
+  <script src="script.js?v=20260627-nav-hr-map-v33" defer></script>
+  <script src="commercial.js" defer></script>
+  <style id="audit-enhance">
+  /* ===== ForFlow 准备度审核页 · 干净极简增强 =====
+     作用域 .readiness-page；与 contact 页同一设计语言。
+     原则：做减法、强层级、重可读。复杂流程示意图改为干净信息卡。 */
+
+  .readiness-page .container { width: min(100% - 40px, var(--container)); margin-inline: auto; }
+  .readiness-page :where(h1,h2,h3,p,dl,dd,dt,ol,ul,li,legend){ margin: 0; }
+  .readiness-page .section-pad { padding-block: clamp(48px, 6vw, 84px); }
+  .readiness-page .section-ink { background: var(--ink); color: #fff; }
+  .readiness-page .surface { background: var(--mist); }
+
+  /* 统一 section 头部 */
+  .readiness-page .section-head {
+    display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: end; justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .readiness-page .section-head > div { max-width: 32ch; }
+  .readiness-page .eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--flow-dark); margin-bottom: 10px; }
+  .readiness-page .section-ink .eyebrow, .readiness-page .eyebrow--light { color: var(--flow); }
+  .readiness-page .section-title { font-size: clamp(1.55rem, 2.8vw, 2.25rem); font-weight: 820; line-height: 1.14; letter-spacing: -.015em; color: inherit; }
+  .readiness-page .section-title--small { font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
+  .readiness-page .section-lead { max-width: 40ch; font-size: .98rem; line-height: 1.65; color: var(--muted); }
+  .readiness-page .section-ink .section-lead { color: rgba(255,255,255,.72); }
+
+  /* ---------- Hero ---------- */
+  .readiness-page .commercial-hero {
+    padding: clamp(32px, 5vw, 64px) 0 clamp(40px, 6vw, 72px);
+    background: var(--mist); border-bottom: 1px solid var(--line);
+  }
+  .readiness-page .commercial-hero-grid {
+    display: grid; gap: clamp(32px, 4vw, 60px);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: center;
+  }
+  @media (max-width: 960px) { .readiness-page .commercial-hero-grid { grid-template-columns: 1fr; } }
+
+  .readiness-page .breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted); margin-bottom: 20px; }
+  .readiness-page .breadcrumbs a { color: var(--muted); text-decoration: none; }
+  .readiness-page .breadcrumbs a:hover { color: var(--ink); }
+  .readiness-page .breadcrumbs strong { color: var(--ink); font-weight: 600; }
+  .readiness-page .commercial-hero-copy h1 {
+    font-size: clamp(1.95rem, 4.4vw, 3.1rem); font-weight: 820; line-height: 1.08; letter-spacing: -.02em; color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .readiness-page .commercial-hero-copy h1 em { font-style: normal; color: var(--flow-dark); }
+  .readiness-page .commercial-lead { max-width: 50ch; font-size: clamp(1rem, 1.3vw, 1.08rem); line-height: 1.7; color: var(--ink-soft); margin-bottom: 28px; }
+  .readiness-page .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+
+  /* 关键数据 */
+  .readiness-page .commercial-facts {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 480px) { .readiness-page .commercial-facts { grid-template-columns: 1fr; } }
+  .readiness-page .commercial-facts > div { padding: 18px 18px 0 0; }
+  .readiness-page .commercial-facts dt { font-size: 1.15rem; font-weight: 820; color: var(--ink); letter-spacing: -.01em; margin-bottom: 4px; }
+  .readiness-page .commercial-facts dd { font-size: .82rem; line-height: 1.5; color: var(--muted); }
+
+  /* ===== 右侧：复杂流程图 → 干净评分信息卡 ===== */
+  .readiness-page .readiness-flow-visual {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: clamp(22px, 2.4vw, 30px); box-shadow: var(--shadow-sm);
+    display: grid; gap: 18px;
+  }
+  /* 隐藏原来的光晕和箭头等纯装饰绘制 */
+  .readiness-page .readiness-flow-visual .rf-glow,
+  .readiness-page .readiness-flow-visual .rf-arrow,
+  .readiness-page .readiness-flow-visual .rf-context i,
+  .readiness-page .readiness-flow-visual .rf-stage .rf-icon { display: none; }
+
+  .readiness-page .rf-context {
+    display: grid; gap: 4px; padding-bottom: 16px; border-bottom: 1px solid var(--line);
+  }
+  .readiness-page .rf-context small { font-size: .68rem; font-weight: 800; letter-spacing: .12em; color: var(--flow-dark); }
+  .readiness-page .rf-context strong { font-size: 1.05rem; font-weight: 760; color: var(--ink); }
+  .readiness-page .rf-context span { font-size: .85rem; color: var(--muted); }
+
+  .readiness-page .rf-stage {
+    display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+    padding: 4px 0;
+  }
+  .readiness-page .rf-stage small {
+    display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; flex: none;
+    background: var(--mist); color: var(--ink); font-size: .72rem; font-weight: 800;
+  }
+  .readiness-page .rf-stage strong { display: block; font-size: .94rem; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .readiness-page .rf-stage p { font-size: .82rem; line-height: 1.5; color: var(--muted); }
+
+  .readiness-page .rf-score {
+    margin-top: 4px; padding: 18px; border-radius: var(--radius); background: var(--mist); display: grid; gap: 14px;
+  }
+  .readiness-page .rf-score > small { font-size: .68rem; font-weight: 800; letter-spacing: .12em; color: var(--muted); }
+  .readiness-page .rf-score-head { display: flex; align-items: baseline; gap: 12px; }
+  .readiness-page .rf-score-head strong { font-size: 2rem; font-weight: 860; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
+  .readiness-page .rf-score-head span { font-size: .85rem; font-weight: 600; color: var(--flow-dark); }
+  .readiness-page .rf-score ol { list-style: none; display: grid; gap: 10px; }
+  .readiness-page .rf-score ol li { display: grid; grid-template-columns: 5.5em 1fr; gap: 12px; align-items: center; font-size: .8rem; color: var(--ink-soft); }
+  .readiness-page .rf-score ol li i {
+    display: block; height: 7px; border-radius: 999px; background: #d8dcd6; position: relative; overflow: hidden;
+  }
+  .readiness-page .rf-score ol li i::after {
+    content: ""; position: absolute; inset: 0; width: var(--score, 50%);
+    background: linear-gradient(90deg, var(--flow-strong), var(--flow)); border-radius: 999px;
+  }
+  .readiness-page .rf-roadmap { display: grid; gap: 2px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .readiness-page .rf-roadmap b { font-size: .7rem; font-weight: 800; letter-spacing: .1em; color: var(--flow-dark); }
+  .readiness-page .rf-roadmap span { font-size: .8rem; color: var(--muted); }
+  
+  /* ---------- 为什么先审核：症状 3 卡 ---------- */
+  .readiness-page .audit-symptom-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 800px) { .readiness-page .audit-symptom-grid { grid-template-columns: 1fr; } }
+  .readiness-page .audit-symptom-grid article {
+    padding: 24px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+  }
+  .readiness-page .audit-symptom-grid span {
+    display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+    background: var(--mist); color: var(--ink); font-weight: 820; font-size: .8rem; margin-bottom: 14px;
+  }
+  .readiness-page .audit-symptom-grid h3 { font-size: 1.05rem; font-weight: 740; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+  .readiness-page .audit-symptom-grid p { font-size: .9rem; line-height: 1.6; color: var(--muted); }
+
+  /* ---------- 六维度（深底）：等分边框网格 ---------- */
+  .readiness-page .audit-dimension-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); overflow: hidden;
+  }
+  @media (max-width: 880px) { .readiness-page .audit-dimension-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .readiness-page .audit-dimension-grid { grid-template-columns: 1fr; } }
+  .readiness-page .audit-dimension-grid article {
+    padding: 26px 24px; border-right: 1px solid rgba(255,255,255,.14); border-bottom: 1px solid rgba(255,255,255,.14);
+    position: relative;
+  }
+  .readiness-page .audit-dimension-grid article > span {
+    position: absolute; top: 22px; right: 22px; font-size: .72rem; font-weight: 800; color: rgba(255,255,255,.3);
+  }
+  .readiness-page .dimension-icon {
+    display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px;
+    background: rgba(108,246,126,.14); color: var(--flow); margin-bottom: 16px;
+  }
+  .readiness-page .dimension-icon .ff-icon { width: 22px; height: 22px; }
+  .readiness-page .audit-dimension-grid h3 { font-size: 1.05rem; font-weight: 740; color: #fff; margin-bottom: 8px; }
+  .readiness-page .audit-dimension-grid p { font-size: .88rem; line-height: 1.6; color: rgba(255,255,255,.72); margin-bottom: 12px; }
+  .readiness-page .audit-dimension-grid small { font-size: .76rem; line-height: 1.45; color: var(--flow); display: block; }
+
+  /* ---------- 交付物：特征卡 + 列表 ---------- */
+  .readiness-page .audit-deliverable-layout {
+    display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start;
+  }
+  @media (max-width: 900px) { .readiness-page .audit-deliverable-layout { grid-template-columns: 1fr; } }
+  .readiness-page .audit-deliverable-feature {
+    padding: 28px 26px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--ink); color: #fff;
+  }
+  .readiness-page .audit-deliverable-feature small { font-size: .7rem; font-weight: 800; letter-spacing: .12em; color: var(--flow); }
+  .readiness-page .audit-deliverable-feature h3 { font-size: 1.25rem; font-weight: 780; color: #fff; margin: 10px 0 10px; }
+  .readiness-page .audit-deliverable-feature p { font-size: .9rem; line-height: 1.65; color: rgba(255,255,255,.74); margin-bottom: 22px; }
+  .readiness-page .mini-scorecard { display: grid; gap: 12px; }
+  .readiness-page .mini-scorecard > div { display: grid; grid-template-columns: 5em 1fr; gap: 12px; align-items: center; font-size: .8rem; color: rgba(255,255,255,.82); }
+  .readiness-page .mini-scorecard b { display: block; height: 7px; border-radius: 999px; background: rgba(255,255,255,.16); position: relative; }
+  .readiness-page .mini-scorecard b::after { content: ""; position: absolute; inset: 0; width: var(--w, 50%); background: var(--flow); border-radius: 999px; }
+
+  .readiness-page .audit-deliverable-list { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .readiness-page .audit-deliverable-list article {
+    display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+    padding: 18px 22px; border-bottom: 1px solid var(--line); background: #fff;
+  }
+  .readiness-page .audit-deliverable-list article:last-child { border-bottom: 0; }
+  .readiness-page .audit-deliverable-list article > span { font-size: .8rem; font-weight: 800; color: var(--flow-dark); padding-top: 2px; }
+  .readiness-page .audit-deliverable-list h3 { font-size: 1rem; font-weight: 720; color: var(--ink); margin-bottom: 4px; }
+  .readiness-page .audit-deliverable-list p { font-size: .88rem; line-height: 1.55; color: var(--muted); }
+
+  /* ---------- 流程：编号竖列 ---------- */
+  .readiness-page .service-process { display: grid; gap: 36px; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; }
+  @media (max-width: 900px) { .readiness-page .service-process { grid-template-columns: 1fr; } }
+  .readiness-page .process-intro .section-title { margin-bottom: 14px; }
+  .readiness-page .process-intro > p { font-size: .94rem; line-height: 1.65; color: var(--muted); max-width: 36ch; }
+  .readiness-page .process-list { list-style: none; display: grid; gap: 0; }
+  .readiness-page .process-list li {
+    display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start;
+    padding: 20px 0; border-top: 1px solid var(--line);
+  }
+  .readiness-page .process-list li:last-child { border-bottom: 1px solid var(--line); }
+  .readiness-page .process-list li > span {
+    display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; flex: none;
+    background: var(--ink); color: var(--flow); font-weight: 820; font-size: .8rem;
+  }
+  .readiness-page .process-list h3 { font-size: 1.02rem; font-weight: 720; color: var(--ink); margin-bottom: 4px; }
+  .readiness-page .process-list p { font-size: .9rem; line-height: 1.6; color: var(--muted); }
+
+  /* ---------- 3 分钟自测 ---------- */
+  .readiness-page .audit-self-grid { display: grid; gap: 36px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; }
+  @media (max-width: 900px) { .readiness-page .audit-self-grid { grid-template-columns: 1fr; } }
+  .readiness-page .audit-self-intro .section-title { margin-bottom: 14px; }
+  .readiness-page .audit-self-intro .section-lead { margin-bottom: 22px; }
+  .readiness-page .audit-progress { height: 8px; border-radius: 999px; background: var(--mist-2); overflow: hidden; margin-bottom: 8px; }
+  .readiness-page .audit-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--flow-strong), var(--flow)); border-radius: 999px; transition: width .3s var(--ease); }
+  .readiness-page [data-audit-count] { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .readiness-page .audit-check-form { display: grid; gap: 16px; }
+  .readiness-page .audit-check-form fieldset { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; margin: 0; background: #fff; }
+  .readiness-page .audit-check-form legend { padding: 0 0 12px; font-size: .94rem; font-weight: 700; color: var(--ink); }
+  .readiness-page .audit-check-form fieldset label { display: flex; align-items: center; gap: 10px; padding: 9px 0; cursor: pointer; }
+  .readiness-page .audit-check-form fieldset label + label { border-top: 1px solid var(--mist); }
+  .readiness-page .audit-check-form input[type="radio"] { width: 18px; height: 18px; accent-color: var(--flow-strong); flex: none; cursor: pointer; }
+  .readiness-page .audit-check-form fieldset label span { font-size: .9rem; color: var(--ink-soft); }
+  .readiness-page .audit-check-form fieldset:has(input:checked) { border-color: var(--ink); }
+  .readiness-page .audit-check-form label:has(input:checked) span { color: var(--ink); font-weight: 600; }
+
+  .readiness-page .audit-check-result {
+    border: 1px solid var(--line); border-left: 4px solid var(--flow-strong); border-radius: var(--radius);
+    padding: 22px 24px; background: var(--mist); display: grid; gap: 8px;
+  }
+  .readiness-page .audit-check-result small { font-size: .7rem; font-weight: 800; letter-spacing: .12em; color: var(--flow-dark); }
+  .readiness-page .audit-check-result h3 { font-size: 1.1rem; font-weight: 760; color: var(--ink); line-height: 1.35; }
+  .readiness-page .audit-check-result p { font-size: .9rem; line-height: 1.6; color: var(--muted); }
+  .readiness-page .audit-check-result .btn { justify-self: start; margin-top: 6px; }
+
+  /* ---------- 最佳时机（深底）---------- */
+  .readiness-page .audit-fit-grid { display: grid; gap: 0; grid-template-columns: repeat(4, 1fr); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); overflow: hidden; }
+  @media (max-width: 880px) { .readiness-page .audit-fit-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .readiness-page .audit-fit-grid { grid-template-columns: 1fr; } }
+  .readiness-page .audit-fit-grid article { padding: 24px 22px; border-right: 1px solid rgba(255,255,255,.14); }
+  .readiness-page .audit-fit-grid article:last-child { border-right: 0; }
+  .readiness-page .audit-fit-grid span { display: block; font-size: 1rem; font-weight: 740; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+  .readiness-page .audit-fit-grid p { font-size: .86rem; line-height: 1.55; color: rgba(255,255,255,.72); }
+
+  /* ---------- FAQ ---------- */
+  .readiness-page .faq-layout { display: grid; gap: 40px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; }
+  @media (max-width: 900px) { .readiness-page .faq-layout { grid-template-columns: 1fr; } }
+  .readiness-page .faq-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .readiness-page .faq-item { border-bottom: 1px solid var(--line); }
+  .readiness-page .faq-question {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 20px 4px; background: none; border: 0; cursor: pointer; text-align: left;
+    font-size: 1rem; font-weight: 640; color: var(--ink); font-family: inherit;
+  }
+  .readiness-page .faq-question .plus { font-size: 1.3rem; font-weight: 300; color: var(--muted); transition: transform .2s var(--ease); flex: none; }
+  .readiness-page .faq-item.is-open .faq-question .plus { transform: rotate(45deg); color: var(--flow-dark); }
+  .readiness-page .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s var(--ease); }
+  .readiness-page .faq-item.is-open .faq-answer { grid-template-rows: 1fr; }
+  .readiness-page .faq-answer > div { overflow: hidden; }
+  .readiness-page .faq-answer p { font-size: .92rem; line-height: 1.7; color: var(--muted); padding: 0 4px 22px; }
+
+  /* ---------- 底部 CTA ---------- */
+  .readiness-page .commercial-final-cta { background: var(--ink); color: #fff; padding-block: clamp(44px, 5vw, 72px); }
+  .readiness-page .commercial-final-inner {
+    display: flex; flex-wrap: wrap; gap: 24px 40px; align-items: center; justify-content: space-between;
+  }
+  .readiness-page .commercial-final-inner > div:first-child { max-width: 44ch; }
+  .readiness-page .commercial-final-inner p { font-size: .72rem; font-weight: 800; letter-spacing: .14em; color: var(--flow); margin-bottom: 12px; }
+  .readiness-page .commercial-final-inner h2 { font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 800; line-height: 1.2; letter-spacing: -.01em; color: #fff; }
+  .readiness-page .commercial-final-inner > div:last-child { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .readiness-page .commercial-final-inner .text-link { color: var(--flow); text-decoration: none; font-weight: 600; font-size: .92rem; }
+  .readiness-page .commercial-final-inner .text-link:hover { text-decoration: underline; }
+
+  /* reveal */
+  .readiness-page [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .readiness-page [data-reveal].is-revealed { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .readiness-page [data-reveal] { opacity: 1; transform: none; transition: none; } }
+  </style>
+
+</head>
+<body class="commercial-page readiness-page">
+<a class="skip-link" href="#main">跳至主要内容</a>
+<svg class="ff-symbols" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.3 15.3 5.2 5.2"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 9 5 5 5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+  <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+  <symbol id="i-agent" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M9 11h.01M15 11h.01M9 15h6M12 7V4m-2 0h4M3 12H1m22 0h-2"/></symbol>
+  <symbol id="i-training" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v4c2.8 2.2 7.2 2.2 10 0v-4M21 9v6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"/></symbol>
+  <symbol id="i-cases" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M8 5V3h8v2M3 10h18M9 14h6"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M14 14c3.5 0 6 2.2 6 6"/></symbol>
+  <symbol id="i-customer" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-marketing" viewBox="0 0 24 24"><path d="M4 13v-2l12-5v12L4 13Z"/><path d="M7 14v5h4l-1-5M19 9c1 1 1 5 0 6"/></symbol>
+  <symbol id="i-knowledge" viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"/><path d="M9 19h6M10 15v2h4v-2M4 8H2m20 0h-2M5 3 3.5 1.5M19 3l1.5-1.5"/></symbol>
+  <symbol id="i-operations" viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 12h4l3-4M13 12l3 4"/></symbol>
+  <symbol id="i-finance" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"/><path d="m3 8 6-5 6 7 6-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+  <symbol id="i-growth" viewBox="0 0 24 24"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-6M15 7h4v4"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"/><circle cx="3" cy="7" r="1.5"/><circle cx="21" cy="17" r="1.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6L12 2ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2.2A3.4 3.4 0 0 0 4 12a3.4 3.4 0 0 0 2 5.8A3 3 0 0 0 12 18V6a3 3 0 0 0-3-2Z"/><path d="M15 4a3 3 0 0 1 5 2.2A3.4 3.4 0 0 1 20 12a3.4 3.4 0 0 1-2 5.8A3 3 0 0 1 12 18V6a3 3 0 0 1 3-2ZM8 8h4m-5 5h5m4-5h-4m5 5h-5"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M8.5 15.5A7 7 0 1 1 15.5 15.5c-.9.7-1.5 1.3-1.5 2.5h-4c0-1.2-.6-1.8-1.5-2.5Z"/><path d="M12 6v4m-2 0h4"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><path d="M12 21V7M7 12l5-5 5 5M4 4h5M15 4h5"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2 11h10l3-7H6"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M13 5h7M16.5 2v6"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M4 19 15 8M13 4l7 7M3 20l4-1-3-3-1 4Z"/><path d="m15 3 6 6-2 2-6-6 2-2Z"/></symbol>
+  <symbol id="i-reference" viewBox="0 0 24 24"><path d="M6 3h10l3 3v15H6V3Z"/><path d="M16 3v4h4M9 11h7M9 15h7M9 19h4"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 5h16M12 5v14M8 19h8"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m4 17 5-5 4 4 2-2 5 5"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 10 4-3v10l-4-3v-4Z"/></symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 5c3 0 6-3 6-6M6 8c1 2 3 4 6 5M14 19l3-8 3 8M15 16h4"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></symbol>
+  <symbol id="i-speech" viewBox="0 0 24 24"><path d="M5 4h14v12H9l-4 4V4Z"/><path d="M9 8v4m3-6v8m3-5v3"/></symbol>
+  <symbol id="i-document" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-cost" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.7-1.7-1-3-1-2 0-3 .9-3 2s1.1 1.7 3 2 3 .9 3 2-1 2-3 2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"/></symbol>
+  <symbol id="i-requirements" viewBox="0 0 24 24"><path d="M5 4h14v16H5V4Z"/><path d="m8 9 1.5 1.5L12 8m2 2h3m-9 5 1.5 1.5L12 14m2 2h3"/></symbol>
+  <symbol id="i-experience" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6Z"/><path d="M9 19c.5 1.3 1.5 2 3 2s2.5-.7 3-2M12 7v4"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 13.5v-3l-2-.7-.6-1.5.9-1.9-2.1-2.1-1.9.9-1.5-.6L10.5 3h-3l-.7 2-1.5.6-1.9-.9-2.1 2.1.9 1.9-.6 1.5-2 .7v3l2 .7.6 1.5-.9 1.9 2.1 2.1 1.9-.9 1.5.6.7 2h3l.7-2 1.5-.6 1.9.9 2.1-2.1-.9-1.9.6-1.5 2-.7Z" transform="translate(2 0) scale(.82)"/></symbol>
+  <symbol id="i-risk" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+  <symbol id="i-security" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-leadership" viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10H4Z"/><path d="M9 20v-6h6v6M8 9h8"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M4 6h7v7H7c0 3-1 5-4 6 2-2 2-4 1-6V6Zm10 0h7v7h-4c0 3-1 5-4 6 2-2 2-4 1-6V6Z"/></symbol>
+</svg>
+
+<div class="ff-utility-bar">
+  <div class="container ff-utility-inner">
+    <span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
+    <nav aria-label="快捷链接">
+      <a href="ai-readiness-audit.html" aria-current="page">AI 准备度审核</a>
+      <a href="index.html#services">企业服务</a>
+      <a href="contact.html">联系我们</a>
+    </nav>
+  </div>
+</div>
+<header class="site-header ff-header" data-header>
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="ForFlow 万维流形首页">
+      <img src="assets/forflow-lockup-transparent.png" alt="ForFlow 万维流形">
+    </a>
+    <nav class="primary-nav ff-mega-nav" aria-label="主导航" data-mega-root>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li class="mega-item">
+          <button class="mega-trigger is-current" type="button" data-mega-trigger aria-expanded="false">企业服务 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--services" data-mega-panel>
+            <div class="mega-panel-intro">
+              <span>ENTERPRISE SERVICES</span>
+              <h2>从准备度审核开始，走到可持续运行。</h2>
+              <p>四条服务路径解决实施问题；准备度审核先回答：现在最值得做什么、企业还缺什么。</p>
+              <a class="mega-audit-link" href="ai-readiness-audit.html" aria-current="page">
+                <span><svg class="ff-icon" aria-hidden="true"><use href="#i-compass"></use></svg></span><span><b>人工智能准备度审核</b><small>1–2 个工作日 · 6 个维度 · 30/90 天路线图</small></span><svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+            </div>
+            <div class="mega-link-grid">
+              <a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>01</em></a>
+              <a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>02</em></a>
+              <a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>03</em></a>
+              <a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>04</em></a>
+            </div>
+          </div>
+        </li>
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" data-mega-trigger aria-expanded="false">场景与工具 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--tools" data-mega-panel>
+            <div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
+            <div class="mega-feature-stack">
+              <a class="mega-feature" href="navigator.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+              <a class="mega-feature" href="category-hrms.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-people"></use></svg></span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+              <button class="mega-feature search-trigger" type="button"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料与案例</small></div><em>搜索</em></button>
+            </div>
+          </div>
+        </li>
+        <li class="mega-item">
+          <button class="mega-trigger" type="button" data-mega-trigger aria-expanded="false">手册与洞察 <svg class="ff-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></button>
+          <div class="mega-panel mega-panel--insights" data-mega-panel>
+            <a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg class="ff-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span></a>
+            <div class="mega-insight-list">
+              <a href="cases.html"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-cases"></use></svg></span><div><b>企业案例中心</b><small>按问题、过程和结果阅读公开案例</small></div></a>
+              <a href="index.html#services"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-layers"></use></svg></span><div><b>企业服务</b><small>按企业阶段比较协作深度与治理能力</small></div></a>
+              <a href="document-viewer.html?doc=playbook"><span><svg class="ff-icon" aria-hidden="true"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
+            </div>
+          </div>
+        </li>
+        <li><a href="cases.html">案例</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-trigger" type="button" aria-label="打开全站搜索"><svg class="ff-icon" aria-hidden="true"><use href="#i-search"></use></svg></button>
+      <a class="header-login" href="contact.html">联系</a>
+      <a class="btn btn--green header-cta" href="contact.html?topic=audit">预约沟通 <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu-panel ff-mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
+  <details open><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a><a class="mobile-subnav-highlight" href="ai-readiness-audit.html" aria-current="page">人工智能准备度审核</a></div></details>
+  <details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
+  <details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例中心</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
+  <a href="cases.html">案例 <span>05</span></a>
+  <a href="index.html#services">企业服务 <span>06</span></a>
+  <a href="contact.html">联系我们 <span>07</span></a>
+  <a href="contact.html">联系团队 <span>08</span></a>
+  <a class="btn btn--green" href="contact.html?topic=audit">预约沟通 <span aria-hidden="true">→</span></a>
+</div>
+<main id="main">
+<section class="commercial-hero readiness-hero">
+  <div class="container commercial-hero-grid">
+    <div class="commercial-hero-copy" data-reveal>
+      <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="index.html#services">企业服务</a><span>/</span><strong>人工智能准备度审核</strong></nav>
+      <p class="eyebrow">AI Readiness Audit</p>
+      <h1>先确认企业准备度，<br><em>再决定买什么、建什么。</em></h1>
+      <p class="commercial-lead">用真实流程、数据、系统与治理证据，判断企业处于探索、试点还是规模化阶段，并形成一份管理层能执行、业务团队能参与、技术团队能落地的 30/90 天路线图。</p>
+      <div class="hero-actions"><a class="btn btn--green" href="contact.html?topic=audit">申请准备度审核 →</a><a class="btn btn--ghost" href="#self-check">先做 3 分钟自测</a></div>
+      <dl class="commercial-facts"><div><dt>1–2 个工作日</dt><dd>典型访谈与工作坊节奏</dd></div><div><dt>6 个维度</dt><dd>业务、流程、数据、技术、治理、组织</dd></div><div><dt>30 / 90 天</dt><dd>近期行动与分阶段路线</dd></div></dl>
+    </div>
+    <div class="readiness-flow-visual" aria-label="ForFlow 人工智能准备度审核流程示意图" data-reveal>
+      <div class="rf-glow rf-glow--one"></div><div class="rf-glow rf-glow--two"></div>
+      <div class="rf-context"><small>01 / BUSINESS CONTEXT</small><strong>经营目标</strong><span>增长 · 效率 · 体验 · 风险</span><i></i></div>
+      <div class="rf-arrow rf-arrow--one"><b></b></div>
+      <div class="rf-stage rf-stage--opportunity"><small>02</small><span class="rf-icon">⌁</span><div><strong>场景与流程</strong><p>找出高频、高价值、可衡量的任务</p></div></div>
+      <div class="rf-stage rf-stage--foundation"><small>03</small><span class="rf-icon">◫</span><div><strong>数据与系统</strong><p>检查来源、质量、权限与集成条件</p></div></div>
+      <div class="rf-stage rf-stage--governance"><small>04</small><span class="rf-icon">◇</span><div><strong>治理与组织</strong><p>明确责任、风险、人才和采用机制</p></div></div>
+      <div class="rf-arrow rf-arrow--two"><b></b></div>
+      <div class="rf-score"><small>READINESS SCORE</small><div class="rf-score-head"><strong>A2</strong><span>可启动受控试点</span></div><ol><li><span>业务价值</span><i style="--score:78%"></i></li><li><span>数据基础</span><i style="--score:56%"></i></li><li><span>治理控制</span><i style="--score:42%"></i></li></ol><div class="rf-roadmap"><b>30 / 90 DAYS</b><span>快速收益 → 基础补齐 → 规模化条件</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="audit-symptoms section-pad">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">Why audit first</p><h2 class="section-title">有工具，不等于<br>企业已经准备好。</h2></div><p class="section-lead">准备度审核不是“测一测懂不懂 AI”，而是确认价值、基础和责任是否足以支持下一笔投入。</p></div>
+    <div class="audit-symptom-grid">
+      <article data-reveal><span>01</span><h3>每个团队各自试用</h3><p>有人效率提升，有人完全不用；输出质量、数据边界与责任标准不一致。</p></article>
+      <article data-reveal><span>02</span><h3>试点很多，沉淀很少</h3><p>演示能运行，却没有业务负责人、验收指标、接入路线和持续运营机制。</p></article>
+      <article data-reveal><span>03</span><h3>知道应该做，但不知道先做什么</h3><p>选工具、建平台、做 Agent、培训团队同时出现，投资顺序难以判断。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="audit-dimensions section-pad section-ink" id="dimensions">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow eyebrow--light">Six dimensions</p><h2 class="section-title">六个维度，<br>把“准备好了吗”拆成证据。</h2></div><p class="section-lead">每个结论都对应访谈、流程、系统、文档或样本，不靠主观印象打分。</p></div>
+    <div class="audit-dimension-grid">
+      <article><span>01</span><div class="dimension-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-compass"></use></svg></div><h3>业务价值</h3><p>目标是否清楚，场景能否影响收入、成本、体验或风险。</p><small>证据：业务指标、任务频率、现有基线</small></article>
+      <article><span>02</span><div class="dimension-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-flow"></use></svg></div><h3>流程可执行性</h3><p>任务是否可拆、异常是否可定义、人工审批点是否明确。</p><small>证据：流程图、SOP、例外与责任人</small></article>
+      <article><span>03</span><div class="dimension-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-data"></use></svg></div><h3>数据与知识</h3><p>来源、质量、更新、权限和敏感等级是否支持该场景。</p><small>证据：数据目录、文档样本、质量问题</small></article>
+      <article><span>04</span><div class="dimension-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-settings"></use></svg></div><h3>技术与集成</h3><p>现有系统、接口、身份和部署条件能否支持稳定运行。</p><small>证据：系统清单、API、环境与依赖</small></article>
+      <article><span>05</span><div class="dimension-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-shield"></use></svg></div><h3>治理与风险</h3><p>谁批准、谁复核、谁承担结果，以及如何审计与回退。</p><small>证据：政策、权限、合规与风险清单</small></article>
+      <article><span>06</span><div class="dimension-icon"><svg class="ff-icon" aria-hidden="true"><use href="#i-people"></use></svg></div><h3>组织与采用</h3><p>管理层、业务、技术是否有共同目标、负责人和推广机制。</p><small>证据：角色、技能、培训与变更计划</small></article>
+    </div>
+  </div>
+</section>
+
+<section class="audit-deliverables section-pad" id="deliverables">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">What you receive</p><h2 class="section-title">审核结束，不只拿到一个分数。</h2></div><p class="section-lead">你会得到一组可用于预算、立项、供应商沟通和内部协作的决策材料。</p></div>
+    <div class="audit-deliverable-layout">
+      <article class="audit-deliverable-feature" data-reveal><small>EXECUTIVE OUTPUT</small><h3>管理层准备度简报</h3><p>用一页说明当前阶段、最重要的机会、主要阻碍、风险边界和下一步决策。</p><div class="mini-scorecard"><div><span>场景价值</span><b style="--w:82%"></b></div><div><span>数据基础</span><b style="--w:58%"></b></div><div><span>治理能力</span><b style="--w:44%"></b></div><div><span>组织采用</span><b style="--w:63%"></b></div></div></article>
+      <div class="audit-deliverable-list">
+        <article data-reveal><span>01</span><div><h3>当前状态评分卡</h3><p>六维度成熟度、证据、缺口和需要验证的假设。</p></div></article>
+        <article data-reveal><span>02</span><div><h3>AI 机会地图</h3><p>按业务价值、可行性、风险和准备度排序场景。</p></div></article>
+        <article data-reveal><span>03</span><div><h3>快速收益清单</h3><p>无需等待大平台即可启动的低风险改进。</p></div></article>
+        <article data-reveal><span>04</span><div><h3>30/90 天路线图</h3><p>行动顺序、负责人、依赖、检查点和继续投入条件。</p></div></article>
+        <article data-reveal><span>05</span><div><h3>风险与决策记录</h3><p>哪些可以做、哪些需要审批、哪些暂时不应做。</p></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="audit-process section-pad surface" id="process">
+  <div class="container service-process">
+    <div class="process-intro"><p class="eyebrow">How it works</p><h2 class="section-title section-title--small">从访谈到路线图，<br>每一步都有输入与结论。</h2><p>典型审核以 1–2 个工作日完成核心访谈与工作坊；复杂组织可按部门分批开展。</p></div>
+    <ol class="process-list">
+      <li><span>01</span><div><h3>会前资料与目标确认</h3><p>收集组织、流程、系统、数据、政策和已做试点的基础材料。</p></div></li>
+      <li><span>02</span><div><h3>管理层与关键角色访谈</h3><p>统一目标、价值预期、责任边界和不可接受的风险。</p></div></li>
+      <li><span>03</span><div><h3>场景与流程工作坊</h3><p>用真实任务和异常样本验证价值、可行性与人工职责。</p></div></li>
+      <li><span>04</span><div><h3>证据审查与成熟度评分</h3><p>审查数据、系统、权限、政策和团队能力，不只听口头描述。</p></div></li>
+      <li><span>05</span><div><h3>管理层回放与路线确认</h3><p>解释为什么先做、补什么、停什么，并确认 30/90 天负责人。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="audit-self-check section-pad" id="self-check" data-audit-check>
+  <div class="container audit-self-grid">
+    <div class="audit-self-intro"><p class="eyebrow">3-minute self check</p><h2 class="section-title section-title--small">先做一轮自测，<br>看看问题更可能出在哪里。</h2><p class="section-lead">这不是正式审核，只帮助你判断下一次讨论应该从场景、基础还是治理开始。</p><div class="audit-progress" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><span data-audit-progress></span></div><small data-audit-count>已完成 0 / 6</small></div>
+    <form class="audit-check-form">
+      <fieldset data-audit-question><legend>1. 是否有一个明确、可衡量的业务问题？</legend><label><input type="radio" name="audit-q1" value="0"><span>只有“想用 AI”的方向</span></label><label><input type="radio" name="audit-q1" value="1"><span>有场景，但没有基线指标</span></label><label><input type="radio" name="audit-q1" value="2"><span>有场景、负责人和当前基线</span></label></fieldset>
+      <fieldset data-audit-question><legend>2. 真实流程与异常情况是否说得清？</legend><label><input type="radio" name="audit-q2" value="0"><span>主要靠个人经验</span></label><label><input type="radio" name="audit-q2" value="1"><span>有基本 SOP，但异常未整理</span></label><label><input type="radio" name="audit-q2" value="2"><span>流程、异常与审批点都清楚</span></label></fieldset>
+      <fieldset data-audit-question><legend>3. 数据与知识是否能被授权使用？</legend><label><input type="radio" name="audit-q3" value="0"><span>不知道资料在哪里、谁负责</span></label><label><input type="radio" name="audit-q3" value="1"><span>能找到，但质量或权限不稳定</span></label><label><input type="radio" name="audit-q3" value="2"><span>来源、质量、权限和更新均明确</span></label></fieldset>
+      <fieldset data-audit-question><legend>4. 现有系统是否具备可控的集成方式？</legend><label><input type="radio" name="audit-q4" value="0"><span>系统割裂，接口情况不清楚</span></label><label><input type="radio" name="audit-q4" value="1"><span>部分系统可连接</span></label><label><input type="radio" name="audit-q4" value="2"><span>接口、身份与环境均有负责人</span></label></fieldset>
+      <fieldset data-audit-question><legend>5. 是否定义了人工复核、审计和回退？</legend><label><input type="radio" name="audit-q5" value="0"><span>还没有治理规则</span></label><label><input type="radio" name="audit-q5" value="1"><span>有原则，但未进入流程</span></label><label><input type="radio" name="audit-q5" value="2"><span>规则、审批、日志和异常处理明确</span></label></fieldset>
+      <fieldset data-audit-question><legend>6. 管理层、业务与技术是否共同参与？</legend><label><input type="radio" name="audit-q6" value="0"><span>由一个团队单独推动</span></label><label><input type="radio" name="audit-q6" value="1"><span>有人支持，但责任未落实</span></label><label><input type="radio" name="audit-q6" value="2"><span>目标、负责人和投入已对齐</span></label></fieldset>
+      <div class="audit-check-result" data-audit-result aria-live="polite"><small>SELF-CHECK RESULT</small><h3>完成 6 个问题后显示建议。</h3><p>正式审核会结合访谈、材料、流程和样本进一步验证。</p><a class="btn btn--green" href="contact.html?topic=audit">申请正式审核 →</a></div>
+    </form>
+  </div>
+</section>
+
+<section class="audit-fit section-pad section-ink">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow eyebrow--light">Best fit</p><h2 class="section-title">什么时候最值得先做审核。</h2></div></div>
+    <div class="audit-fit-grid"><article><span>准备年度 AI 预算</span><p>需要把工具、平台、数据、培训和定制项目排出优先级。</p></article><article><span>已有多个试点</span><p>希望停止重复实验，形成统一标准和扩展路径。</p></article><article><span>准备建设 Agent</span><p>需要确认流程、数据、系统、权限和人工责任是否齐备。</p></article><article><span>面临合规或数据压力</span><p>希望在扩大使用前建立可审查的治理与风险边界。</p></article></div>
+  </div>
+</section>
+
+<section class="service-faq section-pad"><div class="container faq-layout"><div><p class="eyebrow">FAQ</p><h2 class="section-title section-title--small">审核前常见问题</h2><p class="section-lead">先说明范围、参与人和结果，避免把审核误解成一场技术演示。</p></div><div class="faq-list">
+  <article class="faq-item is-open"><button class="faq-question" type="button" aria-expanded="true"><span>没有技术团队，也能做准备度审核吗？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>可以。审核首先从业务、流程、数据责任和风险开始；需要判断系统接口或部署条件时，再邀请内部 IT 或现有供应商参与。</p></div></div></article>
+  <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>审核是不是为了推销后续项目？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>审核输出应能独立使用。企业可以内部执行、交给现有伙伴执行，或再决定是否与 ForFlow 继续合作。</p></div></div></article>
+  <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>需要准备多少材料？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>至少需要目标、组织与系统概况、候选流程或任务、数据/文档样本，以及现有政策或试点材料。材料不完整本身也会被记录为准备度缺口。</p></div></div></article>
+  <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>准备度评分会不会被当成绩效考核？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>不建议。评分用于决定投资顺序和降低风险，不用于评价某个部门“好或不好”。重点是证据、依赖和下一步。</p></div></div></article>
+  <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><span>审核后能直接进入 PoC 吗？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>当场景、数据、责任和风险边界已满足最低条件时，可以直接进入小范围验证；否则先补齐关键基础会更快、更省成本。</p></div></div></article>
+</div></div></section>
+
+<section class="commercial-final-cta"><div class="container commercial-final-inner"><div><p>AI READINESS AUDIT</p><h2>不要从“买哪个工具”开始。<br>先确定企业下一步值得做什么。</h2></div><div><a class="btn btn--green" href="contact.html?topic=audit">申请准备度审核 →</a><a class="text-link" href="contact.html">先描述你的问题</a></div></div></section>
+</main>
+
+<footer class="site-footer ff-footer" id="contact">
+
+  <div class="container footer-main footer-main--v6">
+    <div class="footer-brand"><img src="assets/forflow-lockup-transparent.png" alt="ForFlow 万维流形"><p>面向企业的 AI 原生增长运行层。<br>从准备度审核、高价值场景到安全运营。</p></div>
+    <div class="footer-col"><h3>企业服务</h3><a href="ai-readiness-audit.html">人工智能准备度审核</a><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div>
+    <div class="footer-col"><h3>工具与资源</h3><a href="navigator.html">AI 场景诊断</a><a href="playbook.html">企业 AI 实战手册</a><a href="category-hrms.html">HR AI 场景地图</a><a href="cases.html">案例中心</a><button class="footer-search search-trigger" type="button">全站搜索</button></div>
+    <div class="footer-col"><h3>方案与账户</h3><a href="index.html#services">企业服务</a><a href="contact.html?topic=audit">预约沟通</a><a href="contact.html">联系我们</a><a href="contact.html">联系团队</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 增长运行层 · 中文响应式网站</span></div>
+</footer>
+<div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
+<div class="search-modal-backdrop" data-search-close=""></div>
+<div class="search-modal-panel">
+<p class="search-modal-kicker">SEARCH FORFLOW</p>
+<h2 class="sr-only" id="search-modal-title">搜索 ForFlow</h2>
+<form action="search.html" class="search-modal-form" method="get"><span class="search-modal-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><input aria-label="搜索关键词" autocomplete="off" name="search" placeholder="输入服务、场景或资料，例如：Agent" type="search"/><button class="btn btn--green" type="submit">搜索</button></form>
+<button class="search-modal-close" data-search-close="" type="button">关闭 <span aria-hidden="true">×</span></button>
+<div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=培训">AI 培训</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+</div>
+</div>
+</body>
+</html>

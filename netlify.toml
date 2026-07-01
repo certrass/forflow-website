@@ -1,3 +1,10 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/q/:code"
+  to = "/.netlify/functions/q/:code"
+  status = 200

@@ -1,0 +1,9 @@
+.git/
+.netlify/
+node_modules/
+tests/
+supabase/
+QA_CASES.md
+package.json
+package-lock.json
+*.log

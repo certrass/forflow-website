@@ -9,6 +9,34 @@
 - `验证` 只写真实跑过的命令、人工检查或部署结果；没有跑就写“未跑”并说明原因。
 - 涉及案例、服务页、一级页面时，同时说明对应的维护入口，例如 `build_site.py`、`templates/`、`CASE_LIBRARY_ITEMS` 或具体 HTML。
 
+## 2026-06-29
+
+### 变更范围
+
+- 新增 Netlify 服务端活码能力，覆盖 `netlify.toml`、`netlify/functions/q.js`、`netlify/functions/qr-routes.json`、`tools/generate_dynamic_qr.py`、`requirements.txt`、`README.md` 和本维护日志。
+
+### 主要变更
+
+- 在 Netlify 配置中新增 `/q/:code` rewrite，把固定二维码入口转发到 `q` Function。
+- 新增 `forflow` 默认活码，当前目标为 `/contact.html`；上线后可通过码表或 `QR_REDIRECTS_JSON` 环境变量切换目标，二维码图片不用重做。
+- 新增二维码生成脚本，可根据正式域名生成 `assets/qr/:code.svg`、`:code.png` 和扫码 URL 记录文件。
+- Function 响应设置 `no-store`、`noindex`，并限制跳转目标只能来自配置码表，避免开放跳转。
+
+### 验证
+
+- `node --check netlify/functions/q.js`
+- 本地函数行为检查通过：默认 `forflow` 返回 302 到 `/contact.html`，查询参数透传，未知码返回 404，`QR_REDIRECTS_JSON` 覆盖生效，禁用码返回 410。
+- `python3 tools/generate_dynamic_qr.py --base-url http://127.0.0.1:8888 --code forflow`
+- 本地测试二维码生成通过：`assets/qr/forflow.svg`、`assets/qr/forflow.png`、`assets/qr/forflow.url.txt`；测试 URL 为 `http://127.0.0.1:8888/q/forflow`，不是最终印刷域名。
+- `python3 -m json.tool netlify/functions/qr-routes.json >/tmp/forflow-qr-routes.json`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `git diff --check`
+
+### 后续
+
+- 生成正式可印刷二维码前，需要确认线上域名和 `forflow` 的最终目标链接。
+- Netlify 重新部署后，应补充部署链接，并用真实域名扫码验证 `/q/forflow` 跳转。
+
 ## 2026-06-25
 
 ### 变更范围

@@ -1,0 +1,76 @@
+- generic [active] [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "如果 30 天后要证明它有用，您最想看到什么变化？" [ref=e240]:
+      - generic [ref=e31]:
+        - button "返回上一步" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: 问题 4 / 8
+          - strong [ref=e37]: 预期结果
+        - button "重置" [ref=e38] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "04"
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 02 · SUCCESS SIGNAL
+            - heading "如果 30 天后要证明它有用，您最想看到什么变化？" [level=2] [ref=e241]
+            - paragraph [ref=e47]: 最多选两项。结果页会把“想要的变化”翻译成可以讨论的衡量维度。
+            - paragraph [ref=e48]: 诊断 快速诊断的关键是把愿望变成证据。没有衡量方式，AI 项目容易停留在 Demo 和主观感受。
+        - generic [ref=e49]:
+          - generic [ref=e242]:
+            - checkbox "更快完成工作 查询、处理、交付或响应时间明显缩短 ✓"
+            - generic [ref=e243] [cursor=pointer]:
+              - img [ref=e245]
+              - generic [ref=e247]:
+                - strong [ref=e248]: 更快完成工作
+                - generic [ref=e249]: 查询、处理、交付或响应时间明显缩短
+              - generic [ref=e250]: ✓
+          - generic [ref=e251]:
+            - checkbox "更少错误和返工 输出更一致，减少人员经验差异 ✓"
+            - generic [ref=e252] [cursor=pointer]:
+              - img [ref=e254]
+              - generic [ref=e257]:
+                - strong [ref=e258]: 更少错误和返工
+                - generic [ref=e259]: 输出更一致，减少人员经验差异
+              - generic [ref=e260]: ✓
+          - generic [ref=e261]:
+            - checkbox "带来更多收入 提升转化、复购、推荐或服务覆盖能力 ✓"
+            - generic [ref=e262] [cursor=pointer]:
+              - img [ref=e264]
+              - generic [ref=e267]:
+                - strong [ref=e268]: 带来更多收入
+                - generic [ref=e269]: 提升转化、复购、推荐或服务覆盖能力
+              - generic [ref=e270]: ✓
+          - generic [ref=e271]:
+            - checkbox "降低运营成本 减少重复劳动、外包成本或管理摩擦 ✓"
+            - generic [ref=e272] [cursor=pointer]:
+              - img [ref=e274]
+              - generic [ref=e277]:
+                - strong [ref=e278]: 降低运营成本
+                - generic [ref=e279]: 减少重复劳动、外包成本或管理摩擦
+              - generic [ref=e280]: ✓
+          - generic [ref=e281]:
+            - checkbox "控制风险与合规 保留依据、审批、审计和人工复核 ✓"
+            - generic [ref=e282] [cursor=pointer]:
+              - img [ref=e284]
+              - generic [ref=e287]:
+                - strong [ref=e288]: 控制风险与合规
+                - generic [ref=e289]: 保留依据、审批、审计和人工复核
+              - generic [ref=e290]: ✓
+          - generic [ref=e291]:
+            - checkbox "改善客户或员工体验 更及时、更个性化、更容易获得帮助 ✓"
+            - generic [ref=e292] [cursor=pointer]:
+              - img [ref=e294]
+              - generic [ref=e296]:
+                - strong [ref=e297]: 改善客户或员工体验
+                - generic [ref=e298]: 更及时、更个性化、更容易获得帮助
+              - generic [ref=e299]: ✓
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: 0 / 2，至少选择一项
+        - button "继续" [disabled] [ref=e123]:
+          - generic [ref=e124]: 继续
+          - img [ref=e125]
+    - text: +
+  - status

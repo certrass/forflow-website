@@ -56,6 +56,32 @@ python -m http.server 8080
 
 打开 `http://localhost:8080/`。
 
+## 活码
+
+站点支持真正的服务端活码入口：二维码固定指向 `/q/:code`，Netlify Function 在扫码时读取码表并返回 302 跳转。默认码为 `forflow`，配置位于 `netlify/functions/qr-routes.json`：
+
+```json
+{
+  "forflow": {
+    "name": "ForFlow default dynamic QR",
+    "target": "/contact.html",
+    "active": true
+  }
+}
+```
+
+生成可印刷二维码图片：
+
+```bash
+python3 tools/generate_dynamic_qr.py --base-url https://你的正式域名 --code forflow
+```
+
+输出文件会写入 `assets/qr/forflow.svg`、`assets/qr/forflow.png` 和 `assets/qr/forflow.url.txt`。上线后要更换扫码目标，只改 `netlify/functions/qr-routes.json` 里的 `target` 后重新部署；如果需要不改仓库覆盖线上目标，可在 Netlify 环境变量里设置 `QR_REDIRECTS_JSON`，例如：
+
+```json
+{"forflow":{"target":"https://example.com/new-target","active":true}}
+```
+
 ## Veee 代理应急
 
 如果切换 Veee 节点后 GitHub、Netlify、npm 或 curl 连接异常，先用项目内包装器自动刷新当前代理端口：

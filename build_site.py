@@ -13,9 +13,22 @@ import re
 
 SEARCH_ICON = '''<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg>'''
 ARROW = '<span class="arrow" aria-hidden="true">→</span>'
-ASSET_VERSION = '20260626-contact-page-v26'
+ASSET_VERSION = '20260627-nav-hr-map-v33'
 CSS_VERSION = ASSET_VERSION
 SCRIPT_VERSION = ASSET_VERSION
+
+def mobile_title(*lines):
+    return ''.join(f'<span class="mobile-title-line">{html.escape(line)}</span>' for line in lines)
+
+def set_mobile_title(soup, selector, lines):
+    target = soup.select_one(selector)
+    if not target:
+        return
+    target.clear()
+    for line in lines:
+        span = soup.new_tag('span', **{'class': 'mobile-title-line'})
+        span.string = line
+        target.append(span)
 
 NAV_ITEMS = [
     ('index.html', '首页', 'home'),
@@ -217,7 +230,7 @@ SEARCH_CORE_ITEMS = [
         'href': 'category-hrms.html',
         'kicker': '方案分类',
         'title': '人力资源与组织效率',
-        'description': '招聘、入职、员工服务、培训、绩效与 HR 数据分析场景。',
+        'description': '招聘、入职、员工服务、培训、绩效与 HR 数据分析场景，包含优先级、证据链、人工复核和上线边界。',
         'action': '查看分类 →',
         'priority': 8,
         'keywords': ['人力资源', 'HR', '招聘', '入职', '员工', 'Agent', '培训', '绩效', '员工服务'],
@@ -495,7 +508,7 @@ def header(active=''):
             <div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 {ff_icon('i-arrow')}</a></div>
             <div class="mega-feature-stack">
               <a class="mega-feature" href="navigator.html"{current_attr(active in {'navigator', 'navigator-results'})}><span>{ff_icon('i-compass')}</span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
-              <a class="mega-feature" href="category-hrms.html"{current_attr(active == 'category-hrms')}><span>{ff_icon('i-people')}</span><div><b>HR 与组织效率场景</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+              <a class="mega-feature" href="category-hrms.html"{current_attr(active == 'category-hrms')}><span>{ff_icon('i-people')}</span><div><b>HR 场景地图</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
               <button class="mega-feature search-trigger" type="button"><span>{ff_icon('i-search')}</span><div><b>全站搜索</b><small>查找服务、场景、资料、案例与博客</small></div><em>搜索</em></button>
             </div>
           </div>
@@ -668,6 +681,9 @@ patch_existing('navigator.html', 'navigator')
 def polish_navigator_page():
     path = ROOT / 'navigator.html'
     soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+    set_mobile_title(soup, '.navigator-hero-inner h1', ['找到你的第一条', 'AI 增长流。'])
+    set_mobile_title(soup, '#step-1-title', ['你现在最想改善', '哪一段业务？'])
+
     hero_intro = soup.select_one('.navigator-hero-inner > p')
     if hero_intro:
         hero_intro.string = '从业务挑战、价值目标、组织准备度和部署偏好出发，生成一张可讨论的场景卡。填写过程约 3 分钟，可直接带入后续项目梳理。'
@@ -845,7 +861,7 @@ playbook_body = '''
       <div class="info-grid"><article><h3>大语言模型（LLM）</h3><p>LLM 专门处理和生成人类语言。参数和训练数据越丰富，模型越能识别复杂语义与上下文；但“模型更大”不等于企业答案一定正确，仍需要知识、权限、评估和人工判断。</p></article><article><h3>检索增强生成（RAG）</h3><p>RAG 在模型回答前，先从企业授权资料中检索相关内容，再把结果交给模型生成答案。它让 AI 更贴近企业制度、产品和流程，并能附上来源，便于核验。</p></article></div>
       <h3 class="subchapter-title">常见模型与企业用途</h3><div class="model-grid"><article><b>01</b><h4>文本生成</h4><p>报告、邮件、内容、客服、知识问答。</p></article><article><b>02</b><h4>图像生成</h4><p>设计概念、营销素材、视觉故事。</p></article><article><b>03</b><h4>音频与语音</h4><p>转录、语音助手、播客与无障碍。</p></article><article><b>04</b><h4>视频生成</h4><p>营销视频、培训内容和个性化素材。</p></article><article><b>05</b><h4>翻译与本地化</h4><p>实时翻译、文档翻译和跨区域沟通。</p></article><article><b>06</b><h4>代码生成</h4><p>开发、测试、调试和技术文档。</p></article><article><b>07</b><h4>3D 与多模态</h4><p>产品设计、仿真，以及文字、图像、音视频联合处理。</p></article><article><b>08</b><h4>识别与理解</h4><p>从文档、图像、录音中提取信息并分类。</p></article></div>
     </section>
-    <section id="opportunity" data-section class="playbook-section"><header><span class="chapter-no">02</span><div><p class="eyebrow">Growth opportunities</p><h2>四类企业价值，先选一项作为主指标。</h2></div></header><div class="benefit-grid"><article><span>01</span><h3>提高效率</h3><p>自动完成内容初稿、资料查找、重复问答和数据整理，让员工回到需要判断和创造力的工作。</p></article><article><span>02</span><h3>个性化体验</h3><p>根据客户资料与偏好，在合适渠道提供更相关的产品、服务和沟通。</p></article><article><span>03</span><h3>降低成本</h3><p>减少人工复制、重复处理和跨系统查找，优化资源分配。</p></article><article><span>04</span><h3>增加收入</h3><p>通过更快响应、个性化推荐、精准营销和新服务形成增长机会。</p></article></div><div class="callout"><strong>企业视角</strong><p>不要同时追求所有收益。首个项目最好只设一个主指标，例如处理时长、一次解决率、转化率或错误率，再配两个保护指标，如合规和客户满意度。</p></div></section>
+    <section id="opportunity" data-section class="playbook-section"><header><span class="chapter-no">02</span><div><p class="eyebrow">Growth opportunities</p><h2>{mobile_title('四类企业价值，', '先选一项', '作为主指标。')}</h2></div></header><div class="benefit-grid"><article><span>01</span><h3>提高效率</h3><p>自动完成内容初稿、资料查找、重复问答和数据整理，让员工回到需要判断和创造力的工作。</p></article><article><span>02</span><h3>个性化体验</h3><p>根据客户资料与偏好，在合适渠道提供更相关的产品、服务和沟通。</p></article><article><span>03</span><h3>降低成本</h3><p>减少人工复制、重复处理和跨系统查找，优化资源分配。</p></article><article><span>04</span><h3>增加收入</h3><p>通过更快响应、个性化推荐、精准营销和新服务形成增长机会。</p></article></div><div class="callout"><strong>企业视角</strong><p>不要同时追求所有收益。首个项目最好只设一个主指标，例如处理时长、一次解决率、转化率或错误率，再配两个保护指标，如合规和客户满意度。</p></div></section>
     <section id="decision" data-section class="playbook-section"><header><span class="chapter-no">03</span><div><p class="eyebrow">Buy or build</p><h2>现成方案，还是定制能力？</h2></div></header><p class="chapter-lead">对于常见需求、经验较少或希望快速启动的企业，先采用成熟方案通常更合适；当流程独特、数据敏感、需要深度集成或可形成竞争优势时，再考虑定制与自建。</p><div class="decision-grid"><article><h3>购买现成方案</h3><ul><li>上线快，初期投入较低</li><li>由供应商负责维护与更新</li><li>适合常见办公、内容、客服和 HR 场景</li><li>定制、模型控制和深度集成可能受限</li></ul></article><article><h3>定制或建设</h3><ul><li>贴合独特流程、数据和交互</li><li>对安全、权限和模型选择控制更强</li><li>可沉淀为企业专属能力与知识产权</li><li>需要更多技术、预算和长期运维</li></ul></article></div><div class="decision-table"><div><b>考虑因素</b><b>更偏向买</b><b>更偏向建</b></div><div><span>成本</span><span>关注前期投入与快速使用</span><span>高频长期使用，能承担建设与维护</span></div><div><span>业务要求</span><span>需求通用，市场方案已成熟</span><span>流程复杂或差异化价值明显</span></div><div><span>经验</span><span>刚接触 GenAI，希望先积累经验</span><span>已有技术团队和试点经验</span></div><div><span>风险治理</span><span>可接受供应商承担部分维护责任</span><span>需要更强数据、模型和升级控制</span></div><div><span>定制集成</span><span>标准接口和体验已足够</span><span>需深入接入系统、权限与工作流</span></div></div></section>
     <section id="buy" data-section class="playbook-section"><header><span class="chapter-no">04</span><div><p class="eyebrow">Buy</p><h2>适合直接采用的常见场景。</h2></div></header><div class="usecase-accordion"><details open><summary><span>01</span>办公效率</summary><div><h4>文档生成</h4><p>根据多源资料生成报告、邮件、方案与演示文稿初稿。</p><h4>会议管理</h4><p>安排会议、转录、总结、提取行动项并跟踪。</p><h4>数据分析与报告</h4><p>识别趋势、生成管理摘要和可视化说明。</p></div></details><details><summary><span>02</span>营销与销售</summary><div><h4>多渠道内容</h4><p>快速生成文案、图片、视频和不同渠道版本。</p><h4>个性化沟通</h4><p>根据客户画像调整消息、产品推荐与跟进。</p><h4>市场洞察</h4><p>汇总趋势、竞品和客户反馈，形成易读报告。</p></div></details><details><summary><span>03</span>客户互动</summary><div><h4>前台服务</h4><p>线索收集、销售辅助、售前售后问答、预约和预订。</p><h4>后台辅助</h4><p>对话转录、回复建议、知识检索、情绪与质量分析。</p></div></details><details><summary><span>04</span>人力资源</summary><div><h4>人才招聘</h4><p>职位描述、简历初筛、候选人沟通和面试辅助。</p><h4>入职与员工服务</h4><p>个性化入职清单、制度问答、培训与绩效辅助。</p></div></details></div>
       <h3 class="subchapter-title">购买前的四项检查</h3><div class="check-grid"><article><h4>数据与时间投入</h4><p>准备准确、最新、可授权的数据，并安排业务人员参与配置和评估。</p></article><article><h4>供应商与工具</h4><p>比较易用性、功能、支持能力、稳定性和退出机制。</p></article><article><h4>内容质量</h4><p>建立事实核验、品牌语气、版权和敏感内容规则。</p></article><article><h4>持续改进</h4><p>监测质量与采用率，收集反馈，持续调整提示词和流程。</p></article></div>
@@ -879,7 +895,7 @@ def service_page(slug, title, eyebrow, subtitle, intro, pains, outcomes, scope, 
 <section class="service-deliverables section-pad surface"><div class="container"><div class="section-head"><div><p class="eyebrow">Deliverables</p><h2 class="section-title">项目结束时，<br>你会拿到什么。</h2></div></div><div class="deliverable-grid">{deliver_html}</div></div></section>
 <section class="service-faq section-pad"><div class="container faq-layout"><div><p class="eyebrow">FAQ</p><h2 class="section-title section-title--small">常见问题</h2><p class="section-lead">围绕投入、周期、数据和团队配合，把关键疑问提前说清楚。</p></div><div class="faq-list">{faq_html}</div></div></section>
 <section class="related-services section-pad section-ink"><div class="container"><div class="section-head"><div><p class="eyebrow eyebrow--light">Related paths</p><h2 class="section-title">与这项服务配套的路径。</h2></div></div><div class="related-service-list">{related_html}</div></div></section>
-<section class="final-cta"><div class="container final-cta-inner"><div><h2>先用一个业务问题，<br>确认是否值得投入。</h2><p>3 分钟场景诊断会给出第一版优先级、部署边界和下一步。</p></div><a class="btn" href="navigator.html">开始诊断 →</a></div></section>'''
+<section class="final-cta"><div class="container final-cta-inner"><div><h2>{mobile_title('先用一个业务问题，', '确认是否值得投入。')}</h2><p>3 分钟场景诊断会给出第一版优先级、部署边界和下一步。</p></div><a class="btn" href="navigator.html">开始诊断 →</a></div></section>'''
     (ROOT/f'{slug}.html').write_text(page(title,subtitle,slug,body,f'service-page {slug}'),encoding='utf-8')
 
 service_page(
@@ -894,7 +910,7 @@ service_page(
 )
 
 service_page(
- 'service-data-governance','数据治理','Data Governance & AI Readiness','让数据找得到、看得懂、用得对，才能让报表、RAG 与企业 AI 给出可信答案。','数据一直在产生，却没有真正变成可复用的资产。',
+ 'service-data-governance','数据治理','Data Governance & AI Readiness','让数据找得到、看得懂、用得对，才能让报表、RAG 与企业 AI 给出可信答案。',mobile_title('数据一直在产生，', '却没有真正变成', '可复用的资产。'),
  [('数据散落','交易、客户、文档和流程数据分布在数据库、文件、SaaS 与个人电脑。'),('答案不一致','不同部门对指标、客户和产品有不同口径，管理层无法快速确认真相。'),('AI 无法安全使用','数据质量、权限、来源和保留规则不清，AI 接入后风险被放大。')],
  [('一张数据资产地图','知道有哪些数据、在哪里、谁负责、能否用于分析与 AI。'),('统一指标与质量规则','关键业务概念、指标口径和质量标准有明确负责人。'),('可复用的数据管道','从系统、API、文件和 SaaS 自动汇集、清洗和更新。'),('AI 就绪的数据访问','让分析、知识检索和 Agent 在授权范围内取得可信数据。')],
  [('数据资产盘点','梳理数据库、文件、SaaS、报表、文档和非结构化知识。'),('ETL / ELT 与数据管道','建立自动采集、清洗、转换和更新流程。'),('数据仓库与湖仓','为报表、分析、模型和历史追溯提供统一存储。'),('指标、主数据与质量','统一客户、产品、组织等核心对象和关键指标。'),('权限、血缘与审计','记录数据从哪里来、谁能用、如何变更、如何追责。'),('AI / RAG 数据层','为向量检索、知识库、实时数据和 Agent 设计安全访问。')],
@@ -916,7 +932,7 @@ service_page(
 )
 
 service_page(
- 'service-ai-training','企业 AI 培训','Role-based AI Training','不讲一堆概念，围绕岗位、任务和数据边界，学完就能用、知道哪里不能用。','买了工具，不等于团队知道何时用、怎么用、哪里不能用。',
+ 'service-ai-training','企业 AI 培训','Role-based AI Training','不讲一堆概念，围绕岗位、任务和数据边界，学完就能用、知道哪里不能用。',mobile_title('买了工具，', '不等于团队知道', '何时用、怎么用、', '哪里不能用。'),
  [('管理层难判断','无法区分真实机会、短期热点和潜在风险，难以做投资优先级。'),('员工不敢或乱用','有人担心犯错完全不用，有人把敏感数据直接放进外部工具。'),('培训无法转化','通用课程与实际岗位脱节，课后没有任务、模板和跟进。')],
  [('管理层会判断','能用业务价值、成本、风险和准备度判断 AI 项目。'),('业务团队会实战','围绕文档、营销、客服、HR、分析等真实任务建立方法。'),('技术团队会落地','理解 RAG、Agent、评估、安全和集成的关键取舍。'),('企业形成共同规范','统一术语、数据边界、人工复核和问题升级机制。')],
  [('管理层工作坊','能力边界、商业价值、买或建、风险与投资组合。'),('业务实战课','按岗位设计提示词、工作流、审核和质量标准。'),('技术与数据课','RAG、Agent、评估、权限、集成与运行治理。'),('场景共创 Sprint','识别用例、验证技术与组织条件，形成可讨论 PoC。'),('企业使用规范','数据分类、外部工具、版权、事实核验和责任边界。'),('30 天陪跑','课后答疑、任务复盘、模板优化和 Champion 支持。')],
@@ -927,19 +943,42 @@ service_page(
 )
 
 category_body='''
-<section class="category-hero"><div class="container category-hero-grid"><div data-reveal><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>解决方案分类</strong></nav><p class="eyebrow">Solution category</p><h1>人力资源与<br>组织效率</h1><p>把招聘、入职、员工服务、培训和绩效中的重复工作交给可治理的 AI 助手，让 HR 把时间放回人才和组织。</p><div class="category-stats"><span><b>6</b> 个优先场景</span><span><b>2–6 周</b> 起步周期</span><span><b>人工复核</b> 默认保留</span></div></div><div class="category-hero-card" data-reveal><span class="category-icon">HR</span><h2>HR AI 场景地图</h2><ul><li>招聘与候选人沟通</li><li>入职与制度问答</li><li>培训与能力发展</li><li>绩效与员工体验</li></ul></div></div></section>
-<section class="category-main section-pad"><div class="container category-shell"><aside class="filter-panel" data-filter-panel><button class="filter-close" type="button" data-filter-close>关闭筛选 ×</button><h2>筛选场景</h2><div class="filter-group"><h3>实施方式</h3><label><input type="checkbox" value="buy" data-category-filter> 现成方案</label><label><input type="checkbox" value="build" data-category-filter> 定制建设</label><label><input type="checkbox" value="both" data-category-filter> 两者均可</label></div><div class="filter-group"><h3>主要价值</h3><label><input type="checkbox" value="speed" data-category-filter> 提高效率</label><label><input type="checkbox" value="experience" data-category-filter> 员工体验</label><label><input type="checkbox" value="quality" data-category-filter> 质量一致性</label><label><input type="checkbox" value="risk" data-category-filter> 降低风险</label></div><button class="btn btn--ghost btn--block" type="button" data-filter-clear>清除筛选</button></aside><div class="category-results"><div class="category-toolbar"><div><button class="btn btn--ghost filter-mobile-toggle" type="button" data-filter-open>筛选</button><span><b data-category-count>6</b> 个场景</span></div><select data-category-sort aria-label="排序"><option value="recommended">推荐排序</option><option value="speed">最快起步</option><option value="complexity">复杂度从低到高</option></select></div><div class="product-grid">
-<article class="product-card" data-tags="buy both speed quality" data-speed="1" data-complexity="1"><div class="product-head"><span>招聘</span><b>01</b></div><h3>招聘筛选与沟通助手</h3><p>生成职位描述、整理简历、形成面试问题，并在人工确认后发送候选人沟通。</p><div class="micro-tags"><span>现成方案可起步</span><span>人工复核</span></div><ul><li>减少简历整理时间</li><li>统一候选人沟通口径</li><li>保留公平性检查</li></ul><a class="btn btn--green" href="service-ai-training.html">查看落地路径 →</a></article>
-<article class="product-card" data-tags="build both speed experience" data-speed="2" data-complexity="2"><div class="product-head"><span>入职</span><b>02</b></div><h3>员工入职知识助手</h3><p>连接制度、福利、IT 指引和岗位资料，为新员工提供可引用、按权限展示的答案。</p><div class="micro-tags"><span>RAG</span><span>权限检索</span></div><ul><li>减少 HR 重复问答</li><li>提高新员工上手速度</li><li>资料更新可追踪</li></ul><a class="btn btn--green" href="service-agent-build.html">查看落地路径 →</a></article>
-<article class="product-card" data-tags="build speed experience quality" data-speed="2" data-complexity="3"><div class="product-head"><span>员工服务</span><b>03</b></div><h3>员工服务 Agent</h3><p>处理高频问题、收集表单信息、创建工单并在必要时转交 HR 或 IT。</p><div class="micro-tags"><span>AI Agent</span><span>系统连接</span></div><ul><li>7×24 一致服务</li><li>自动分流与工单</li><li>可设置人工接管</li></ul><a class="btn btn--green" href="service-agent-build.html">查看落地路径 →</a></article>
-<article class="product-card" data-tags="buy both experience quality" data-speed="1" data-complexity="1"><div class="product-head"><span>培训</span><b>04</b></div><h3>岗位培训与能力助手</h3><p>根据岗位、能力差距和企业资料生成学习路径、练习与反馈。</p><div class="micro-tags"><span>个性化学习</span><span>知识库</span></div><ul><li>缩短课程制作时间</li><li>按岗位提供练习</li><li>保留导师审核</li></ul><a class="btn btn--green" href="service-ai-training.html">查看落地路径 →</a></article>
-<article class="product-card" data-tags="both quality risk" data-speed="3" data-complexity="2"><div class="product-head"><span>绩效</span><b>05</b></div><h3>绩效材料整理助手</h3><p>汇总目标、项目、反馈和证据，帮助经理形成结构化初稿，不替代最终判断。</p><div class="micro-tags"><span>辅助决策</span><span>证据引用</span></div><ul><li>减少材料整理</li><li>提醒信息缺口</li><li>避免自动做人才决定</li></ul><a class="btn btn--green" href="playbook.html#risk">查看风险说明 →</a></article>
-<article class="product-card" data-tags="build quality risk speed" data-speed="4" data-complexity="4"><div class="product-head"><span>分析</span><b>06</b></div><h3>HR 数据分析助手</h3><p>连接人员、招聘、培训和离职数据，用自然语言生成趋势、图表和需关注问题。</p><div class="micro-tags"><span>数据治理</span><span>分析 Agent</span></div><ul><li>统一人力指标口径</li><li>快速形成管理摘要</li><li>敏感数据最小权限</li></ul><a class="btn btn--green" href="service-data-governance.html">查看落地路径 →</a></article>
+<section class="category-hero hr-map-hero"><div class="container category-hero-grid"><div data-reveal><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>HR 场景地图</strong></nav><p class="eyebrow">HR scenario map</p><h1>HR AI<br>场景地图</h1><p>不从“哪个工具最热”开始，而是沿着招聘、入职、服务、发展、绩效和组织分析这条员工旅程，判断哪些任务适合买、哪些值得定制、哪些必须保留人工判断。</p><div class="category-stats"><span><b>6</b> 个优先场景</span><span><b>2–6 周</b> 起步周期</span><span><b>人工复核</b> 默认保留</span></div><div class="hr-hero-actions"><a class="btn btn--green" href="#scenarios">查看场景单元 →</a><a class="btn btn--ghost" href="navigator.html?challenge=hr">做 3 分钟诊断</a></div></div><div class="category-hero-card hr-map-preview" data-reveal><span class="category-icon">HR</span><h2><span class="mobile-title-line">把员工旅程</span><span class="mobile-title-line">拆成六段。</span></h2><ol><li><b>招</b><span>需求、JD、候选人沟通</span></li><li><b>入</b><span>制度、IT、岗位知识</span></li><li><b>服</b><span>问答、工单、转人工</span></li><li><b>育</b><span>培训、陪练、能力证据</span></li><li><b>评</b><span>材料、反馈、复核边界</span></li><li><b>析</b><span>指标、趋势、组织风险</span></li></ol></div></div></section>
+<section class="hr-journey section-pad"><div class="container"><div class="section-head"><div><p class="eyebrow">Journey first</p><h2 class="section-title">先看 HR 工作流，再决定 AI 进入哪里。</h2></div><p>HR 场景不是一个“聊天机器人入口”。每个任务都要先明确业务对象、系统数据、人工责任和可验收证据，再决定用现成工具、知识助手、流程 Agent 还是分析 Agent。</p></div><div class="hr-stage-strip" aria-label="按员工旅程筛选 HR 场景"><button class="is-active" type="button" data-hr-stage-filter="all">全部旅程</button><button type="button" data-hr-stage-filter="recruit">招聘</button><button type="button" data-hr-stage-filter="onboard">入职</button><button type="button" data-hr-stage-filter="service">员工服务</button><button type="button" data-hr-stage-filter="develop">发展绩效</button><button type="button" data-hr-stage-filter="analytics">组织分析</button></div><div class="hr-journey-map" aria-label="HR AI 场景旅程地图">
+<article data-hr-stage-card="recruit"><span>01</span><h3>招聘前置</h3><p>岗位需求、JD、招聘渠道和面试标准先统一。</p><dl><div><dt>AI 适合</dt><dd>生成初稿、对齐口径、整理候选材料。</dd></div><div><dt>人要判断</dt><dd>岗位必要性、录用标准、公平性风险。</dd></div></dl><button class="hr-stage-link" type="button" data-hr-stage-filter="recruit">查看招聘场景</button></article>
+<article data-hr-stage-card="recruit"><span>02</span><h3>候选人沟通</h3><p>把邮件、短信、日程和反馈放入可追踪流程。</p><dl><div><dt>AI 适合</dt><dd>改写话术、补齐信息、生成面试问题。</dd></div><div><dt>人要判断</dt><dd>候选人体验、敏感拒信、最终筛选。</dd></div></dl><button class="hr-stage-link" type="button" data-hr-stage-filter="recruit">查看招聘场景</button></article>
+<article data-hr-stage-card="onboard"><span>03</span><h3>入职与知识</h3><p>新员工反复问制度、福利、IT、岗位资料。</p><dl><div><dt>AI 适合</dt><dd>权限检索、引用来源、按岗位给答案。</dd></div><div><dt>人要判断</dt><dd>制度解释、例外审批、资料有效期。</dd></div></dl><button class="hr-stage-link" type="button" data-hr-stage-filter="onboard">查看入职场景</button></article>
+<article data-hr-stage-card="service"><span>04</span><h3>员工服务</h3><p>高频问答、表单、工单和跨部门协同不断打断 HR。</p><dl><div><dt>AI 适合</dt><dd>收集信息、创建工单、提醒 SLA。</dd></div><div><dt>人要判断</dt><dd>员工关系、争议事项、异常升级。</dd></div></dl><button class="hr-stage-link" type="button" data-hr-stage-filter="service">查看服务场景</button></article>
+<article data-hr-stage-card="develop"><span>05</span><h3>发展与绩效</h3><p>培训、反馈和绩效材料分散在多个系统和会议里。</p><dl><div><dt>AI 适合</dt><dd>整理证据、生成学习路径、提示缺口。</dd></div><div><dt>人要判断</dt><dd>评价、晋升、薪酬和个人发展决定。</dd></div></dl><button class="hr-stage-link" type="button" data-hr-stage-filter="develop">查看发展绩效</button></article>
+<article data-hr-stage-card="analytics"><span>06</span><h3>组织分析</h3><p>人力指标口径不一，管理层很难快速看到趋势。</p><dl><div><dt>AI 适合</dt><dd>自然语言问数、异常解释、管理摘要。</dd></div><div><dt>人要判断</dt><dd>业务解释、敏感人群分析、行动方案。</dd></div></dl><button class="hr-stage-link" type="button" data-hr-stage-filter="analytics">查看分析场景</button></article>
+</div></div></section>
+<section class="hr-priority section-pad surface" id="priority"><div class="container"><div class="section-head"><div><p class="eyebrow">Where to start</p><h2 class="section-title">先选哪一个 HR 场景？</h2></div><p>企业主和 HR 负责人不需要一次把整个人力系统都 AI 化。先看四个判断维度：频次够不够高、答案是否有权威来源、动作是否可控、失败后是否能由人工接住。</p></div><div class="hr-priority-grid">
+<article><span>01</span><small>最快起步</small><h3>制度问答与入职知识</h3><p>适合先做知识助手：制度、福利、IT 指引和岗位资料已有来源，输出可引用、可复核、可持续更新。</p><ul><li>起点：Top 50 高频问题</li><li>证据：引用命中率、人工纠错、未回答原因</li><li>边界：正式制度系统仍是权威来源</li></ul></article>
+<article><span>02</span><small>最容易见效</small><h3>员工服务 Agent</h3><p>适合做流程型 Agent：收集信息、创建工单、查询状态、提醒 SLA，把 HR 从重复追问中释放出来。</p><ul><li>起点：请假、证明、设备、权限等高频请求</li><li>证据：工单流转、升级原因、处理时长</li><li>边界：员工关系和争议事项转人工</li></ul></article>
+<article><span>03</span><small>最要谨慎</small><h3>招聘与绩效辅助</h3><p>只做材料整理、口径对齐和缺口提示，不让 AI 单独决定候选人、晋升、薪酬或淘汰。</p><ul><li>起点：JD、面试题、绩效材料初稿</li><li>证据：引用来源、经理复核、拒绝边界</li><li>边界：重大人才决定必须由人负责</li></ul></article>
+<article><span>04</span><small>基础优先</small><h3>HR 数据分析助手</h3><p>适合有数据基础的团队；如果指标口径、权限和数据质量不清，先做数据治理，再做自然语言问数。</p><ul><li>起点：人力指标口径和权限表</li><li>证据：查询日志、指标定义、异常解释</li><li>边界：敏感人群分析最小权限</li></ul></article>
+</div></div></section>
+<section class="hr-chain section-pad"><div class="container"><div class="section-head"><div><p class="eyebrow">Evidence chain</p><h2 class="section-title"><span class="mobile-title-line">员工服务 Agent，</span><span class="mobile-title-line">不是一个聊天框。</span></h2></div><p>真正可上线的 HR Agent 要把“员工说了什么、系统查了什么、AI 做了什么、人在哪里接管、最后留下什么证据”连成一条可追踪链路。</p></div><div class="hr-chain-layout"><div class="hr-chain-steps">
+<article><span>01</span><h3>员工提出请求</h3><p>例如“我想申请陪产假”“VPN 权限开不了”“需要收入证明”。</p></article>
+<article><span>02</span><h3>身份与权限确认</h3><p>根据员工身份、地区、岗位和请求类型决定能看哪些资料、能触发哪些动作。</p></article>
+<article><span>03</span><h3>查询知识与系统</h3><p>从制度库、工单系统、假勤系统或 ITSM 读取授权信息，并保留来源。</p></article>
+<article><span>04</span><h3>生成答复或工单</h3><p>能直接答复的给出引用；需要动作的创建工单、补齐字段、提示缺失材料。</p></article>
+<article><span>05</span><h3>人工接管与复盘</h3><p>敏感、争议、低置信度或多次失败的请求转人工，并把失败样本回流评估集。</p></article>
+</div><aside class="hr-chain-proof"><small>交付物应留下什么</small><h3>一套能复盘的运行记录</h3><dl><div><dt>Trace</dt><dd>每次问答、检索、工具调用和转人工原因。</dd></div><div><dt>Policy</dt><dd>哪些数据能用、哪些动作需要审批、哪些必须拒绝。</dd></div><div><dt>Scorecard</dt><dd>命中率、升级率、SLA、满意度、敏感事件和纠错闭环。</dd></div></dl></aside></div></div></section>
+<section class="category-main section-pad" id="scenarios"><div class="container category-shell"><aside class="filter-panel" data-filter-panel><button class="filter-close" type="button" data-filter-close>关闭筛选 ×</button><h2>筛选场景</h2><div class="filter-group"><h3>任务阶段</h3><label><input type="checkbox" value="recruit" data-category-filter> 招聘</label><label><input type="checkbox" value="onboard" data-category-filter> 入职</label><label><input type="checkbox" value="service" data-category-filter> 员工服务</label><label><input type="checkbox" value="develop" data-category-filter> 培训绩效</label><label><input type="checkbox" value="analytics" data-category-filter> 组织分析</label></div><div class="filter-group"><h3>实施方式</h3><label><input type="checkbox" value="buy" data-category-filter> 现成方案</label><label><input type="checkbox" value="build" data-category-filter> 定制建设</label><label><input type="checkbox" value="both" data-category-filter> 两者均可</label></div><div class="filter-group"><h3>主要价值</h3><label><input type="checkbox" value="speed" data-category-filter> 提高效率</label><label><input type="checkbox" value="experience" data-category-filter> 员工体验</label><label><input type="checkbox" value="quality" data-category-filter> 质量一致性</label><label><input type="checkbox" value="risk" data-category-filter> 降低风险</label></div><button class="btn btn--ghost btn--block" type="button" data-filter-clear>清除筛选</button></aside><div class="category-results"><div class="category-toolbar"><div><button class="btn btn--ghost filter-mobile-toggle" type="button" data-filter-open>筛选</button><span><b data-category-count>6</b> 个场景单元</span></div><select data-category-sort aria-label="排序"><option value="recommended">推荐排序</option><option value="speed">最快起步</option><option value="complexity">复杂度从低到高</option></select></div><div class="product-grid">
+<article class="product-card" data-tags="recruit buy both speed quality" data-speed="1" data-complexity="1"><div class="product-head"><span>招聘</span><b>01</b></div><h3>招聘筛选与沟通助手</h3><p>生成职位描述、整理简历、形成面试问题，并在人工确认后发送候选人沟通。</p><div class="micro-tags"><span>现成方案可起步</span><span>人工复核</span></div><ul><li>减少简历整理时间</li><li>统一候选人沟通口径</li><li>保留公平性检查</li></ul><div class="product-meta"><span>起点：JD 与候选人样本</span><span>证据：面试题、沟通记录、拒绝边界</span></div><a class="btn btn--green" href="service-ai-training.html">查看落地路径 →</a></article>
+<article class="product-card" data-tags="onboard build both speed experience" data-speed="2" data-complexity="2"><div class="product-head"><span>入职</span><b>02</b></div><h3>员工入职知识助手</h3><p>连接制度、福利、IT 指引和岗位资料，为新员工提供可引用、按权限展示的答案。</p><div class="micro-tags"><span>RAG</span><span>权限检索</span></div><ul><li>减少 HR 重复问答</li><li>提高新员工上手速度</li><li>资料更新可追踪</li></ul><div class="product-meta"><span>起点：制度、福利、IT 文档</span><span>证据：引用来源、答案命中率、人工纠错</span></div><a class="btn btn--green" href="service-agent-build.html">查看落地路径 →</a></article>
+<article class="product-card" data-tags="service build speed experience quality" data-speed="2" data-complexity="3"><div class="product-head"><span>员工服务</span><b>03</b></div><h3>员工服务 Agent</h3><p>处理高频问题、收集表单信息、创建工单并在必要时转交 HR 或 IT。</p><div class="micro-tags"><span>AI Agent</span><span>系统连接</span></div><ul><li>7×24 一致服务</li><li>自动分流与工单</li><li>可设置人工接管</li></ul><div class="product-meta"><span>起点：Top 50 高频请求</span><span>证据：工单流转、升级原因、SLA 记录</span></div><a class="btn btn--green" href="service-agent-build.html">查看落地路径 →</a></article>
+<article class="product-card" data-tags="develop buy both experience quality" data-speed="1" data-complexity="1"><div class="product-head"><span>培训</span><b>04</b></div><h3>岗位培训与能力助手</h3><p>根据岗位、能力差距和企业资料生成学习路径、练习与反馈。</p><div class="micro-tags"><span>个性化学习</span><span>知识库</span></div><ul><li>缩短课程制作时间</li><li>按岗位提供练习</li><li>保留导师审核</li></ul><div class="product-meta"><span>起点：岗位能力模型</span><span>证据：课程初稿、练习反馈、导师确认</span></div><a class="btn btn--green" href="service-ai-training.html">查看落地路径 →</a></article>
+<article class="product-card" data-tags="develop both quality risk" data-speed="3" data-complexity="2"><div class="product-head"><span>绩效</span><b>05</b></div><h3>绩效材料整理助手</h3><p>汇总目标、项目、反馈和证据，帮助经理形成结构化初稿，不替代最终判断。</p><div class="micro-tags"><span>辅助决策</span><span>证据引用</span></div><ul><li>减少材料整理</li><li>提醒信息缺口</li><li>避免自动做人才决定</li></ul><div class="product-meta"><span>起点：OKR、项目和反馈材料</span><span>证据：引用证据、缺口提示、经理复核</span></div><a class="btn btn--green" href="playbook.html#risk">查看风险说明 →</a></article>
+<article class="product-card" data-tags="analytics build quality risk speed" data-speed="4" data-complexity="4"><div class="product-head"><span>分析</span><b>06</b></div><h3>HR 数据分析助手</h3><p>连接人员、招聘、培训和离职数据，用自然语言生成趋势、图表和需关注问题。</p><div class="micro-tags"><span>数据治理</span><span>分析 Agent</span></div><ul><li>统一人力指标口径</li><li>快速形成管理摘要</li><li>敏感数据最小权限</li></ul><div class="product-meta"><span>起点：指标口径和权限表</span><span>证据：SQL / 查询日志、异常解释、管理摘要</span></div><a class="btn btn--green" href="service-data-governance.html">查看落地路径 →</a></article>
 </div></div></div></section>
-<section class="category-guidance section-pad surface"><div class="container"><div class="section-head"><div><p class="eyebrow">Buy or build</p><h2 class="section-title">HR 场景买还是建？</h2></div></div><div class="guidance-grid"><article><h3>适合买</h3><p>职位描述、会议总结、通用课程制作等标准场景，可先用成熟工具，并明确数据政策。</p></article><article><h3>适合定制</h3><p>企业制度问答、员工服务 Agent、跨系统工单和敏感分析，需要接入企业数据、权限和流程。</p></article><article><h3>无论买还是建</h3><p>招聘、绩效和员工关系涉及公平、隐私和重大影响，必须保留人工判断、记录与申诉机制。</p></article></div></div></section>
+<section class="hr-evidence section-pad surface" id="evidence"><div class="container"><div class="section-head"><div><p class="eyebrow">Q2Q evidence gate</p><h2 class="section-title"><span class="mobile-title-line">每个 HR 场景</span><span class="mobile-title-line">先过四个验证门。</span></h2></div><p>HR 数据涉及个人信息、公平性和组织信任。真正能上线的场景，需要在 PoC 前就说清楚边界，而不是等出问题再补规则。</p></div><div class="hr-evidence-grid"><article><span>01</span><h3>数据边界</h3><p>哪些资料可用、哪些要脱敏、哪些只能由 HR 系统返回。</p></article><article><span>02</span><h3>人工判断</h3><p>候选人筛选、绩效、员工关系等重大影响事项必须有人负责。</p></article><article><span>03</span><h3>系统动作</h3><p>区分“生成建议”“创建工单”“写回系统”和“触发审批”。</p></article><article><span>04</span><h3>验收指标</h3><p>用时、命中率、升级率、员工满意度和合规记录要能持续追踪。</p></article></div></div></section>
+<section class="hr-operating section-pad"><div class="container"><div class="section-head"><div><p class="eyebrow">Operating model</p><h2 class="section-title">上线前，把责任和证据摆在一张表里。</h2></div><p>HR 场景的风险不是“模型会不会说错一句话”这么简单，而是谁定义制度、谁批准动作、谁看敏感数据、谁负责员工申诉。上线前先把这些写清楚，后面才不会靠临时沟通救火。</p></div><div class="hr-operating-table" role="table" aria-label="HR AI 上线责任和证据表"><div role="row"><b role="columnheader">角色</b><b role="columnheader">上线前要确认</b><b role="columnheader">持续留下的证据</b></div><div role="row"><span>业务负责人</span><span>场景目标、成功指标、停止条件和预算边界。</span><span>月度采用率、处理时长、升级率和业务复盘。</span></div><div role="row"><span>HR 专家</span><span>制度口径、例外处理、敏感事项和转人工规则。</span><span>答案纠错、制度版本、例外审批和人工复核记录。</span></div><div role="row"><span>IT / 数据团队</span><span>身份权限、系统接口、日志、数据保留和故障回退。</span><span>工具调用日志、权限审计、可用性和错误类型。</span></div><div role="row"><span>法务 / 合规</span><span>个人信息、跨境、供应商政策、公平性和告知方式。</span><span>风险评审、数据处理记录、申诉与事件处理。</span></div><div role="row"><span>一线经理 / 员工代表</span><span>体验是否顺手、表达是否清楚、升级路径是否可信。</span><span>满意度、未解决问题、投诉样本和改进建议。</span></div></div></div></section>
+<section class="category-guidance section-pad"><div class="container"><div class="section-head"><div><p class="eyebrow">Buy or build</p><h2 class="section-title">HR 场景买还是建？</h2></div></div><div class="guidance-grid"><article><h3>适合买</h3><p>职位描述、会议总结、通用课程制作等标准场景，可先用成熟工具，并明确数据政策。</p></article><article><h3>适合定制</h3><p>企业制度问答、员工服务 Agent、跨系统工单和敏感分析，需要接入企业数据、权限和流程。</p></article><article><h3>无论买还是建</h3><p>招聘、绩效和员工关系涉及公平、隐私和重大影响，必须保留人工判断、记录与申诉机制。</p></article></div></div></section>
 <section class="section-pad"><div class="container faq-layout"><div><p class="eyebrow">FAQ</p><h2 class="section-title section-title--small">HR AI 常见问题</h2></div><div class="faq-list"><article class="faq-item"><button class="faq-question"><span>可以让 AI 自动淘汰候选人吗？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>不建议让 AI 单独作出重大人才决定。AI 可辅助整理和提示，但筛选标准、公平性检查和最终决定应由授权人员负责。</p></div></div></article><article class="faq-item"><button class="faq-question"><span>员工资料能放进公共模型吗？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>先按企业数据分类和供应商政策判断。敏感人员数据通常应在批准环境中使用，并遵循最小权限、脱敏和审计要求。</p></div></div></article><article class="faq-item"><button class="faq-question"><span>知识助手如何保持答案最新？</span><span class="plus">+</span></button><div class="faq-answer"><div><p>需要资料负责人、有效期、版本、更新流程和引用。模型不是制度来源，正式制度系统仍是权威来源。</p></div></div></article></div></div></section>
 '''
-(ROOT/'category-hrms.html').write_text(page('人力资源与组织效率场景','招聘、入职、员工服务、培训、绩效与 HR 分析的 AI 场景地图。','category-hrms',category_body,'category-page'),encoding='utf-8')
+(ROOT/'category-hrms.html').write_text(page('HR AI 场景地图','招聘、入职、员工服务、培训、绩效与 HR 分析的 AI 场景地图。','category-hrms',category_body,'category-page'),encoding='utf-8')
 
 cases_body=f'''
 <section class="cases-hero"><div class="container"><nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><strong>案例&博客</strong></nav><p class="eyebrow">Case studies &amp; blog</p><h1>从业务问题到<br>可验证结果。</h1><p>案例&博客不只展示技术细节，也回答为什么做、如何做、谁参与、怎样验证，以及下一步如何扩展。</p><div class="case-filter-bar"><button class="is-active" data-case-filter="all">全部</button><button data-case-filter="manufacturing">工业与制造</button><button data-case-filter="healthcare">医疗与高合规</button><button data-case-filter="service">客户服务</button><button data-case-filter="education">教育</button><button data-case-filter="data">数据与运营</button></div></div></section>
@@ -961,7 +1000,7 @@ case_detail_body='''
 <section id="impact" data-section class="case-section"><p class="eyebrow">Impact</p><h2>公开案例报告了成本、稳定性和交付速度的共同改善。</h2><p>公开页面提到，团队先处理“容易见效”的数据库与服务问题，其中一个关键产品浏览服务从约 1 分钟缩短到约 5 秒；物流与标签流程也提高了准确性，减少了处罚并稳定关键夜间运行。</p><p>更重要的结果是合作模式从紧急扩容逐步转为长期、跨模块协作：外部团队不只是完成任务，还承担知识传递、风险工作和持续改进。</p></section>
 <section id="lessons" data-section class="case-section"><p class="eyebrow">Lessons for enterprise AI</p><h2>这类案例对 AI 项目同样有三点启发。</h2><ol class="start-steps"><li><span>1</span><div><h3>先稳住关键流程</h3><p>AI 项目也应先理解现有责任、数据和失败成本，不要一开始大规模重构。</p></div></li><li><span>2</span><div><h3>从可验证改善建立信任</h3><p>选择能快速量化的时效、错误和质量问题，形成共同工作方式。</p></div></li><li><span>3</span><div><h3>把知识留在企业</h3><p>文档、评估、培训和内部负责人必须与技术交付同步。</p></div></li></ol></section>
 </article></div>
-<section class="final-cta"><div class="container final-cta-inner"><div><h2>把同样的案例结构，<br>用于你的项目。</h2><p>先写清问题、基线、流程、数据、风险与成功指标。</p></div><a class="btn" href="navigator.html">开始场景诊断 →</a></div></section>
+<section class="final-cta"><div class="container final-cta-inner"><div><h2><span class="mobile-title-line">把同样的案例结构，</span><span class="mobile-title-line">用于你的项目。</span></h2><p>先写清问题、基线、流程、数据、风险与成功指标。</p></div><a class="btn" href="navigator.html">开始场景诊断 →</a></div></section>
 '''
 (ROOT/'case-wren-kitchens.html').write_text(page('Wren Kitchens：从紧急团队扩容到长期技术合作','Wren Kitchens 公开合作案例的中文结构化摘要。','case-wren-kitchens',case_detail_body,'case-detail-page case-study-v2 case-study-legacy'),encoding='utf-8')
 
@@ -972,7 +1011,7 @@ automotive_dfmea_body='''
     <div class="case-study-hero__grid">
       <div class="case-study-hero__copy">
         <div class="case-study-meta"><span>案例 Blog · 上篇</span><span>汽车安全关键件</span><span>B 柱 DFMEA</span><span>知识流失治理</span></div>
-        <h1>基于本体的智能体 AI 如何重塑安全关键型汽车零部件的 DFMEA</h1>
+        <h1><span class="mobile-title-line">基于本体的智能体 AI</span><span class="mobile-title-line">如何重塑安全关键型</span><span class="mobile-title-line">汽车零部件的 DFMEA</span></h1>
         <p class="case-study-lead">对制造业老板来说，真正可怕的不是开不出 DFMEA 会，而是几位资深工程师一退休、一次供应商换线、一张 ECO 改完设计，为什么某个焊点不能改、某个批次曾经出过什么问题、哪些风险必须重新验证，没人能完整说清。B 柱只是一个放大镜：它把安全责任、工程知识流失和组织记忆断层同时摆到台面上。</p>
         <div class="case-study-actions"><a class="btn btn--green" href="#overview">先看核心问题 <span aria-hidden="true">↓</span></a><a class="btn btn--ghost" href="#ontology">查看本体逻辑 <span aria-hidden="true">↘</span></a></div>
       </div>
@@ -1104,7 +1143,7 @@ supply_chain_agentic_body='''
     <div class="case-study-hero__grid">
       <div class="case-study-hero__copy">
         <div class="case-study-meta"><span>案例 Blog</span><span>零售供应链</span><span>多智能体 AI</span><span>从洞察到行动</span></div>
-        <h1>多智能体 AI 如何将供应链数据转化为决策与行动</h1>
+        <h1><span class="mobile-title-line">多智能体 AI 如何</span><span class="mobile-title-line">将供应链数据</span><span class="mobile-title-line">转化为决策与行动</span></h1>
         <p class="case-study-lead">供应链老板最关心的不是又多一个仪表盘，而是异常能不能更早被发现，根因能不能更快说清，行动能不能直接进入负责人手里。库存周转缩短一天、缺货率降低一个百分点、物流异常提前一小时发现，单看都不惊人；放到数百万个 SKU 和数十亿美元营收规模里，就会持续改变成本结构、客户体验和新品上市速度。</p>
         <div class="case-study-actions"><a class="btn btn--green" href="#architecture">看架构设计 <span aria-hidden="true">↓</span></a><a class="btn btn--ghost" href="#workflow">看 30 秒履行分析 <span aria-hidden="true">↘</span></a></div>
       </div>
@@ -1217,7 +1256,7 @@ financial_bda_body='''
     <div class="case-study-hero__grid">
       <div>
         <div class="case-study-meta"><span>金融文档</span><span>Bedrock Data Automation</span><span>Blueprint 蓝图</span><span>JSON / CSV 输出</span></div>
-        <h1>用 Amazon Bedrock Data Automation 自动化提取金融文档数据。</h1>
+        <h1><span class="mobile-title-line">用 Amazon Bedrock</span><span class="mobile-title-line">Data Automation</span><span class="mobile-title-line">自动化提取</span><span class="mobile-title-line">金融文档数据。</span></h1>
         <p class="case-study-lead">金融机构每天处理数以千计的文档：税务表格、贷款报表、采购订单、银行对账单和合同。每一种文档都有独特格式、结构和字段命名，传统 OCR 很难把它们稳定变成可执行数据。BDA 的价值，是把“看见文字”推进到“理解结构、提取字段、验证输出、接入流程”。</p>
         <div class="case-study-actions"><a class="btn btn--green" href="#blueprint">先看蓝图设计 ↓</a><a class="btn btn--ghost" href="#documents">查看四类文档 ↘</a></div>
       </div>
@@ -1404,7 +1443,7 @@ vanguard_virtual_analyst_body='''
     <div class="case-study-hero__grid">
       <div>
         <div class="case-study-meta"><span>金融分析</span><span>AI-ready data</span><span>语义层</span><span>治理与评估</span></div>
-        <h1>先锋集团虚拟分析师：AI 就绪数据的八项原则与实践。</h1>
+        <h1><span class="mobile-title-line">先锋集团虚拟分析师：</span><span class="mobile-title-line">AI 就绪数据的</span><span class="mobile-title-line">八项原则与实践。</span></h1>
         <p class="case-study-lead">当金融分析师需要查询复杂数据集时，即使是基本问题也可能变成复杂 SQL、排队需求和数天等待。对话式 AI 看似可以提供即时响应，但真正的瓶颈往往不是底层模型，而是企业有没有一套能被 AI 可靠理解、查询、治理和持续评估的数据基础设施。</p>
         <div class="case-study-actions"><a class="btn btn--green" href="#principles">查看八项原则 ↓</a><a class="btn btn--ghost" href="#stack">查看技术栈 ↘</a></div>
       </div>
@@ -1562,7 +1601,7 @@ agent_evaluation_first_body='''
     <div class="case-study-hero__grid">
       <div>
         <div class="case-study-meta"><span>企业 Agent</span><span>Evaluation-first</span><span>ADLC</span><span>生产门控</span></div>
-        <h1>企业智能体之旅：为什么评估是一切的起点。</h1>
+        <h1><span class="mobile-title-line">企业智能体之旅：</span><span class="mobile-title-line">为什么评估是</span><span class="mobile-title-line">一切的起点。</span></h1>
         <p class="case-study-lead">当企业把 AI Agent 从“演示惊艳的原型”推向“生产可信赖的系统”时，评估就成了决定成败的关键一环。它既不同于传统软件的单元测试，也不同于单模型 benchmark。本文基于 Amazon 内部构建数千个生产级 Agent 的实战经验，拆解一套从原型验证到生产就绪的 Evaluation-first 路径。</p>
         <div class="case-study-actions"><a class="btn btn--green" href="#adlc">查看 ADLC 飞轮 ↓</a><a class="btn btn--ghost" href="#metrics">查看评估指标 ↘</a></div>
       </div>

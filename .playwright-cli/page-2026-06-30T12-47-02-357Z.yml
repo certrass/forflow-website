@@ -1,0 +1,60 @@
+- generic [active] [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "现在有没有数据或样本能证明这个问题的严重程度？" [ref=e300]:
+      - generic [ref=e31]:
+        - button "返回上一步" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: 问题 5 / 8
+          - strong [ref=e37]: 证据基础
+        - button "重置" [ref=e38] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "05"
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 03 · EVALUATION BASIS
+            - heading "现在有没有数据或样本能证明这个问题的严重程度？" [level=2] [ref=e301]
+            - paragraph [ref=e47]: 这决定后续能不能评估 AI 是否真的带来提升。
+            - paragraph [ref=e48]: 诊断 企业级智能体不是上线前才测试，而是从第一天就要有 Evaluation-first 机制：基线、样本、标准和复盘。
+        - generic [ref=e49]:
+          - generic [ref=e302]:
+            - radio "基本没有 更多是主观感受，暂时没有样本或指标 ✓"
+            - generic [ref=e303] [cursor=pointer]:
+              - img [ref=e305]
+              - generic [ref=e307]:
+                - strong [ref=e308]: 基本没有
+                - generic [ref=e309]: 更多是主观感受，暂时没有样本或指标
+              - generic [ref=e310]: ✓
+          - generic [ref=e311]:
+            - radio "有一些案例 能说出典型问题，但还没形成稳定记录 ✓"
+            - generic [ref=e312] [cursor=pointer]:
+              - img [ref=e314]
+              - generic [ref=e317]:
+                - strong [ref=e318]: 有一些案例
+                - generic [ref=e319]: 能说出典型问题，但还没形成稳定记录
+              - generic [ref=e320]: ✓
+          - generic [ref=e321]:
+            - radio "有记录或报表 能拿到工单、文档、对话、时长或错误样本 ✓"
+            - generic [ref=e322] [cursor=pointer]:
+              - img [ref=e324]
+              - generic [ref=e327]:
+                - strong [ref=e328]: 有记录或报表
+                - generic [ref=e329]: 能拿到工单、文档、对话、时长或错误样本
+              - generic [ref=e330]: ✓
+          - generic [ref=e331]:
+            - radio "有清晰指标 已有基线、目标值、样本和责任人 ✓"
+            - generic [ref=e332] [cursor=pointer]:
+              - img [ref=e334]
+              - generic [ref=e337]:
+                - strong [ref=e338]: 有清晰指标
+                - generic [ref=e339]: 已有基线、目标值、样本和责任人
+              - generic [ref=e340]: ✓
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: 请选择一项
+        - button "继续" [disabled] [ref=e123]:
+          - generic [ref=e124]: 继续
+          - img [ref=e125]
+    - text: +
+  - status

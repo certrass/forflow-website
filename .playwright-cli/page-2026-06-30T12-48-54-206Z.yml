@@ -1,0 +1,60 @@
+- generic [ref=e1]:
+  - link "跳至诊断" [ref=e2] [cursor=pointer]:
+    - /url: "#app"
+  - main [ref=e3]:
+    - region "如果明天开始推进，谁能负责把它落到业务里？" [ref=e386]:
+      - generic [ref=e31]:
+        - button "返回上一步" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+        - generic [ref=e35]:
+          - generic [ref=e36]: 问题 7 / 8
+          - strong [ref=e37]: 推动条件
+        - button "重置" [ref=e38] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: "07"
+          - generic [ref=e44]:
+            - paragraph [ref=e45]: 05 · OWNERSHIP
+            - heading "如果明天开始推进，谁能负责把它落到业务里？" [level=2] [ref=e387]
+            - paragraph [ref=e47]: AI 项目的速度，通常取决于是否有人能协调业务、数据、技术和验收标准。
+            - paragraph [ref=e48]: 诊断 系统会判断您需要的是“先形成共识”，还是已经可以进入验证。没有负责人，试点很容易变成个人工具体验。
+        - generic [ref=e49]:
+          - generic [ref=e388]:
+            - radio "还没有明确负责人 希望先拿到判断依据，再推动内部讨论 ✓" [checked] [active]
+            - generic [ref=e389] [cursor=pointer]:
+              - img [ref=e391]
+              - generic [ref=e394]:
+                - strong [ref=e395]: 还没有明确负责人
+                - generic [ref=e396]: 希望先拿到判断依据，再推动内部讨论
+              - generic [ref=e397]: ✓
+          - generic [ref=e398]:
+            - radio "有一位业务负责人 可以协调资料、访谈和小范围验证 ✓"
+            - generic [ref=e399] [cursor=pointer]:
+              - img [ref=e401]
+              - generic [ref=e404]:
+                - strong [ref=e405]: 有一位业务负责人
+                - generic [ref=e406]: 可以协调资料、访谈和小范围验证
+              - generic [ref=e407]: ✓
+          - generic [ref=e408]:
+            - radio "能组成跨部门小组 业务、技术和管理层可以共同参与 ✓"
+            - generic [ref=e409] [cursor=pointer]:
+              - img [ref=e411]
+              - generic [ref=e415]:
+                - strong [ref=e416]: 能组成跨部门小组
+                - generic [ref=e417]: 业务、技术和管理层可以共同参与
+              - generic [ref=e418]: ✓
+          - generic [ref=e419]:
+            - radio "已有技术团队和预算窗口 可快速进入验证、集成和评估 ✓"
+            - generic [ref=e420] [cursor=pointer]:
+              - img [ref=e422]
+              - generic [ref=e425]:
+                - strong [ref=e426]: 已有技术团队和预算窗口
+                - generic [ref=e427]: 可快速进入验证、集成和评估
+              - generic [ref=e428]: ✓
+      - generic [ref=e121]:
+        - paragraph [ref=e122]: 已选择，可继续
+        - button "继续" [ref=e123] [cursor=pointer]:
+          - generic [ref=e124]: 继续
+          - img [ref=e125]
+    - text: +
+  - status
