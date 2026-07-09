@@ -9,6 +9,38 @@
 - `验证` 只写真实跑过的命令、人工检查或部署结果；没有跑就写“未跑”并说明原因。
 - 涉及案例、服务页、一级页面时，同时说明对应的维护入口，例如 `build_site.py`、`templates/`、`CASE_LIBRARY_ITEMS` 或具体 HTML。
 
+## 2026-07-09
+
+### 变更范围
+
+- 新增官网邀请码门禁页 `landing.html`，同步更新 `script.js`、`styles.css`、`templates/index.html`、`build_site.py`、`templates/README.md`、`README.md`、全站生成 HTML、`search-index.json`、`tests/static_check.py`、`tests/invite_gate_check.js`、`tests/interaction_check.py`、`tests/polished_pages_check.py` 和本维护日志。
+
+### 主要变更
+
+- 将全站入口改为轻量前端门禁：未通过邀请码访问任意页面时，会跳到 `landing.html` 并携带原目标页面；输入当前临时码 `FLOW2026` 后写入 30 天本地通行记录并回跳。
+- `landing.html` 复用 ForFlow 品牌视觉和 Flow Green 语言，页面只承担“门禁页”职责，不替代原首页。
+- 根据首屏反馈精简 `landing.html`：移除右侧展示视觉、下方三条内容预告和开放范围标签，保留品牌、内测开放标题、邀请码输入和状态反馈。
+- 门禁逻辑加入安全回跳处理，拒绝外部 URL、协议相对 URL 和回跳到自身；`landing.html?reset=1` 可清除本地通行状态。
+- `build_site.py`、`templates/index.html` 和生成页统一恢复五条企业服务路径，把 `AI 准备度审核` 纳入服务导航、移动菜单和页脚，避免重建时回退成旧的四服务结构。
+- 浏览器测试脚本在进入既有页面前注入有效门禁状态，同时新增独立 Node 逻辑检查覆盖锁定跳转、错码提示、正确码放行和回跳。
+
+### 验证
+
+- `python3 build_site.py`
+- `node --check script.js`
+- `node --check tests/invite_gate_check.js`
+- `node tests/invite_gate_check.js`
+- `PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 -m py_compile build_site.py tests/static_check.py tests/interaction_check.py tests/polished_pages_check.py`
+- `PYTHONPATH=.python-deps python3 tests/static_check.py`
+- `git diff --check`
+- 浏览器预览未能在当前沙盒完成：`python3 -m http.server`、动态端口和 Ruby WEBrick 均因本地 bind 权限返回 `Operation not permitted` / `Permission denied`；Playwright CLI 与 daemon 受缓存目录权限限制；CDP 连接本机调试端口被拒；Chrome headless 直接启动退出 134；Computer Use 当前浏览器 URL 不允许操作。
+- 追加首屏精简后尝试用 in-app Browser 复核当前 `file://.../landing.html`，被 Browser URL 安全策略拒绝；未改用浏览器绕路。
+
+### 后续
+
+- 这次是静态站前端门禁，适合小范围入口控制。若要阻止技术用户直接请求静态资源，需要再升级为 Netlify Edge / Function、CDN 规则或服务端鉴权。
+- 待本机端口和浏览器自动化路径恢复后，补跑 `tests/interaction_check.py`、`tests/polished_pages_check.py`，并做桌面与手机视口截图复核。
+
 ## 2026-06-29
 
 ### 变更范围

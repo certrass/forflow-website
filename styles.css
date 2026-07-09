@@ -3611,6 +3611,170 @@ button.mega-feature { width: 100%; cursor: pointer; }
 .home-proof-band span { color: var(--ff-muted); font-size: .73rem; line-height: 1.4; }
 .home-proof-band .ff-icon { width: 17px; height: 17px; }
 
+/* Invite gate */
+.invite-landing-page {
+  min-height: 100vh;
+  background: #050505;
+  color: #fff;
+}
+.invite-gate-shell {
+  min-height: 100vh;
+  background: #050505;
+}
+.invite-gate {
+  position: relative;
+  min-height: 100vh;
+  overflow: clip;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(99,245,120,.25), transparent 28%),
+    radial-gradient(circle at 12% 82%, rgba(75,162,255,.18), transparent 30%),
+    linear-gradient(135deg,#050505 0%,#111712 52%,#050505 100%);
+}
+.invite-gate-gridline {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .42;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(circle at 62% 36%,#000,transparent 78%);
+}
+.invite-gate::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -24% 42%;
+  z-index: -1;
+  height: 46%;
+  border-radius: 50%;
+  background: rgba(99,245,120,.1);
+  filter: blur(70px);
+}
+.invite-gate-nav {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(calc(100% - 48px), var(--container));
+  margin-inline: auto;
+  padding-top: 28px;
+}
+.invite-gate-brand {
+  display: inline-flex;
+  align-items: center;
+  width: 178px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 18px 44px rgba(0,0,0,.22);
+}
+.invite-gate-brand img {
+  width: 100%;
+  height: auto;
+}
+.invite-gate-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,.68);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.invite-gate-meta i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ff-green);
+  box-shadow: 0 0 0 6px rgba(99,245,120,.14);
+}
+.invite-gate-grid {
+  position: relative;
+  z-index: 3;
+  min-height: calc(100vh - 118px);
+  display: grid;
+  place-items: center start;
+  padding-block: 56px 72px;
+}
+.invite-gate-copy {
+  width: min(100%, 780px);
+}
+.invite-gate-copy h1 {
+  margin: 24px 0 0;
+  color: #fff;
+  font-size: clamp(3.7rem,6.4vw,6.8rem);
+  font-weight: 790;
+  line-height: 1.04;
+  letter-spacing: -.07em;
+}
+.invite-gate-copy h1 em {
+  color: transparent;
+  font-style: normal;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,.82);
+}
+.invite-gate-lead {
+  max-width: 520px;
+  margin: 20px 0 0;
+  color: rgba(255,255,255,.72);
+  font-size: clamp(1rem,1.35vw,1.22rem);
+  line-height: 1.78;
+}
+.invite-form {
+  max-width: 700px;
+  margin-top: 30px;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 22px;
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 24px 70px rgba(0,0,0,.34);
+  backdrop-filter: blur(18px);
+}
+.invite-form label {
+  display: block;
+  margin: 0 0 11px 5px;
+  color: rgba(255,255,255,.66);
+  font-size: .72rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+.invite-input-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 10px;
+}
+.invite-input-row input {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 20px;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 999px;
+  background: rgba(255,255,255,.96);
+  color: #050505;
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  outline: 0;
+}
+.invite-input-row input:focus {
+  border-color: var(--ff-green);
+  box-shadow: 0 0 0 4px rgba(99,245,120,.18);
+}
+.invite-status {
+  min-height: 22px;
+  margin: 12px 5px 0;
+  color: rgba(255,255,255,.64);
+  font-size: .84rem;
+  font-weight: 720;
+}
+.invite-status[data-state="error"] { color: #ffb6a8; }
+.invite-status[data-state="success"] { color: var(--ff-green); }
+
 .home-manifesto,
 .home-challenges,
 .home-method,
@@ -4559,6 +4723,9 @@ button.home-resource-card { width: 100%; color: inherit; }
   .mobile-subnav a,
   .mobile-subnav button { padding: 11px 0; border: 0; background: transparent; color: #484f48; text-align: left; font-size: .88rem; font-weight: 690; }
   .ff-mobile-menu > .btn { margin-top: 20px; justify-content: center; }
+  .invite-gate-nav { padding-top: 18px; }
+  .invite-gate-grid { min-height: calc(100vh - 96px); padding-block: 42px 50px; }
+  .invite-gate-copy h1 { font-size: clamp(3.4rem,10vw,5.6rem); }
   .home-hero-grid { grid-template-columns: 1fr; min-height: auto; padding-block: 52px 34px; }
   .home-hero-copy h1 { font-size: clamp(4.3rem,14vw,7.4rem); }
   .home-hero-visual { min-height: 680px; }
@@ -4679,6 +4846,47 @@ button.home-resource-card { width: 100%; color: inherit; }
   .home-proof-band { grid-template-columns: 1fr; margin-inline: -1px; }
   .home-proof-band a { min-height: 72px; border-right: 0; border-bottom: 1px solid var(--ff-line) !important; }
   .home-proof-band a:last-child { border-bottom: 0 !important; }
+  .invite-gate-nav {
+    width: min(calc(100% - 28px),var(--container));
+  }
+  .invite-gate-brand {
+    width: 148px;
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+  .invite-gate-meta {
+    max-width: 120px;
+    justify-content: flex-end;
+    text-align: right;
+    font-size: .62rem;
+    line-height: 1.35;
+  }
+  .invite-gate-grid { gap: 30px; padding-top: 36px; }
+  .invite-gate-copy h1 {
+    font-size: clamp(2.85rem,12.6vw,3.9rem);
+    line-height: 1.14;
+    letter-spacing: 0;
+  }
+  .invite-gate-copy h1 em {
+    display: block;
+    margin-top: .07em;
+    letter-spacing: 0;
+    -webkit-text-stroke-width: 1.2px;
+  }
+  .invite-gate-lead {
+    font-size: .94rem;
+    line-height: 1.72;
+  }
+  .invite-form {
+    padding: 13px;
+    border-radius: 20px;
+  }
+  .invite-input-row {
+    grid-template-columns: 1fr;
+  }
+  .invite-input-row .btn {
+    width: 100%;
+  }
   .home-manifesto h2,
   .home-section-head h2,
   .home-services-head h2,

@@ -13,7 +13,7 @@ import re
 
 SEARCH_ICON = '''<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg>'''
 ARROW = '<span class="arrow" aria-hidden="true">→</span>'
-ASSET_VERSION = '20260627-nav-hr-map-v33'
+ASSET_VERSION = '20260709-invite-gate-v1'
 CSS_VERSION = ASSET_VERSION
 SCRIPT_VERSION = ASSET_VERSION
 
@@ -39,6 +39,7 @@ NAV_ITEMS = [
 ]
 
 SERVICE_LINKS = [
+    ('ai-readiness-audit.html', 'AI 准备度审核'),
     ('service-ai-enablement.html', '企业 AI 赋能计划'),
     ('service-data-governance.html', '数据治理'),
     ('service-agent-build.html', '企业 Agent 搭建'),
@@ -493,12 +494,13 @@ def header(active=''):
         <li class="mega-item">
           <button class="mega-trigger{current_class(services_active)}" type="button" data-mega-trigger aria-expanded="false">企业服务 {ff_icon('i-chevron')}</button>
           <div class="mega-panel mega-panel--services" data-mega-panel>
-            <div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>四条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 {ff_icon('i-arrow')}</a></div>
+            <div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>五条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 {ff_icon('i-arrow')}</a></div>
             <div class="mega-link-grid">
-              <a class="mega-link" href="service-ai-enablement.html"{current_attr(active == 'service-ai-enablement')}><span class="mega-icon">{ff_icon('i-layers')}</span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>01</em></a>
-              <a class="mega-link" href="service-data-governance.html"{current_attr(active == 'service-data-governance')}><span class="mega-icon">{ff_icon('i-data')}</span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>02</em></a>
-              <a class="mega-link" href="service-agent-build.html"{current_attr(active == 'service-agent-build')}><span class="mega-icon">{ff_icon('i-agent')}</span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>03</em></a>
-              <a class="mega-link" href="service-ai-training.html"{current_attr(active == 'service-ai-training')}><span class="mega-icon">{ff_icon('i-training')}</span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>04</em></a>
+              <a class="mega-link" href="ai-readiness-audit.html"{current_attr(active == 'ai-readiness-audit')}><span class="mega-icon">{ff_icon('i-compass')}</span><span><b>AI 准备度审核</b><small>先判断价值、基础、风险和 30/90 天路线</small></span><em>01</em></a>
+              <a class="mega-link" href="service-ai-enablement.html"{current_attr(active == 'service-ai-enablement')}><span class="mega-icon">{ff_icon('i-layers')}</span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>02</em></a>
+              <a class="mega-link" href="service-data-governance.html"{current_attr(active == 'service-data-governance')}><span class="mega-icon">{ff_icon('i-data')}</span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>03</em></a>
+              <a class="mega-link" href="service-agent-build.html"{current_attr(active == 'service-agent-build')}><span class="mega-icon">{ff_icon('i-agent')}</span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>04</em></a>
+              <a class="mega-link" href="service-ai-training.html"{current_attr(active == 'service-ai-training')}><span class="mega-icon">{ff_icon('i-training')}</span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>05</em></a>
             </div>
           </div>
         </li>
@@ -553,7 +555,8 @@ def footer():
       <img src="assets/forflow-lockup-transparent.png" alt="ForFlow 萬維流形">
       <p>面向企业的 AI 原生增长运行层。<br>从高价值场景、安全落地到持续运营。</p>
     </div>
-    <div class="footer-col"><h3>企业服务</h3>
+  <div class="footer-col"><h3>企业服务</h3>
+      <a href="ai-readiness-audit.html">AI 准备度审核</a>
       <a href="service-ai-enablement.html">企业 AI 赋能计划</a>
       <a href="service-data-governance.html">数据治理</a>
       <a href="service-agent-build.html">企业 Agent 搭建</a>

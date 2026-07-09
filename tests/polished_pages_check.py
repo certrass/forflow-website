@@ -13,9 +13,16 @@ BASE = os.environ.get('BASE_URL', 'http://127.0.0.1:8765').rstrip('/')
 CDP_URL = os.environ.get('CDP_URL', f'http://127.0.0.1:{os.environ.get("CDP_PORT", "9226")}')
 OUT = ROOT / 'tests' / 'polished'
 OUT.mkdir(parents=True, exist_ok=True)
+INVITE_ACCESS_SCRIPT = """(() => {
+  try {
+    const now = Date.now();
+    localStorage.setItem('forflowInviteAccess', JSON.stringify({ unlockedAt: now, expiresAt: now + 2592000000 }));
+  } catch (error) {}
+})();"""
 
 async def inspect_page(browser, name, path, viewport):
     context = await browser.new_context(viewport=viewport, device_scale_factor=1)
+    await context.add_init_script(INVITE_ACCESS_SCRIPT)
     await context.add_init_script("""(() => {
       const original = Element.prototype.scrollIntoView;
       window.__ffScrollIntoViewCalls = [];
@@ -174,6 +181,7 @@ async def main():
         report['pages']['agent-evaluation-case-mobile'] = await inspect_page(browser, 'agent-evaluation-case-mobile-viewport', '/case-agent-evaluation-first.html', {'width': 390, 'height': 844})
 
         context = await browser.new_context(viewport={'width': 1440, 'height': 1000})
+        await context.add_init_script(INVITE_ACCESS_SCRIPT)
         page = await context.new_page(); page.set_default_timeout(8000)
         await page.goto(BASE + '/index.html', wait_until='networkidle')
         trigger = page.locator('[data-mega-trigger]').filter(has_text='企业服务')
@@ -193,6 +201,7 @@ async def main():
         await context.close()
 
         context = await browser.new_context(viewport={'width': 1440, 'height': 1000})
+        await context.add_init_script(INVITE_ACCESS_SCRIPT)
         page = await context.new_page(); page.set_default_timeout(8000)
         await page.goto(BASE + '/playbook.html', wait_until='networkidle')
         tool = page.locator('[data-decision-tool]')
@@ -212,6 +221,7 @@ async def main():
         await context.close()
 
         context = await browser.new_context(viewport={'width': 390, 'height': 844})
+        await context.add_init_script(INVITE_ACCESS_SCRIPT)
         page = await context.new_page(); page.set_default_timeout(8000)
         await page.goto(BASE + '/playbook.html', wait_until='networkidle')
         await page.locator('.menu-toggle').click(); await page.wait_for_timeout(180)
@@ -223,6 +233,7 @@ async def main():
         await context.close()
 
         context = await browser.new_context(viewport={'width': 1440, 'height': 1000})
+        await context.add_init_script(INVITE_ACCESS_SCRIPT)
         page = await context.new_page(); page.set_default_timeout(8000)
         await page.goto(BASE + '/cases.html', wait_until='networkidle')
         await page.locator('[data-case-filter="service"]').click(); await page.wait_for_timeout(180)

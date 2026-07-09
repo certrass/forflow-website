@@ -56,7 +56,7 @@ for path in html_files:
         errors.append(f'{path.name}: missing svg symbols {missing_icons}')
     if not soup.find('meta',attrs={'name':'viewport'}): errors.append(f'{path.name}: missing viewport')
     if not soup.find('link',attrs={'rel':lambda x:x and 'stylesheet' in x}): errors.append(f'{path.name}: missing stylesheet')
-    if not soup.find(attrs={'data-search-modal':True}): errors.append(f'{path.name}: missing search modal')
+    if path.name != 'landing.html' and not soup.find(attrs={'data-search-modal':True}): errors.append(f'{path.name}: missing search modal')
     broken=[]
     for tag,attr in [('a','href'),('img','src'),('script','src'),('link','href'),('source','src'),('video','poster'),('iframe','src')]:
         for node in soup.find_all(tag):
@@ -79,10 +79,10 @@ for path in html_files:
     }
 
 # acceptance checks
-required=['index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','case-supply-chain-agentic-decision.html','case-financial-bda-document-automation.html','case-vanguard-virtual-analyst.html','case-agent-evaluation-first.html','search.html','document-viewer.html']
+required=['landing.html','index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','case-supply-chain-agentic-decision.html','case-financial-bda-document-automation.html','case-vanguard-virtual-analyst.html','case-agent-evaluation-first.html','search.html','document-viewer.html']
 for name in required:
     if not (ROOT/name).exists(): errors.append(f'missing required page: {name}')
-for name in required[4:8]:
+for name in ['service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html']:
     s=BeautifulSoup((ROOT/name).read_text(encoding='utf-8'),'html.parser')
     if len(s.select('.faq-item'))<3: errors.append(f'{name}: needs FAQ')
     if len(s.select('.service-process .process-list li'))<3: errors.append(f'{name}: needs service process')

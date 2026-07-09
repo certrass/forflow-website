@@ -1,6 +1,6 @@
 # ForFlow 萬維流形企业网站原型
 
-这是在原有静态网站框架上继续完善的响应式企业官网，不依赖前端框架，也没有推倒重做既有页面。本轮重点精修 `index.html` 与 `playbook.html`，其余 11 个页面、链接和交互保持兼容。
+这是在原有静态网站框架上继续完善的响应式企业官网，不依赖前端框架，也没有推倒重做既有页面。本轮重点精修 `index.html` 与 `playbook.html`，并新增 `landing.html` 门禁页；其余页面、链接和交互保持兼容。
 
 ## 本轮重点完善
 
@@ -10,7 +10,7 @@
 - 手机端改为可展开的分组菜单，保留搜索和诊断入口
 - 重构首屏层级、字距、行距、响应式字号与留白
 - 使用提供的手部主视觉、Flow Green 流线和自绘业务图标
-- 补齐业务场景、四项服务、Navigator、落地方法、案例、资源、FAQ 与行动入口
+- 补齐业务场景、五项服务、Navigator、落地方法、案例、资源、FAQ 与行动入口
 - 图标全部为内联 SVG 线性图标，无第三方图标库
 - 动效仅用于流线、节点、卡片揭示和导航反馈，并支持 `prefers-reduced-motion`
 
@@ -26,10 +26,12 @@
 
 ## 全站页面
 
+- `landing.html`：邀请码门禁页，当前临时邀请码为 `FLOW2026`
 - `index.html`：官网首页
 - `navigator.html`：3 分钟 AI 场景诊断
 - `navigator-results.html`：推荐结果、品牌视频控件与方案排序
 - `playbook.html`：中文企业生成式 AI 实战手册
+- `ai-readiness-audit.html`：AI 准备度审核
 - `service-ai-enablement.html`：企业 AI 赋能计划
 - `service-data-governance.html`：数据治理
 - `service-agent-build.html`：企业 Agent 搭建
@@ -55,6 +57,16 @@ python -m http.server 8080
 ```
 
 打开 `http://localhost:8080/`。
+
+## 邀请码门禁
+
+全站共用 `script.js` 做轻量前端门禁：未通过邀请码时，访问任意页面会回到 `landing.html`；输入正确邀请码后，会回跳到原目标页面或首页。当前临时邀请码：
+
+```text
+FLOW2026
+```
+
+这只是静态站的前端门禁，适合小范围预览和普通入口控制；如果要防止懂技术的访客查看源码或直接请求静态文件，需要再升级为服务端或边缘函数校验。
 
 ## 活码
 
@@ -101,7 +113,8 @@ eval "$(tools/veee-proxy-env.sh)"
 ## 复核与测试
 
 - `python3 build_site.py`：根据 Python 清单重建一级页面、案例&博客和搜索页
-- `python3 tests/static_check.py`：15 个 HTML 页面、本地资源、必需模块、案例清单联动检查
+- `python3 tests/static_check.py`：23 个 HTML 页面、本地资源、必需模块、案例清单联动检查
+- `node tests/invite_gate_check.js`：邀请码门禁的未授权跳转、错码提示、正确码放行和回跳逻辑检查
 - `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9226 python3 tests/interaction_check.py`：搜索、手机菜单、Navigator、FAQ、筛选、案例与搜索联动等全站交互
 - `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9226 python3 tests/polished_pages_check.py`：首页、Playbook、案例&博客和医疗案例的视口、图片、控制台与关键交互复核
 - 专项视口：桌面 `1440 × 1000`、手机 `390 × 844`
@@ -120,6 +133,7 @@ eval "$(tools/veee-proxy-env.sh)"
 - 更新已写入 `docs/maintenance/update-log.md`
 - `python3 build_site.py` 已重新生成站点
 - `python3 tests/static_check.py` 已通过
+- `node tests/invite_gate_check.js` 已通过
 - 涉及交互、手机端、图片或布局时，已运行 `tests/interaction_check.py` 和 `tests/polished_pages_check.py`
 
 上线前仍需补齐表单接口、CRM/CMS、隐私条款与部署域名。

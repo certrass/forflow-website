@@ -5,6 +5,62 @@
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const INVITE_GATE = {
+    landingPage: 'landing.html',
+    storageKey: 'forflowInviteAccess',
+    codes: ['FLOW2026'],
+    ttlMs: 1000 * 60 * 60 * 24 * 30
+  };
+
+  const normalizeInviteCode = (value) => (value || '').normalize('NFKC').replace(/[\s-]+/g, '').toUpperCase();
+  const isInviteLandingPage = () => {
+    const filename = window.location.pathname.split('/').pop() || 'index.html';
+    return filename === INVITE_GATE.landingPage;
+  };
+  const removeInviteAccess = () => {
+    try { localStorage.removeItem(INVITE_GATE.storageKey); } catch (_) { /* storage can be unavailable */ }
+  };
+  const isInviteAccessValid = () => {
+    try {
+      const payload = JSON.parse(localStorage.getItem(INVITE_GATE.storageKey) || '{}');
+      return Boolean(payload?.expiresAt && Number(payload.expiresAt) > Date.now());
+    } catch (_) {
+      return false;
+    }
+  };
+  const storeInviteAccess = () => {
+    const now = Date.now();
+    try {
+      localStorage.setItem(INVITE_GATE.storageKey, JSON.stringify({
+        unlockedAt: now,
+        expiresAt: now + INVITE_GATE.ttlMs
+      }));
+    } catch (_) { /* storage can be unavailable */ }
+  };
+  const safeInviteDestination = (rawNext) => {
+    const next = (rawNext || 'index.html').trim();
+    if (!next || /^[a-zA-Z][a-zA-Z\d+.-]*:/.test(next) || next.startsWith('//') || next.startsWith('\\')) return 'index.html';
+    try {
+      const parsed = new URL(next, 'https://forflow.local/');
+      const filename = parsed.pathname.split('/').pop() || 'index.html';
+      if (filename === INVITE_GATE.landingPage) return 'index.html';
+    } catch (_) {
+      return 'index.html';
+    }
+    return next;
+  };
+  const enforceInviteGate = () => {
+    const params = new URLSearchParams(window.location.search);
+    if (isInviteLandingPage()) {
+      if (params.get('reset') === '1') removeInviteAccess();
+      return false;
+    }
+    if (isInviteAccessValid()) return false;
+    const current = `${window.location.pathname || '/index.html'}${window.location.search}${window.location.hash}`;
+    window.location.replace(`${INVITE_GATE.landingPage}?next=${encodeURIComponent(current)}`);
+    return true;
+  };
+  const inviteGateRedirecting = enforceInviteGate();
 
   function createToast(message) {
     let toast = qs('[data-toast]');
@@ -1232,7 +1288,47 @@
     });
   }
 
+  function initInviteLanding() {
+    const form = qs('[data-invite-form]');
+    if (!form) return;
+
+    const input = qs('[data-invite-code]', form);
+    const status = qs('[data-invite-status]');
+    const submit = qs('button[type="submit"]', form);
+    const params = new URLSearchParams(window.location.search);
+    const destination = () => safeInviteDestination(params.get('next'));
+    const setStatus = (message, state = '') => {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.state = state;
+    };
+
+    if (isInviteAccessValid() && params.get('reset') !== '1') {
+      setStatus('已通过门禁，正在进入官网。', 'success');
+      window.setTimeout(() => window.location.replace(destination()), 420);
+      return;
+    }
+
+    input?.focus();
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const submittedCode = normalizeInviteCode(input?.value || '');
+      const valid = INVITE_GATE.codes.map(normalizeInviteCode).includes(submittedCode);
+      if (!valid) {
+        setStatus('邀请码不匹配，请检查后再试。', 'error');
+        input?.select();
+        return;
+      }
+      storeInviteAccess();
+      setStatus('验证通过，正在进入官网。', 'success');
+      if (submit) submit.disabled = true;
+      window.setTimeout(() => window.location.replace(destination()), 360);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initInviteLanding();
+    if (inviteGateRedirecting) return;
     initMenu();
     initMegaNav();
     initFAQ();

@@ -10,13 +10,21 @@ PORT=int(os.environ.get('CDP_PORT','9226'))
 BASE=os.environ.get('BASE_URL','http://127.0.0.1:8765/').rstrip('/') + '/'
 SHOTS=ROOT/'tests'/'screenshots'
 SHOTS.mkdir(parents=True,exist_ok=True)
+INVITE_STORAGE_KEY='forflowInviteAccess'
 
 class CDP:
-    def __init__(self,width=1440,height=1000):
+    def __init__(self,width=1440,height=1000,unlocked=True):
         self.target=requests.put(f'http://127.0.0.1:{PORT}/json/new?about:blank',timeout=5).json()
         self.ws=websocket.create_connection(self.target['webSocketDebuggerUrl'],timeout=15,origin=f'http://127.0.0.1:{PORT}')
         self.seq=0; self.events=[]; self.exceptions=[]
         self.send('Page.enable'); self.send('Runtime.enable')
+        if unlocked:
+            self.send('Page.addScriptToEvaluateOnNewDocument',{'source':f"""
+              try {{
+                const now = Date.now();
+                localStorage.setItem('{INVITE_STORAGE_KEY}', JSON.stringify({{unlockedAt: now, expiresAt: now + 2592000000}}));
+              }} catch (error) {{}}
+            """})
         self.send('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':width<=600,'screenWidth':width,'screenHeight':height})
         self.send('Emulation.setTouchEmulationEnabled',{'enabled':width<=600,'maxTouchPoints':5})
     def send(self,method,params=None,timeout=20):
@@ -66,6 +74,35 @@ class CDP:
 results=[]
 def ok(name,detail=''):
     results.append({'test':name,'status':'PASS','detail':detail})
+
+def test_invite_gate():
+    c=CDP(unlocked=False)
+    try:
+        c.goto('landing.html?reset=1')
+        assert c.eval("location.pathname.endsWith('/landing.html')")
+        c.goto('index.html')
+        c.wait("location.pathname.endsWith('/landing.html') && new URLSearchParams(location.search).get('next')?.includes('index.html')")
+        visible=c.eval("({title:document.title,input:!!document.querySelector('[data-invite-code]'),status:document.querySelector('[data-invite-status]')?.textContent})")
+        assert '访问门禁' in visible['title'] and visible['input']
+        c.eval("""
+          const form = document.querySelector('[data-invite-form]');
+          const input = document.querySelector('[data-invite-code]');
+          input.value = 'WRONG';
+          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+        """)
+        c.wait("document.querySelector('[data-invite-status]')?.dataset.state === 'error'")
+        c.eval("""
+          const form = document.querySelector('[data-invite-form]');
+          const input = document.querySelector('[data-invite-code]');
+          input.value = 'FLOW2026';
+          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+        """)
+        c.wait("location.pathname.endsWith('/index.html')",10)
+        unlocked=c.eval(f"JSON.parse(localStorage.getItem('{INVITE_STORAGE_KEY}') || '{{}}').expiresAt > Date.now()")
+        assert unlocked
+        assert not c.exceptions
+        ok('邀请码门禁','未授权访问会进入门禁页；错码提示；FLOW2026 验证后回到首页')
+    finally:c.close()
 
 def test_search_overlay():
     c=CDP();
@@ -221,7 +258,7 @@ def test_case_and_search():
         ok('案例与搜索筛选',f'案例卡 {linked["total"]}；教育案例 {visible}；医疗搜索案例 {medical_case["caseCount"]} 条；JSON 索引 {live_search["version"]}；DFMEA/B柱/AgentCore/知识流失/供应链/BDA/金融文档/虚拟分析师/AI-ready/Evaluation/ADLC/P&ID/RFLP 均命中')
     finally:c.close()
 
-for fn in [test_search_overlay,test_mobile_menu,test_navigator_flow,test_faq_and_filters,test_case_and_search]:
+for fn in [test_invite_gate,test_search_overlay,test_mobile_menu,test_navigator_flow,test_faq_and_filters,test_case_and_search]:
     fn()
 
 out=ROOT/'tests'/'interaction-check-report.json'
