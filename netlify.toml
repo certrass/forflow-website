@@ -8,3 +8,7 @@
   from = "/q/:code"
   to = "/.netlify/functions/q/:code"
   status = 200
+
+[[edge_functions]]
+  path = "/*"
+  function = "auth-gate"

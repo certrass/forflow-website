@@ -5,63 +5,6 @@
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const INVITE_GATE = {
-    landingPage: 'landing.html',
-    storageKey: 'forflowInviteAccess',
-    codes: ['FLOW2026'],
-    ttlMs: 1000 * 60 * 60 * 24 * 30
-  };
-
-  const normalizeInviteCode = (value) => (value || '').normalize('NFKC').replace(/[\s-]+/g, '').toUpperCase();
-  const isInviteLandingPage = () => {
-    const filename = window.location.pathname.split('/').pop() || 'index.html';
-    return filename === INVITE_GATE.landingPage;
-  };
-  const removeInviteAccess = () => {
-    try { localStorage.removeItem(INVITE_GATE.storageKey); } catch (_) { /* storage can be unavailable */ }
-  };
-  const isInviteAccessValid = () => {
-    try {
-      const payload = JSON.parse(localStorage.getItem(INVITE_GATE.storageKey) || '{}');
-      return Boolean(payload?.expiresAt && Number(payload.expiresAt) > Date.now());
-    } catch (_) {
-      return false;
-    }
-  };
-  const storeInviteAccess = () => {
-    const now = Date.now();
-    try {
-      localStorage.setItem(INVITE_GATE.storageKey, JSON.stringify({
-        unlockedAt: now,
-        expiresAt: now + INVITE_GATE.ttlMs
-      }));
-    } catch (_) { /* storage can be unavailable */ }
-  };
-  const safeInviteDestination = (rawNext) => {
-    const next = (rawNext || 'index.html').trim();
-    if (!next || /^[a-zA-Z][a-zA-Z\d+.-]*:/.test(next) || next.startsWith('//') || next.startsWith('\\')) return 'index.html';
-    try {
-      const parsed = new URL(next, 'https://forflow.local/');
-      const filename = parsed.pathname.split('/').pop() || 'index.html';
-      if (filename === INVITE_GATE.landingPage) return 'index.html';
-    } catch (_) {
-      return 'index.html';
-    }
-    return next;
-  };
-  const enforceInviteGate = () => {
-    const params = new URLSearchParams(window.location.search);
-    if (isInviteLandingPage()) {
-      if (params.get('reset') === '1') removeInviteAccess();
-      return false;
-    }
-    if (isInviteAccessValid()) return false;
-    const current = `${window.location.pathname || '/index.html'}${window.location.search}${window.location.hash}`;
-    window.location.replace(`${INVITE_GATE.landingPage}?next=${encodeURIComponent(current)}`);
-    return true;
-  };
-  const inviteGateRedirecting = enforceInviteGate();
-
   function createToast(message) {
     let toast = qs('[data-toast]');
     if (!toast) {
@@ -118,8 +61,30 @@
       if (window.innerWidth > 900) setOpen(false);
     });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
+      if (event.key === 'Escape' && document.body.classList.contains('menu-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
     });
+  }
+
+  function initHeaderState() {
+    const header = qs('[data-header]');
+    if (!header) return;
+
+    let ticking = false;
+    const render = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      ticking = false;
+    };
+    const requestRender = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(render);
+    };
+
+    render();
+    window.addEventListener('scroll', requestRender, { passive: true });
   }
 
   function initFAQ() {
@@ -231,9 +196,13 @@
       input.addEventListener('change', updateValidation);
     });
 
-    const preselectedChallenge = new URLSearchParams(window.location.search).get('challenge');
-    const validChallenge = challengeInputs.find((input) => input.value === preselectedChallenge);
-    if (validChallenge) validChallenge.checked = true;
+    const preselectedParams = new URLSearchParams(window.location.search);
+    ['challenge', 'goal', 'readiness', 'deployment'].forEach((name) => {
+      const value = preselectedParams.get(name);
+      if (!value) return;
+      const input = qsa(`input[name="${name}"]`, root).find((item) => item.value === value);
+      if (input) input.checked = true;
+    });
 
     const goToStep = (targetStep) => {
       if (!targetStep || targetStep === currentStep) return;
@@ -551,7 +520,10 @@
         document.body.classList.remove('menu-open');
         const menuToggle = qs('.menu-toggle');
         const mobileMenu = qs('.mobile-menu-panel');
-        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+        if (menuToggle) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', '打开菜单');
+        }
         if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
         window.setTimeout(() => input?.focus(), 80);
       } else if (returnFocus && typeof returnFocus.focus === 'function') {
@@ -566,8 +538,113 @@
     });
   }
 
+  function initHomeNavigatorDemo() {
+    const root = qs('[data-home-navigator]');
+    if (!root) return;
+
+    const stepLabel = qs('[data-home-navigator-step]', root);
+    const question = qs('[data-home-navigator-question]', root);
+    const options = qs('[data-home-navigator-options]', root);
+    const progressLabel = qs('[data-home-navigator-progress-label]', root);
+    const progress = qs('[data-home-navigator-progress]', root);
+    const next = qs('[data-home-navigator-next]', root);
+    const live = qs('[data-home-navigator-live]', root);
+    if (!stepLabel || !question || !options || !progressLabel || !progress || !next) return;
+
+    const steps = [
+      {
+        key: 'challenge',
+        label: 'BUSINESS CHALLENGE',
+        question: '你现在最想改善哪一段业务？',
+        options: [['customer', '客户服务'], ['marketing', '营销增长'], ['knowledge', '知识管理'], ['operations', '运营效率']],
+      },
+      {
+        key: 'goal',
+        label: 'VALUE TARGET',
+        question: '这次最想先看到哪种变化？',
+        options: [['speed', '缩短处理时间'], ['revenue', '增加收入'], ['experience', '改善体验'], ['risk', '降低风险']],
+      },
+      {
+        key: 'readiness',
+        label: 'CURRENT READINESS',
+        question: '团队目前准备到哪一步？',
+        options: [['idea', '还在想法阶段'], ['process', '已有明确流程'], ['data', '已有数据基础']],
+      },
+      {
+        key: 'deployment',
+        label: 'DEPLOYMENT PREFERENCE',
+        question: '你更倾向哪种部署方式？',
+        options: [['cloud', '云端快速启动'], ['hybrid', '混合部署'], ['private', '私有化优先']],
+      },
+    ];
+
+    const answers = { challenge: 'customer' };
+    let currentStep = 0;
+
+    const announce = (message) => {
+      if (live) live.textContent = message;
+    };
+
+    const render = () => {
+      const step = steps[currentStep];
+      root.dataset.currentStep = String(currentStep + 1);
+      stepLabel.textContent = `STEP ${String(currentStep + 1).padStart(2, '0')} / ${step.label}`;
+      question.textContent = step.question;
+      progressLabel.textContent = `第 ${currentStep + 1} / ${steps.length} 步`;
+      progress.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+      next.textContent = currentStep === steps.length - 1 ? '进入完整诊断 ↗' : '继续 →';
+      next.disabled = !answers[step.key];
+      options.replaceChildren();
+
+      step.options.forEach(([value, label]) => {
+        const button = document.createElement('button');
+        const selected = answers[step.key] === value;
+        button.type = 'button';
+        button.dataset.value = value;
+        button.textContent = label;
+        button.classList.toggle('is-selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+        options.append(button);
+      });
+    };
+
+    options.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-value]');
+      if (!button || !options.contains(button)) return;
+      const step = steps[currentStep];
+      answers[step.key] = button.dataset.value || '';
+      qsa('button[data-value]', options).forEach((item) => {
+        const selected = item === button;
+        item.classList.toggle('is-selected', selected);
+        item.setAttribute('aria-pressed', String(selected));
+      });
+      next.disabled = false;
+      announce(`已选择${button.textContent || ''}`);
+    });
+
+    next.addEventListener('click', () => {
+      const step = steps[currentStep];
+      if (!answers[step.key]) return;
+      if (currentStep < steps.length - 1) {
+        currentStep += 1;
+        render();
+        announce(`进入第 ${currentStep + 1} 步：${steps[currentStep].question}`);
+        return;
+      }
+      const params = new URLSearchParams();
+      Object.entries(answers).forEach(([key, value]) => params.set(key, value));
+      window.location.href = `navigator.html?${params.toString()}`;
+    });
+
+    render();
+  }
+
   function initReveal() {
-    const items = qsa('[data-reveal]');
+    const isHome = document.body.classList.contains('home-v4');
+    const items = qsa('[data-reveal]').filter((item) => {
+      if (!isHome) return true;
+      return !item.parentElement?.closest('[data-reveal="group"]');
+    });
     if (!items.length) return;
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       items.forEach((item) => item.classList.add('is-revealed'));
@@ -581,7 +658,12 @@
       });
     }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
     items.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index % 4, 3) * 55}ms`;
+      if (isHome) {
+        const revealType = item.dataset.reveal;
+        item.style.transitionDelay = revealType === 'hero' ? '90ms' : revealType === 'visual' ? '60ms' : '0ms';
+      } else {
+        item.style.transitionDelay = `${Math.min(index % 4, 3) * 55}ms`;
+      }
       observer.observe(item);
     });
   }
@@ -1288,54 +1370,16 @@
     });
   }
 
-  function initInviteLanding() {
-    const form = qs('[data-invite-form]');
-    if (!form) return;
-
-    const input = qs('[data-invite-code]', form);
-    const status = qs('[data-invite-status]');
-    const submit = qs('button[type="submit"]', form);
-    const params = new URLSearchParams(window.location.search);
-    const destination = () => safeInviteDestination(params.get('next'));
-    const setStatus = (message, state = '') => {
-      if (!status) return;
-      status.textContent = message;
-      status.dataset.state = state;
-    };
-
-    if (isInviteAccessValid() && params.get('reset') !== '1') {
-      setStatus('已通过门禁，正在进入官网。', 'success');
-      window.setTimeout(() => window.location.replace(destination()), 420);
-      return;
-    }
-
-    input?.focus();
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const submittedCode = normalizeInviteCode(input?.value || '');
-      const valid = INVITE_GATE.codes.map(normalizeInviteCode).includes(submittedCode);
-      if (!valid) {
-        setStatus('邀请码不匹配，请检查后再试。', 'error');
-        input?.select();
-        return;
-      }
-      storeInviteAccess();
-      setStatus('验证通过，正在进入官网。', 'success');
-      if (submit) submit.disabled = true;
-      window.setTimeout(() => window.location.replace(destination()), 360);
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
-    initInviteLanding();
-    if (inviteGateRedirecting) return;
     initMenu();
+    initHeaderState();
     initMegaNav();
     initFAQ();
     initScrollSpy();
     initPlaceholderActions();
     initNavigator();
     initSearchModal();
+    initHomeNavigatorDemo();
     initReveal();
     initNavigatorResults();
     initPlaybookTools();

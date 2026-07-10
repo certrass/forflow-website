@@ -92,6 +92,25 @@ if not video or not video.has_attr('controls'): errors.append('navigator-results
 if not video or 'forflow-brand-motion.mp4' not in str(video): errors.append('navigator-results.html: brand motion video missing')
 pb=BeautifulSoup((ROOT/'playbook.html').read_text(encoding='utf-8'),'html.parser')
 if not pb.select_one('.playbook-cover-art img[src="assets/forflow-lockup.png"]'): errors.append('playbook.html: exact supplied cover logo missing')
+landing_soup=BeautifulSoup((ROOT/'landing.html').read_text(encoding='utf-8'),'html.parser')
+if not landing_soup.select_one('.invite-gate-brand img[src="assets/forflow-lockup-transparent.png"]'):
+    errors.append('landing.html: exact ForFlow lockup missing')
+if not landing_soup.select_one('.invite-gate-visual img[src="assets/invite/forflow-private-preview.jpg"]'):
+    errors.append('landing.html: generated invitation visual missing')
+gate_code=landing_soup.select_one('[data-gate-code]')
+if not gate_code or gate_code.get('type') != 'password' or not gate_code.has_attr('required'):
+    errors.append('landing.html: access-code input accessibility contract missing')
+if not landing_soup.select_one('script[src^="gate-client.js"]'):
+    errors.append('landing.html: access-code client missing')
+home_soup=BeautifulSoup((ROOT/'index.html').read_text(encoding='utf-8'),'html.parser')
+if not home_soup.select_one('.home-hero-photo img[src="assets/home/forflow-workflow-hero-v2.jpg"]'):
+    errors.append('index.html: clean generated home hero visual missing')
+if home_soup.select_one('.home-hero-photo img[src="assets/hero-hand.jpg"]'):
+    errors.append('index.html: poster-style legacy hero visual still in use')
+if home_soup.select_one('.home-vertical-type'):
+    errors.append('index.html: oversized vertical hero text should be removed')
+if len(home_soup.select('.home-flow-line circle.home-flow-node')) != 3:
+    errors.append('index.html: hero flow nodes must share the SVG coordinate system')
 
 cases_soup=BeautifulSoup((ROOT/'cases.html').read_text(encoding='utf-8'),'html.parser')
 search_soup=BeautifulSoup((ROOT/'search.html').read_text(encoding='utf-8'),'html.parser')

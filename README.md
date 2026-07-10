@@ -26,7 +26,7 @@
 
 ## 全站页面
 
-- `landing.html`：邀请码门禁页，当前临时邀请码为 `FLOW2026`
+- `landing.html`：服务端访问码门禁页
 - `index.html`：官网首页
 - `navigator.html`：3 分钟 AI 场景诊断
 - `navigator-results.html`：推荐结果、品牌视频控件与方案排序
@@ -58,15 +58,11 @@ python -m http.server 8080
 
 打开 `http://localhost:8080/`。
 
-## 邀请码门禁
+## 访问码门禁
 
-全站共用 `script.js` 做轻量前端门禁：未通过邀请码时，访问任意页面会回到 `landing.html`；输入正确邀请码后，会回跳到原目标页面或首页。当前临时邀请码：
+官网使用共享访问码，不需要账号、邮箱或注册。未通过验证访问页面时，Netlify Edge Function 会跳转到 `landing.html`；正确访问码由 `netlify/functions/gate-login.mjs` 在服务端校验，通过后写入 30 天、`HttpOnly`、`Secure`、`SameSite=Lax` 的通行 Cookie，再安全回到原目标页面。
 
-```text
-FLOW2026
-```
-
-这只是静态站的前端门禁，适合小范围预览和普通入口控制；如果要防止懂技术的访客查看源码或直接请求静态文件，需要再升级为服务端或边缘函数校验。
+正式访问码只保存在 Netlify 环境变量 `SITE_GATE_PASSWORD`，不得写入 HTML、浏览器脚本或仓库。`netlify/edge-functions/auth-gate.mjs` 会保护根路径、`.html` 和 Netlify Pretty URLs；登录页、静态资源、Function 入口与 `/q/:code` 活码入口保持可访问。
 
 ## 活码
 
@@ -114,7 +110,8 @@ eval "$(tools/veee-proxy-env.sh)"
 
 - `python3 build_site.py`：根据 Python 清单重建一级页面、案例&博客和搜索页
 - `python3 tests/static_check.py`：23 个 HTML 页面、本地资源、必需模块、案例清单联动检查
-- `node tests/invite_gate_check.js`：邀请码门禁的未授权跳转、错码提示、正确码放行和回跳逻辑检查
+- `node tests/invite_gate_check.js`：访问码未进入浏览器源码、服务端校验和边缘门禁接线检查
+- `node tests/gate_runtime_check.mjs`：错码拒绝、正确码安全 Cookie、未授权跳转和放行运行检查
 - `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9226 python3 tests/interaction_check.py`：搜索、手机菜单、Navigator、FAQ、筛选、案例与搜索联动等全站交互
 - `BASE_URL=http://127.0.0.1:8765 CDP_PORT=9226 python3 tests/polished_pages_check.py`：首页、Playbook、案例&博客和医疗案例的视口、图片、控制台与关键交互复核
 - 专项视口：桌面 `1440 × 1000`、手机 `390 × 844`

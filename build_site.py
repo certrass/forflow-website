@@ -13,7 +13,7 @@ import re
 
 SEARCH_ICON = '''<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg>'''
 ARROW = '<span class="arrow" aria-hidden="true">→</span>'
-ASSET_VERSION = '20260709-invite-gate-v1'
+ASSET_VERSION = '20260710-topbar-v9'
 CSS_VERSION = ASSET_VERSION
 SCRIPT_VERSION = ASSET_VERSION
 
@@ -72,6 +72,7 @@ CASE_LIBRARY_ITEMS = [
         'visual': {'type': 'art', 'class': 'case-art--green', 'html': '<b>18h</b><span>→ 30min</span>'},
     },
     {
+        'id': 'crestar',
         'tags': ['retail', 'service'],
         'kicker': '零售客服 · 公开 GenAI 案例',
         'title': '用 7×24 智能客服提升响应和转化',
@@ -509,7 +510,7 @@ def header(active=''):
           <div class="mega-panel mega-panel--tools" data-mega-panel>
             <div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 {ff_icon('i-arrow')}</a></div>
             <div class="mega-feature-stack">
-              <a class="mega-feature" href="navigator.html"{current_attr(active in {'navigator', 'navigator-results'})}><span>{ff_icon('i-compass')}</span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+              <a class="mega-feature" href="navigator.html"{current_attr(active in {'navigator', 'navigator-results'})}><span>{ff_icon('i-compass')}</span><div><b>AI 场景诊断</b><small>3 分钟找到最值得先做的 AI 场景</small></div><em>开始</em></a>
               <a class="mega-feature" href="category-hrms.html"{current_attr(active == 'category-hrms')}><span>{ff_icon('i-people')}</span><div><b>HR 场景地图</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
               <button class="mega-feature search-trigger" type="button"><span>{ff_icon('i-search')}</span><div><b>全站搜索</b><small>查找服务、场景、资料、案例与博客</small></div><em>搜索</em></button>
             </div>
@@ -553,7 +554,7 @@ def footer():
   <div class="container footer-main">
     <div class="footer-brand">
       <img src="assets/forflow-lockup-transparent.png" alt="ForFlow 萬維流形">
-      <p>面向企业的 AI 原生增长运行层。<br>从高价值场景、安全落地到持续运营。</p>
+      <p>帮助企业把 AI 接入真实业务流程，<br>并持续验证效果。</p>
     </div>
   <div class="footer-col"><h3>企业服务</h3>
       <a href="ai-readiness-audit.html">AI 准备度审核</a>

@@ -83,7 +83,7 @@ def test_invite_gate():
         c.goto('index.html')
         c.wait("location.pathname.endsWith('/landing.html') && new URLSearchParams(location.search).get('next')?.includes('index.html')")
         visible=c.eval("({title:document.title,input:!!document.querySelector('[data-invite-code]'),status:document.querySelector('[data-invite-status]')?.textContent})")
-        assert '访问门禁' in visible['title'] and visible['input']
+        assert '受邀预览' in visible['title'] and visible['input']
         c.eval("""
           const form = document.querySelector('[data-invite-form]');
           const input = document.querySelector('[data-invite-code]');

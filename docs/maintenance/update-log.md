@@ -9,6 +9,104 @@
 - `验证` 只写真实跑过的命令、人工检查或部署结果；没有跑就写“未跑”并说明原因。
 - 涉及案例、服务页、一级页面时，同时说明对应的维护入口，例如 `build_site.py`、`templates/`、`CASE_LIBRARY_ITEMS` 或具体 HTML。
 
+## 2026-07-10
+
+### 变更范围
+
+- 全站顶部栏 v9，覆盖 utility bar、桌面主导航与 mega-nav、滚动状态、手机品牌区、菜单抽屉和静态资源版本号；维护入口为 `styles.css`、`script.js`、`build_site.py` 与 `templates/`。
+
+### 主要变更
+
+- 降低顶部两层结构的视觉噪音：压缩 utility bar 和主导航高度，收紧品牌标识、导航、搜索与诊断按钮的比例关系。
+- 将当前页面状态从灰色胶囊改为 Flow Green 下划线；hover、下拉展开与键盘焦点继续保留清晰反馈。
+- 新增滚动后顶部栏的实体背景和轻阴影，首页打开时保持更轻，滚动进入正文后提高可读性。
+- 手机端统一为 64px 顶栏、受控宽度品牌标识和 44px 菜单按钮；菜单抽屉加入安全区、内部滚动、当前项、分组加减状态和完整宽度 CTA。
+- 修正手机菜单 Escape 关闭后的焦点回归，以及从手机菜单打开搜索时菜单按钮的 `aria-label` 状态。
+- 将 23 个 HTML 页面的样式与脚本缓存版本统一更新为 `20260710-topbar-v9`，并同步生成器与精修模板。
+
+### 验证
+
+- `node --check script.js` 通过。
+- `python3 tests/static_check.py` 通过：23 个 HTML 页面、本地资源和搜索索引版本一致。
+- `node tests/invite_gate_check.js` 与 `node tests/gate_runtime_check.mjs` 通过，服务端访问码门禁未被本轮改动破坏。
+- `git diff --check` 通过。
+- in-app Browser 复核首页桌面、1113px 中等宽度、424px 手机视口和案例中心：无横向溢出；桌面 mega-nav 可展开；手机菜单可开关、分组可展开、CTA 完整落在视口内；滚动后 `is-scrolled` 状态和阴影生效；页面控制台无站点脚本错误。
+
+### 后续
+
+- 当前改动仅完成本地预览与验证，尚未部署到 Netlify；获得页面方向确认后再发布生产。
+
+## 2026-07-10
+
+### 变更范围
+
+- 将门禁升级为 Netlify 服务端访问码校验，覆盖 `landing.html`、`gate-client.js`、`netlify/functions/gate-login.mjs`、`netlify/edge-functions/auth-gate.mjs`、`netlify.toml`、门禁专项测试和部署说明。
+
+### 主要变更
+
+- 不使用账号、邮箱、注册或 Netlify Identity；访客只输入共享访问码。
+- 访问码仅保存在 Netlify 环境变量 `SITE_GATE_PASSWORD`，浏览器源码不包含访问码；正确验证后写入 30 天的 `HttpOnly`、`Secure`、`SameSite=Lax` Cookie。
+- 未授权的根路径、HTML 页面和 Pretty URL 由 Netlify Edge Function 跳转到门禁页并保留安全回跳目标。
+
+### 验证
+
+- `node --check script.js`
+- `node --check gate-client.js`
+- `node --check netlify/functions/gate-login.mjs`
+- `node --check netlify/edge-functions/auth-gate.mjs`
+- `node tests/invite_gate_check.js`
+- `node tests/gate_runtime_check.mjs`
+- `python3 tests/static_check.py`
+- `git diff --check`
+- `npx netlify status` 与站点 API：已确认项目 `forflow-enterprise-suite-v3` 绑定 `https://forflow.ai`，SSL 与 Force SSL 生效。
+- 生产环境 Secret `SITE_GATE_PASSWORD` 已设置；当前 Netlify 套餐不支持 granular scope，因此使用 production context 的全作用域 Secret。
+- `npx netlify deploy --prod` 直连部署成功：Deploy ID `6a50d2d7f2bf0370c8d10828`，生产地址 `https://forflow.ai`。
+- 线上无 Cookie 访问 `/` 与 `/contact` 均返回 `302` 到 `landing.html?next=...`；错码返回 `401`；正确访问码返回 `200` 并写入安全 Cookie；携带 Cookie 访问 `/` 与 `/contact` 均返回 `200`。
+
+### 后续
+
+- 后续如需更换访问码，只更新 Netlify Secret `SITE_GATE_PASSWORD` 并重新部署；不改网页源码。
+
+## 2026-07-10
+
+### 变更范围
+
+- 重做官网受邀预览页并修复首页主 Hero 图片，覆盖 `landing.html`、`templates/index.html`、`index.html`、`styles.css`、`script.js`、`build_site.py`、全站静态 HTML 的资源版本、`search-index.json`、相关测试、`assets/invite/forflow-private-preview.jpg`、`assets/home/forflow-workflow-hero-v2.jpg` 与 `design-qa.md`。
+
+### 主要变更
+
+- 将原深色蓝绿光晕和玻璃表单改为与首页同源的白色／云灰、64px 细网格、黑色正文与 Flow Green 双栏入口；桌面左侧完成邀请码任务、右侧展示独立生成的业务场景图，手机端先展示表单再展示图片。
+- 右侧场景图使用 Image Gen 单独生成，落库为 `1122 × 1402` JPEG；品牌标识不使用生成图中的重绘版本，页面直接引用现有正确资产 `assets/forflow-lockup-transparent.png`。
+- 门禁文案统一为“受邀预览”；访问支持邮箱使用 `hello@forflow.ai`，并从表单校验区移入真正的页面底栏，避免被误读为错误提示的一部分。
+- 移除图片底部与页底栏冲突的绿色装饰线，桌面图片改为方形裁切，使页底栏稳定落在 `1440 × 900` 首屏底部；移动端底栏随内容自然收尾。
+- 输入框新增 `required`、`aria-invalid`、独立空值提示、编辑后清错、触屏设备不自动聚焦、存储失败提示和忙碌状态。
+- 门禁仍保持轻量前端入口的技术边界，邀请码、30 天本地通行记录和安全回跳规则不变。
+- 首页原 `hero-hand.jpg` 是一张已经烘焙 Logo、英文竖排与说明文字的整版海报，和页面原生叠层重复。改用 Image Gen 单独生成的无文字、无 Logo 业务流程底图 `assets/home/forflow-workflow-hero-v2.jpg`，保留网页里的 Flow Green 动线、浮层卡片与品牌文案。
+- 进一步清理 Hero 图片叠层：移除右侧抢画面的 `DIAGNOSIS / DEPLOYMENT / GROWTH` 大号竖排字；三个绿色节点由容器百分比绝对定位改为同一条 SVG 曲线内的 `circle`，桌面和手机缩放时始终跟随曲线。
+- 手机端 Hero 改为专属简化构图：隐藏两张桌面浮层卡片和底部英文角标，只保留照片、绿色路径和节点；图片槽从 `500px` 缩短为 `420px`，路径向内收，避免卡片遮挡主体和首尾节点贴边。
+
+### 验证
+
+- `PYTHONPATH=.python-deps PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 build_site.py`
+- `PYTHONPATH=.python-deps PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 tests/static_check.py`
+- `node --check script.js`
+- `node --check tests/invite_gate_check.js`
+- `node tests/invite_gate_check.js`
+- `PYTHONPYCACHEPREFIX=/tmp/forflow-pycache python3 -m py_compile build_site.py tests/static_check.py tests/interaction_check.py tests/polished_pages_check.py`
+- `git diff --check`
+- 原始 Image Gen PNG 和项目内 JPEG 均已人工打开检查，主体、绿色流线、手写笔、平板和纸质材料完整。
+- Chromium 桌面复核通过：`1440 × 900` 下文档高度与视口同为 `900px`，底栏位于首屏底部，无控制台错误。
+- Chromium 手机复核通过：`390 × 844` 下 `scrollWidth=innerWidth=390`，图片和双行底栏完整，无横向溢出。
+- Chromium 错码交互通过：提交错误邀请码后显示明确状态，输入框为 `aria-invalid=true`，控制台无错误。
+- in-app Browser 首页桌面复核通过：新 Hero 资源完整加载为 `1254 × 1254`，没有内嵌品牌文字与页面叠层重复，无控制台错误。
+- in-app Browser 首页手机复核通过：`scrollWidth=innerWidth`，图片主体、流程动线和浮层卡片在窄屏裁切中保持完整。
+- in-app Browser Hero 叠层复核通过：桌面和手机端均无竖排大字，三个节点为 SVG `circle` 且使用同一 `viewBox` 坐标；主按钮“开始场景诊断”可正常进入 Navigator，控制台无错误。
+- in-app Browser 手机 Hero 复核通过：窄屏下三块重复浮层均为 `display:none`，图片槽为 `420px`，路径首尾节点完整可见，`scrollWidth=innerWidth`；桌面端浮层仍按原设计展示。
+
+### 后续
+
+- 视觉与交互 QA 已完成；部署后补充生产地址上的门禁回跳和邮件链接烟测。
+
 ## 2026-07-09
 
 ### 变更范围
