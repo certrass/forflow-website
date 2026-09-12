@@ -1,0 +1,42 @@
+/* Measured against Attio's September 2026 public design system.
+   ForFlow owns the content, components and business interactions. */
+@font-face{font-family:Inter;src:url('/assets/inter-regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Inter;src:url('/assets/inter-medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Inter;src:url('/assets/inter-semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:InterDisplay;src:url('/assets/inter-display-medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:InterDisplay;src:url('/assets/inter-display-semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+:root{
+ -webkit-text-size-adjust:100%;text-size-adjust:100%;
+ --paper:#fff;--canvas:#fafafb;--surface:#f3f4f6;--surface-hover:#edeff3;
+ --ink:#1c1d1f;--text:#232529;--secondary:#505967;--muted:#6f7988;--caption:#8f99a8;
+ --line-soft:#edeff3;--line:#e4e7ec;--line-strong:#d3d8df;
+ --blue:#266df0;--blue-hover:#245bc2;--blue-soft:#e8f0ff;
+ --green:#16875a;--green-soft:#e8f7ef;--amber:#a96b14;--amber-soft:#fff3df;--violet:#8255d2;--violet-soft:#f0eaff;
+ --radius-xs:4px;--radius-sm:6px;--radius:8px;--radius-lg:12px;
+ --shadow-button:0 1px 2px #1c1d1f0d,0 0 0 1px #1c1d1f08;
+ --shadow-card:0 1px 3px #00000003,0 2px 4px -1px #00000005,0 4px 8px -2px #00000008;
+ --shadow-panel:0 0 0 1px #1c1d1f08,0 1px 3px #00000003,0 2px 4px -1px #00000005,0 4px 8px -2px #00000008,0 8px 16px -4px #0000000a,0 16px 32px -8px #0000000d;
+ --shadow-float:0 0 0 1px #1c1d1f0a,0 2px 4px -1px #00000005,0 8px 16px -4px #0000000a,0 16px 32px -8px #0000000d,0 32px 64px -16px #0000000f;
+ --ease-ui:cubic-bezier(.33,1,.68,1);--ease-out:cubic-bezier(0,0,0,1);--ease-reveal:cubic-bezier(0,0,.58,1);--ease-exit:cubic-bezier(.32,0,.67,0);
+ --duration-hover:150ms;--duration-fast:220ms;--duration-switch:500ms;--duration-reveal:600ms;--duration-entrance:800ms;
+ --page-width:1392px;--page-gutter:36px;--header-height:72px;
+ font-family:Inter,-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+ font-synthesis:none;color:var(--ink);background:var(--paper);scroll-padding-top:var(--header-height);scroll-behavior:smooth;
+}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{border:0;background:transparent;color:inherit;cursor:pointer}button:disabled{cursor:default}a{color:inherit;text-decoration:none}button, a, input{outline-offset:4px}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--blue)}h1,h2,h3,h4,p{margin:0}h1,h2,h3,h4{font-weight:500}img{max-width:100%;display:block}svg{flex-shrink:0}button{padding:0}a,button{touch-action:manipulation}::selection{background:#c8dcff;color:var(--ink)}
+.overline,.eyebrow{font-size:11px;line-height:18px;font-weight:500;letter-spacing:.09em;color:var(--muted)}
+.v6 h1,.v6 h2,.product-lead h3{font-family:InterDisplay,Inter,'PingFang SC','Microsoft YaHei',sans-serif}
+.v6-button{height:40px;display:inline-flex;justify-content:center;align-items:center;gap:9px;border:1px solid var(--line-strong);border-radius:10px;padding:0 15px;font-size:14px;font-weight:500;line-height:20px;letter-spacing:-.005em;box-shadow:var(--shadow-button);transition:background var(--duration-fast) var(--ease-ui),border-color var(--duration-fast),transform var(--duration-fast)}
+.v6-button.dark{background:var(--ink);border-color:var(--ink);color:white}.v6-button.dark:hover{background:#383e47;border-color:#383e47}.v6-button.light{background:white}.v6-button.light:hover{background:var(--canvas);border-color:#b5bdc9}.v6-button:active{transform:translateY(1px)}
+a>svg:last-child,button>svg:last-child{transition:transform var(--duration-fast) var(--ease-ui)}a:hover>svg:last-child{transform:translateX(2px)}
+.state-tag,.record-status{font-size:11px;font-weight:500;line-height:18px;padding:3px 7px;border-radius:5px;white-space:nowrap}.state-tag.amber{background:var(--amber-soft);color:var(--amber)}.state-tag.green,.record-status.mint{background:var(--green-soft);color:var(--green)}
+.avatar{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;color:white}.avatar.purple{background:#9b69ff}.avatar.blue{background:#538bf3}.avatar.green{background:#38b77d}.avatar.orange{background:#ed9853}
+.skip-link{position:fixed;top:-100px;left:16px;padding:12px 20px;background:var(--ink);color:white;z-index:2000}.skip-link:focus{top:10px}
+@keyframes ff-reveal{from{opacity:0;transform:translateY(12px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes ff-switch{from{opacity:0;transform:translateY(5px);filter:blur(1.5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes ff-drawer{from{opacity:0;transform:translateX(16px);filter:blur(1px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}
+[data-enter]{animation:ff-reveal var(--duration-reveal) var(--ease-reveal) both;animation-delay:var(--enter-delay,0ms)}
+[data-enter-pending]{opacity:0;transform:translateY(12px)}
+@media(max-width:991px){:root{--page-gutter:24px;--header-height:64px}}
+@media(max-width:600px){:root{--page-gutter:20px;--header-height:60px}}
+@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:0ms!important;animation-delay:0ms!important;transition-duration:0ms!important}[data-enter-pending]{opacity:1;transform:none}}

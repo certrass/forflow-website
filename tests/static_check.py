@@ -69,6 +69,27 @@ for path in html_files:
             except ValueError: continue
             if not fp.exists(): broken.append(val)
     if broken: errors.append(f'{path.name}: broken local refs {sorted(set(broken))}')
+    external_images=[img.get('src') for img in soup.find_all('img') if (img.get('src') or '').startswith(('http://','https://'))]
+    if external_images:
+        errors.append(f'{path.name}: externally hosted images leak visitor metadata {external_images}')
+    for link in soup.select('a[target="_blank"]'):
+        rel=set(link.get('rel') or [])
+        if 'noopener' not in rel:
+            errors.append(f'{path.name}: target=_blank link missing noopener: {link.get("href")}')
+    inline_scripts=[script for script in soup.find_all('script') if not script.get('src') and script.get_text(strip=True)]
+    if inline_scripts:
+        errors.append(f'{path.name}: inline script would be blocked by production CSP')
+    inline_handlers=[]
+    for node in soup.find_all(True):
+        inline_handlers.extend(attr for attr in node.attrs if attr.lower().startswith('on'))
+    if inline_handlers:
+        errors.append(f'{path.name}: inline event handlers would be blocked by production CSP: {sorted(set(inline_handlers))}')
+    if 'Q2Q' in visible_text:
+        errors.append(f'{path.name}: internal Q2Q terminology must not be customer-facing')
+    if soup.select_one('main footer.site-footer'):
+        errors.append(f'{path.name}: site footer is nested inside main content')
+    if path.name != 'landing.html' and not soup.select_one('body > footer.site-footer'):
+        errors.append(f'{path.name}: site footer must be a direct body child')
     report[path.name]={
         'title': soup.title.get_text(strip=True) if soup.title else '',
         'ids':len(ids),
@@ -79,7 +100,7 @@ for path in html_files:
     }
 
 # acceptance checks
-required=['landing.html','index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','case-supply-chain-agentic-decision.html','case-financial-bda-document-automation.html','case-vanguard-virtual-analyst.html','case-agent-evaluation-first.html','search.html','document-viewer.html']
+required=['landing.html','index.html','navigator.html','navigator-results.html','playbook.html','service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html','category-hrms.html','cases.html','case-wren-kitchens.html','case-manufacturing-pid-intelligence.html','case-healthcare-agent-roi.html','case-automotive-dfmea-ontology-agent.html','case-supply-chain-agentic-decision.html','case-financial-bda-document-automation.html','case-vanguard-virtual-analyst.html','case-agent-evaluation-first.html','case-energy-optimization-agent.html','search.html','document-viewer.html','privacy.html']
 for name in required:
     if not (ROOT/name).exists(): errors.append(f'missing required page: {name}')
 for name in ['service-ai-enablement.html','service-data-governance.html','service-agent-build.html','service-ai-training.html']:
@@ -90,6 +111,37 @@ res=BeautifulSoup((ROOT/'navigator-results.html').read_text(encoding='utf-8'),'h
 video=res.find('video')
 if not video or not video.has_attr('controls'): errors.append('navigator-results.html: video controls missing')
 if not video or 'forflow-brand-motion.mp4' not in str(video): errors.append('navigator-results.html: brand motion video missing')
+sort_buttons=res.select('[data-sort]')
+if not sort_buttons or any(button.get('aria-pressed') not in {'true','false'} for button in sort_buttons):
+    errors.append('navigator-results.html: sort controls need explicit aria-pressed state')
+for mode in ('match', 'speed', 'foundation'):
+    mode_buttons=[button for button in sort_buttons if button.get('data-sort') == mode]
+    if len(mode_buttons) != 2:
+        errors.append(f'navigator-results.html: expected desktop and mobile {mode} sort controls')
+    expected='true' if mode == 'match' else 'false'
+    if any(button.get('aria-pressed') != expected for button in mode_buttons):
+        errors.append(f'navigator-results.html: incorrect initial aria-pressed state for {mode}')
+if not res.select_one('[data-mobile-sort-toggle][aria-expanded="false"]'):
+    errors.append('navigator-results.html: mobile sort toggle needs initial aria-expanded=false')
+if not res.select_one('[data-mobile-sort-menu][aria-hidden="true"]'):
+    errors.append('navigator-results.html: mobile sort menu needs initial aria-hidden=true')
+report_form=res.select_one('form[data-lead-form][data-source-type="assessment_report"]')
+if not report_form or not report_form.select_one('input[name="assessment_id"][data-assessment-id]'):
+    errors.append('navigator-results.html: assessment report form must carry only the internal assessment id')
+if not report_form or not report_form.select_one('input[name="email"][type="email"][required]'):
+    errors.append('navigator-results.html: report request needs a required email')
+if not report_form or not report_form.select_one('input[name="consent"][required]'):
+    errors.append('navigator-results.html: report request needs explicit consent')
+contact_soup=BeautifulSoup((ROOT/'contact.html').read_text(encoding='utf-8'),'html.parser')
+contact_form=contact_soup.select_one('form[data-lead-form][data-source-type="contact"]')
+if not contact_form or not contact_form.select_one('input[name="email"][type="email"][required]'):
+    errors.append('contact.html: contact lead form needs a required email')
+if not contact_soup.select_one('a[href^="mailto:hello@forflow.ai"]'):
+    errors.append('contact.html: direct email fallback missing')
+privacy_soup=BeautifulSoup((ROOT/'privacy.html').read_text(encoding='utf-8'),'html.parser')
+for phrase in ['诊断表和答案表不保存姓名或邮箱', 'Netlify', 'Supabase', 'hello@forflow.ai']:
+    if phrase not in privacy_soup.get_text(' ', strip=True):
+        errors.append(f'privacy.html: missing privacy disclosure {phrase}')
 pb=BeautifulSoup((ROOT/'playbook.html').read_text(encoding='utf-8'),'html.parser')
 if not pb.select_one('.playbook-cover-art img[src="assets/forflow-lockup.png"]'): errors.append('playbook.html: exact supplied cover logo missing')
 landing_soup=BeautifulSoup((ROOT/'landing.html').read_text(encoding='utf-8'),'html.parser')
@@ -102,6 +154,9 @@ if not gate_code or gate_code.get('type') != 'password' or not gate_code.has_att
     errors.append('landing.html: access-code input accessibility contract missing')
 if not landing_soup.select_one('script[src^="gate-client.js"]'):
     errors.append('landing.html: access-code client missing')
+gate_form=landing_soup.select_one('form[data-gate-form]')
+if not gate_form or gate_form.get('method', '').lower() != 'post' or gate_form.get('action') != '/api/gate-login':
+    errors.append('landing.html: gate form must fail closed to POST /api/gate-login')
 home_soup=BeautifulSoup((ROOT/'index.html').read_text(encoding='utf-8'),'html.parser')
 if not home_soup.select_one('.home-hero-photo img[src="assets/home/forflow-workflow-hero-v2.jpg"]'):
     errors.append('index.html: clean generated home hero visual missing')
@@ -111,9 +166,17 @@ if home_soup.select_one('.home-vertical-type'):
     errors.append('index.html: oversized vertical hero text should be removed')
 if len(home_soup.select('.home-flow-line circle.home-flow-node')) != 3:
     errors.append('index.html: hero flow nodes must share the SVG coordinate system')
+if len(home_soup.select('.home-proof-band > a')) != 4:
+    errors.append('index.html: hero proof band should keep four concise entry points')
 
 cases_soup=BeautifulSoup((ROOT/'cases.html').read_text(encoding='utf-8'),'html.parser')
 search_soup=BeautifulSoup((ROOT/'search.html').read_text(encoding='utf-8'),'html.parser')
+viewer_soup=BeautifulSoup((ROOT/'document-viewer.html').read_text(encoding='utf-8'),'html.parser')
+case_filter_buttons=cases_soup.select('[data-case-filter]')
+if not case_filter_buttons or any(button.get('aria-pressed') not in {'true','false'} for button in case_filter_buttons):
+    errors.append('cases.html: case filters need explicit aria-pressed state')
+if sum(button.get('aria-pressed') == 'true' for button in case_filter_buttons) != 1:
+    errors.append('cases.html: exactly one case filter should be pressed initially')
 search_index_path=ROOT/'search-index.json'
 if not search_index_path.exists():
     errors.append('missing search-index.json')
@@ -126,6 +189,11 @@ else:
         errors.append('search-index.json: missing searchable items')
 if not search_soup.select_one('[data-search-index]'):
     errors.append('search.html: missing data-search-index')
+if not search_soup.find('h1'):
+    errors.append('search.html: missing page h1')
+for selector in ['a[data-doc-open][href]', 'a[data-doc-download][href]']:
+    if not viewer_soup.select_one(selector):
+        errors.append(f'document-viewer.html: missing static fallback link {selector}')
 index_hrefs={item.get('href') for item in search_index.get('items', [])}
 index_type_counts={}
 for entry in search_index.get('items', []):
@@ -139,6 +207,42 @@ for item in case_items:
         errors.append(f'search.html: missing search case {case_target(item)}')
     if item.get('search') and case_target(item) not in index_hrefs:
         errors.append(f'search-index.json: missing search case {case_target(item)}')
+energy_item=next((item for item in case_items if item.get('id') == 'energy-optimization-agent'), None)
+if not energy_item:
+    errors.append('build_site.py: missing energy optimization case item')
+else:
+    if not cases_soup.select_one('a[href="case-energy-optimization-agent.html"]'):
+        errors.append('cases.html: energy optimization case link missing')
+    energy_entry=next((entry for entry in search_index.get('items', []) if entry.get('href') == 'case-energy-optimization-agent.html'), None)
+    if not energy_entry:
+        errors.append('search-index.json: energy optimization case missing')
+    if not {'manufacturing', 'data'}.issubset(set(energy_item.get('tags', []))):
+        errors.append('build_site.py: energy optimization case needs manufacturing and data tags')
+    if not energy_item.get('visual'):
+        errors.append('build_site.py: energy optimization case visual missing')
+
+energy_soup=BeautifulSoup((ROOT/'case-energy-optimization-agent.html').read_text(encoding='utf-8'),'html.parser')
+if 'case-theme--energy' not in (energy_soup.body.get('class', []) if energy_soup.body else []):
+    errors.append('case-energy-optimization-agent.html: energy theme missing')
+for section_id in ['architecture', 'prediction', 'decision', 'safety', 'evidence']:
+    if not energy_soup.select_one(f'#{section_id}'):
+        errors.append(f'case-energy-optimization-agent.html: missing #{section_id}')
+if not energy_soup.select_one('a[href="contact.html?topic=energy-agent"]'):
+    errors.append('case-energy-optimization-agent.html: consultation topic link missing')
+
+script_text=(ROOT/'script.js').read_text(encoding='utf-8')
+if 'navigator-results.html?assessment_id=' not in script_text:
+    errors.append('script.js: navigator result URL must use only assessment_id')
+if 'navigator-results.html?challenge=' in script_text:
+    errors.append('script.js: navigator answers must not be copied into the result URL')
+for endpoint in ['/api/events', '/api/assessments', '/api/leads']:
+    if endpoint not in script_text:
+        errors.append(f'script.js: missing first-party endpoint {endpoint}')
+for topic in ["hr", "energy-agent"]:
+    if re.search(rf"(?:^|\n)\s*['\"]?{re.escape(topic)}['\"]?\s*:\s*\{{", script_text) is None:
+        errors.append(f'script.js: contact topic {topic} missing')
+if "hrStage: value('hrStage')" not in script_text:
+    errors.append('script.js: HR stage is not carried into navigator results')
 case_count_label=search_soup.select_one('[data-result-type="case"] .search-result-head h2 span')
 if case_count_label and int(case_count_label.get_text(strip=True) or '0') != sum(1 for item in case_items if item.get('search')):
     errors.append('search.html: case search count does not match CASE_LIBRARY_ITEMS')
@@ -160,6 +264,34 @@ for case_path in sorted(ROOT.glob('case-*.html')):
         errors.append(f'{case_path.name}: case detail shell should include case-story-shell for shared mobile spacing')
     if not case_soup.select_one('.case-toc nav[data-scrollspy]'):
         errors.append(f'{case_path.name}: missing case toc scrollspy nav')
+
+source_contracts={
+    'case-manufacturing-pid-intelligence.html': 'aws.amazon.com/cn/blogs/industries/how-everllence-scaled-pid-intelligence-to-improve-plant-operations/',
+    'case-healthcare-agent-roi.html': 'aws.amazon.com/blogs/industries/how-we-built-healthcare-ai-you-can-trust-the-engineering-behind-amazon-connect-health/',
+    'case-automotive-dfmea-ontology-agent.html': 'aws.amazon.com/blogs/industries/reimagining-b-pillar-dfmea/',
+    'case-supply-chain-agentic-decision.html': 'aws.amazon.com/blogs/industries/how-multi-agent-ai-turns-supply-chain-data-into-decisions-and-actions/',
+    'case-financial-bda-document-automation.html': 'aws.amazon.com/blogs/machine-learning/process-financial-documents-using-amazon-bedrock-data-automation/',
+    'case-vanguard-virtual-analyst.html': 'aws.amazon.com/blogs/machine-learning/building-ai-ready-data-vanguards-virtual-analyst-journey/',
+    'case-agent-evaluation-first.html': 'aws.amazon.com/cn/blogs/china/part-1-enterprise-intelligent-why-evaluation/',
+}
+for name, source_fragment in source_contracts.items():
+    source_soup=BeautifulSoup((ROOT/name).read_text(encoding='utf-8'),'html.parser')
+    if not source_soup.select_one('.case-source-foot'):
+        errors.append(f'{name}: missing explicit source and evidence boundary')
+    if not any(source_fragment in (a.get('href') or '') for a in source_soup.select('a[href]')):
+        errors.append(f'{name}: missing primary source link {source_fragment}')
+    visible_text=source_soup.get_text(' ',strip=True)
+    for vendor_name in ['AWS', 'Amazon', 'Bedrock', 'AgentCore', 'BDA', 'SageMaker', 'DynamoDB', 'Cognito', 'Strands']:
+        if vendor_name in visible_text:
+            errors.append(f'{name}: vendor brand remains in customer-facing copy: {vendor_name}')
+    if 'ForFlow' not in visible_text:
+        errors.append(f'{name}: ForFlow team framing missing from customer-facing copy')
+
+for name in ['cases.html', 'search.html', 'ai-readiness-audit.html', 'service-data-governance.html', 'service-agent-build.html']:
+    visible_text=BeautifulSoup((ROOT/name).read_text(encoding='utf-8'),'html.parser').get_text(' ',strip=True)
+    for vendor_name in ['AWS', 'Amazon', 'Bedrock', 'AgentCore', 'BDA', 'SageMaker', 'DynamoDB', 'Cognito', 'Strands']:
+        if vendor_name in visible_text:
+            errors.append(f'{name}: vendor brand remains in customer-facing copy: {vendor_name}')
 
 maintenance_docs={
     'docs/maintenance/update-log.md': ['# ForFlow 网站更新记录', '## 2026-06-25', '## 2026-06-24', '### 验证'],

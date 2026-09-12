@@ -1,0 +1,158 @@
+{
+  "deploy_id": "6a9d46c987f7ec762510d04b",
+  "context": "deploy-preview",
+  "url": "https://6a9d46c987f7ec762510d04b--forflow-enterprise-suite-v3.netlify.app",
+  "state": "ready",
+  "production_before": "6a526ad3f3353819365b175e",
+  "staging_directory": "/var/folders/l0/9_h89x255qx_3ktxr85ryxlw0000gn/T/forflow-q2q-records-preview-qi5eso8r/public",
+  "created_at": "2026-09-06T10:56:09.432690+00:00",
+  "production_after": "6a526ad3f3353819365b175e",
+  "production_unchanged": true,
+  "verified_files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "acbe8bb1c1e84eb987f776fb5c52e9d48ce75924296149d4124d2ec8effc3bb7",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "index 2.html",
+      "status": 200,
+      "sha256": "0a56296597e256e50e72f6162ef99c9d36e0d90242436911ec87732715fb8720",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-poster 2.png",
+      "status": 200,
+      "sha256": "880f6b91e9b1d1b416cc8563b72526c2670e21f7e6a9c2fbbf7a8bf570d2bac3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-scene-BDEsJ6fh 2.js",
+      "status": 200,
+      "sha256": "8895f62420618108abc51fb3a6d294001b0efa2e7e2b9e422000ae7e54cbc699",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-OFL.txt",
+      "status": 200,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-poster.png",
+      "status": 200,
+      "sha256": "880f6b91e9b1d1b416cc8563b72526c2670e21f7e6a9c2fbbf7a8bf570d2bac3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-semibold 2.woff2",
+      "status": 200,
+      "sha256": "d8bb10ec73c52ddeeed35b9e7913cf0cf0226ca3469c696883413f49ef03aa61",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-scene-BDEsJ6fh.js",
+      "status": 200,
+      "sha256": "8895f62420618108abc51fb3a6d294001b0efa2e7e2b9e422000ae7e54cbc699",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow 2.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-semibold 2.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-regular 2.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-medium 2.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-D4v24xQ1.css",
+      "status": 200,
+      "sha256": "91370737552e97faeadbc6dea5f9731bc060006140ea094dfe614c673ec59720",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-medium.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/pid 2.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-OFL 2.txt",
+      "status": 200,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-DurfxXbC.js",
+      "status": 200,
+      "sha256": "6240870ee8fae52bfb5f6702c6a092ea42927e3c4d2a7db97602612f4b626f37",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-semibold.woff2",
+      "status": 200,
+      "sha256": "d8bb10ec73c52ddeeed35b9e7913cf0cf0226ca3469c696883413f49ef03aa61",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-medium 2.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/pid.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow"
+    }
+  ],
+  "remote_verification": "passed"
+}

@@ -1,5 +1,5 @@
 {
-  "version": "20260710-topbar-v9",
+  "version": "20260712-service-visual-pilot-v28",
   "types": [
     {
       "type": "category",
@@ -41,12 +41,32 @@
       ]
     },
     {
+      "id": "ai-readiness-audit",
+      "type": "service",
+      "href": "ai-readiness-audit.html",
+      "kicker": "企业服务",
+      "title": "AI 准备度审核",
+      "description": "用 1–2 个工作日排清场景优先级、基础缺口和 30/90 天路线。",
+      "action": "查看审核方式 →",
+      "priority": 9,
+      "keywords": [
+        "AI 准备度",
+        "审核",
+        "场景优先级",
+        "路线图",
+        "30/90 天",
+        "风险",
+        "治理",
+        "投资判断"
+      ]
+    },
+    {
       "id": "service-agent-build",
       "type": "service",
       "href": "service-agent-build.html",
       "kicker": "企业服务",
-      "title": "企业 Agent 搭建",
-      "description": "连接知识、系统和规则，完成多步业务任务。",
+      "title": "企业 Agent 与工作流",
+      "description": "连接知识、系统、工具和人工审批，完成多步业务任务。",
       "action": "2 周验证起步 →",
       "priority": 8,
       "keywords": [
@@ -67,8 +87,8 @@
       "type": "service",
       "href": "service-data-governance.html",
       "kicker": "企业服务",
-      "title": "数据治理",
-      "description": "资产、口径、质量、管道、权限与 AI 数据层。",
+      "title": "AI 数据与知识治理",
+      "description": "统一数据口径、知识来源、质量、管道与权限。",
       "action": "查看详情 →",
       "priority": 7,
       "keywords": [
@@ -88,7 +108,7 @@
       "type": "service",
       "href": "service-ai-enablement.html",
       "kicker": "企业服务",
-      "title": "企业 AI 赋能计划",
+      "title": "AI 采用与团队赋能",
       "description": "把零散试用变成可衡量的团队能力。",
       "action": "查看详情 →",
       "priority": 6,
@@ -99,7 +119,6 @@
         "团队",
         "绩效",
         "场景诊断",
-        "Q2Q",
         "试点",
         "扩展"
       ]
@@ -109,7 +128,7 @@
       "type": "service",
       "href": "service-ai-training.html",
       "kicker": "企业服务",
-      "title": "企业 AI 培训",
+      "title": "AI 实战培训",
       "description": "按角色和岗位定制，学完即用。",
       "action": "查看详情 →",
       "priority": 6,
@@ -127,11 +146,11 @@
     {
       "id": "resource-playbook",
       "type": "resource",
-      "href": "document-viewer.html?doc=playbook",
-      "kicker": "PDF",
+      "href": "playbook.html",
+      "kicker": "在线手册",
       "title": "企业生成式 AI 实战手册",
       "description": "GenAI、RAG、买还是建、风险治理和落地步骤。",
-      "action": "在线查看 →",
+      "action": "阅读手册 →",
       "priority": 6,
       "keywords": [
         "GenAI",
@@ -166,27 +185,10 @@
       ]
     },
     {
-      "id": "resource-solutions",
-      "type": "resource",
-      "href": "document-viewer.html?doc=solutions",
-      "kicker": "PDF",
-      "title": "方案搜索结果参考页面",
-      "description": "用户提供的 SMEs Go Digital 搜索结果 PDF，用于布局与交互参考。",
-      "action": "在线查看 →",
-      "priority": 4,
-      "keywords": [
-        "方案",
-        "搜索",
-        "解决方案",
-        "SMEs",
-        "digital"
-      ]
-    },
-    {
       "id": "wren",
       "type": "case",
       "href": "case-wren-kitchens.html",
-      "kicker": "案例结构参考",
+      "kicker": "公开案例解读",
       "title": "Wren Kitchens：从紧急扩容到长期技术合作",
       "description": "挑战、接管、模块、公开影响与可复用经验。",
       "action": "查看案例 →",
@@ -194,7 +196,7 @@
       "keywords": [
         "Wren 厨房 零售 制造 物流 技术合作 跨模块 软件交付 知识交接 长期合作",
         "Wren Kitchens：从紧急团队扩容，到长期技术合作",
-        "公开案例摘要：先稳住关键系统，再把安装、物流、产品、QA 和移动应用纳入长期协作。",
+        "公开案例摘要：团队接手关键系统后，把安装、物流、产品、QA 和移动应用逐步纳入长期协作。",
         "retail manufacturing data"
       ]
     },
@@ -202,15 +204,15 @@
       "id": "ihub",
       "type": "case",
       "href": "cases.html#ihub",
-      "kicker": "公开 GenAI 案例",
+      "kicker": "IMDA 公开材料 · 预期目标",
       "title": "物流：自然语言数据 Agent",
-      "description": "用对话查询多源数据，减少人工报表处理。",
+      "description": "用对话查询多源数据并生成报表；50% 是公开材料中的预期目标，不是已验证结果。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
         "物流 数据 Agent 自然语言 报表 iHub 供应链 多源数据",
         "用自然语言查询多源供应链数据",
-        "减少手工提取和整理，计划加入图表、摘要和多轮查询。",
+        "IMDA 材料中的预期报表时长目标，不是已验证结果；实际变化仍需项目测量。",
         "data"
       ]
     },
@@ -218,7 +220,7 @@
       "id": "pid",
       "type": "case",
       "href": "case-manufacturing-pid-intelligence.html",
-      "kicker": "案例 Blog 模板",
+      "kicker": "ForFlow 团队实践 · 工业知识",
       "title": "制造业：P&ID 智能化扩展工厂运营",
       "description": "把静态管线图纸变成可查询、可关联、可由工程师复核的运营知识网络。",
       "action": "查看案例 →",
@@ -231,17 +233,33 @@
       ]
     },
     {
+      "id": "energy-optimization-agent",
+      "type": "case",
+      "href": "case-energy-optimization-agent.html",
+      "kicker": "工业能效 · 合作场景材料",
+      "title": "制造业：实时电价驱动的能效优化 Agent",
+      "description": "保留工业协议、预测模型、多目标调度、设备约束和分阶段上线方法；合作名称与成效披露仍待项目方确认。",
+      "action": "查看案例 →",
+      "priority": 10,
+      "keywords": [
+        "工业能效 工厂 能源管理 能效优化 Agent 智能体 实时电价 电力现货 需求响应 源网荷储 EMS MES WMS APS OT IT Modbus OPC UA PROFINET PLC DCS LSTM Transformer SAC DQN PPO 负荷预测 光伏预测 电价预测 储能 SOC 冷冻站 空压站 COP 多目标优化 人工接管 安全约束",
+        "实时电价驱动的工厂能效优化 Agent",
+        "从电价、负荷和设备状态出发，拆解感知、预测、调度、执行与反馈闭环，以及自动控制必须守住的安全边界。",
+        "manufacturing data"
+      ]
+    },
+    {
       "id": "healthcare-agent-roi",
       "type": "case",
       "href": "case-healthcare-agent-roi.html",
-      "kicker": "高合规医疗 · 受限多智能体",
-      "title": "医疗：受限多智能体架构与 ROI 验证",
+      "kicker": "ForFlow 团队实践 · 医疗 AI",
+      "title": "医疗：受限智能体架构与验证方法",
       "description": "把就诊前中后和患者语音入口拆成可验收、可追踪、可升级人工的生产级流程。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
-        "医疗 医院 诊所 AWS Amazon Connect Health 受限多智能体 ROI 患者语音 EHR EMR 保险验证 预约管理 HealthLake SFT GRPO 临床记录 医疗编码 CPT ICD 就诊前 就诊中 就诊后 状态机 人工升级",
-        "复杂医疗工作流中的智能体落地与 ROI 验证",
+        "医疗 医院 诊所 受限多智能体 ROI 患者语音 EHR EMR 保险验证 预约管理 SFT GRPO 临床记录 医疗编码 CPT ICD 就诊前 就诊中 就诊后 状态机 人工升级",
+        "医疗智能体的受限架构与验证方法",
         "把就诊前中后和患者语音入口拆成可验收、可追踪、可升级人工的生产级流程。",
         "healthcare service data"
       ]
@@ -250,13 +268,13 @@
       "id": "automotive-dfmea-ontology-agent",
       "type": "case",
       "href": "case-automotive-dfmea-ontology-agent.html",
-      "kicker": "汽车工程 · 本体智能体 DFMEA",
+      "kicker": "ForFlow 工程方法 · 汽车知识",
       "title": "汽车：本体智能体重塑 B 柱 DFMEA",
       "description": "从电子表格 DFMEA 到工程本体推理，解释 AI 如何发现组合失效并沉淀组织知识。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
-        "汽车 汽车工程 B柱 B 柱 B-pillar 安全关键零部件 侧面碰撞 车顶抗压 安全带锚固 DFMEA FMEA 本体 Ontology 知识图谱 智能体 Agent AI RFLP AgentCore Strands SDK AWS Bedrock 22MnB5 硼钢 热冲压 氢脆 疲劳 腐蚀 电偶腐蚀 粘接失效 失效模式 RPN AP ECO 工程变更 工程推理 知识流失 老师傅经验 组织记忆 经验断档 机构记忆 跨项目迁移 供应商教训 设计变更复评 FMVSS 214 FMVSS 216 Euro NCAP IIHS AIAG VDA",
+        "汽车 汽车工程 B柱 B 柱 B-pillar 安全关键零部件 侧面碰撞 车顶抗压 安全带锚固 DFMEA FMEA 本体 Ontology 知识图谱 智能体 Agent AI RFLP 22MnB5 硼钢 热冲压 氢脆 疲劳 腐蚀 电偶腐蚀 粘接失效 失效模式 RPN AP ECO 工程变更 工程推理 知识流失 老师傅经验 组织记忆 经验断档 机构记忆 跨项目迁移 供应商教训 设计变更复评 FMVSS 214 FMVSS 216 Euro NCAP IIHS AIAG VDA",
         "本体智能体如何重塑安全关键零部件 DFMEA",
         "以 B 柱为例，把材料、工艺、失效机理和法规要求连成可推理、可追溯、可复评的风险情报系统。",
         "automotive manufacturing data"
@@ -266,15 +284,15 @@
       "id": "supply-chain-agentic-decision",
       "type": "case",
       "href": "case-supply-chain-agentic-decision.html",
-      "kicker": "零售供应链 · 多智能体决策",
+      "kicker": "ForFlow 团队实践 · 供应链",
       "title": "供应链：多智能体 AI 把数据转化为行动",
-      "description": "从数据可见性到自动查询、分析、根因归因和行动通知，解释供应链控制塔之后的 Agent 架构。",
+      "description": "用团队过往项目经验解释自动查询、分析、根因归因和行动通知的 Agent 架构。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
-        "供应链 零售 鞋服 库存 SKU 控制塔 control tower 多智能体 Agent AgentCore Strands MCP Gateway 语义层 自然语言 SQL 履行率 渠道履行 订单 冻结 信用控制 DynamoDB Cognito API Gateway Lambda Bedrock Observability 决策 行动",
+        "供应链 零售 鞋服 库存 SKU 控制塔 control tower 多智能体 Agent 语义层 自然语言 SQL 履行率 渠道履行 订单 冻结 信用控制 工具网关 可观测性 决策 行动",
         "多智能体 AI 如何将供应链数据转化为决策与行动",
-        "从控制塔的数据可见性，走向自然语言查询、异常钻取、根因归因和行动协同的完整决策链。",
+        "基于团队成员在原组织中积累的项目经验，讲清自然语言查询、异常钻取、根因归因和行动协同；匿名客户与测量边界按公开资料保留。",
         "retail data service"
       ]
     },
@@ -282,15 +300,15 @@
       "id": "financial-bda-document-automation",
       "type": "case",
       "href": "case-financial-bda-document-automation.html",
-      "kicker": "金融文档 · Bedrock Data Automation",
-      "title": "金融：用 BDA 自动化提取文档数据",
-      "description": "从四类金融文档到自定义 Blueprint，说明如何提取、验证并接入会计、税务和合同工作流。",
+      "kicker": "ForFlow 工程方法 · 文档自动化",
+      "title": "金融：把文档提取接入可复核工作流",
+      "description": "从四类金融文档到字段蓝图，说明如何提取、验证并接入会计、税务和合同工作流。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
-        "金融 文档 金融文档 Amazon Bedrock Data Automation BDA Blueprint 蓝图 OCR IDP 智能文档处理 银行对账单 bank statement W-2 W2 1099-B 1099B 税务表格 供应商合同 vendor contract 结构化提取 JSON CSV 置信度 视觉定位 visual grounding 幻觉缓解 字段验证 会计 对账 税务 合同管理",
-        "用 BDA 自动化提取金融文档数据",
-        "围绕银行对账单、W-2、1099-B 和供应商合同，讲清 Blueprint 如何把文档提取变成可复用工作流。",
+        "金融 文档 金融文档 字段蓝图 OCR IDP 智能文档处理 银行对账单 bank statement W-2 W2 1099-B 1099B 税务表格 供应商合同 vendor contract 结构化提取 JSON CSV 置信度 视觉定位 visual grounding 幻觉缓解 字段验证 会计 对账 税务 合同管理",
+        "把金融文档提取接入可复核工作流",
+        "围绕银行对账单、税务文件和供应商合同，讲清字段蓝图如何把文档提取变成可复用、可复核的工作流。",
         "finance data service"
       ]
     },
@@ -298,13 +316,13 @@
       "id": "vanguard-virtual-analyst",
       "type": "case",
       "href": "case-vanguard-virtual-analyst.html",
-      "kicker": "金融分析 · AI-ready data",
+      "kicker": "ForFlow 团队实践 · 金融数据",
       "title": "金融：先锋集团虚拟分析师与 AI 就绪数据",
       "description": "八项原则解释为什么企业对话式分析的关键不是换模型，而是数据产品、语义层、质量和持续评估。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
-        "先锋集团 Vanguard 虚拟分析师 AI-ready data AI 就绪数据 金融分析师 SQL 自助分析 数据架构 数据产品 运营模式 元数据目录 语义层 业务元数据 技术元数据 示例库 回归测试 数据质量 变更控制 持续评估 Bedrock Guardrails ECS DynamoDB S3 SageMaker Redshift Glue 知识图谱 RAG 合规 安全",
+        "先锋集团 Vanguard 虚拟分析师 AI-ready data AI 就绪数据 金融分析师 SQL 自助分析 数据架构 数据产品 运营模式 元数据目录 语义层 业务元数据 技术元数据 示例库 回归测试 数据质量 变更控制 持续评估 知识图谱 RAG 合规 安全",
         "先锋集团虚拟分析师：AI 就绪数据的八项原则",
         "从 SQL 等待、指标口径和数据治理出发，说明金融企业如何把对话式 AI 建在可靠数据基础上。",
         "finance data service"
@@ -314,14 +332,14 @@
       "id": "agent-evaluation-first",
       "type": "case",
       "href": "case-agent-evaluation-first.html",
-      "kicker": "企业 Agent · Evaluation-first",
-      "title": "企业 Agent：为什么评估是一切的起点",
+      "kicker": "ForFlow 工程方法 · Agent 评估",
+      "title": "企业 Agent：上线前先建立评估基线",
       "description": "解释企业智能体从 Demo 走向生产时，为什么要先建立评估基线、ADLC 飞轮、Trace 和可评估架构。",
       "action": "查看案例 →",
       "priority": 10,
       "keywords": [
         "企业智能体 Agent AI Agent Evaluation 评估 评测 ADLC Agent Development Lifecycle 原型 生产可信赖 单元测试 非确定性 Prompt 变更 静默漂移 CI CD LLM-as-a-Judge 基准数据集 工具选择 参数提取 拒绝准确率 延迟 Token 可观测性 Trace OpenTelemetry 漂移检测 A/B测试 多智能体 解耦 Supervisor MCP A2A Gateway Policy 安全 个性化",
-        "企业智能体之旅：为什么评估是一切的起点",
+        "企业 Agent 上线前，先建立评估基线",
         "从原型到生产的鸿沟、ADLC 飞轮、持续评估、可观测性和可评估架构。",
         "service data"
       ]

@@ -5,11 +5,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#ffffff" name="theme-color"/>
-<meta content="围绕银行对账单、W-2、1099-B 和供应商合同，说明 BDA Blueprint 如何把金融文档提取变成可复用、可验证、可接入下游系统的工作流。" name="description"/>
-<title>用 Amazon Bedrock Data Automation 自动化提取金融文档数据｜ForFlow 萬維流形</title>
+<meta content="ForFlow 文档自动化方法：围绕银行对账单、税务文件和供应商合同，把字段提取变成可复用、可验证、可接入下游系统的工作流。" name="description"/>
+<title>把金融文档提取接入可复核工作流｜ForFlow 萬維流形</title>
 <link href="assets/forflow-mark.png" rel="icon"/>
-<link href="styles.css?v=20260710-topbar-v9" rel="stylesheet"/>
-<script defer="" src="script.js?v=20260710-topbar-v9"></script>
+<link href="styles.css?v=20260712-service-visual-pilot-v28" rel="stylesheet"/>
+<link href="visual-system.css?v=20260712-service-visual-pilot-v28" rel="stylesheet"/>
+<script defer="" src="script.js?v=20260712-service-visual-pilot-v28"></script>
 </head>
 <body class="case-detail-page case-theme--financial case-study-v2">
 <a class="skip-link" href="#main">跳至主要内容</a>
@@ -79,22 +80,22 @@
 <li class="mega-item">
 <button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">企业服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
 <div class="mega-panel mega-panel--services" data-mega-panel="">
-<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>五条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>先看现在缺哪一步。</h2><p>问题还没排清，先做准备度审核；缺口明确，就直接进入团队采用、数据、工作流或培训。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
 <div class="mega-link-grid">
 <a class="mega-link" href="ai-readiness-audit.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><span><b>AI 准备度审核</b><small>先判断价值、基础、风险和 30/90 天路线</small></span><em>01</em></a>
-<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>02</em></a>
-<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>03</em></a>
-<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>04</em></a>
-<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>05</em></a>
+<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>AI 采用与团队赋能</b><small>把零散试用变成岗位方法与采用指标</small></span><em>02</em></a>
+<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>AI 数据与知识治理</b><small>统一口径、质量、权限与知识来源</small></span><em>03</em></a>
+<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 与工作流</b><small>连接知识、系统、工具和人工审批</small></span><em>04</em></a>
+<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>AI 实战培训</b><small>管理层、业务与技术团队分角色训练</small></span><em>05</em></a>
 </div>
 </div>
 </li>
 <li class="mega-item">
 <button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">场景与工具 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
 <div class="mega-panel mega-panel--tools" data-mega-panel="">
-<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>从业务问题进入，工具放在后面。</h2><p>方向还不清楚，可以做诊断；已有问题，直接看场景或搜索资料。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
 <div class="mega-feature-stack">
-<a class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+<a class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟排出一个建议起点</small></div><em>开始</em></a>
 <a class="mega-feature" href="category-hrms.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-people"></use></svg></span><div><b>HR 场景地图</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
 <button class="mega-feature search-trigger" type="button"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料、案例与博客</small></div><em>搜索</em></button>
 </div>
@@ -124,7 +125,7 @@
 </header>
 <div aria-hidden="true" class="mobile-menu-panel ff-mobile-menu" id="mobile-menu">
 <a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
-<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="ai-readiness-audit.html">AI 准备度审核</a><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div></details>
+<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="ai-readiness-audit.html">AI 准备度审核</a><a href="service-ai-enablement.html">AI 采用与团队赋能</a><a href="service-data-governance.html">AI 数据与知识治理</a><a href="service-agent-build.html">企业 Agent 与工作流</a><a href="service-ai-training.html">AI 实战培训</a></div></details>
 <details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
 <details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例&amp;博客</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
 <a aria-current="page" href="cases.html">案例&amp;博客 <span>05</span></a>
@@ -137,9 +138,9 @@
 <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&amp;博客</a><span>/</span><strong>金融文档自动化</strong></nav>
 <div class="case-study-hero__grid">
 <div>
-<div class="case-study-meta"><span>金融文档</span><span>Bedrock Data Automation</span><span>Blueprint 蓝图</span><span>JSON / CSV 输出</span></div>
-<h1><span class="mobile-title-line">用 Amazon Bedrock</span><span class="mobile-title-line">Data Automation</span><span class="mobile-title-line">自动化提取</span><span class="mobile-title-line">金融文档数据。</span></h1>
-<p class="case-study-lead">金融机构每天处理数以千计的文档：税务表格、贷款报表、采购订单、银行对账单和合同。每一种文档都有独特格式、结构和字段命名，传统 OCR 很难把它们稳定变成可执行数据。BDA 的价值，是把“看见文字”推进到“理解结构、提取字段、验证输出、接入流程”。</p>
+<div class="case-study-meta"><span>ForFlow 文档自动化方法</span><span>字段蓝图</span><span>人工复核</span><span>JSON / CSV 输出</span></div>
+<h1><span class="mobile-title-line">把金融文档提取</span><span class="mobile-title-line">接入可复核的</span><span class="mobile-title-line">业务流程。</span></h1>
+<p class="case-study-lead">金融团队经常处理税表、对账单和合同。格式、结构与字段命名各不相同，传统 OCR 很难稳定接入下游流程。ForFlow 的做法是先定义字段蓝图，再把提取、校验、人工复核和系统写回接成一条链。</p>
 <div class="case-study-actions"><a class="btn btn--green" href="#blueprint">先看蓝图设计 ↓</a><a class="btn btn--ghost" href="#documents">查看四类文档 ↘</a></div>
 </div>
 <figure class="case-study-hero__media case-study-hero__media--scene">
@@ -148,7 +149,7 @@
 </figure>
 </div>
 <div aria-label="本案例的交付证据结构" class="case-proof-rail"><div><strong>4 类文档</strong><span>银行对账单、W-2、1099-B、供应商合同</span></div><div><strong>Blueprint</strong><span>用字段、类型、说明和验证规则定义提取地图</span></div><div><strong>JSON / CSV</strong><span>输出直接进入会计、税务、合同和审查流程</span></div><div><strong>可解释性</strong><span>用置信度与视觉定位帮助人工复核关键字段</span></div></div>
-<p class="case-proof-note">本文以四类常见金融文档为例，说明如何用自定义 Blueprint 设计结构化提取流程。目标不是展示“AI 能读 PDF”，而是让金融运营、财务、税务、法务和风控团队获得可复用、可验证、可接入下游系统的数据资产。</p>
+<p class="case-proof-note">这套方法来自 ForFlow 团队成员的过往文档自动化经验。页面中的四类文档用于说明字段蓝图与复核流程，不代表某家金融机构的项目结果；效率和准确率要用企业自己的样本重新测量。</p>
 </div>
 </section>
 <div class="container case-detail-shell case-story-shell">
@@ -157,9 +158,9 @@
 <section class="case-section case-overview" data-section="" id="overview">
 <p class="eyebrow">Document operations</p>
 <h2>金融文档自动化的难点，不是 OCR 识别率，而是字段能否进入真实业务流程。</h2>
-<p>金融机构每天处理数以千计的文档：税务表格、贷款报表、采购订单、银行对账单和供应商合同。文档看起来都是“表格和文字”，但真正进入业务系统时，每一种文档都有不同字段、不同版式、不同章节结构、不同命名方式，以及不同的校验要求。</p>
+<p>金融团队经常处理税务表格、贷款报表、采购订单、银行对账单和供应商合同。文档看起来都是“表格和文字”，但真正进入业务系统时，每一种文档都有不同字段、不同版式、不同章节结构、不同命名方式，以及不同的校验要求。</p>
 <p>传统 OCR 通常解决的是“把图片里的字识别出来”。但业务团队真正需要的是：每笔交易的日期、金额和描述是否完整；W-2 的联邦税、州税、Box 12 代码和 Box 14 自由填写项是否被正确分组；1099-B 里同一证券在不同页面、不同描述下能否保持一致；供应商合同里的参与方、义务、期限和终止条件能否被结构化输出。</p>
-<p>Amazon Bedrock Data Automation（BDA）不是简单的 OCR 升级。它依托基础模型理解文档上下文、章节逻辑和字段关系，把原始文档转换为可执行结构化数据；同时通过自定义提取配置、置信度评分、视觉定位和幻觉缓解机制，帮助团队把 AI 提取结果纳入可复核的生产工作流。</p>
+<p>文档理解引擎不是简单的 OCR 升级。它要理解上下文、章节逻辑和字段关系，把原始文档转换为结构化数据；同时提供自定义提取配置、置信度评分和视觉定位，让低置信度结果进入人工复核。</p>
 <div class="case-question-panel">
 <div><small>本篇核心问题</small><h3>如何把“金融文档被读懂”，变成“字段被验证、结果可接入、异常可复核”？</h3></div>
 <div class="case-goal"><small>企业主视角</small><p>真正要买的不是一次 PDF 解析能力，而是一套能持续处理不同文档、稳定输出字段、让人工只复核低置信度或高风险项的运营能力。</p></div>
@@ -174,19 +175,19 @@
 <section class="case-section" data-section="" id="blueprint">
 <p class="eyebrow">Blueprint</p>
 <h2>Blueprint 蓝图，是把金融文档提取变成稳定工作流的配置地图。</h2>
-<p>BDA 的核心配置单元是蓝图 Blueprint。它不是普通提示词，而是一份定义数据提取方式的配置模板：说明正在处理哪类文档，需要提取哪些字段，字段属于什么类型，如何组织数组或自定义对象，以及输出应该如何进入下游系统。</p>
-<div aria-label="BDA 自定义蓝图工作流" class="case-blueprint-flow">
+<p>核心配置单元是字段蓝图。它不是普通提示词，而是一份定义数据提取方式的配置：说明正在处理哪类文档，需要提取哪些字段，字段属于什么类型，如何组织数组或自定义对象，以及输出应该如何进入下游系统。</p>
+<div aria-label="ForFlow 文档自动化字段蓝图工作流" class="case-blueprint-flow">
 <article><small>01</small><h3>文档类型</h3><p>银行对账单、W-2、1099-B、合同等。</p></article>
 <span aria-hidden="true">→</span>
 <article><small>02</small><h3>Blueprint</h3><p>字段、类型、说明、验证规则和输出结构。</p></article>
 <span aria-hidden="true">→</span>
-<article><small>03</small><h3>BDA 提取</h3><p>理解版式、章节、上下文和表格关系。</p></article>
+<article><small>03</small><h3>文档理解与提取</h3><p>理解版式、章节、上下文和表格关系。</p></article>
 <span aria-hidden="true">→</span>
 <article><small>04</small><h3>验证复核</h3><p>置信度、视觉定位、规则校验和人工处理。</p></article>
 <span aria-hidden="true">→</span>
 <article><small>05</small><h3>JSON / CSV</h3><p>进入会计、税务、合同或风控系统。</p></article>
 </div>
-<p>可以把蓝图理解为一张“提取地图”：它精确告诉 BDA 需要从哪里找什么信息，以什么类型表达，如何把多行表格、多组税务字段和自由文本条款变成结构化结果。BDA 提供内置目录蓝图，也支持自定义蓝图；在金融生产场景里，自定义蓝图尤其重要，因为字段口径和下游流程往往因企业而异。</p>
+<p>可以把字段蓝图理解为一张提取地图：它告诉系统从哪里找什么信息，以什么类型表达，如何把多行表格、多组税务字段和自由文本条款变成结构化结果。金融场景通常需要自定义蓝图，因为字段口径和下游流程会因企业而异。</p>
 <aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-bulb"></use></svg></span><div><small>判断标准</small><h3>蓝图设计质量，决定提取结果的准确性上限。</h3><p>字段是否拆得足够细、数组和对象是否符合业务系统、自由文本是否单独归类、金额字段是否定义为数字、同类文档是否需要多份蓝图，这些决定了输出能不能直接进入下游，而不是停留在“AI 看起来读出来了”。</p></div></aside>
 </section>
 <section class="case-section" data-section="" id="documents">
@@ -211,7 +212,7 @@ TRANSACTION_DETAILS：
   - description（描述）
   - debit（借方）: number
   - credit（贷方）: number</code></pre></div>
-<p>提取结果能够以 CSV、JSON 和原始数据格式输出，便于对接下游会计系统。对企业来说，这类场景的收益最直接：减少人工录入错误、缩短对账周期，并把异常交易留给人工重点复核。</p>
+<p>提取结果能够以 CSV、JSON 和原始数据格式输出，便于对接下游会计系统。试点应重点测量人工录入错误、对账时长和异常复核量；实际变化必须用企业自己的文档样本验证。</p>
 </section>
 <section class="case-section" data-section="" id="w2">
 <p class="eyebrow">Scenario 02</p>
@@ -251,7 +252,7 @@ TRANSACTION_DETAILS：
   - cost_or_other_basis（成本或其他基础）: number
   - gainloss_amount（盈亏金额）: number
   - additional_information（附加信息）</code></pre></div>
-<p>在该场景中，系统需要统一识别同一证券描述符，即使它以不同方式出现在不同交易记录中。这验证的是 BDA 的文档级上下文理解能力，而不是逐行孤立解析能力。对税务和投资运营团队来说，这类一致性直接影响成本基础、盈亏计算和后续申报质量。</p>
+<p>在该场景中，系统需要统一识别同一证券描述符，即使它以不同方式出现在不同交易记录中。这验证的是文档级上下文理解能力，而不是逐行孤立解析。对税务和投资运营团队来说，这类一致性直接影响成本基础、盈亏计算和后续申报质量。</p>
 </section>
 <section class="case-section" data-section="" id="contract">
 <p class="eyebrow">Scenario 04</p>
@@ -276,7 +277,7 @@ TRANSACTION_DETAILS：
 <h2>一份蓝图还是多份蓝图，取决于工作流差异和文档版式差异。</h2>
 <p>通常情况下，针对特定文档类型创建一份自定义蓝图即可满足提取需求。但如果同类文档服务于不同工作流，或者不同来源文档版式差异显著，就应考虑创建多份蓝图。</p>
 <div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>适合一份蓝图</small><h3>字段目标稳定，格式差异可控。</h3><ul><li>同类银行对账单只需要交易明细</li><li>W-2 输出字段稳定，差异集中在缺失项</li><li>下游系统能容忍可选字段为空</li><li>人工复核主要关注低置信度字段</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>适合多份蓝图</small><h3>工作流或版式差异会改变输出结构。</h3><ul><li>同样是对账单，一个流程只要交易明细，另一个还要账户汇总</li><li>不同银行对账单版式差异过大</li><li>合同按采购、外包、渠道合作需要不同条款集合</li><li>高风险字段需要不同验证规则和人工升级路径</li></ul></article></div>
-<p>蓝图创建完成后，可以作为工作流标准组件复用。对于同一蓝图，如果输入文档包含不同数据字段，BDA 可能返回略有差异的结构化输出。由于输出是 JSON，下游规则可以处理可选字段、缺失字段和低置信度字段；关键是提前定义哪些字段可以为空，哪些字段必须触发人工复核。</p>
+<p>字段蓝图创建完成后，可以作为工作流标准组件复用。输入文档字段不同时，系统可能返回略有差异的结构化输出。由于输出是 JSON，下游规则可以处理可选字段、缺失字段和低置信度字段；关键是提前定义哪些字段可以为空，哪些字段必须触发人工复核。</p>
 </section>
 <section class="case-section" data-section="" id="production">
 <p class="eyebrow">Production workflow</p>
@@ -288,9 +289,9 @@ TRANSACTION_DETAILS：
 </section>
 <section class="case-section" data-section="" id="references">
 <p class="eyebrow">Technical context</p>
-<h2>BDA 的价值，是让文档理解能力成为可配置、可复用、可审计的工作流组件。</h2>
-<p>在企业项目中，BDA 适合承担“从非结构化/半结构化金融文档到结构化字段”的入口层；后续仍需要结合企业自己的数据治理、权限体系、复核机制和系统集成来完成闭环。</p>
-<div class="case-reference-list"><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda.html" rel="noopener" target="_blank">Amazon Bedrock Data Automation 官方文档</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-custom-output-idp.html" rel="noopener" target="_blank">BDA 自定义输出与 Blueprint 配置</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-blueprints.html" rel="noopener" target="_blank">BDA Blueprints 官方说明</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/bda-output-documents.html" rel="noopener" target="_blank">BDA 文档输出结构</a></div>
+<h2>ForFlow 的文档自动化方法，把提取能力做成可配置、可复用、可审计的工作流组件。</h2>
+<p>在企业项目中，文档理解引擎负责把非结构化或半结构化文档转成字段；数据治理、权限、人工复核和系统集成再把它接成完整流程。</p>
+<div class="case-reference-list"><a href="https://aws.amazon.com/blogs/machine-learning/process-financial-documents-using-amazon-bedrock-data-automation/" rel="noopener noreferrer" target="_blank">团队过往方法的公开资料</a></div>
 </section>
 </article>
 </div>
@@ -304,21 +305,21 @@ TRANSACTION_DETAILS：
 </div>
 </div>
 </section>
-<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一类高频金融文档，把字段、复核和下游系统串起来。</h2><p>用一次 Q2Q 场景诊断，判断你的文档类型、蓝图粒度、人工复核边界和系统集成路径。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&amp;博客</a></div></div></section>
-<section aria-labelledby="financial-case-source-title" class="case-source-foot" id="case-source"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>案例价值</small><h2 id="financial-case-source-title">文档自动化的核心不是少录几个字段，而是让金融运营获得可复用的数据入口。</h2><p>当 Blueprint、置信度、视觉定位、验证规则和下游 JSON / CSV 接口被设计清楚后，文档处理才会从“人工录入外包”升级为企业自己的数据自动化能力。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把方法映射到你的企业</small><h2>先选一类高频金融文档，把字段、复核和下游系统串起来。</h2><p>判断文档类型、蓝图粒度、人工复核边界和系统集成路径，再决定是否进入验证。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&amp;博客</a></div></div></section>
+<section aria-labelledby="financial-case-source-title" class="case-source-foot" id="case-source"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>ForFlow 团队经验与公开依据</small><h2 id="financial-case-source-title">团队做过文档自动化，页面把方法和复核边界讲清楚。</h2><p>原项目资料用于说明字段蓝图和四类文档的处理方式。是否减少错误、缩短对账或降低复核量，仍需用企业样本实测。</p><a href="https://aws.amazon.com/blogs/machine-learning/process-financial-documents-using-amazon-bedrock-data-automation/" rel="noopener noreferrer" target="_blank">查看团队过往方法的公开资料 <span aria-hidden="true">↗</span></a></div></div></div></section>
 </main>
 <footer class="site-footer">
 <div class="container footer-main">
 <div class="footer-brand">
 <img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
-<p>面向企业的 AI 原生增长运行层。<br/>从高价值场景、安全落地到持续运营。</p>
+<p>判断投入，验证结果；<br/>跑通后再扩大。</p>
 </div>
 <div class="footer-col"><h3>企业服务</h3>
 <a href="ai-readiness-audit.html">AI 准备度审核</a>
-<a href="service-ai-enablement.html">企业 AI 赋能计划</a>
-<a href="service-data-governance.html">数据治理</a>
-<a href="service-agent-build.html">企业 Agent 搭建</a>
-<a href="service-ai-training.html">企业 AI 培训</a>
+<a href="service-ai-enablement.html">AI 采用与团队赋能</a>
+<a href="service-data-governance.html">AI 数据与知识治理</a>
+<a href="service-agent-build.html">企业 Agent 与工作流</a>
+<a href="service-ai-training.html">AI 实战培训</a>
 </div>
 <div class="footer-col"><h3>工具与资源</h3>
 <a href="navigator.html">AI 场景诊断</a>
@@ -334,7 +335,7 @@ TRANSACTION_DETAILS：
 <a href="contact.html">联系</a>
 </div>
 </div>
-<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span></div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span><a href="privacy.html">隐私说明</a></div>
 </footer>
 <div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
 <div class="search-modal-backdrop" data-search-close=""></div>

@@ -1,0 +1,75 @@
+/* One rhythm for reading, scrolling and acting. */
+.v6{--reading-ease:cubic-bezier(.22,1,.36,1);--heading-section:clamp(32px,3.35vw,48px);--heading-scene:clamp(30px,3vw,42px);--reading-copy:clamp(14px,1.15vw,16px)}
+.v6 :is(.journey-intro h2,.advantages-heading h2,.capability-copy h2,.v6-section-heading h2){font-size:var(--heading-section);line-height:1.27;letter-spacing:-.035em;text-wrap:balance}
+.continuous-product .product-lead h3{font-size:var(--heading-scene);line-height:1.34;letter-spacing:-.035em}
+.continuous-product .scenario-description{font-size:var(--reading-copy);line-height:1.85;max-width:400px;color:#71796d}
+.continuous-product .scenario-kicker{font-size:12px;margin-bottom:18px}
+.v6 .journey-intro>p{font-size:var(--reading-copy);line-height:1.85}
+.continuous-product .product-benefits h4{font-size:17px;line-height:1.55}
+.continuous-product .product-benefits p{font-size:14px;line-height:1.9;color:#7d8774}
+.continuous-product .case-strip h4{font-size:14px;line-height:1.7}
+.continuous-product .case-strip small{font-size:11px;color:#919d86}
+.continuous-product .case-strip>a,.continuous-product .scenario-next{font-size:12px}
+.continuous-product .interaction-hint{font-size:11px;color:#849177}
+.continuous-product .scene-chapters>button{font-size:12px}
+.continuous-product .scene-state{font-size:10px}
+
+/* The background moves as one object; links retain native anchor semantics. */
+.continuous-product .product-rail .chapter-nav{isolation:isolate;position:relative}
+.continuous-product .chapter-nav:before{content:'';position:absolute;inset:0 auto 0 0;width:var(--chapter-width,0px);transform:translateX(var(--chapter-x,0px));background:#272d28;border-radius:24px;z-index:-1;opacity:0;transition:transform 420ms var(--reading-ease),width 420ms var(--reading-ease),opacity .15s}
+.continuous-product .chapter-nav[data-indicator-ready=true]:before{opacity:1}
+.continuous-product .product-rail nav a{font-size:13px;transition:color .22s,background .22s}
+.continuous-product .product-rail .chapter-nav[data-indicator-ready=true] a[aria-current=true]{background:transparent}
+.continuous-product>.product-rail:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#94a782;transform:scaleX(var(--journey-progress,0));transform-origin:left;pointer-events:none}
+
+/* Reveal only unread content, once. Never transform a fullscreen ancestor. */
+[data-reveal][data-reveal-state=pending]{opacity:0}
+[data-reveal][data-reveal-state=entering]{animation:reading-copy-in 560ms var(--reading-ease) both;animation-delay:var(--reveal-delay,0ms)}
+[data-reveal=heading][data-reveal-state=entering]{animation-name:reading-heading-in;animation-duration:680ms}
+[data-reveal=canvas][data-reveal-state=entering]{animation-name:reading-canvas-in;animation-duration:760ms}
+@keyframes reading-copy-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes reading-heading-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes reading-canvas-in{from{opacity:0;transform:translateY(18px) scale(.992)}to{opacity:1;transform:none}}
+.is-expanded .showcase-viewport[data-reveal]{animation:none!important;opacity:1!important;transform:none!important}
+
+.continuous-product .product-presentation :is(.demo-primary,.detail-confirm){transition:background .18s,box-shadow .18s,transform .18s var(--reading-ease)}
+.continuous-product .product-presentation :is(.demo-primary,.detail-confirm)>svg{transition:transform .22s var(--reading-ease)}
+.continuous-product .product-presentation :is(.demo-primary,.detail-confirm):not(:disabled):hover>svg{transform:translateX(3px)}
+.continuous-product .product-presentation :is(.demo-primary,.detail-confirm):not(:disabled):active{transform:scale(.988)}
+.continuous-product .scene-toggle,.continuous-product .scene-replay{transition:background .2s,box-shadow .2s,transform .18s}
+.continuous-product .scene-toggle:hover{box-shadow:0 0 0 4px #cbd9bf26;background:#fff}
+.continuous-product .scene-replay:hover{transform:rotate(-24deg)}
+.continuous-product .scene-chapters>button{transition:color .2s}
+.continuous-product .scene-chapters>button:hover{color:#526a40}
+.continuous-product .document-film .extracted-fields>button{transition:background .2s,box-shadow .2s}
+.continuous-product .document-film .field-action{animation:reading-copy-in 280ms var(--reading-ease) both}
+.field-confirmed-actions{animation:confirmation-in .26s var(--reading-ease) both}
+@keyframes confirmation-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.continuous-product .case-strip>a{padding:8px 0}
+
+@media(max-width:1100px){
+ .continuous-product .scenario-description{font-size:15px}
+ .continuous-product .product-benefits p{font-size:13px}
+}
+@media(max-width:700px){
+ .v6{--heading-section:32px;--heading-scene:30px}
+ .continuous-product .scenario-kicker{font-size:11px;margin-bottom:15px}
+ .continuous-product .scenario-description{font-size:14px;line-height:1.8;max-width:350px;margin-top:18px}
+ .continuous-product .product-rail nav a{font-size:12px;padding:9px 12px}
+ .continuous-product .product-benefits{gap:22px}
+ .continuous-product .product-benefits h4{font-size:14px;line-height:1.65}
+ .continuous-product .product-benefits p{font-size:12px;line-height:1.85}
+ .continuous-product .case-strip h4{font-size:13px;line-height:1.75}
+ .continuous-product .case-strip small{font-size:10px;line-height:1.8}
+ .continuous-product .case-strip>a,.continuous-product .scenario-next{font-size:11px}
+ .continuous-product .scene-chapters strong{font-size:10px}
+ .continuous-product .scene-chapters{gap:8px}
+ .continuous-product .interaction-hint{font-size:10px;line-height:1.75;padding-top:8px}
+ .continuous-product .scene-playback{height:68px}
+}
+@media(prefers-reduced-motion:reduce){
+ [data-reveal]{opacity:1!important;animation:none!important;transform:none!important}
+ .continuous-product .chapter-nav:before,.continuous-product .product-rail nav a{transition:none!important}
+ .continuous-product .product-presentation :is(.demo-primary,.detail-confirm):active,.continuous-product .product-presentation :is(.demo-primary,.detail-confirm):hover>svg,.continuous-product .scene-replay:hover{transform:none}
+ .field-confirmed-actions{animation:none}
+}

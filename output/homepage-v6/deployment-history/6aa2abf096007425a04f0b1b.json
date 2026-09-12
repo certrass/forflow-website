@@ -1,0 +1,141 @@
+{
+  "deploy_id": "6aa2abf096007425a04f0b1b",
+  "context": "deploy-preview",
+  "state": "ready",
+  "production_before": "6a526ad3f3353819365b175e",
+  "staging_directory": "/var/folders/l0/9_h89x255qx_3ktxr85ryxlw0000gn/T/forflow-operable-workspace-preview-ow40qgor/public",
+  "created_at": "2026-09-10T13:09:05.599166+00:00",
+  "url": "https://6aa2abf096007425a04f0b1b--forflow-enterprise-suite-v3.netlify.app",
+  "production_after": "6a526ad3f3353819365b175e",
+  "production_unchanged": true,
+  "verified_files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "5caa7bb53d12d2c8ddbe721872fbee0a15af17199c3dfd300381717fa98977c2",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-OFL.txt",
+      "status": 200,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-DbFcNI6D.css",
+      "status": 200,
+      "sha256": "f530f197a3af5493a148863ef9b8f6151869e47f0d7ef66b728223d64111f376",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-poster.png",
+      "status": 200,
+      "sha256": "880f6b91e9b1d1b416cc8563b72526c2670e21f7e6a9c2fbbf7a8bf570d2bac3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-scene-BDEsJ6fh.js",
+      "status": 200,
+      "sha256": "8895f62420618108abc51fb3a6d294001b0efa2e7e2b9e422000ae7e54cbc699",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/noto-sans-sc-OFL.txt",
+      "status": 200,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-CV2cyXx-.js",
+      "status": 200,
+      "sha256": "92a1f0fe4c702d59f8e3d4e13b16babacd93bd3d5f4760819e804ed502106ccf",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow-sans-sc.woff2",
+      "status": 200,
+      "sha256": "1c101f960a1981fedf51ea39805f46c6118642d4b320b1bd19de4dee85976796",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-medium.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-semibold.woff2",
+      "status": 200,
+      "sha256": "d8bb10ec73c52ddeeed35b9e7913cf0cf0226ca3469c696883413f49ef03aa61",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/pid.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow"
+    }
+  ],
+  "remote_verification": "passed",
+  "local_validation": {
+    "state_tests": "7 passed",
+    "viewports": [
+      "1440x1100",
+      "390x844"
+    ],
+    "flows": [
+      "search and empty results",
+      "source field location",
+      "AI draft and manual review",
+      "task assignee time and comments",
+      "missing evidence guard",
+      "refresh persistence",
+      "tour and reduced motion"
+    ],
+    "runtime_errors": 0,
+    "mobile_field_bounds": [
+      16.15,
+      373.52
+    ],
+    "mobile_viewport_bounds": [
+      10,
+      379.9
+    ]
+  },
+  "remote_browser": {
+    "window": [
+      1280,
+      820
+    ],
+    "time": 32000,
+    "mode": "tour",
+    "editable_controls": 6,
+    "page_overflow": 0,
+    "tour": "reviewed, follow-up created, one comment",
+    "records_navigation": "clicked, 12 rows returned, first record reviewed and in progress"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "build": "passed",
+  "source_workbench_files_unchanged": 15,
+  "local_browser": {
+    "desktop_viewport": [
+      1440,
+      1100
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "avatar_loading": "128 px source; native 20–34 px role avatars loaded",
+    "collaboration": "role popover, close control, outside click, Escape preserving expanded view passed",
+    "contract": "selected source mark, confirm, undo, actor in review history passed",
+    "business": "owner avatars, handoff receipt and processing history passed",
+    "engineering": "responsibility popover and pending engineer review avatar passed",
+    "mobile": "preserved horizontal workbench; popover 41.48–293.56 px; contract actions 46.77–362.54 px; page client/scroll width 390 px",
+    "clean_page_console": "no error or warn entries"
+  },
+  "motion": "small entry and check animations; reduced-motion CSS added, OS preference not toggled",
+  "asset_bytes": 104115,
+  "notes": "No production backend, CLI execution or real collaboration side effects. Role portraits are fictional; existing source workbench hierarchy unchanged."
+}

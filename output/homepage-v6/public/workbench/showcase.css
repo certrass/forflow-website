@@ -1,0 +1,7 @@
+/* Only the embedded frame: all product hierarchy and controls come from demo video. */
+html,body{width:100%;height:100%;margin:0;background:#fff!important;overflow:hidden}
+body:not(.film) .stage{padding:0;height:100%;width:100%}
+body:not(.film) .app{width:100%;height:100%;border-radius:0;border:0;box-shadow:none;max-height:none}
+body .film-caption,body .film-label,body .film-brand,body .prototype-note{display:none!important}
+/* Keep the fixed product canvas stable when embedded in mobile Safari. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}

@@ -1,0 +1,109 @@
+{
+  "deploy_id": "6a9d966ad0aeb9e4708eb443",
+  "context": "deploy-preview",
+  "url": "https://6a9d966ad0aeb9e4708eb443--forflow-enterprise-suite-v3.netlify.app",
+  "state": "ready",
+  "production_before": "6a526ad3f3353819365b175e",
+  "staging_directory": "/var/folders/l0/9_h89x255qx_3ktxr85ryxlw0000gn/T/forflow-case-cover-preview-kwq815vo/public",
+  "created_at": "2026-09-06T16:35:55.088449+00:00",
+  "production_after": "6a526ad3f3353819365b175e",
+  "production_unchanged": true,
+  "verified_files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "3d2ddf1c6cc7ec8412a60813876d4fd04551cef3b50a87bfa7d99163798b6ed3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-OFL.txt",
+      "status": 200,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-poster.png",
+      "status": 200,
+      "sha256": "880f6b91e9b1d1b416cc8563b72526c2670e21f7e6a9c2fbbf7a8bf570d2bac3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-scene-BDEsJ6fh.js",
+      "status": 200,
+      "sha256": "8895f62420618108abc51fb3a6d294001b0efa2e7e2b9e422000ae7e54cbc699",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-medium.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-D3pRZRMI.css",
+      "status": 200,
+      "sha256": "d18e81d0f53a2d36decf45c887ca10c95a8f111c07786c56a62576ed22bb56f1",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-CV_wDTLO.js",
+      "status": 200,
+      "sha256": "ab460661cbe6851c75eb0bad1d7c5b519f2f0eb0f30f788418e5403fdc57ad8e",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-semibold.woff2",
+      "status": 200,
+      "sha256": "d8bb10ec73c52ddeeed35b9e7913cf0cf0226ca3469c696883413f49ef03aa61",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/pid.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow"
+    }
+  ],
+  "remote_verification": "passed",
+  "browser_verification": {
+    "remote_case_cover": "passed",
+    "remote_case_art_heights": [
+      240,
+      240,
+      240
+    ],
+    "old_cover_images": 0,
+    "case_link": "https://forflow.ai/case-manufacturing-pid-intelligence",
+    "remote_horizontal_overflow": 0,
+    "local_viewports": [
+      663,
+      390
+    ],
+    "local_visual_and_keyboard_focus": "passed",
+    "local_console": []
+  }
+}

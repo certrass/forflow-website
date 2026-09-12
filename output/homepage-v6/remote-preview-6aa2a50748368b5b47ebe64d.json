@@ -1,0 +1,140 @@
+{
+  "deploy_id": "6aa2a50748368b5b47ebe64d",
+  "context": "deploy-preview",
+  "state": "ready",
+  "production_before": "6a526ad3f3353819365b175e",
+  "staging_directory": "/var/folders/l0/9_h89x255qx_3ktxr85ryxlw0000gn/T/forflow-ui-refinement-preview-dpq3i6a2/public",
+  "created_at": "2026-09-10T12:39:35.533869+00:00",
+  "url": "https://6aa2a50748368b5b47ebe64d--forflow-enterprise-suite-v3.netlify.app",
+  "production_after": "6a526ad3f3353819365b175e",
+  "production_unchanged": true,
+  "verified_files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "2bb1b2168a7b97c6bcc175a1acceb94caac7b8bf9b2e8b4474dd5e6dfcc19929",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-OFL.txt",
+      "status": 200,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-DfxcbMut.js",
+      "status": 200,
+      "sha256": "038527ac9fed9fcef948138d21e0437fad11f80e9525b6619435596687a225bb",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-poster.png",
+      "status": 200,
+      "sha256": "880f6b91e9b1d1b416cc8563b72526c2670e21f7e6a9c2fbbf7a8bf570d2bac3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-scene-BDEsJ6fh.js",
+      "status": 200,
+      "sha256": "8895f62420618108abc51fb3a6d294001b0efa2e7e2b9e422000ae7e54cbc699",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/noto-sans-sc-OFL.txt",
+      "status": 200,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/WorkspacePreview-BPT53VfG.js",
+      "status": 200,
+      "sha256": "d0402d57830abd35b4bab573adbdb66ffbf7ae1455111edf6aa5650d8f1e3ef1",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-BL66gCFF.css",
+      "status": 200,
+      "sha256": "43103685300930bfdd3352445fe3089583ff6bcc3effa8174ee489f5ff2ad049",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow-sans-sc.woff2",
+      "status": 200,
+      "sha256": "cbda047d11dbe103c0b4eb62fc8dad63cbaf23d5bff411d9b0fe1cf7f33001e3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-medium.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-semibold.woff2",
+      "status": 200,
+      "sha256": "d8bb10ec73c52ddeeed35b9e7913cf0cf0226ca3469c696883413f49ef03aa61",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/pid.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow"
+    }
+  ],
+  "remote_verification": "passed",
+  "browser_verification": {
+    "status": "passed",
+    "remote_asset": "index-DfxcbMut.js",
+    "remote_columns": [
+      52,
+      350,
+      876
+    ],
+    "remote_workspace_dimensions": [
+      1280,
+      782
+    ],
+    "remote_workspace_images": 0,
+    "remote_overflow": 0,
+    "remote_film_time": 29000,
+    "local_viewports": [
+      "1280x850",
+      "1440x1100",
+      "390x844"
+    ],
+    "local_checks": [
+      "source 240 and 238",
+      "manual confirmation and pending reply",
+      "team reply and 16:00 deadline",
+      "expanded mobile source and comments inside viewport",
+      "report typography and composer separation",
+      "standalone console error/warn empty"
+    ],
+    "remote_manual_report_click": "Tool timed out; not counted as interaction pass"
+  }
+}

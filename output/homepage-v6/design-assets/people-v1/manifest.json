@@ -1,0 +1,46 @@
+{
+  "mode": "builtin image_gen",
+  "version": "people-v1",
+  "purpose": "Fictional role portraits used only inside the homepage product presentation; not employee or customer portraits.",
+  "prompts": {
+    "procurement": "Use case: photorealistic-natural. Generate one 512x512 square portrait asset for a 28-40px avatar in a refined Chinese enterprise collaboration app. Subject: a fictional Chinese woman about 34, short softly waved dark hair tucked behind one ear, cream cotton shirt, calm attentive face with a small natural smile, looking near camera. Crop from top of head to upper shoulders, face centered and large, generous 8 percent margin above hair. Authentic documentary photography, natural skin texture and asymmetry, soft overcast window daylight, no beauty retouching, no fashion makeup, no corporate stock-photo grin. Matte warm off-white plain background, muted neutral colors. No glasses, no accessories, no text, no logos, no border, no collage. This is a fictional interface persona, not an actual employee. Save a clean single portrait.",
+    "operations": "Use case: photorealistic-natural. Generate one 512x512 square portrait asset for a 28-40px avatar in a refined Chinese enterprise collaboration app. Subject: a fictional Chinese man about 39, slightly tousled short dark hair, subtle thin dark round eyeglasses, charcoal cotton overshirt, relaxed approachable expression and very slight smile, looking toward camera. Crop from top of head to upper shoulders, centered large face with 8 percent margin above hair. Authentic documentary photography, natural skin and asymmetry, soft window daylight. Plain matte pale grey background, subdued neutral palette. Avoid beauty retouching, studio fashion lighting, exaggerated smiles, 3D illustration, text, logos, frames or collage. This is a fictional interface persona, not an actual employee. Save a clean single portrait.",
+    "engineering": "Use case: photorealistic-natural. Generate one 512x512 square portrait asset for a 28-40px avatar in a refined Chinese enterprise collaboration app. Subject: a fictional Chinese woman about 29, straight dark hair tied loosely back with a few fine loose strands, understated muted slate-blue shirt, focused warm expression, gentle closed-mouth smile, looking toward camera. Crop from top of head to upper shoulders, centered large face with 8 percent margin above hair. Authentic documentary photography, unretouched natural skin, soft overcast window daylight. Plain very pale sage-grey background. No dramatic lighting, no glamorous makeup, no airbrushing, no exaggerated smile, no props, no text, no logo, no borders, no collage. This is a fictional interface persona, not an actual employee. Save a clean single portrait.",
+    "credit": "Use case: photorealistic-natural. Create one 512x512 square portrait for a small avatar in a refined Chinese enterprise collaboration interface. A fictional Chinese man around 46, short slightly greying hair, no glasses, muted olive-grey knit crewneck, thoughtful kind expression with subtle smile. Close head and shoulders crop, centered face, all hair visible with 8 percent top margin. Matte pale warm-grey plain background and soft natural window daylight. Natural skin detail and asymmetry, honest everyday workplace portrait, no beauty retouching, no glamour, no stock-photo grin, no props, no text, no watermark, no frame. Fictional interface persona only. Match a calm low-saturation natural photographic set."
+  },
+  "assets": [
+    {
+      "role": "procurement",
+      "original": "design-assets/people-v1/procurement-original.png",
+      "web": "public/assets/people/procurement-v1.png",
+      "sha256": "b0deb6138e80559eea6d232cba06920b8d6b0d827156d8dea1c19aa87fdafa80"
+    },
+    {
+      "role": "operations",
+      "original": "design-assets/people-v1/operations-original.png",
+      "web": "public/assets/people/operations-v1.png",
+      "sha256": "3ed27ecf467c4a9a71f72c45c698f679d7a6f70dcd5ab5e5ce32e2710a140be3"
+    },
+    {
+      "role": "engineering",
+      "original": "design-assets/people-v1/engineering-original.png",
+      "web": "public/assets/people/engineering-v1.png",
+      "sha256": "5a86a11ecd1812978c0ec42eb4c62e258377ae34760fc8afbb7485c7bd30bd31"
+    },
+    {
+      "role": "credit",
+      "original": "design-assets/people-v1/credit-original.png",
+      "web": "public/assets/people/credit-v1.png",
+      "sha256": "f8b45b392ebfb410da5d96a0d0bfa8f9056cfe3b372fa0060432e618913688c1"
+    }
+  ],
+  "web_optimization": {
+    "dimensions": [
+      128,
+      128
+    ],
+    "format": "PNG",
+    "total_bytes": 104115,
+    "operation": "Proportional resizing only; no visual edits or cropping."
+  }
+}

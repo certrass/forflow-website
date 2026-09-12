@@ -1,0 +1,19 @@
+.showcase-native{container-name:product-canvas;container-type:inline-size;transform-origin:top left;position:relative;display:flow-root}
+.showcase-viewer{width:100%;min-width:0}
+.showcase-viewport{width:100%;overflow:hidden;overscroll-behavior-x:contain}
+.showcase-size{position:relative;margin:0 auto}
+.showcase-controls{height:38px;display:flex;align-items:center;justify-content:space-between;color:#727986;font-size:10px;padding:0 3px}
+.showcase-controls>span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:10px}
+.showcase-controls button{white-space:nowrap;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:32px;padding:5px 8px!important;font-size:11px;color:#4b5563;border-radius:5px}
+.showcase-controls button:hover{background:#eaf0f8;color:#236dca}
+.showcase-controls>div{flex-shrink:0;display:flex;align-items:center;gap:5px}
+.showcase-viewer.is-expanded{position:fixed;inset:0;z-index:90;background:#f6f7fa;display:flex;flex-direction:column;width:100vw;height:100dvh;padding:0 20px 18px}
+.is-expanded .showcase-controls{height:68px;flex-shrink:0;font-size:13px}
+.is-expanded .showcase-controls button{min-width:38px;min-height:40px;font-size:12px;background:#fff;border:1px solid #e2e5ea}
+.is-expanded .showcase-viewport{overflow:auto;flex:1;border:1px solid #dfe4ea;border-radius:8px;background:#fff;touch-action:pan-x pan-y}
+.is-expanded .showcase-size{margin-top:15px;margin-bottom:15px}
+.showcase-viewer-help{font-size:11px;color:#6b7280;text-align:center;padding-top:14px}
+.showcase-native .console-shell{border-radius:8px;box-shadow:none}
+.console-wrap>.showcase-viewer{border-radius:12px}
+.showcase-native .motion-demo{width:100%}
+@media(max-width:600px){.showcase-controls{font-size:9px;height:37px}.showcase-controls button{font-size:10px}.showcase-viewer.is-expanded{padding:0 10px 12px}.is-expanded .showcase-controls{height:62px;font-size:11px}.is-expanded .showcase-controls button{font-size:10px;min-width:30px;padding:5px!important}.is-expanded .showcase-controls>div{gap:3px}.showcase-viewer-help{font-size:10px}}

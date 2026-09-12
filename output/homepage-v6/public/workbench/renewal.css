@@ -1,0 +1,12 @@
+/* Supplier renewal: retain the established single-column composition. */
+.sr-simple .lc-node-stack{padding-top:54px;padding-bottom:54px}
+.sr-simple .lc-node{width:350px;min-width:350px;height:76px;min-height:76px;padding:14px 16px;gap:12px}
+.sr-simple .lc-node strong{font-size:13px;font-weight:500;line-height:1.45;letter-spacing:-.12px}
+.sr-simple .lc-node small{font-size:11px;color:#75816e;line-height:1.55;margin-top:4px}
+.sr-simple .lc-node.selected{border-color:#91ac7e;background:#f7faf3;box-shadow:0 0 0 2px #a7c69216,0 2px 7px #3a513009}
+.sr-simple .sr-node-index{font-size:10px;color:#9ba68e;letter-spacing:.02em;align-self:center;flex-shrink:0}
+.sr-simple .lc-wire{height:32px;min-height:32px;background:#d1dac9}
+.sr-simple .lc-wire:after{bottom:8px;border-color:#aab99c}
+.sr-simple .lc-panel-scroll .lc-definition{row-gap:15px}
+.sr-simple .lc-panel-scroll .lc-helper{margin-bottom:20px}
+@media(max-width:900px){.sr-simple .lc-node{width:calc(100% - 30px);min-width:0;max-width:350px;padding:13px}.sr-simple .lc-node-stack{padding-top:52px;padding-bottom:36px}.sr-simple .lc-node strong{font-size:12px}.sr-simple .lc-node small{font-size:10px}.sr-simple .lc-canvas{min-height:550px}}

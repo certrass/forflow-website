@@ -1,0 +1,76 @@
+Create ONE complete redesigned homepage visual mockup for ForFlow 萬維流形, a Chinese enterprise AI workflow delivery company. Use-case: ui-mockup. This is a single design iteration, not multiple options. Output one high-resolution, vertically scrollable desktop website design, target dimensions 1440 x 3840 px. No browser chrome, no device frame, no presentation labels around the page. Current date anchor: 2026-09-05; avoid unnecessary dates.
+
+REFERENCE ROLES:
+1. ForFlow live homepage screenshot: brand identity source, the existing black/white/Flow Green palette and ForFlow wordmark. Redesign the hierarchy and presentation rather than copy its photography and floating promotional cards.
+2. Attio home screenshot: reference for polished, believable product UI, fine rules, disciplined spacing and precise typography.
+3. Attio workflow screenshot: reference for a concrete task moving through named steps and visible human handoff.
+4. Databricks Lakebase feature screenshot: reference for clean feature explanations next to a large focused UI example.
+Use the supplied actual screenshots as visual grounding. Do NOT include Attio or Databricks logos, their names, their text, their products or their browser chrome in the resulting ForFlow design.
+
+VISUAL DIRECTION:
+A premium editorial enterprise software homepage. Crisp white background #ffffff, near-black #050505 headings, muted gray #626862, thin #d8dcd6 separators, Flow Green #6cf67e for deliberate accents and key states, pale green #e8f8e9 for support. Inter-like Latin + clean PingFang/Noto Sans SC Chinese. All Chinese must be clean, accurately rendered, readable and well typeset. Generous intentional whitespace, aligned 1200px content grid, desktop margins 120px. Main heading around 74px, section headings around 44px, body 17-20px, UI body 14-16px. No outline Chinese letters. No neon sci-fi, no gradients, no purple, no 3D blobs, no generic handshake/office stock photos, no floating glass cards, no oversized pill badges, no dense card-in-card grids. Mostly square/8px corners. One subtle shadow only under the central hero product demo. Refined line icons, not emojis. Green should occupy under 12% of the canvas, never overwhelm the text. A continuous thin green line can subtly connect steps as a restrained ForFlow brand motif.
+
+BUSINESS MESSAGE:
+Show how knowledge, tools and human decisions become a working business workflow. The site serves enterprise business leaders and technical leads. ForFlow is cross-industry, with supply chain as the lead example, not the entire company scope. The visual demos are derived from existing case material and are design demonstrations, not a claim that this is a currently deployed standalone software product. Mark each UI demo subtly “场景演示”. No fake customer logos, no invented revenue/ROI/testimonials, no unverified usage totals, no guaranteed performance. No financial/medical system actions executed automatically. Human confirmation is a useful visible step.
+
+COMPLETE HOMEPAGE, from top to bottom, approximately 3840px, balanced full composition:
+
+A. NAVIGATION, ~88px, white, thin bottom divider.
+Left: accurate simple ForFlow wordmark with its green underline accent, small “萬維流形” beneath. Center-right: “产品与能力” “案例与实践” “企业服务” “资源”. Right: a compact black “开始场景诊断 ↗” button. No promo banner. Avoid excess nav items.
+
+B. HERO + LARGE BUSINESS DEMO, ~1000px, centered editorial headline with open whitespace.
+Small spaced eyebrow “FORFLOW / ENTERPRISE AI”.
+Main headline exactly two balanced lines:
+“让 AI 真正”
+“流入业务。”
+Under it concise Chinese:
+“把知识、系统和人工协作，接成一条能完成任务的工作流。”
+“从一个具体场景开始，验证后再扩展。”
+Two modest buttons: green “看一条流程如何运行 ↓”, plain outlined “开始场景诊断 ↗”.
+Below, a thin centered tab row “供应链决策” selected with green underline, “文档自动化”, “工业知识”.
+Then a large full-width believable business-workflow UI, central visual anchor about 1160w x 470h:
+minimal top bar “ForFlow / 供应链异常分析”, on far right “场景演示”.
+Left slim vertical run timeline: “读取数据 ✓”, “定位异常 ✓”, “分析原因 ✓”, “生成行动 ✓”, “人工确认” with last softly amber or green outlined waiting state.
+Main pane top natural-language request: “上个月的渠道履行情况，有哪些异常？”
+Middle a very clear table or analysis surface, not a chat essay: columns “渠道” “状态” “主要原因”; rows 渠道 A 正常, 渠道 B 需关注 信用控制触发, 渠道 C 正常. Selected channel B pale green background. Underneath two concise evidence rows “异常集中：鞋类订单” and “原因：未付款订单触发冻结”.
+Right integrated panel separated by a fine rule: “下一步行动”, “订单放行请求”, recipient “信用控制负责人”, status “待人工确认”, small “查看依据” link and subdued button “查看审批摘要 →”. Show outputs and accountability. Do not use a generic KPI dashboard.
+Below the entire demo, understated caption “基于团队过往供应链项目的匿名材料演示” and link “查看完整案例与依据 ↗”.
+Then a thin line of words integrated in the page, no customer logos: “接入现有数据与系统 · 保留人工确认 · 每一步可追溯”.
+
+C. CAPABILITY EXPLANATION, ~750px.
+Left-aligned large heading “让数据有上下文，\n让行动有依据。” with two actual lines and short sentence “从企业资料到业务动作，把关键环节连起来。”
+Two-column composition in Databricks feature style: left 38% clean accordion stack, right 62% large focused example.
+Three visible capability rows separated by rules:
+01 “读懂企业知识” [closed +], subtitle “图纸、文档与业务口径，回到可核验的来源。”
+02 “把任务做完” [active with small green line], subtitle “连接工具、业务规则和人工复核，让结果进入下一步。”
+03 “持续评估与改进” [closed +], subtitle “看见失败原因，用真实样本验证每一次变更。”
+The right display is a refined document-review interface: header “文档处理 / 字段复核” with “场景演示”, left actual-looking anonymized Chinese supplier contract page with short legal-looking neutral text and two source highlights, right field list “供应商名称”, “合同期限”, “付款条件”. One field “付款条件” marked “待复核” with a linked source highlight. Bottom status “复核后输出结构化结果” and “确认字段 →”. No real company names, IDs or signatures. This makes the abstract capability tangible.
+A small textual service link under the accordion “了解企业 Agent 与工作流 →”.
+
+D. EVIDENCE / EXISTING CASES, ~650px.
+Heading “从具体问题，\n看见工作如何改变。” on left, “查看全部案例 ↗” on right.
+Three refined editorial case columns, separated by whitespace rather than heavily boxed cards, equal width:
+1 Thumbnail: clean technical linework of industrial piping and a selected equipment relationship, quiet pale green background. Eyebrow “工业知识 / 团队过往实践”. Title “让工厂图纸\n成为可查询的知识”. One sentence “设备、连接和原始图纸，放进同一条查询链路。” link “阅读 P&ID 案例 ↗”.
+2 Thumbnail: crop of the document and structured fields review interface. Eyebrow “文档自动化 / 工程方法”. Title “让文档里的字段\n进入业务流程”. One sentence “提取、校验、人工复核与结果输出。” link “阅读文档案例 ↗”.
+3 Thumbnail: restrained evaluation report UI with test rows and one failure being inspected; no fabricated percentage metrics. Eyebrow “AGENT 评估 / 工程方法”. Title “上线之前，\n先建立评估基线”. One sentence “用样本、运行记录和失败原因，判断是否继续。” link “阅读评估方法 ↗”.
+Case images should look like purposeful designed diagrams/product excerpts, not decorative illustrations. Do not use customer logo wall or claimed ROI numbers.
+
+E. DELIVERY, ~480px, light gray/green-tinted broad page band.
+Small eyebrow “HOW WE WORK”.
+Heading “从一条流程开始，\n把结果验证清楚。”
+Four horizontal steps connected by a thin green line, no large enclosing cards, ample spacing:
+“01 场景诊断” / “明确问题、基线与投入顺序”
+“02 小范围验证” / “接入样本，跑通一条流程”
+“03 部署与采用” / “接好系统、权限与团队责任”
+“04 持续复评” / “追踪效果，改进后再扩展”
+Below “每一步，都留下能继续使用的交付物。” and compact link “查看企业服务 →”.
+
+F. FINAL CTA + FOOTER, ~520px, near-black.
+Large white left-aligned “你最想先改变，\n哪一段工作？”
+Short soft-gray sentence “带上一条高频流程，我们一起判断从哪里开始。”
+Green button “开始场景诊断 ↗”, secondary text “预约 30 分钟沟通 →”.
+A fine dark gray separator. Footer contains ForFlow wordmark in white/green, slogan “AI Flows. Business Grows.”; sparse links “企业服务  案例与实践  企业 AI 手册  联系我们”; small “© 2026 ForFlow 萬維流形”.
+Beautiful generous ending margin, no clipped footer.
+
+QUALITY:
+This must read as an exceptionally polished full homepage at desktop proportions, not a poster, not a slide deck, not a moodboard, and not a mobile page stretched wide. High-precision alignment and enough breathing room around every section. Focus the hero on one business task. Understated sophistication on par with the supplied Attio and Databricks examples, distinctly ForFlow. Render ONE coherent full-page website screenshot without annotations or external explanatory text.

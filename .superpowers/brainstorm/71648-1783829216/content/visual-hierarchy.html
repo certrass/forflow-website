@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ForFlow 视觉收敛对比</title>
+  <style>
+    :root{--ink:#050505;--paper:#fff;--mist:#f3f5f1;--line:#d8ddd5;--muted:#626862;--green:#6cf67e;--deep:#0a3213}
+    *{box-sizing:border-box} body{margin:0;background:#e9ece7;color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}
+    .board{max-width:1480px;margin:0 auto;padding:34px}
+    .board-head{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:24px}
+    .board-head h1{margin:0;font-size:clamp(30px,4vw,54px);line-height:1.05;letter-spacing:-.05em}.board-head p{max-width:600px;margin:0;color:#525852;font-size:16px;line-height:1.7}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:22px}.frame{overflow:hidden;border:1px solid #cbd0c9;border-radius:22px;background:white;box-shadow:0 20px 60px rgba(15,25,15,.1)}
+    .frame-label{display:flex;justify-content:space-between;align-items:center;padding:13px 17px;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.frame-label b{display:inline-flex;align-items:center;gap:8px}.frame-label i{width:8px;height:8px;border-radius:50%;background:#a4aaa3}.after .frame-label i{background:var(--green)}
+    .site-top{height:24px;padding:5px 18px;background:#050505;color:white;font-size:8px;letter-spacing:.14em}.site-nav{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid var(--line)}.site-nav img{width:120px;height:auto}.site-nav span{font-size:9px;font-weight:700;word-spacing:10px}
+    .mini{min-height:760px}.current-hero,.after-hero{display:grid;grid-template-columns:1.1fr .9fr;min-height:350px}.current-copy,.after-copy{padding:48px 28px 32px}.photo{min-height:350px;background:url('/files/home-hero.jpg') center/cover no-repeat}.kicker{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:9px;font-weight:850;letter-spacing:.16em}.kicker:before{content:"";width:22px;height:3px;border-radius:99px;background:var(--green)}
+    .current-copy h2{margin:0 0 22px;font-size:55px;line-height:.96;letter-spacing:-.07em}.current-copy p,.after-copy p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.actions{display:flex;gap:10px;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:39px;padding:0 17px;border:1px solid var(--line);border-radius:999px;font-size:10px;font-weight:800}.btn.primary{border-color:var(--green);background:var(--green)}
+    .current-section{padding:38px 28px;background:var(--mist)}.current-section.dark{background:#050505;color:white}.current-section h3{max-width:520px;margin:0 0 20px;font-size:43px;line-height:1.02;letter-spacing:-.06em}.current-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.current-card{min-height:120px;padding:16px;border-radius:18px;background:white;border:1px solid var(--line)}.current-section.dark .current-card{background:#111;border-color:#303530}.current-card b{font-size:12px}.current-card p{font-size:9px;line-height:1.55;color:#737973}.current-section.dark .current-card p{color:#abb0aa}.green-card{background:var(--green)!important;color:#050505}
+    .after-hero{min-height:350px}.after-copy{padding:50px 34px 34px}.after-copy h2{margin:0 0 18px;font-size:49px;line-height:.98;letter-spacing:-.065em}.after-copy em{font-style:normal;-webkit-text-stroke:1px #050505;color:transparent}
+    .after-flow{padding:42px 34px 28px}.after-flow .section-head{display:grid;grid-template-columns:150px 1fr;gap:28px;padding-bottom:26px;border-bottom:1px solid var(--line)}.after-flow small{font-size:9px;font-weight:850;letter-spacing:.14em}.after-flow h3{margin:0;font-size:28px;line-height:1.12;letter-spacing:-.045em}.problem-list{display:grid;grid-template-columns:repeat(3,1fr);margin-top:0;border-bottom:1px solid var(--line)}.problem{min-height:135px;padding:22px 16px;border-right:1px solid var(--line)}.problem:last-child{border-right:0}.problem span{font-size:9px;color:#388f45}.problem b{display:block;margin:12px 0 8px;font-size:13px}.problem p{margin:0;color:var(--muted);font-size:9px;line-height:1.55}
+    .proof{display:grid;grid-template-columns:.8fr 1.2fr;margin:28px 34px 34px;overflow:hidden;border-radius:12px;background:#050505;color:white}.proof-copy{padding:24px}.proof-copy small{color:var(--green);font-size:8px;letter-spacing:.14em}.proof-copy h4{margin:12px 0 10px;font-size:24px;line-height:1.1}.proof-copy p{margin:0;color:#b8bdb7;font-size:9px;line-height:1.6}.proof-metrics{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid #303330}.metric{display:flex;flex-direction:column;justify-content:end;padding:18px;border-right:1px solid #303330}.metric:last-child{border-right:0}.metric strong{font-size:20px;color:var(--green)}.metric span{margin-top:5px;color:#bec2bd;font-size:8px}
+    .choice-area{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:22px}.choice{cursor:pointer;padding:16px;border:2px solid transparent;border-radius:14px;background:white;box-shadow:0 8px 28px rgba(0,0,0,.05);transition:.2s}.choice:hover{transform:translateY(-2px)}.choice.selected{border-color:#08c926;background:#effff1}.choice b{display:block;margin-bottom:6px;font-size:14px}.choice span{color:#596059;font-size:12px;line-height:1.5}
+    .rules{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.rule{padding:13px;border:1px solid #ccd1ca;border-radius:12px;background:#f5f7f3}.rule strong{display:block;font-size:12px}.rule span{font-size:10px;color:#626862}
+    @media(max-width:980px){.compare{grid-template-columns:1fr}.board{padding:18px}.board-head{display:block}.board-head p{margin-top:14px}.current-hero,.after-hero{grid-template-columns:1fr}.photo{min-height:250px}.current-copy h2{font-size:46px}.after-copy h2{font-size:42px}.choice-area,.rules{grid-template-columns:1fr}.proof{grid-template-columns:1fr}.proof-metrics{border-left:0;border-top:1px solid #303330}}
+  </style>
+</head>
+<body>
+  <main class="board">
+    <header class="board-head">
+      <div><div class="kicker">FORFLOW VISUAL SYSTEM</div><h1>保留锋利感，<br>把表达收回来。</h1></div>
+      <p>左边是当前“所有模块都像 Hero”的状态；右边是建议的收敛幅度。品牌首屏仍然锋利，但正文、问题入口和案例证据各自拥有不同音量。</p>
+    </header>
+    <section class="compare">
+      <article class="frame current">
+        <div class="frame-label"><b><i></i>当前视觉音量</b><span>所有模块都在喊</span></div>
+        <div class="mini">
+          <div class="site-top">● AI FLOWS. BUSINESS GROWS.</div>
+          <div class="site-nav"><img src="/files/forflow-logo.png" alt="ForFlow"><span>首页　企业服务　场景与工具　案例</span></div>
+          <div class="current-hero"><div class="current-copy"><div class="kicker">企业 AI 场景落地</div><h2>让 AI 真正<br>流入业务。</h2><p>从一段反复耗时、容易出错的工作开始。</p><div class="actions"><span class="btn primary">开始诊断</span><span class="btn">查看服务</span></div></div><div class="photo"></div></div>
+          <section class="current-section"><div class="kicker">START WITH THE PROBLEM</div><h3>哪一段工作，<br>最耗人又最难改？</h3><div class="current-cards"><div class="current-card green-card"><b>客户服务</b><p>重复问题拖住团队</p></div><div class="current-card"><b>营销内容</b><p>内容总在反复改</p></div><div class="current-card"><b>企业知识</b><p>资料很多，答案找不到</p></div></div></section>
+          <section class="current-section dark"><div class="kicker">ENTERPRISE SERVICES</div><h3>你现在需要解决<br>哪一件事？</h3><div class="current-cards"><div class="current-card"><b>准备度审核</b><p>先判断值不值得做</p></div><div class="current-card"><b>Agent 工作流</b><p>验证一条真实流程</p></div><div class="current-card"><b>数据治理</b><p>补齐可信输入</p></div></div></section>
+        </div>
+      </article>
+      <article class="frame after">
+        <div class="frame-label"><b><i></i>建议收敛幅度</b><span>Hero 锋利，正文安静</span></div>
+        <div class="mini">
+          <div class="site-top">● AI FLOWS. BUSINESS GROWS.</div>
+          <div class="site-nav"><img src="/files/forflow-logo.png" alt="ForFlow"><span>首页　企业服务　场景与工具　案例</span></div>
+          <div class="after-hero"><div class="after-copy"><div class="kicker">企业 AI 场景落地</div><h2>让 AI 真正<br><em>流入业务。</em></h2><p>从一段反复耗时、容易出错的工作开始。先判断是否值得做，再进入试点。</p><div class="actions"><span class="btn primary">开始场景诊断 →</span><span class="btn">企业服务</span></div></div><div class="photo"></div></div>
+          <section class="after-flow"><div class="section-head"><small>01 / 业务问题</small><h3>先找到最值得改善的工作，<br>再讨论 AI 怎么进入。</h3></div><div class="problem-list"><div class="problem"><span>01</span><b>客服被重复问题拖住</b><p>高频问答、线索分流和人工接管。</p></div><div class="problem"><span>02</span><b>流程靠复制粘贴推进</b><p>文档校验、跨系统任务和异常回退。</p></div><div class="problem"><span>03</span><b>资料很多，答案找不到</b><p>带来源的知识检索和制度问答。</p></div></div></section>
+          <section class="proof"><div class="proof-copy"><small>02 / 一条流程跑通</small><h4>结果达到门槛，<br>才值得扩大。</h4><p>黑底只留给关键判断和证据，不再作为通用章节背景。</p></div><div class="proof-metrics"><div class="metric"><strong>1 条</strong><span>首批真实流程</span></div><div class="metric"><strong>2 周</strong><span>验证周期</span></div><div class="metric"><strong>3 类</strong><span>质量、权限、价值证据</span></div></div></section>
+        </div>
+      </article>
+    </section>
+    <section class="choice-area">
+      <div class="choice" data-choice="just-right" onclick="toggleSelect(this)"><b>这个收敛幅度刚好</b><span>保留首屏冲击力，正文和证据区明显降噪。</span></div>
+      <div class="choice" data-choice="sharper" onclick="toggleSelect(this)"><b>还可以再锋利一点</b><span>正文层级接受，但希望保留更多黑底和张力。</span></div>
+      <div class="choice" data-choice="quieter" onclick="toggleSelect(this)"><b>还可以再克制一点</b><span>进一步减少描边字、绿色和装饰性元素。</span></div>
+    </section>
+    <section class="rules">
+      <div class="rule"><strong>标题</strong><span>Hero 72–84 / H2 40–48</span></div><div class="rule"><strong>绿色</strong><span>只用于行动、状态、关键数据</span></div><div class="rule"><strong>黑底</strong><span>只用于证据和关键决策</span></div><div class="rule"><strong>圆角</strong><span>12 / 18 两档，不再处处胶囊</span></div>
+    </section>
+  </main>
+</body>
+</html>

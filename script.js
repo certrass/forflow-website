@@ -5,6 +5,83 @@
 
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const DATA_SESSION_KEY = 'forflowDataSessionId';
+  const ASSESSMENT_ID_KEY = 'forflowNavigatorAssessmentId';
+
+  const createUuid = () => {
+    if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (char) => {
+      const value = Math.floor(Math.random() * 16);
+      return (char === 'x' ? value : (value & 0x3) | 0x8).toString(16);
+    });
+  };
+
+  const sessionValue = (key, fallback) => {
+    try {
+      const existing = sessionStorage.getItem(key);
+      if (existing) return existing;
+      sessionStorage.setItem(key, fallback);
+    } catch (_) { /* storage can be unavailable */ }
+    return fallback;
+  };
+
+  const dataSessionId = sessionValue(DATA_SESSION_KEY, createUuid());
+  const pageKey = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '') || 'home';
+  const attribution = () => {
+    const params = new URLSearchParams(location.search);
+    let referrerHost = '';
+    try { referrerHost = document.referrer ? new URL(document.referrer).hostname : ''; } catch (_) { referrerHost = ''; }
+    return {
+      source: params.get('utm_source') || '',
+      medium: params.get('utm_medium') || '',
+      campaign: params.get('utm_campaign') || '',
+      referrer_host: referrerHost,
+    };
+  };
+
+  function trackSiteEvent(eventName, properties = {}, assessmentId = '') {
+    const payload = {
+      event_name: eventName,
+      session_id: dataSessionId,
+      assessment_id: assessmentId || undefined,
+      page_key: pageKey,
+      route: location.pathname,
+      occurred_at: new Date().toISOString(),
+      properties,
+      ...attribution(),
+    };
+    try {
+      fetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => { /* analytics must never block the page */ });
+    } catch (_) { /* analytics must never block the page */ }
+  }
+
+  async function saveNavigatorAssessment(payload, assessmentId) {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 2500);
+    try {
+      const response = await fetch('/api/assessments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...payload,
+          assessment_id: assessmentId,
+          session_id: dataSessionId,
+          completed_at: new Date().toISOString(),
+        }),
+        signal: controller.signal,
+      });
+      return response.ok;
+    } catch (_) {
+      return false;
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
   function createToast(message) {
     let toast = qs('[data-toast]');
     if (!toast) {
@@ -88,12 +165,19 @@
   }
 
   function initFAQ() {
-    qsa('.faq-item').forEach((item) => {
+    const items = qsa('.faq-item');
+    const setOpen = (item, open) => {
+      const button = qs('.faq-question', item);
+      item.classList.toggle('is-open', open);
+      if (button) button.setAttribute('aria-expanded', String(open));
+    };
+
+    items.forEach((item) => {
       const button = qs('.faq-question', item);
       if (!button) return;
       button.addEventListener('click', () => {
-        const open = item.classList.toggle('is-open');
-        button.setAttribute('aria-expanded', String(open));
+        const willOpen = !item.classList.contains('is-open');
+        items.forEach((otherItem) => setOpen(otherItem, willOpen && otherItem === item));
       });
     });
   }
@@ -165,7 +249,14 @@
     if (!form || !panels.length || !prevButton || !nextButton) return;
 
     let currentStep = 1;
-    const stepLabels = ['业务挑战', '价值与准备度', '部署偏好', '推荐结果'];
+    let navigatorStarted = false;
+    const stepLabels = ['业务挑战', '价值与准备度', '部署要求', '场景建议'];
+
+    form.addEventListener('change', () => {
+      if (navigatorStarted) return;
+      navigatorStarted = true;
+      trackSiteEvent('navigator_start');
+    });
 
     const checkedValues = (name) => qsa(`input[name="${name}"]:checked`, root).map((input) => input.value);
     const checkedValue = (name) => qs(`input[name="${name}"]:checked`, root)?.value || '';
@@ -197,6 +288,7 @@
     });
 
     const preselectedParams = new URLSearchParams(window.location.search);
+    const entryHrStage = preselectedParams.get('hrStage') || '';
     ['challenge', 'goal', 'readiness', 'deployment'].forEach((name) => {
       const value = preselectedParams.get(name);
       if (!value) return;
@@ -205,18 +297,12 @@
     });
 
     const goToStep = (targetStep) => {
-      if (!targetStep || targetStep === currentStep) return;
-      if (targetStep > currentStep) {
-        createToast('请先完成当前步骤，再继续。');
-        return;
-      }
+      if (!targetStep || targetStep >= currentStep) return;
       currentStep = targetStep;
       updateStepUI({ scroll: true });
     };
 
     progressItems.forEach((item) => {
-      item.setAttribute('role', 'button');
-      item.setAttribute('tabindex', '0');
       item.addEventListener('click', () => goToStep(Number(item.dataset.progressStep)));
       item.addEventListener('keydown', (event) => {
         if (!['Enter', ' '].includes(event.key)) return;
@@ -256,7 +342,9 @@
       const challengeCount = checkedValues('challenge').length;
       if (choiceNote) choiceNote.textContent = `已选择 ${challengeCount} / 2`;
       if (status) status.textContent = getStatusText();
-      nextButton.disabled = currentStep < 4 ? !isStepValid(currentStep) : false;
+      const valid = currentStep >= 4 || isStepValid(currentStep);
+      nextButton.disabled = false;
+      nextButton.setAttribute('aria-disabled', String(!valid));
     }
 
     function updateStepUI({ scroll = false } = {}) {
@@ -274,8 +362,15 @@
         item.classList.toggle('is-active', step === currentStep);
         item.classList.toggle('is-complete', step < currentStep);
         item.setAttribute('aria-current', active ? 'step' : 'false');
-        item.setAttribute('aria-disabled', step > currentStep ? 'true' : 'false');
-        item.setAttribute('aria-label', complete ? `返回第 ${step} 步` : `第 ${step} 步`);
+        if (complete) {
+          item.setAttribute('role', 'button');
+          item.setAttribute('tabindex', '0');
+          item.setAttribute('aria-label', `返回第 ${step} 步`);
+        } else {
+          item.removeAttribute('role');
+          item.removeAttribute('tabindex');
+          item.removeAttribute('aria-label');
+        }
       });
 
       prevButton.disabled = currentStep === 1;
@@ -295,6 +390,11 @@
         const workspace = qs('.navigator-workspace', root);
         const top = workspace ? workspace.getBoundingClientRect().top + window.scrollY - 92 : 0;
         window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        const activeHeading = qs('.step-panel.is-active h2', root);
+        if (activeHeading) {
+          activeHeading.setAttribute('tabindex', '-1');
+          window.requestAnimationFrame(() => activeHeading.focus({ preventScroll: true }));
+        }
       }
     }
 
@@ -457,15 +557,18 @@
       }
     }
 
-    nextButton.addEventListener('click', () => {
+    nextButton.addEventListener('click', async () => {
       if (currentStep === 4) {
         window.print();
         return;
       }
       if (!isStepValid(currentStep)) {
-        createToast(getStatusText());
+        const message = getStatusText();
+        if (status) status.textContent = message;
+        createToast(message);
         return;
       }
+      trackSiteEvent('navigator_step_complete', { step: currentStep });
       if (currentStep === 3) {
         const payload = {};
         const formData = new FormData(form);
@@ -479,13 +582,18 @@
         ['challenge', 'goal', 'constraint'].forEach((key) => {
           if (!Array.isArray(payload[key])) payload[key] = payload[key] ? [payload[key]] : [];
         });
-        try { localStorage.setItem('forflowNavigator', JSON.stringify(payload)); } catch (_) { /* storage can be unavailable */ }
-        const params = new URLSearchParams();
-        Object.entries(payload).forEach(([key, value]) => {
-          if (Array.isArray(value)) value.forEach((item) => params.append(key, item));
-          else if (value) params.set(key, value);
-        });
-        window.location.href = `navigator-results.html?${params.toString()}`;
+        if (entryHrStage) payload.hrStage = entryHrStage;
+        try { sessionStorage.setItem('forflowNavigator', JSON.stringify(payload)); } catch (_) { /* storage can be unavailable */ }
+        const assessmentId = createUuid();
+        try { sessionStorage.setItem(ASSESSMENT_ID_KEY, assessmentId); } catch (_) { /* storage can be unavailable */ }
+        trackSiteEvent('navigator_complete', {
+          challenge_count: payload.challenge.length,
+          goal_count: payload.goal.length,
+        }, assessmentId);
+        nextButton.disabled = true;
+        if (status) status.textContent = '正在生成建议…';
+        await saveNavigatorAssessment(payload, assessmentId);
+        window.location.href = `navigator-results.html?assessment_id=${encodeURIComponent(assessmentId)}`;
         return;
       }
       currentStep += 1;
@@ -555,7 +663,7 @@
       {
         key: 'challenge',
         label: 'BUSINESS CHALLENGE',
-        question: '你现在最想改善哪一段业务？',
+        question: '日常工作里，哪件事最该改？',
         options: [['customer', '客户服务'], ['marketing', '营销增长'], ['knowledge', '知识管理'], ['operations', '运营效率']],
       },
       {
@@ -657,12 +765,16 @@
         observer.unobserve(entry.target);
       });
     }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
-    items.forEach((item, index) => {
+    items.forEach((item) => {
       if (isHome) {
         const revealType = item.dataset.reveal;
         item.style.transitionDelay = revealType === 'hero' ? '90ms' : revealType === 'visual' ? '60ms' : '0ms';
       } else {
-        item.style.transitionDelay = `${Math.min(index % 4, 3) * 55}ms`;
+        const siblings = item.parentElement
+          ? [...item.parentElement.children].filter((child) => child.matches?.('[data-reveal]'))
+          : [];
+        const siblingIndex = Math.max(0, siblings.indexOf(item));
+        item.style.transitionDelay = `${Math.min(siblingIndex, 3) * 45}ms`;
       }
       observer.observe(item);
     });
@@ -671,7 +783,7 @@
   function navigatorPayload() {
     const params = new URLSearchParams(window.location.search);
     let stored = {};
-    try { stored = JSON.parse(localStorage.getItem('forflowNavigator') || '{}'); } catch (_) { stored = {}; }
+    try { stored = JSON.parse(sessionStorage.getItem('forflowNavigator') || '{}'); } catch (_) { stored = {}; }
     const value = (key) => params.get(key) || stored[key] || '';
     const values = (key) => {
       const fromUrl = params.getAll(key);
@@ -687,7 +799,8 @@
       deployment: value('deployment'),
       timeline: value('timeline'),
       teamSize: value('teamSize'),
-      industry: value('industry')
+      industry: value('industry'),
+      hrStage: value('hrStage')
     };
   }
 
@@ -695,6 +808,29 @@
     const root = qs('.results-page');
     if (!root) return;
     const payload = navigatorPayload();
+    let storedAssessmentId = '';
+    try { storedAssessmentId = sessionStorage.getItem(ASSESSMENT_ID_KEY) || ''; } catch (_) { storedAssessmentId = ''; }
+    const assessmentId = new URLSearchParams(window.location.search).get('assessment_id') || storedAssessmentId;
+    const assessmentInput = qs('[data-assessment-id]', root);
+    if (assessmentInput) assessmentInput.value = assessmentId;
+    if (assessmentId && (payload.challenges.length || payload.goals.length)) saveNavigatorAssessment({
+      challenge: payload.challenges,
+      goal: payload.goals,
+      constraint: payload.constraints,
+      readiness: payload.readiness,
+      deployment: payload.deployment,
+      timeline: payload.timeline,
+      teamSize: payload.teamSize,
+      industry: payload.industry,
+      hrStage: payload.hrStage,
+    }, assessmentId);
+    if (!assessmentId) {
+      const reportForm = qs('[data-lead-form][data-source-type="assessment_report"]', root);
+      const reportButton = qs('button[type="submit"]', reportForm);
+      const reportStatus = qs('[data-lead-status]', reportForm);
+      if (reportButton) reportButton.disabled = true;
+      if (reportStatus) reportStatus.textContent = '请先完成诊断，再把结果发送到邮箱。';
+    }
     const challengeLabels = {
       customer: '客户触达与服务', marketing: '营销与内容增长', knowledge: '企业知识与决策',
       operations: '运营流程自动化', finance: '经营分析与财务', hr: '人才与组织效率'
@@ -703,9 +839,16 @@
       speed: '缩短处理时间', cost: '降低成本', revenue: '增加收入', quality: '提高质量',
       experience: '改善体验', risk: '降低风险'
     };
-    const challengeText = payload.challenges.length
+    const hrStageLabels = {
+      recruit: '招聘', onboard: '入职', service: '员工服务', learn: '培训发展',
+      performance: '绩效', analytics: '组织分析'
+    };
+    let challengeText = payload.challenges.length
       ? payload.challenges.map((item) => challengeLabels[item] || item).join(' · ')
       : '企业知识与运营效率';
+    if (payload.challenges.includes('hr') && hrStageLabels[payload.hrStage]) {
+      challengeText += ` · ${hrStageLabels[payload.hrStage]}`;
+    }
     const goalText = payload.goals.length
       ? payload.goals.map((item) => goalLabels[item] || item).join(' · ')
       : '缩短处理时间 · 提高质量';
@@ -722,6 +865,9 @@
     const matchScore = (card) => {
       const type = card.dataset.solution;
       let score = 50;
+      if (type === 'audit' && (!payload.readiness || payload.readiness === 'idea')) score += 55;
+      if (type === 'audit' && payload.readiness === 'process') score += 12;
+      if (type === 'audit' && payload.constraints.some((item) => ['audit','sensitive'].includes(item))) score += 10;
       if (type === 'agent' && payload.challenges.some((item) => ['customer','knowledge','operations','hr'].includes(item))) score += 30;
       if (type === 'data' && payload.challenges.some((item) => ['knowledge','operations','finance'].includes(item))) score += 28;
       if (type === 'enablement' && ['idea','process'].includes(payload.readiness)) score += 25;
@@ -752,13 +898,33 @@
           const number = qs('.solution-index', card);
           if (number) number.textContent = String(index + 1).padStart(2, '0');
         });
-      sortButtons.forEach((button) => button.classList.toggle('is-active', button.dataset.sort === mode));
+      sortButtons.forEach((button) => {
+        const active = button.dataset.sort === mode;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
       if (mobileLabel) mobileLabel.textContent = sortLabels[mode] || sortLabels.match;
       mobileSort?.classList.remove('is-open');
+      mobileToggle?.setAttribute('aria-expanded', 'false');
+      qs('[data-mobile-sort-menu]', root)?.setAttribute('aria-hidden', 'true');
     };
-    sortButtons.forEach((button) => button.addEventListener('click', () => sortCards(button.dataset.sort || 'match')));
-    mobileToggle?.addEventListener('click', () => mobileSort?.classList.toggle('is-open'));
+    sortButtons.forEach((button) => button.addEventListener('click', () => {
+      const mode = button.dataset.sort || 'match';
+      sortCards(mode);
+      trackSiteEvent('result_sort', { sort_mode: mode }, assessmentId);
+    }));
+    mobileToggle?.addEventListener('click', () => {
+      const open = !mobileSort?.classList.contains('is-open');
+      mobileSort?.classList.toggle('is-open', open);
+      mobileToggle.setAttribute('aria-expanded', String(open));
+      qs('[data-mobile-sort-menu]', root)?.setAttribute('aria-hidden', String(!open));
+    });
     sortCards('match');
+
+    qsa('.solution-card a', root).forEach((link) => link.addEventListener('click', () => {
+      const serviceKey = link.closest('.solution-card')?.dataset.solution || '';
+      trackSiteEvent('result_service_click', { service_key: serviceKey }, assessmentId);
+    }));
 
     qsa('.favorite-btn', root).forEach((button) => {
       const card = button.closest('.solution-card');
@@ -799,6 +965,52 @@
   function initCategoryFilters() {
     const root = qs('.category-page');
     if (!root) return;
+    const workbench = qs('#workbench', root);
+    const workbenchTabs = qsa('[data-hr-stage-tab]', root);
+    const workbenchPanels = qsa('[data-hr-workbench-panel]', root);
+    const workbenchJumps = qsa('[data-hr-stage-jump]', root);
+
+    const selectWorkbenchStage = (stage, shouldScroll = false) => {
+      const targetTab = workbenchTabs.find((tab) => tab.dataset.hrStageTab === stage);
+      const targetPanel = workbenchPanels.find((item) => item.dataset.hrWorkbenchPanel === stage);
+      if (!targetTab || !targetPanel) return;
+      workbenchTabs.forEach((tab) => {
+        const active = tab === targetTab;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      workbenchPanels.forEach((item) => {
+        const active = item === targetPanel;
+        item.hidden = !active;
+        item.classList.toggle('is-active', active);
+      });
+      if (shouldScroll) workbench?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    workbenchTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectWorkbenchStage(tab.dataset.hrStageTab));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = index;
+        if (event.key === 'ArrowLeft') nextIndex = (index - 1 + workbenchTabs.length) % workbenchTabs.length;
+        if (event.key === 'ArrowRight') nextIndex = (index + 1) % workbenchTabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = workbenchTabs.length - 1;
+        const next = workbenchTabs[nextIndex];
+        selectWorkbenchStage(next.dataset.hrStageTab);
+        next.focus();
+      });
+    });
+    workbenchJumps.forEach((button) => button.addEventListener('click', () => {
+      selectWorkbenchStage(button.dataset.hrStageJump, true);
+    }));
+    if (workbenchTabs.length) {
+      const initial = workbenchTabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || workbenchTabs[0];
+      selectWorkbenchStage(initial.dataset.hrStageTab);
+    }
+
     const panel = qs('[data-filter-panel]', root);
     const cards = qsa('.product-card', root);
     const inputs = qsa('[data-category-filter]', root);
@@ -867,7 +1079,11 @@
     const cards = qsa('[data-case-tags]', root);
     buttons.forEach((button) => button.addEventListener('click', () => {
       const filter = button.dataset.caseFilter || 'all';
-      buttons.forEach((item) => item.classList.toggle('is-active', item === button));
+      buttons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
       cards.forEach((card) => {
         const tags = (card.dataset.caseTags || '').split(/\s+/);
         card.hidden = filter !== 'all' && !tags.includes(filter);
@@ -1165,8 +1381,7 @@
     const root = qs('.viewer-page');
     if (!root) return;
     const docs = {
-      playbook: { title: '企业生成式 AI 实战手册', file: 'assets/genai-playbook-reference.pdf' },
-      solutions: { title: '方案搜索结果参考页面', file: 'assets/explore-digital-solutions.pdf' }
+      playbook: { title: '企业生成式 AI 实战手册', file: 'assets/genai-playbook-reference.pdf' }
     };
     const key = new URLSearchParams(window.location.search).get('doc') || 'playbook';
     const doc = docs[key] || docs.playbook;
@@ -1363,6 +1578,134 @@
     render();
   }
 
+  function initContactTopic() {
+    const root = qs('.contact-page');
+    if (!root) return;
+
+    const topics = {
+      audit: {
+        name: 'AI 准备度审核',
+        lead: '如果你正在排 AI 项目、预算或试点顺序，可以先做一次 30 分钟初步沟通。',
+        note: '来信请附上候选场景、已做试点和当前最难判断的问题。我们会先确认是否需要正式审核。'
+      },
+      enablement: {
+        name: 'AI 采用与团队赋能',
+        lead: '如果工具已经进了团队，但用法、边界和效果还没有形成共同方法，可以从一个团队开始聊。',
+        note: '来信请附上试点团队、常见任务、已批准工具和希望改善的指标。'
+      },
+      data: {
+        name: 'AI 数据与知识治理',
+        lead: '如果指标口径、知识来源、权限或更新责任正在拖慢 AI 项目，可以先选一个业务域说明。',
+        note: '来信请附上争议指标或知识问题、当前来源系统，以及负责解释和更新的人。'
+      },
+      agent: {
+        name: '企业 Agent 与工作流',
+        lead: '如果你已经找到一条高频流程，想判断两周验证能回答什么，可以把当前步骤和系统条件发来。',
+        note: '来信请附上流程频次、主要步骤、异常情况、人工审批点和可用样本。'
+      },
+      training: {
+        name: 'AI 实战培训',
+        lead: '如果你想让管理层、业务或技术团队围绕真实任务训练，可以先说明参与人和课后目标。',
+        note: '来信请附上参与角色、人数、可用工具、最想练的任务和可用材料。'
+      },
+      hr: {
+        name: 'HR AI 场景梳理',
+        lead: '如果你想从招聘、入职、员工服务、培训、绩效或组织分析中选一个起点，可以先说明当前最耗时的一段工作。',
+        note: '来信请附上优先 HR 场景、现有 HR 系统、可用资料、涉及角色，以及必须由人判断的事项。'
+      },
+      'energy-agent': {
+        name: '工厂能效优化场景',
+        lead: '如果你想判断实时电价、储能或公辅设备调度是否值得试点，可以先从一组可调设备和现有数据说起。',
+        note: '来信请附上设备范围、电价机制、现有 EMS / MES / PLC 条件、可用历史数据和明确的安全禁调清单。'
+      }
+    };
+
+    const topic = new URLSearchParams(window.location.search).get('topic');
+    const config = topics[topic];
+    if (!config) return;
+
+    const title = `咨询 ${config.name}`;
+    const subject = `ForFlow｜${config.name}咨询`;
+    const body = [
+      '您好，ForFlow 团队：',
+      '',
+      `我想咨询：${config.name}`,
+      '公司 / 团队：',
+      '联系人与联系方式：',
+      '当前最想解决的问题：',
+      '希望沟通的时间：',
+      '',
+      '可补充现有材料、系统或项目背景：'
+    ].join('\n');
+    const mailto = `mailto:hello@forflow.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    qs('[data-contact-title]', root).textContent = title;
+    qs('[data-contact-lead]', root).textContent = config.lead;
+    qs('[data-contact-service]', root).textContent = config.name;
+    qs('[data-contact-heading]', root).textContent = '发送项目说明';
+    qs('[data-contact-note]', root).textContent = config.note;
+    qsa('[data-contact-email]', root).forEach((link) => { link.href = mailto; });
+    const serviceInput = qs('[data-contact-service-input]', root);
+    if (serviceInput) serviceInput.value = config.name;
+    document.title = `${title}｜ForFlow 萬維流形`;
+  }
+
+  function initFirstPartyAnalytics() {
+    trackSiteEvent('page_view');
+    if (document.body.classList.contains('service-page')) {
+      trackSiteEvent('service_view', { service_key: pageKey });
+    }
+    if (document.body.classList.contains('case-detail-page')) {
+      trackSiteEvent('case_view', { case_key: pageKey });
+    }
+  }
+
+  function initLeadForms() {
+    qsa('[data-lead-form]').forEach((form) => {
+      const status = qs('[data-lead-status]', form);
+      const submit = qs('button[type="submit"]', form);
+      let started = false;
+      form.addEventListener('focusin', () => {
+        if (started) return;
+        started = true;
+        trackSiteEvent('contact_start', { source_type: form.dataset.sourceType || 'contact' }, qs('[data-assessment-id]', form)?.value || '');
+      });
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        const data = Object.fromEntries(new FormData(form).entries());
+        form.dataset.submissionId ||= createUuid();
+        data.submission_id = form.dataset.submissionId;
+        data.source_type = form.dataset.sourceType || data.source_type || 'contact';
+        data.consent = qs('input[name="consent"]', form)?.checked === true;
+        Object.assign(data, attribution());
+        if (submit) submit.disabled = true;
+        if (status) status.textContent = '正在提交…';
+        try {
+          const response = await fetch('/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || '提交失败，请稍后重试。');
+          trackSiteEvent('contact_submit', { source_type: data.source_type }, data.assessment_id || '');
+          form.reset();
+          form.dataset.submissionId = '';
+          if (status) status.textContent = result.notification === 'not_configured'
+            ? '已保存你的信息。邮件发送启用后，我们会把结果发给你。'
+            : data.source_type === 'assessment_report'
+              ? '已提交。诊断结果会发送到你的邮箱。'
+              : '已提交。我们会通过邮件与你联系。';
+        } catch (error) {
+          if (status) status.textContent = error.message || '提交失败，请直接邮件联系 hello@forflow.ai。';
+        } finally {
+          if (submit) submit.disabled = false;
+        }
+      });
+    });
+  }
+
   function initVideoBehavior() {
     qsa('video[autoplay]').forEach((video) => {
       const promise = video.play();
@@ -1371,6 +1714,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    initFirstPartyAnalytics();
     initMenu();
     initHeaderState();
     initMegaNav();
@@ -1389,6 +1733,8 @@
     initCaseFilters();
     initSearchPage();
     initDocumentViewer();
+    initContactTopic();
+    initLeadForms();
     initVideoBehavior();
   });
 })();

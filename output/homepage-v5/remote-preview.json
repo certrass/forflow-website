@@ -1,0 +1,61 @@
+{
+  "deploy_id": "6a9c34c0776d0d9d3de29217",
+  "context": "deploy-preview",
+  "url": "https://6a9c34c0776d0d9d3de29217--forflow-enterprise-suite-v3.netlify.app",
+  "state": "ready",
+  "required": [
+    "52c0db2a1e274c0d727705b057b4c5e72f407aef",
+    "a3d0f7703344936aea75e6f77fe0059a6939d277",
+    "36e7b6d1eeb0ab02ba2ed84678f013e7a31b14e8"
+  ],
+  "production_before": "6a526ad3f3353819365b175e",
+  "staging_directory": "/private/tmp/forflow-homepage-v5-z7h4aj68/public",
+  "created_at": "2026-09-05T15:26:56.563893+00:00",
+  "production_after": "6a526ad3f3353819365b175e",
+  "production_unchanged": true,
+  "verified_files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "216456ada1f46799e40dc3763c7347a44599742a86b11f02275e676ae91d7b32",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-DBx-9S1v.js",
+      "status": 200,
+      "sha256": "85ceefb4fcc65d606d61589051a941d154616f2f2858748a7096fde5b2a0f611",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-CsJmgndt.css",
+      "status": 200,
+      "sha256": "75b9982a57a263f4f76ed639d93700d68a43e3ebbd46443fdf8e871441f40c81",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-medium.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/pid.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow"
+    }
+  ],
+  "remote_verification": "passed"
+}

@@ -1,0 +1,229 @@
+{
+  "deploy_id": "6aa2b4b13a81cc4881b757d5",
+  "context": "deploy-preview",
+  "state": "ready",
+  "production_before": "6a526ad3f3353819365b175e",
+  "staging_directory": "/var/folders/l0/9_h89x255qx_3ktxr85ryxlw0000gn/T/forflow-headline-order-preview-81204wys/public",
+  "created_at": "2026-09-10T13:46:26.126487+00:00",
+  "url": "https://6aa2b4b13a81cc4881b757d5--forflow-enterprise-suite-v3.netlify.app",
+  "production_after": "6a526ad3f3353819365b175e",
+  "production_unchanged": true,
+  "verified_files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "b7f7f1f0e6f3e9c001b41840dced07424ef43ab2aa92098f0ef4080fd1f5955d",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/showcase.css",
+      "status": 200,
+      "sha256": "dd5b1aea6931a2f4e96bb7bf98493319d7247b3772ec7512ffd4b4ef3c7336e1",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/shared-data.js",
+      "status": 200,
+      "sha256": "ffad3ce34434c2375f591f39d2573eaf95cc458b2a550d2b049906ccd7472e1c",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/index.html",
+      "status": 200,
+      "sha256": "82b46293b66be3550fe035b15352aeee918ae0bae822a1b2abaab995cab59d35",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/runtime.js",
+      "status": 200,
+      "sha256": "3d37300929be8d8dd928b7ea350165704f7236d4f578a5838253d11cd11fc3a2",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/showcase-storage.js",
+      "status": 200,
+      "sha256": "cdb360f413d4096e173a1f4cd4ee0915e365df0574dd92b2f1191eaeedee43e8",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/lifecycle-model.js",
+      "status": 200,
+      "sha256": "cf4b3c69325045df1e34a37b91cfe0b25c3ddb9d1561c48ea8e8079aba0a0978",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/q2q-ui.js",
+      "status": 200,
+      "sha256": "7bbdf4918b3cd3d8517fde304d76be1a16a8f6092f54d27f223ff8af97ee562c",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/discovery.js",
+      "status": 200,
+      "sha256": "f46e48bbce72fbef97c8de86f6c97f831a2d418d26b2d705ec61539539447352",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/product.css",
+      "status": 200,
+      "sha256": "00fcac8724e427d6d404aef6eb82c9dcc8fb043b3ebc67535483df6cb45d6b0c",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/showcase-bridge.js",
+      "status": 200,
+      "sha256": "dfc965f58778cba6a88d529aaf60113e219650b443899f889707490d9a9045d8",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/q2q-model.js",
+      "status": 200,
+      "sha256": "ef1c8592e022994aaf574780c51ac54011b42b977004e995f4f4de40073fa913",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/data.js",
+      "status": 200,
+      "sha256": "bce2327a7ced2d78bb85df6eb84331aeef3b5eeeb6046085e4734b1f242bcf8d",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/style.css",
+      "status": 200,
+      "sha256": "5fa209d0dd9f0ef7b90dfe5ed34cdcdb030e3498b557aed2cd358c27e44c3a9e",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/motion.js",
+      "status": 200,
+      "sha256": "ecb181fbcfe5c3a0af26925add9daef8b9e380760135660cad97eb48cc39ece2",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/discovery.css",
+      "status": 200,
+      "sha256": "64a5c4fd94a93cbccc77c5b5dce1fb5b2d1b9d5a5b8834f47966786768c51417",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/lifecycle-ui.js",
+      "status": 200,
+      "sha256": "0386a51c02c728864157c4a2794aa35fe06e2fc0c8da5727fca5e5ad453892e0",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/app.js",
+      "status": 200,
+      "sha256": "39deb29837f040c0f76dc702d33da695921a894518df4836198b0466029657e0",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/q2q.css",
+      "status": 200,
+      "sha256": "53b4430e98eb763276c0ff86223ba87e6d35047dff41b797a89533294fca935f",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "workbench/renewal.css",
+      "status": 200,
+      "sha256": "16bcd69a91c0d0a75ed3ff417a94b847c4c02fd7315a0c7fa98a5be76f229a23",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-OFL.txt",
+      "status": 200,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-poster.png",
+      "status": 200,
+      "sha256": "880f6b91e9b1d1b416cc8563b72526c2670e21f7e6a9c2fbbf7a8bf570d2bac3",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/capability-scene-BDEsJ6fh.js",
+      "status": 200,
+      "sha256": "8895f62420618108abc51fb3a6d294001b0efa2e7e2b9e422000ae7e54cbc699",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/noto-sans-sc-OFL.txt",
+      "status": 200,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-BeTXhcP2.css",
+      "status": 200,
+      "sha256": "b4b1b079aa3c28233a301d6904278b451c73b59c6991df52f2738ef515a8f231",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/index-Dk1wiwEz.js",
+      "status": 200,
+      "sha256": "44074eb05606538547fb1e0e6b76f79258efa709a5365e96da21fc09178cade5",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/forflow-sans-sc.woff2",
+      "status": 200,
+      "sha256": "c74ba998f7742106f2b0168a05ce1dfe4bdffebd72779b3c791f97f0f3650fc1",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-medium.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/inter-display-semibold.woff2",
+      "status": 200,
+      "sha256": "d8bb10ec73c52ddeeed35b9e7913cf0cf0226ca3469c696883413f49ef03aa61",
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "assets/pid.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow"
+    }
+  ],
+  "remote_verification": "passed",
+  "change": "Fixed AI statement before business follow-up / contract review / knowledge lookup",
+  "local_validation": {
+    "build": "passed",
+    "headline_order": "anchor before task window",
+    "manual_selection": "contract review passed"
+  },
+  "previous_workbench_validation": "6aa2b1d19730ba2c12438c6a",
+  "remote_browser": {
+    "headline_order_verified": true,
+    "visible_task": "knowledge lookup"
+  }
+}

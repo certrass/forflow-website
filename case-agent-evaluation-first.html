@@ -5,11 +5,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="#ffffff" name="theme-color"/>
-<meta content="从 Agent 原型到生产可信赖系统，说明 Evaluation-first、ADLC、自动化评估、可观测性、工具策略、安全边界和多智能体解耦的工程路径。" name="description"/>
-<title>企业智能体之旅：为什么评估是一切的起点｜ForFlow 萬維流形</title>
+<meta content="ForFlow Agent 评估方法：用 Evaluation-first、ADLC、自动化评估、可观测性、工具策略与安全边界把原型推向生产。" name="description"/>
+<title>企业 Agent 上线前，先建立评估基线｜ForFlow 萬維流形</title>
 <link href="assets/forflow-mark.png" rel="icon"/>
-<link href="styles.css?v=20260710-topbar-v9" rel="stylesheet"/>
-<script defer="" src="script.js?v=20260710-topbar-v9"></script>
+<link href="styles.css?v=20260712-service-visual-pilot-v28" rel="stylesheet"/>
+<link href="visual-system.css?v=20260712-service-visual-pilot-v28" rel="stylesheet"/>
+<script defer="" src="script.js?v=20260712-service-visual-pilot-v28"></script>
 </head>
 <body class="case-detail-page case-theme--agent case-study-v2">
 <a class="skip-link" href="#main">跳至主要内容</a>
@@ -79,22 +80,22 @@
 <li class="mega-item">
 <button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">企业服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
 <div class="mega-panel mega-panel--services" data-mega-panel="">
-<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>从一个真实问题，走到可持续运行。</h2><p>五条服务路径对应企业不同阶段；不是把所有能力打包出售，而是先解决当前最重要的一步。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>先看现在缺哪一步。</h2><p>问题还没排清，先做准备度审核；缺口明确，就直接进入团队采用、数据、工作流或培训。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
 <div class="mega-link-grid">
 <a class="mega-link" href="ai-readiness-audit.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><span><b>AI 准备度审核</b><small>先判断价值、基础、风险和 30/90 天路线</small></span><em>01</em></a>
-<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>企业 AI 赋能计划</b><small>把零散试用变成团队方法与可衡量成果</small></span><em>02</em></a>
-<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>数据治理</b><small>建立可信数据、知识与 AI 应用底座</small></span><em>03</em></a>
-<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 搭建</b><small>连接知识、系统、权限与真实工作流</small></span><em>04</em></a>
-<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>企业 AI 培训</b><small>按管理层、业务与技术角色分层共创</small></span><em>05</em></a>
+<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>AI 采用与团队赋能</b><small>把零散试用变成岗位方法与采用指标</small></span><em>02</em></a>
+<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>AI 数据与知识治理</b><small>统一口径、质量、权限与知识来源</small></span><em>03</em></a>
+<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 与工作流</b><small>连接知识、系统、工具和人工审批</small></span><em>04</em></a>
+<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>AI 实战培训</b><small>管理层、业务与技术团队分角色训练</small></span><em>05</em></a>
 </div>
 </div>
 </li>
 <li class="mega-item">
 <button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">场景与工具 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
 <div class="mega-panel mega-panel--tools" data-mega-panel="">
-<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>先找到值得做的事，再选择技术。</h2><p>用诊断、场景地图与搜索入口，把“AI 能做什么”翻译成“企业下一步做什么”。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>从业务问题进入，工具放在后面。</h2><p>方向还不清楚，可以做诊断；已有问题，直接看场景或搜索资料。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
 <div class="mega-feature-stack">
-<a class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟定位第一条 AI 增长流</small></div><em>开始</em></a>
+<a class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟排出一个建议起点</small></div><em>开始</em></a>
 <a class="mega-feature" href="category-hrms.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-people"></use></svg></span><div><b>HR 场景地图</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
 <button class="mega-feature search-trigger" type="button"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料、案例与博客</small></div><em>搜索</em></button>
 </div>
@@ -124,7 +125,7 @@
 </header>
 <div aria-hidden="true" class="mobile-menu-panel ff-mobile-menu" id="mobile-menu">
 <a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
-<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="ai-readiness-audit.html">AI 准备度审核</a><a href="service-ai-enablement.html">企业 AI 赋能计划</a><a href="service-data-governance.html">数据治理</a><a href="service-agent-build.html">企业 Agent 搭建</a><a href="service-ai-training.html">企业 AI 培训</a></div></details>
+<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="ai-readiness-audit.html">AI 准备度审核</a><a href="service-ai-enablement.html">AI 采用与团队赋能</a><a href="service-data-governance.html">AI 数据与知识治理</a><a href="service-agent-build.html">企业 Agent 与工作流</a><a href="service-ai-training.html">AI 实战培训</a></div></details>
 <details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
 <details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例&amp;博客</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
 <a aria-current="page" href="cases.html">案例&amp;博客 <span>05</span></a>
@@ -137,9 +138,9 @@
 <nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&amp;博客</a><span>/</span><strong>企业 Agent 评估</strong></nav>
 <div class="case-study-hero__grid">
 <div>
-<div class="case-study-meta"><span>企业 Agent</span><span>Evaluation-first</span><span>ADLC</span><span>生产门控</span></div>
-<h1><span class="mobile-title-line">企业智能体之旅：</span><span class="mobile-title-line">为什么评估是</span><span class="mobile-title-line">一切的起点。</span></h1>
-<p class="case-study-lead">当企业把 AI Agent 从“演示惊艳的原型”推向“生产可信赖的系统”时，评估就成了决定成败的关键一环。它既不同于传统软件的单元测试，也不同于单模型 benchmark。本文基于 Amazon 内部构建数千个生产级 Agent 的实战经验，拆解一套从原型验证到生产就绪的 Evaluation-first 路径。</p>
+<div class="case-study-meta"><span>ForFlow Agent 评估方法</span><span>Evaluation-first</span><span>ADLC</span><span>生产门控</span></div>
+<h1><span class="mobile-title-line">企业 Agent 上线前，</span><span class="mobile-title-line">先建立</span><span class="mobile-title-line">评估基线。</span></h1>
+<p class="case-study-lead">当企业把 AI Agent 从演示推向生产，最先需要补上的不是更多功能，而是一套能持续判断质量的评估方法。ForFlow 团队把过往生产经验整理成一条 Evaluation-first 路径，从原型验证一直走到上线门控和持续观测。</p>
 <div class="case-study-actions"><a class="btn btn--green" href="#adlc">查看 ADLC 飞轮 ↓</a><a class="btn btn--ghost" href="#metrics">查看评估指标 ↘</a></div>
 </div>
 <figure class="case-study-hero__media case-study-hero__media--scene">
@@ -148,7 +149,7 @@
 </figure>
 </div>
 <div aria-label="本案例的交付证据结构" class="case-proof-rail"><div><strong>原型鸿沟</strong><span>Demo 反馈积极，但没人能回答是否生产就绪</span></div><div><strong>评估基线</strong><span>先定义成功、边界、工具和基准数据集</span></div><div><strong>ADLC 飞轮</strong><span>生产 Trace 回流评估集，持续挖掘失败案例</span></div><div><strong>可评估架构</strong><span>工具、代码、安全和多智能体都要能独立归因</span></div></div>
-<p class="case-proof-note">这篇案例把“评估先行”的 Agent 工程纪律拆成企业可执行路径：先定义好坏，再把评估嵌入开发、上线门控、生产观测和改进循环，最后让工具、代码、安全和多智能体架构都变得可被评估。</p>
+<p class="case-proof-note">这是 ForFlow 团队成员在原组织中积累并带入现团队的工程方法。文中的阈值、模型切换和工具调用数字来自过往项目示例；用于新项目时，必须按任务、风险、数据和业务容错标准重新设定。</p>
 <div aria-label="长文阅读路线" class="case-reading-map">
 <div><small>长文阅读路线</small><strong>不用一口气读完，按角色先抓住自己的判断点。</strong></div>
 <a href="#overview"><span>决策层</span><b>先看原型鸿沟、ADLC 和结语，判断为什么评估是上线前置条件。</b></a>
@@ -308,7 +309,7 @@
 </table>
 </div>
 <p>改进循环的正确姿势是：评估、定位问题、修改 Prompt 或工具定义或 Retrieval 策略、重新评估。对绝大多数企业智能体来说，大部分性能提升来自 Prompt、工具和 Retrieval 层面的优化，而不是立刻换模型或微调。</p>
-<div class="case-reading-note"><strong>一个真实感更强的改进循环</strong><p>财务智能体上线后，通过生产采样发现一类查询的工具选择准确率从 78% 起步：用户问“欧洲今年整体表现怎么样”，智能体频繁调用 <code>getMarketData</code>，而不是 <code>getQuarterlyRevenue</code>。根因不是模型不够聪明，而是工具描述不够精确，<code>getMarketData</code> 描述里有 “market performance” 字样，和用户表达高度重合。修改方案是细化两个工具的描述，明确各自适用场景，并加入反例说明。改完重跑评估，准确率回升到 95%。整个循环没有动过一行模型代码。</p></div>
+<div class="case-reading-note"><strong>ForFlow 团队的工具优化示例</strong><p>财务智能体上线后，通过生产采样发现一类查询的工具选择准确率从 78% 起步：用户问“欧洲今年整体表现怎么样”，智能体频繁调用 <code>getMarketData</code>，而不是 <code>getQuarterlyRevenue</code>。根因不是模型不够聪明，而是工具描述不够精确，<code>getMarketData</code> 描述里有 “market performance” 字样，和用户表达高度重合。细化两个工具的适用场景并加入反例后，准确率回升到 95%。这组数字来自团队成员的过往项目，用于说明优化方法。</p></div>
 <p>第一个智能体上线只是里程碑。企业真正的价值，来自把这套能力在组织内规模化复制，而不是每次构建新智能体都从零开始。规模化有一个前提：单个智能体的质量基线必须先建立好。多个智能体协作时，问题可能来自任何一个环节，也可能来自交接过程本身；如果没有评估基线，出了问题几乎无从归因。</p>
 <p>扩展到组织级时，团队需要从项目思维转向平台思维。单个项目关心“这个智能体能不能用”；平台团队还要关心“整个组织的智能体能不能统一治理”。这意味着要维护经过安全审查的工具目录，建立统一的可观测性和评估标准，并运行跨智能体集中监控，让成本、质量和风险曲线可以被及时发现。</p>
 <p>生产数据是持续改进的原料。第一版上线时的 50 个基准样本，会随着真实用户交互不断扩充。生产中出现的新边界案例、新失败模式，都应该回流到评估集。规模化不是建更多智能体，而是建立一套让每个智能体都能持续变好的机制。</p>
@@ -394,7 +395,7 @@
 <article class="case-fit-card case-fit-card--yes"><small>正确方式</small><h3>把控制放到 Gateway 和 Policy 层。</h3><ul><li>认证层携带用户身份和权限 token</li><li>授权层在工具调用前拦截请求</li><li>会话隔离防止上下文跨用户泄露</li><li>个性化记忆按用户命名空间存储</li></ul></article>
 </div>
 <div class="case-document-grid">
-<article><span>01</span><small>认证层</small><h3>身份先进入会话。</h3><p>用户通过现有 Identity Provider，例如 Cognito、Entra ID、Okta 完成身份验证，拿到携带权限信息的 token。这个 token 在整个会话中传递。</p></article>
+<article><span>01</span><small>认证层</small><h3>身份先进入会话。</h3><p>用户通过企业现有身份平台完成验证，拿到携带权限信息的 token。这个 token 在整个会话中传递。</p></article>
 <article><span>02</span><small>授权层</small><h3>工具调用前先拦截。</h3><p>Gateway 验证当前用户是否有权限以当前参数调用这个工具，也可以注入第三方 OAuth 凭证、执行限流和审计。</p></article>
 <article><span>03</span><small>会话隔离</small><h3>上下文不能串用户。</h3><p>多用户并发时，每个用户会话必须完全独立。用户 A 的上下文和个性化记忆，不能泄露给用户 B。</p></article>
 <article><span>04</span><small>用户记忆</small><h3>个性化也要受控。</h3><p>报告格式偏好、常用筛选条件和历史交互可以按用户命名空间存储，但检索同样必须经过授权层管控。</p></article>
@@ -431,7 +432,7 @@
 <article><span>04</span><small>改进驱动力</small><h3>失败案例回流</h3><p>生产失败样本进入评估集，为下一轮优化提供有据可查的方向。</p></article>
 </div>
 <p>越早建立这套能力，它的复利效应越显著：每一次迭代都会让评估集更完整、指标体系更精准、整个飞轮转得更快。下一篇可以继续细化智能体评估到底有哪些维度、方法和从零构建路径；配套动手实验则可以把这里的基准数据集、工具定义和 Trace 回流做成可运行样例。</p>
-<div class="case-reference-list"><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html" rel="noopener" target="_blank">Amazon Bedrock Agents 官方文档</a><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html" rel="noopener" target="_blank">Amazon Bedrock 模型评估官方文档</a><a href="https://opentelemetry.io/docs/" rel="noopener" target="_blank">OpenTelemetry 官方文档</a></div>
+<div class="case-reference-list"><a href="https://aws.amazon.com/cn/blogs/china/part-1-enterprise-intelligent-why-evaluation/" rel="noopener noreferrer" target="_blank">团队过往方法的公开资料</a><a href="https://opentelemetry.io/docs/" rel="noopener noreferrer" target="_blank">OpenTelemetry 可观测性资料</a></div>
 </section>
 </article>
 </div>
@@ -445,21 +446,21 @@
 </div>
 </div>
 </section>
-<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的企业</small><h2>先选一个 Agent 原型，补齐评估基线，再讨论扩展。</h2><p>用一次 Q2Q 场景诊断，把职责边界、工具定义、基准数据集、上线阈值和 Trace 采样机制摆清楚。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&amp;博客</a></div></div></section>
-<section aria-labelledby="agent-eval-case-source-title" class="case-source-foot" id="case-source"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><div><small>案例价值</small><h2 id="agent-eval-case-source-title">企业 Agent 的第一项基础设施，不是模型，而是评估。</h2><p>只有先定义“好”、建立基准数据集和生产 Trace 回流，Agent 才能从演示系统变成可上线、可审计、可持续改进的工作系统。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把方法映射到你的企业</small><h2>先选一个 Agent 原型，补齐评估基线，再讨论扩展。</h2><p>把职责边界、工具定义、基准数据集、上线阈值和 Trace 采样机制摆清楚，再决定是否进入生产验证。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="cases.html">返回案例&amp;博客</a></div></div></section>
+<section aria-labelledby="agent-eval-case-source-title" class="case-source-foot" id="case-source"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><div><small>ForFlow 团队经验与公开依据</small><h2 id="agent-eval-case-source-title">这套评估方法来自团队做过的生产项目。</h2><p>公开资料用于说明可披露的方法和示例。企业落地时，评估集、阈值和上线门槛仍要按自己的业务风险重新定义。</p><a href="https://aws.amazon.com/cn/blogs/china/part-1-enterprise-intelligent-why-evaluation/" rel="noopener noreferrer" target="_blank">查看团队过往方法的公开资料 <span aria-hidden="true">↗</span></a></div></div></div></section>
 </main>
 <footer class="site-footer">
 <div class="container footer-main">
 <div class="footer-brand">
 <img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
-<p>面向企业的 AI 原生增长运行层。<br/>从高价值场景、安全落地到持续运营。</p>
+<p>判断投入，验证结果；<br/>跑通后再扩大。</p>
 </div>
 <div class="footer-col"><h3>企业服务</h3>
 <a href="ai-readiness-audit.html">AI 准备度审核</a>
-<a href="service-ai-enablement.html">企业 AI 赋能计划</a>
-<a href="service-data-governance.html">数据治理</a>
-<a href="service-agent-build.html">企业 Agent 搭建</a>
-<a href="service-ai-training.html">企业 AI 培训</a>
+<a href="service-ai-enablement.html">AI 采用与团队赋能</a>
+<a href="service-data-governance.html">AI 数据与知识治理</a>
+<a href="service-agent-build.html">企业 Agent 与工作流</a>
+<a href="service-ai-training.html">AI 实战培训</a>
 </div>
 <div class="footer-col"><h3>工具与资源</h3>
 <a href="navigator.html">AI 场景诊断</a>
@@ -475,7 +476,7 @@
 <a href="contact.html">联系</a>
 </div>
 </div>
-<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span></div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span><a href="privacy.html">隐私说明</a></div>
 </footer>
 <div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
 <div class="search-modal-backdrop" data-search-close=""></div>

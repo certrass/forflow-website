@@ -1,0 +1,118 @@
+{
+  "source_root": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench",
+  "files": [
+    {
+      "file": "style.css",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/style.css",
+      "source_sha256": "3c1947c2f74513376ba2e7166afe285918854450634c1b09e7db11c6db109cda",
+      "copied_sha256": "5fa209d0dd9f0ef7b90dfe5ed34cdcdb030e3498b557aed2cd358c27e44c3a9e",
+      "adaptations": [
+        "Use local Helvetica Neue with existing licensed Inter fallback; no system font redistribution."
+      ]
+    },
+    {
+      "file": "product.css",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/product.css",
+      "source_sha256": "00fcac8724e427d6d404aef6eb82c9dcc8fb043b3ebc67535483df6cb45d6b0c",
+      "copied_sha256": "00fcac8724e427d6d404aef6eb82c9dcc8fb043b3ebc67535483df6cb45d6b0c",
+      "adaptations": []
+    },
+    {
+      "file": "renewal.css",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/renewal.css",
+      "source_sha256": "16bcd69a91c0d0a75ed3ff417a94b847c4c02fd7315a0c7fa98a5be76f229a23",
+      "copied_sha256": "16bcd69a91c0d0a75ed3ff417a94b847c4c02fd7315a0c7fa98a5be76f229a23",
+      "adaptations": []
+    },
+    {
+      "file": "discovery.css",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/discovery.css",
+      "source_sha256": "64a5c4fd94a93cbccc77c5b5dce1fb5b2d1b9d5a5b8834f47966786768c51417",
+      "copied_sha256": "64a5c4fd94a93cbccc77c5b5dce1fb5b2d1b9d5a5b8834f47966786768c51417",
+      "adaptations": []
+    },
+    {
+      "file": "q2q.css",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/q2q.css",
+      "source_sha256": "53b4430e98eb763276c0ff86223ba87e6d35047dff41b797a89533294fca935f",
+      "copied_sha256": "53b4430e98eb763276c0ff86223ba87e6d35047dff41b797a89533294fca935f",
+      "adaptations": []
+    },
+    {
+      "file": "data.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/data.js",
+      "source_sha256": "bce2327a7ced2d78bb85df6eb84331aeef3b5eeeb6046085e4734b1f242bcf8d",
+      "copied_sha256": "bce2327a7ced2d78bb85df6eb84331aeef3b5eeeb6046085e4734b1f242bcf8d",
+      "adaptations": []
+    },
+    {
+      "file": "runtime.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/runtime.js",
+      "source_sha256": "c0ae4cbb58aa0d286599e106f99a615e73e1de7cdaec1f6c97c3a5f6027af372",
+      "copied_sha256": "3d37300929be8d8dd928b7ea350165704f7236d4f578a5838253d11cd11fc3a2",
+      "adaptations": [
+        "Route persistence through isolated showcase storage; no business logic changes."
+      ]
+    },
+    {
+      "file": "motion.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/motion.js",
+      "source_sha256": "ecb181fbcfe5c3a0af26925add9daef8b9e380760135660cad97eb48cc39ece2",
+      "copied_sha256": "ecb181fbcfe5c3a0af26925add9daef8b9e380760135660cad97eb48cc39ece2",
+      "adaptations": []
+    },
+    {
+      "file": "lifecycle-model.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/lifecycle-model.js",
+      "source_sha256": "9b0f5cc3e59aa8b116a8eed47e97f7122b3a3d10553bbfe9792d859617241ede",
+      "copied_sha256": "cf4b3c69325045df1e34a37b91cfe0b25c3ddb9d1561c48ea8e8079aba0a0978",
+      "adaptations": [
+        "Route persistence through isolated showcase storage; no business logic changes."
+      ]
+    },
+    {
+      "file": "q2q-model.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/q2q-model.js",
+      "source_sha256": "5eec1f001c661c270b5d2a6b458996cea86c527435bd68dce658512fb5bad8f6",
+      "copied_sha256": "ef1c8592e022994aaf574780c51ac54011b42b977004e995f4f4de40073fa913",
+      "adaptations": [
+        "Route persistence through isolated showcase storage; no business logic changes."
+      ]
+    },
+    {
+      "file": "q2q-ui.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/q2q-ui.js",
+      "source_sha256": "7bbdf4918b3cd3d8517fde304d76be1a16a8f6092f54d27f223ff8af97ee562c",
+      "copied_sha256": "7bbdf4918b3cd3d8517fde304d76be1a16a8f6092f54d27f223ff8af97ee562c",
+      "adaptations": []
+    },
+    {
+      "file": "lifecycle-ui.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/lifecycle-ui.js",
+      "source_sha256": "0386a51c02c728864157c4a2794aa35fe06e2fc0c8da5727fca5e5ad453892e0",
+      "copied_sha256": "0386a51c02c728864157c4a2794aa35fe06e2fc0c8da5727fca5e5ad453892e0",
+      "adaptations": []
+    },
+    {
+      "file": "discovery.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/discovery.js",
+      "source_sha256": "f46e48bbce72fbef97c8de86f6c97f831a2d418d26b2d705ec61539539447352",
+      "copied_sha256": "f46e48bbce72fbef97c8de86f6c97f831a2d418d26b2d705ec61539539447352",
+      "adaptations": []
+    },
+    {
+      "file": "app.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/workbench/app.js",
+      "source_sha256": "39deb29837f040c0f76dc702d33da695921a894518df4836198b0466029657e0",
+      "copied_sha256": "39deb29837f040c0f76dc702d33da695921a894518df4836198b0466029657e0",
+      "adaptations": []
+    },
+    {
+      "file": "shared-data.js",
+      "source": "/Users/zezhou/Documents/demo video/product_launch_fragments/data.js",
+      "source_sha256": "ffad3ce34434c2375f591f39d2573eaf95cc458b2a550d2b049906ccd7472e1c",
+      "adaptations": [],
+      "copied_sha256": "ffad3ce34434c2375f591f39d2573eaf95cc458b2a550d2b049906ccd7472e1c"
+    }
+  ]
+}

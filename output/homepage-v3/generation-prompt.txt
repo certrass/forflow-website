@@ -1,0 +1,61 @@
+Redesign the supplied ForFlow homepage mockup completely. The user rejected the last design because it looks cheap and generic. Produce ONE radically better, coherent full desktop homepage design. Category ui-mockup. Desired canvas 1600 × 3200 pixels, straight-on full website screenshot, not a poster or a slide. The actual design should be composed at desktop scale, not a shrunken page. Render all UI and Chinese type sharply.
+
+REFERENCE IMAGES, in order:
+1 Attio Workflows hero: POSITIVE reference for confident large typography and fine-grained product craftsmanship.
+2 Attio Ask hero: POSITIVE reference for spacious composition, beautifully edited product moments.
+3 Databricks homepage: POSITIVE reference for graphic scale, intentional cropped product visuals, strong white/dark section rhythm.
+4 Prior ForFlow mockup: NEGATIVE reference, preserve its Chinese brand and underlying business content ONLY. DO NOT preserve its composition, generic boxed tables, weak typography, small screenshots, vast accidentally empty upper-right area, or equal-sized little content cards.
+
+Creative direction “Flow in action”:
+A truly premium enterprise-AI brand experience. Think a senior product-brand team at Attio designed this in Chinese, with the rigor of Swiss editorial typography and the tangible product clarity of Databricks. This is a redesign, not a wireframe. Huge intentional typographic hierarchy. A few big expressive moments, not many little boxes. Exactly aligned optical spacing. Richly crafted product-detail imagery. Page hierarchy must be immediately legible when zoomed out, UI must reward zooming in.
+Colors: off-white #FAFAF7, pure white, near-black #111312, Flow Green #6CF67E. Green is concentrated into a few sharp accents. No green gradient buttons. No glowing sci-fi. No blue/purple. No rounded SaaS-template card grid. No stock office photos. Avoid heavy thick Chinese bold; use sophisticated medium-weight grotesk Chinese with tight optical spacing, clean geometric Latin. Body text dark neutral. Thin keylines. Border radii restrained 5–10px. Realistic soft depth only where product panels overlap. Some interfaces can be dark, the overall page is predominantly light.
+Use ALL large areas intentionally. Avoid tiny body copy or squeezing six ordinary sections together.
+
+COMPLETE PAGE COMPOSITION:
+
+1. Compact navigation at the top, about 90px high, very thin bottom rule:
+ForFlow wordmark in proper mixed case, a small green line threading through “Flow”, small “萬維流形” beneath. Simple nav links “能力” “案例” “服务” “资源”. Right “联系团队 ↗” as a clean black button. No announcement strip.
+
+2. A powerful typographic hero on off-white, about 600px:
+Small uppercase microtype “HUMAN + AI. WORK THAT FLOWS.” in gray/green, carefully letterspaced.
+Oversized Chinese headline about 120px, sharply typeset, confident two-line composition:
+“让 AI 真正”
+“流入业务。”
+This fills the left two-thirds beautifully. Second line has a very subtle green horizontal accent, not outlined text or a marker doodle.
+On the lower right aligned with the second line's baseline area, a short readable paragraph:
+“把知识、系统和人的判断，”
+“接成一条能完成任务的工作流。”
+Below it one green rectangular button “看一条流程如何运行 ↗” and quiet text link “开始场景诊断”.
+This asymmetrical headline / supporting text relationship must look intentional and balanced, not like an empty missing right-hand image.
+Below the hero typography is one quiet row of 3 scenario tabs: “供应链决策” selected, “文档自动化”, “工业知识”. Fine underline, no pill containers.
+
+3. HERO PRODUCT STAGE, ~650px:
+An expansive product composition across almost the full page width, on a faint off-white technical dot grid. A delicate 1px green connector path moves LEFT to RIGHT through three visually differentiated but related objects. This is a premium marketing product demonstration inspired by Attio Workflows, not a generic admin dashboard.
+LEFT: a compact white input/document object with little data-source rows “订单数据 / 信用状态 / 渠道履行”, then a natural-language query “渠道 B 为什么出现履行异常？” with a small send icon. Crisp, authentic details.
+CENTER: the largest object, a graphite dark analysis panel “异常分析” with a beautifully drawn small channel/period chart and two clearly structured findings: “异常集中在鞋类订单” and “未付款订单触发信用控制”. Fine separators, a discreet green “已找到依据” status, and a compact evidence attachment row. Interface has real hierarchy and sharp typography, a close-up crop, no sidebar, no traffic-light window decoration, no generic spreadsheet.
+RIGHT: a slightly overlapping light approval artifact “订单放行请求” with a tiny person-avatar placeholder containing a Chinese initial, “信用控制负责人”, status “待人工确认”, and elegant dark “查看审批摘要 →” button. Layering gives depth but objects stay connected by actual workflow meaning.
+A green path joins input, analysis and action, with small precise connection anchors. No arrows crossing text. Sufficient whitespace around each object. Three small captions beneath “01 读取业务上下文” “02 定位异常与原因” “03 把行动交给负责人”.
+Small discrete caption at bottom left “场景演示 · 基于团队过往项目的匿名材料”; bottom right “查看完整案例 ↗”.
+NO fabricated KPI totals, ROI, customer logos or claims of autonomous approval.
+
+4. A boldly contrasting NEAR-BLACK capabilities section, ~600px:
+Big white heading on left “每一步，都有依据。” at 70px, short muted paragraph “知道用了什么数据，为什么这样判断，下一步由谁确认。”
+Right a beautifully restrained visualization of an actual source → extracted field → review connection. Use two cropped white document fragments with a small green highlight and one narrow structured-results panel, large enough to read. It should feel like a polished real product close-up against the black background, not four bento cards. One selected field “付款条件” is explicitly “待复核”, highlighting its source in a Chinese supplier contract. No sensitive real data.
+Across the bottom of the section, three spaced typographic columns separated only by short thin rules, not enclosing boxes:
+“01 连接知识” / “把图纸、文档与业务口径关联起来”
+“02 编排工作” / “让系统调用与人工确认顺畅衔接”
+“03 持续评估” / “从失败样本中找到下一次改进”
+This is a strong graphic change of pace with purposeful content.
+
+5. CASES, ~680px, back to warm white:
+Large editorial heading “从真实问题，\n看见新的工作方式。” with actual two lines, and an understated “全部案例 ↗” right.
+Only TWO generously sized editorial case features side by side, NOT three miniature boxed cards. Huge 3:2 visuals, no card border.
+Left: cropped monochrome industrial P&ID engineering drawing, precise dark lines and one green-highlighted linked equipment path, like an actual knowledge-query product artifact. Micro label “工业知识 / 团队过往实践”, title “让工厂图纸，成为可查询的知识”, small “阅读案例 ↗”.
+Right: refined close-up of extracted Chinese document fields alongside a source fragment, subtly tinted pale gray-green. Micro label “文档自动化 / 工程方法”, title “把文档里的字段，接进业务流程”, small “阅读案例 ↗”.
+Below these two features, one thin editorial text row “Agent 上线前，先建立评估基线” with “查看评估方法 ↗”; this keeps evaluation present without a third repeated card.
+
+6. BOTTOM CTA + FOOTER, ~450px:
+A light spacious CTA area with an oversized headline “从一条流程开始。” on the left and a black “开始场景诊断 ↗” button on the right. Under headline tiny editorial four-step line “诊断 / 验证 / 部署 / 复评”. No numbered four-circle timeline, no card.
+Footer separated by a crisp rule with a large low-contrast ForFlow wordmark spanning the width as a final branded typographic gesture, plus small useful links “企业服务  案例与实践  联系我们” and “© 2026 ForFlow 萬維流形”. Keep footer fully visible.
+
+Prioritize visual quality over including every bit of text. The key user request is a much higher-quality UI. Ruthlessly remove clutter. Keep the opening headline huge and the central product demonstration materially more sophisticated than the rejected mockup. The design must have visual tension, scale changes, expressive but controlled black/white contrast, and exquisite details. No outside annotation, no concept label, no browser chrome. One complete cohesive homepage.

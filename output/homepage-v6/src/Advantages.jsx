@@ -1,0 +1,18 @@
+import React, {useState} from 'react';
+import {ArrowRight, ArrowUpRight, Check, Database, FileText, FlowArrow, GitBranch, ShieldCheck, Stack} from '@phosphor-icons/react';
+import {ShowcaseViewport} from './ShowcaseViewport.jsx';
+const advantages=[
+  {title:'先看清业务，再设计流程。',body:'从目标、业务对象和责任分工出发，把资料、系统数据与工作步骤连起来。',tag:'业务上下文',Icon:Database},
+  {title:'自研评估，持续检验效果。',body:'围绕投入条件、运行表现与业务结果保留判断依据；模型、数据或规则变了，就重新评估。',tag:'评估与复评',Icon:ShieldCheck},
+  {title:'把有效方法，留在企业里。',body:'将审核过的规则、工作流和评估样本纳入版本管理，供后续项目查阅、调整与复用。',tag:'能力积累',Icon:Stack},
+];
+function AdvantageVisual({active}) {
+ return <div className={`advantage-visual advantage-visual-${active}`}>
+  <div className="adv-visual-top"><span><FlowArrow size={15}/>FORFLOW / {advantages[active].tag}</span></div>
+  {active===0?<div className="context-visual"><div className="context-sources">{[[FileText,'业务资料','合同 · 单据 · 图纸'],[Database,'系统记录','事件 · 字段 · 版本'],[Stack,'专业知识','规则 · 经验 · 约束']].map(([Icon,title,sub])=><div key={title}><Icon size={22} weight="light"/><strong>{title}</strong><small>{sub}</small></div>)}</div><div className="context-wires"><i/><i/><i/></div><div className="context-core"><span><FlowArrow size={27}/></span><div><small>同一个业务上下文</small><strong>跨单据一致性核验</strong><p>目标清楚 · 来源对应 · 责任明确</p></div></div><div className="context-output"><span><Check size={13}/>差异与依据</span><ArrowRight size={15}/><span>负责人复核</span><ArrowRight size={15}/><span>业务接续</span></div></div>:active===1?<div className="evaluation-visual"><div className="eval-heading"><span className="eval-emblem"><ShieldCheck size={29} weight="light"/></span><div><small>Q2Q EVALUATION</small><strong>同一项工作，持续验证。</strong></div><span className="eval-version">v1.0</span></div><div className="eval-gates">{[['01','投入判断','目标与条件'],['02','生产判断','运行与边界'],['03','价值判断','结果与观察']].map(([n,title,note])=><div key={n}><span>{n}</span><strong>{title}</strong><small>{note}</small><div className="eval-line"><i/></div></div>)}</div><div className="eval-change"><GitBranch size={16}/><span>模型 / 规则 / 数据变化</span><ArrowRight size={13}/><span>影响范围</span><ArrowRight size={13}/><b>重新评估</b></div><div className="eval-note"><FileText size={12}/>判断依据、版本与历史记录保持关联</div></div>:<div className="asset-visual"><div className="asset-orbit"><div><Stack size={27}/><span>企业能力资产</span></div></div><div className="asset-version-cards">{[['v1.0','明确业务方法','任务 · 规则 · 字段'],['v1.1','积累运行经验','复核 · 反馈 · 样本'],['v2.0','适配新的工作','迁移 · 验证 · 升级']].map(([v,t,s],i)=><div key={v}><span>{v}</span><strong>{t}</strong><small>{s}</small>{i<2&&<ArrowRight size={15}/>}</div>)}</div><div className="asset-principle"><ShieldCheck size={14}/>再次使用，先检查新场景的适用条件。</div></div>}
+ </div>;
+}
+export function Advantages(){
+ const [active,setActive]=useState(0);
+ return <section className="advantages-section v6-container" id="advantages"><div className="advantages-heading"><span className="overline">WHY FORFLOW</span><h2>让 AI 进入业务，<br/><span>也经得起业务检验。</span></h2><p>理解业务、验证结果、积累方法。<br/>把 AI 项目的每次进展，变成企业自己的能力。</p></div><div className="advantages-content"><div className="advantage-options" aria-label="ForFlow 的三项优势">{advantages.map((a,i)=><div className={active===i?'active':''} key={a.title}><button aria-expanded={active===i} aria-controls={`advantage-copy-${i}`} onClick={()=>setActive(i)}><span>0{i+1}</span><strong>{a.title}</strong><ArrowUpRight size={15}/></button>{active===i&&<p id={`advantage-copy-${i}`}>{a.body}</p>}</div>)}</div><ShowcaseViewport label={advantages[active].tag} width={690}><AdvantageVisual key={active} active={active}/></ShowcaseViewport></div><div className="advantage-next"><span>项目的价值，也在于留下可复用的方法。</span><a href="#capabilities">了解 AI 资产<ArrowRight size={14}/></a></div></section>;
+}

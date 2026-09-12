@@ -78,30 +78,13 @@ def ok(name,detail=''):
 def test_invite_gate():
     c=CDP(unlocked=False)
     try:
-        c.goto('landing.html?reset=1')
+        c.goto('landing.html')
         assert c.eval("location.pathname.endsWith('/landing.html')")
-        c.goto('index.html')
-        c.wait("location.pathname.endsWith('/landing.html') && new URLSearchParams(location.search).get('next')?.includes('index.html')")
-        visible=c.eval("({title:document.title,input:!!document.querySelector('[data-invite-code]'),status:document.querySelector('[data-invite-status]')?.textContent})")
-        assert '受邀预览' in visible['title'] and visible['input']
-        c.eval("""
-          const form = document.querySelector('[data-invite-form]');
-          const input = document.querySelector('[data-invite-code]');
-          input.value = 'WRONG';
-          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-        """)
-        c.wait("document.querySelector('[data-invite-status]')?.dataset.state === 'error'")
-        c.eval("""
-          const form = document.querySelector('[data-invite-form]');
-          const input = document.querySelector('[data-invite-code]');
-          input.value = 'FLOW2026';
-          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-        """)
-        c.wait("location.pathname.endsWith('/index.html')",10)
-        unlocked=c.eval(f"JSON.parse(localStorage.getItem('{INVITE_STORAGE_KEY}') || '{{}}').expiresAt > Date.now()")
-        assert unlocked
+        visible=c.eval("({title:document.title,input:!!document.querySelector('[data-gate-code]'),formAction:document.querySelector('[data-gate-form]')?.getAttribute('action'),formMethod:document.querySelector('[data-gate-form]')?.method})")
+        assert '受邀访问' in visible['title'] and visible['input']
+        assert visible['formAction'] == '/api/gate-login' and visible['formMethod'] == 'post'
         assert not c.exceptions
-        ok('邀请码门禁','未授权访问会进入门禁页；错码提示；FLOW2026 验证后回到首页')
+        ok('邀请码门禁','门禁页使用服务端 POST；错码、正确码、Cookie 与回跳由 Node 运行时测试覆盖')
     finally:c.close()
 
 def test_search_overlay():
@@ -137,9 +120,13 @@ def test_navigator_flow():
         c.goto('navigator.html')
         placeholder_free=c.eval("!['原型说明','内容映射占位','内容占位说明','DETAIL / CMS SLOT','正式上线时可接','响应式企业网站原型'].some((phrase)=>document.body.textContent.includes(phrase))")
         assert placeholder_free
-        assert c.eval("document.querySelector('[data-next]').disabled")
-        c.eval("document.querySelector('#challenge-knowledge').click()")
         assert not c.eval("document.querySelector('[data-next]').disabled")
+        assert c.eval("document.querySelector('[data-next]').getAttribute('aria-disabled') === 'true'")
+        c.eval("document.querySelector('[data-next]').click()")
+        assert c.eval("document.querySelector('.step-panel[data-step=\"1\"]').classList.contains('is-active')")
+        assert c.eval("document.querySelector('[data-toast]')?.textContent.includes('请选择')")
+        c.eval("document.querySelector('#challenge-knowledge').click()")
+        assert c.eval("document.querySelector('[data-next]').getAttribute('aria-disabled') === 'false'")
         c.eval("document.querySelector('[data-next]').click()")
         c.wait("document.querySelector('.step-panel[data-step=\"2\"]').classList.contains('is-active')")
         c.eval("document.querySelector('#goal-speed').click(); document.querySelector('#goal-quality').click(); document.querySelector('#readiness-process').click()")

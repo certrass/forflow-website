@@ -46,7 +46,7 @@
     setBusy(true);
     setStatus('正在验证访问码。');
     try {
-      const response = await fetch('/.netlify/functions/gate-login', {
+      const response = await fetch('/api/gate-login', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },

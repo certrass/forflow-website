@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>修正价值影响工作台 · 页面原型</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card-bg: #ffffff;
+      --primary: #2a6ef2;
+      --accent: #f97316;
+      --positive: #16a34a;
+      --negative: #dc2626;
+      --border: #e1e7ef;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --pill-bg: #eef2ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245, 247, 251, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 8px 16px rgba(31, 41, 55, 0.05);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 32px 12px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .summary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 6px 12px rgba(31, 41, 55, 0.06);
+    }
+
+    .summary-card h3 {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .summary-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .summary-value.positive {
+      color: var(--positive);
+    }
+
+    .summary-value.negative {
+      color: var(--negative);
+    }
+
+    .summary-subtext {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .risk-alert {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px dashed var(--accent);
+      background: rgba(249, 115, 22, 0.1);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 32px auto 64px;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .panel header {
+      position: relative;
+      top: auto;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .panel-title {
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .panel-title h2 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .panel-title-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    button, .link-button {
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .link-button {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    button.primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 6px 12px rgba(42, 110, 242, 0.3);
+    }
+
+    button.ghost, .link-button {
+      background: rgba(42, 110, 242, 0.08);
+      color: var(--primary);
+    }
+
+    button:hover, .link-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(31, 41, 55, 0.12);
+    }
+
+    .suggestion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .suggestion-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: 1.2fr 2fr auto;
+      gap: 16px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(42, 110, 242, 0.08), rgba(255, 255, 255, 0.8));
+    }
+
+    .suggestion-card strong {
+      font-size: 1rem;
+      display: block;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .tag {
+      background: rgba(31, 41, 55, 0.08);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .tag.status {
+      background: rgba(220, 38, 38, 0.12);
+      color: var(--negative);
+    }
+
+    .tag.sensitivity-high {
+      background: rgba(42, 110, 242, 0.12);
+      color: var(--primary);
+    }
+
+    .suggestion-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .step {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.92);
+      position: relative;
+    }
+
+    .step.active {
+      border-color: var(--primary);
+      box-shadow: 0 8px 18px rgba(42, 110, 242, 0.18);
+    }
+
+    .step .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .step strong {
+      font-size: 1rem;
+    }
+
+    .field-group {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .field-group header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .field-group header h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr 1.4fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-top: 1px solid rgba(226, 232, 240, 0.6);
+    }
+
+    .field:first-of-type {
+      border-top: none;
+    }
+
+    .field label {
+      font-weight: 600;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(249, 250, 251, 0.8);
+      font-size: 0.9rem;
+    }
+
+    .field textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    .inline-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .impact-preview {
+      position: sticky;
+      bottom: 20px;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(22, 163, 74, 0.1);
+      border: 1px solid rgba(22, 163, 74, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .impact-preview strong {
+      color: var(--positive);
+      font-size: 1.1rem;
+    }
+
+    .impact-preview span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .impact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .impact-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(42, 110, 242, 0.05);
+    }
+
+    .impact-item .meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .impact-item .bar {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.1);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .impact-item .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    .impact-item.positive .bar span {
+      background: var(--positive);
+    }
+
+    .impact-item.negative .bar span {
+      background: var(--negative);
+    }
+
+    .impact-item .value {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    aside .panel {
+      position: sticky;
+      top: 108px;
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .property-item {
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(241, 245, 249, 0.9);
+    }
+
+    .property-item h4 {
+      margin: 0 0 4px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .market-chart {
+      height: 160px;
+      border-radius: 12px;
+      border: 1px dashed rgba(42, 110, 242, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .evidence-list,
+    .history-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .evidence-item,
+    .timeline-entry {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .timeline-entry strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .timeline-entry span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .comment-box {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+    }
+
+    @media (max-width: 1024px) {
+      .header-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      aside .panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        padding: 16px;
+      }
+
+      main {
+        padding: 0 16px;
+      }
+
+      .suggestion-card {
+        grid-template-columns: 1fr;
+      }
+
+      .field {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="summary-card">
+        <div class="pill">AI 基础估值</div>
+        <h3>估值区间</h3>
+        <div class="summary-value">460 - 475 万</div>
+        <div class="summary-subtext">中位数 467.5 万 · 数据更新于 2025-08-23</div>
+      </div>
+      <div class="summary-card">
+        <div class="pill">AI 诊断修正</div>
+        <h3>综合调整</h3>
+        <div class="summary-value negative">-5.2 万</div>
+        <div class="summary-subtext">-1.1% · 噪音暴露、楼层偏低</div>
+      </div>
+      <div class="summary-card">
+        <div class="pill">经纪人专业修正</div>
+        <h3>AI 粗估</h3>
+        <div class="summary-value positive">+3.0 万</div>
+        <div class="summary-subtext">+0.6% · 豪装、隔音优化</div>
+      </div>
+      <div class="summary-card">
+        <div class="pill">最终建议价</div>
+        <h3>综合参考区间</h3>
+        <div class="summary-value">458 - 472 万</div>
+        <div class="summary-subtext">待经纪人确认与微调</div>
+      </div>
+      <div class="risk-alert">
+        ⚠️ 本次专业修正累计影响 +11.2%，请核对依据，必要时提交复核。
+        <a href="#" class="link-button">查看风险提示</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="panel">
+        <div class="panel-title">
+          <h2>AI 建议（Top 3 待完善字段）</h2>
+          <div class="panel-title-actions">
+            <button class="ghost">忽略并反馈</button>
+            <button class="primary">刷新建议</button>
+          </div>
+        </div>
+        <div class="suggestion-list">
+          <div class="suggestion-card">
+            <div>
+              <strong>装修年份</strong>
+              <div class="tag-row">
+                <span class="tag">房屋属性</span>
+                <span class="tag status">待完善</span>
+                <span class="tag sensitivity-high">敏感度：High</span>
+              </div>
+            </div>
+            <p>近 5 年内的高品质翻修可显著提升溢价预期，缺少确切年份导致估值区间偏宽。</p>
+            <div class="suggestion-actions">
+              <button class="primary">立即补齐</button>
+              <button class="ghost">忽略本次</button>
+            </div>
+          </div>
+          <div class="suggestion-card">
+            <div>
+              <strong>学区等级</strong>
+              <div class="tag-row">
+                <span class="tag">权属与附加</span>
+                <span class="tag status">待完善</span>
+                <span class="tag sensitivity-high">敏感度：High</span>
+              </div>
+            </div>
+            <p>同小区成交显示学区差异直接影响 5%-8% 价格弹性，需确认是否具备名额或签约学校。</p>
+            <div class="suggestion-actions">
+              <button class="primary">立即补齐</button>
+              <button class="ghost">忽略本次</button>
+            </div>
+          </div>
+          <div class="suggestion-card">
+            <div>
+              <strong>噪音等级</strong>
+              <div class="tag-row">
+                <span class="tag">房屋属性</span>
+                <span class="tag status">待完善</span>
+                <span class="tag">敏感度：Medium</span>
+              </div>
+            </div>
+            <p>临街房源噪音差异对买方决策影响明显，需要补充隔音处理与临街距离说明。</p>
+            <div class="suggestion-actions">
+              <button class="primary">立即补齐</button>
+              <button class="ghost">忽略本次</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <h2>修正任务流</h2>
+          <div class="panel-title-actions">
+            <button class="ghost">保存草稿</button>
+            <button class="primary">提交复核</button>
+          </div>
+        </div>
+        <div class="workflow-steps">
+          <div class="step active">
+            <div class="label">Step 1</div>
+            <strong>补充信息</strong>
+            <p class="inline-hint">完善 AI 建议的字段并上传证据</p>
+          </div>
+          <div class="step">
+            <div class="label">Step 2</div>
+            <strong>影响预估</strong>
+            <p class="inline-hint">系统计算粗估影响，自动降权/截断</p>
+          </div>
+          <div class="step">
+            <div class="label">Step 3</div>
+            <strong>提交确认</strong>
+            <p class="inline-hint">核对风险提示并确认专业修正值</p>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <header>
+            <h3>房屋属性</h3>
+            <button class="ghost">收起</button>
+          </header>
+          <div class="field">
+            <label for="renovation">装修年份</label>
+            <input id="renovation" placeholder="例如：2022 年" />
+            <div>
+              <textarea placeholder="请描述装修范围、材料品牌等补充信息"></textarea>
+              <p class="inline-hint">高影响字段，建议提供合同或图片作为佐证。</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="soundproof">隔音处理</label>
+            <select id="soundproof">
+              <option value="">选择隔音等级</option>
+              <option>三层中空玻璃</option>
+              <option>双层断桥铝</option>
+              <option>普通铝合金</option>
+            </select>
+            <div>
+              <textarea placeholder="补充描述隔音施工时间、材料与证据"></textarea>
+              <p class="inline-hint">若无票据或图片，AI 将自动降权影响比值。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <header>
+            <h3>权属与附加价值</h3>
+            <button class="ghost">展开更多</button>
+          </header>
+          <div class="field">
+            <label for="school">学区等级</label>
+            <select id="school">
+              <option value="">选择等级</option>
+              <option>市重点</option>
+              <option>区重点</option>
+              <option>普通公办</option>
+            </select>
+            <div>
+              <textarea placeholder="说明学区名额、对口学校、近年升学表现等"></textarea>
+              <p class="inline-hint">与“学区名额”字段高度相关，系统会自动合并计算影响。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="impact-preview">
+          <div>
+            <strong>当前粗估 +2.6%</strong>
+            <span>约 +3.1 万 · 已对缺失证据项应用降权</span>
+          </div>
+          <button class="primary">查看影响详情</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <h2>修正影响详情</h2>
+          <div class="panel-title-actions">
+            <button class="ghost">导出 JSON</button>
+            <button class="ghost">生成复核包</button>
+          </div>
+        </div>
+        <div class="impact-list">
+          <div class="impact-item positive">
+            <div>
+              <strong>豪华装修（2022 年）</strong>
+              <div class="meta">
+                <span>贡献 +1.8%</span>
+                <span>证据充足</span>
+              </div>
+              <div class="bar">
+                <span style="width: 60%"></span>
+              </div>
+              <p class="inline-hint">材料票据齐全，影响未触发上限。</p>
+            </div>
+            <div class="value">+2.1 万</div>
+          </div>
+          <div class="impact-item positive">
+            <div>
+              <strong>三层中空隔音玻璃</strong>
+              <div class="meta">
+                <span>贡献 +0.6%</span>
+                <span>证据薄弱已降权</span>
+              </div>
+              <div class="bar">
+                <span style="width: 20%"></span>
+              </div>
+              <p class="inline-hint">缺少票据，按 0.7 系数降权。</p>
+            </div>
+            <div class="value">+0.7 万</div>
+          </div>
+          <div class="impact-item negative">
+            <div>
+              <strong>学区等级待核实</strong>
+              <div class="meta">
+                <span>贡献 -0.4%</span>
+                <span>相关项已合并</span>
+              </div>
+              <div class="bar">
+                <span style="width: 14%"></span>
+              </div>
+              <p class="inline-hint">缺乏确切名额信息，暂以保守折价处理。</p>
+            </div>
+            <div class="value">-0.5 万</div>
+          </div>
+        </div>
+        <div class="impact-preview" style="background: rgba(249, 115, 22, 0.12); border-color: rgba(249, 115, 22, 0.4);">
+          <div>
+            <strong style="color: var(--accent);">累计影响 +11.2%</strong>
+            <span>约 +13.2 万 · 超过软阈值，请准备补充说明</span>
+          </div>
+          <button class="primary">查看风险提示</button>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="panel">
+        <div class="panel-title">
+          <h2>房源画像</h2>
+          <button class="ghost">查看全部字段</button>
+        </div>
+        <div class="property-grid">
+          <div class="property-item">
+            <h4>小区</h4>
+            <div>景瑞臻城花园</div>
+          </div>
+          <div class="property-item">
+            <h4>户型</h4>
+            <div>3 室 2 厅 2 卫 · 118㎡</div>
+          </div>
+          <div class="property-item">
+            <h4>楼龄</h4>
+            <div>8 年 · 中高区</div>
+          </div>
+          <div class="property-item">
+            <h4>敏感标签</h4>
+            <div>临街南向 · 双地铁 600m</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <h2>市场快照</h2>
+          <button class="ghost">刷新数据</button>
+        </div>
+        <div class="market-chart">Mini Chart Placeholder</div>
+        <ul class="evidence-list">
+          <li class="evidence-item">
+            <div>
+              <strong>近 30 天成交</strong>
+              <p class="inline-hint">均价 8.3 万/㎡ · 23 套</p>
+            </div>
+            <button class="ghost">详情</button>
+          </li>
+          <li class="evidence-item">
+            <div>
+              <strong>挂牌热度</strong>
+              <p class="inline-hint">浏览 +12%，带看 -5%</p>
+            </div>
+            <button class="ghost">详情</button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <h2>证据与资料</h2>
+          <button class="primary">上传</button>
+        </div>
+        <div class="evidence-list">
+          <div class="evidence-item">
+            <div>
+              <strong>ImageRef1.jpg</strong>
+              <p class="inline-hint">豪华装修客厅照片</p>
+            </div>
+            <button class="ghost">关联字段</button>
+          </div>
+          <div class="evidence-item">
+            <div>
+              <strong>装修合同.pdf</strong>
+              <p class="inline-hint">2022 年 8 月签署 · 旭格系统门窗</p>
+            </div>
+            <button class="ghost">查看</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <h2>历史修正记录</h2>
+          <button class="ghost">导出</button>
+        </div>
+        <div class="history-timeline">
+          <div class="timeline-entry">
+            <div>
+              <strong>2025-08-12 · 第三轮</strong>
+              <span>经纪人确认 +1.5 万 · 复核通过</span>
+            </div>
+            <button class="ghost">查看</button>
+          </div>
+          <div class="timeline-entry">
+            <div>
+              <strong>2025-07-28 · 第二轮</strong>
+              <span>系统自动降权 0.8 万 · 待补证据</span>
+            </div>
+            <button class="ghost">查看</button>
+          </div>
+        </div>
+        <div class="comment-box">
+          <h3>协同备注</h3>
+          <textarea placeholder="@估价师，麻烦复核隔音材料发票的有效性"></textarea>
+          <div style="margin-top: 12px; display: flex; justify-content: flex-end; gap: 8px;">
+            <button class="ghost">取消</button>
+            <button class="primary">发布</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="工业能效合作场景材料整理：保留工业协议、预测模型、多目标调度、PLC / DCS 执行、安全边界与分阶段上线方法。" name="description"/>
+<title>实时电价驱动的工厂能效优化 Agent｜ForFlow 萬維流形</title>
+<link href="assets/forflow-mark.png" rel="icon"/>
+<link href="styles.css?v=20260712-service-visual-pilot-v28" rel="stylesheet"/>
+<link href="visual-system.css?v=20260712-service-visual-pilot-v28" rel="stylesheet"/>
+<script defer="" src="script.js?v=20260712-service-visual-pilot-v28"></script>
+</head>
+<body class="case-detail-page case-study-v2 case-theme--energy">
+<a class="skip-link" href="#main">跳至主要内容</a>
+<svg aria-hidden="true" class="ff-symbols" focusable="false">
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.3 15.3 5.2 5.2"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m7 9 5 5 5-5"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"></path></symbol>
+<symbol id="i-download" viewbox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"></path></symbol>
+<symbol id="i-compass" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"></path></symbol>
+<symbol id="i-layers" viewbox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></symbol>
+<symbol id="i-data" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></symbol>
+<symbol id="i-agent" viewbox="0 0 24 24"><rect height="11" rx="3" width="14" x="5" y="7"></rect><path d="M9 11h.01M15 11h.01M9 15h6M12 7V4m-2 0h4M3 12H1m22 0h-2"></path></symbol>
+<symbol id="i-training" viewbox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"></path><path d="M7 12v4c2.8 2.2 7.2 2.2 10 0v-4M21 9v6"></path></symbol>
+<symbol id="i-book" viewbox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22V5.5Z"></path></symbol>
+<symbol id="i-cases" viewbox="0 0 24 24"><rect height="15" rx="2" width="18" x="3" y="5"></rect><path d="M8 5V3h8v2M3 10h18M9 14h6"></path></symbol>
+<symbol id="i-people" viewbox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2"></circle><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M14 14c3.5 0 6 2.2 6 6"></path></symbol>
+<symbol id="i-customer" viewbox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"></path><path d="M8 9h8M8 12h5"></path></symbol>
+<symbol id="i-marketing" viewbox="0 0 24 24"><path d="M4 13v-2l12-5v12L4 13Z"></path><path d="M7 14v5h4l-1-5M19 9c1 1 1 5 0 6"></path></symbol>
+<symbol id="i-knowledge" viewbox="0 0 24 24"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"></path><path d="M9 19h6M10 15v2h4v-2M4 8H2m20 0h-2M5 3 3.5 1.5M19 3l1.5-1.5"></path></symbol>
+<symbol id="i-operations" viewbox="0 0 24 24"><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><path d="M9 12h4l3-4M13 12l3 4"></path></symbol>
+<symbol id="i-finance" viewbox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"></path><path d="m3 8 6-5 6 7 6-5"></path></symbol>
+<symbol id="i-chart" viewbox="0 0 24 24"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 16v-5"></path><path d="M12 16V8"></path><path d="M16 16v-3"></path><path d="m7 9 4-4 3 3 5-5"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></symbol>
+<symbol id="i-growth" viewbox="0 0 24 24"><path d="M4 19V5m0 14h16"></path><path d="m7 15 4-4 3 2 5-6M15 7h4v4"></path></symbol>
+<symbol id="i-flow" viewbox="0 0 24 24"><path d="M3 7h6a3 3 0 0 1 3 3v4a3 3 0 0 0 3 3h6"></path><circle cx="3" cy="7" r="1.5"></circle><circle cx="21" cy="17" r="1.5"></circle></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="i-spark" viewbox="0 0 24 24"><path d="m12 2 1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6L12 2ZM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"></path></symbol>
+<symbol id="i-brain" viewbox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2.2A3.4 3.4 0 0 0 4 12a3.4 3.4 0 0 0 2 5.8A3 3 0 0 0 12 18V6a3 3 0 0 0-3-2Z"></path><path d="M15 4a3 3 0 0 1 5 2.2A3.4 3.4 0 0 1 20 12a3.4 3.4 0 0 1-2 5.8A3 3 0 0 1 12 18V6a3 3 0 0 1 3-2ZM8 8h4m-5 5h5m4-5h-4m5 5h-5"></path></symbol>
+<symbol id="i-bulb" viewbox="0 0 24 24"><path d="M9 18h6M10 21h4M8.5 15.5A7 7 0 1 1 15.5 15.5c-.9.7-1.5 1.3-1.5 2.5h-4c0-1.2-.6-1.8-1.5-2.5Z"></path><path d="M12 6v4m-2 0h4"></path></symbol>
+<symbol id="i-split" viewbox="0 0 24 24"><path d="M12 21V7M7 12l5-5 5 5M4 4h5M15 4h5"></path></symbol>
+<symbol id="i-cart" viewbox="0 0 24 24"><path d="M3 4h2l2 11h10l3-7H6"></path><circle cx="9" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle><path d="M13 5h7M16.5 2v6"></path></symbol>
+<symbol id="i-build" viewbox="0 0 24 24"><path d="M4 19 15 8M13 4l7 7M3 20l4-1-3-3-1 4Z"></path><path d="m15 3 6 6-2 2-6-6 2-2Z"></path></symbol>
+<symbol id="i-reference" viewbox="0 0 24 24"><path d="M6 3h10l3 3v15H6V3Z"></path><path d="M16 3v4h4M9 11h7M9 15h7M9 19h4"></path></symbol>
+<symbol id="i-text" viewbox="0 0 24 24"><path d="M4 5h16M12 5v14M8 19h8"></path></symbol>
+<symbol id="i-image" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><circle cx="9" cy="9" r="2"></circle><path d="m4 17 5-5 4 4 2-2 5 5"></path></symbol>
+<symbol id="i-audio" viewbox="0 0 24 24"><path d="M9 18V6l10-2v12"></path><circle cx="6" cy="18" r="3"></circle><circle cx="16" cy="16" r="3"></circle></symbol>
+<symbol id="i-video" viewbox="0 0 24 24"><rect height="14" rx="2" width="14" x="3" y="5"></rect><path d="m17 10 4-3v10l-4-3v-4Z"></path></symbol>
+<symbol id="i-translate" viewbox="0 0 24 24"><path d="M4 5h8M8 3v2m-3 5c3 0 6-3 6-6M6 8c1 2 3 4 6 5M14 19l3-8 3 8M15 16h4"></path></symbol>
+<symbol id="i-code" viewbox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"></path></symbol>
+<symbol id="i-cube" viewbox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></symbol>
+<symbol id="i-speech" viewbox="0 0 24 24"><path d="M5 4h14v12H9l-4 4V4Z"></path><path d="M9 8v4m3-6v8m3-5v3"></path></symbol>
+<symbol id="i-document" viewbox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Z"></path><path d="M14 3v5h5M9 12h6M9 16h6"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+<symbol id="i-cost" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15 8.5c-.7-.7-1.7-1-3-1-2 0-3 .9-3 2s1.1 1.7 3 2 3 .9 3 2-1 2-3 2c-1.4 0-2.5-.4-3.3-1.2M12 5v14"></path></symbol>
+<symbol id="i-requirements" viewbox="0 0 24 24"><path d="M5 4h14v16H5V4Z"></path><path d="m8 9 1.5 1.5L12 8m2 2h3m-9 5 1.5 1.5L12 14m2 2h3"></path></symbol>
+<symbol id="i-experience" viewbox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6Z"></path><path d="M9 19c.5 1.3 1.5 2 3 2s2.5-.7 3-2M12 7v4"></path></symbol>
+<symbol id="i-settings" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19 13.5v-3l-2-.7-.6-1.5.9-1.9-2.1-2.1-1.9.9-1.5-.6L10.5 3h-3l-.7 2-1.5.6-1.9-.9-2.1 2.1.9 1.9-.6 1.5-2 .7v3l2 .7.6 1.5-.9 1.9 2.1 2.1 1.9-.9 1.5.6.7 2h3l.7-2 1.5-.6 1.9.9 2.1-2.1-.9-1.9.6-1.5 2-.7Z" transform="translate(2 0) scale(.82)"></path></symbol>
+<symbol id="i-risk" viewbox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 9v5m0 3h.01"></path></symbol>
+<symbol id="i-security" viewbox="0 0 24 24"><rect height="11" rx="2" width="14" x="5" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"></path></symbol>
+<symbol id="i-leadership" viewbox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10H4Z"></path><path d="M9 20v-6h6v6M8 9h8"></path></symbol>
+<symbol id="i-quote" viewbox="0 0 24 24"><path d="M4 6h7v7H7c0 3-1 5-4 6 2-2 2-4 1-6V6Zm10 0h7v7h-4c0 3-1 5-4 6 2-2 2-4 1-6V6Z"></path></symbol>
+</svg>
+<div class="ff-utility-bar">
+<div class="container ff-utility-inner">
+<span><i aria-hidden="true"></i> AI Flows. Business Grows.</span>
+<nav aria-label="快捷链接"><a href="playbook.html">企业 AI 手册</a><a href="cases.html">案例&amp;博客</a><a href="contact.html">联系</a></nav>
+</div>
+</div>
+<header class="site-header ff-header" data-header="">
+<div class="container header-inner">
+<a aria-label="ForFlow 萬維流形首页" class="brand" href="index.html">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+</a>
+<nav aria-label="主导航" class="primary-nav ff-mega-nav" data-mega-root="">
+<ul>
+<li><a href="index.html">首页</a></li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">企业服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--services" data-mega-panel="">
+<div class="mega-panel-intro"><span>ENTERPRISE SERVICES</span><h2>先看现在缺哪一步。</h2><p>问题还没排清，先做准备度审核；缺口明确，就直接进入团队采用、数据、工作流或培训。</p><a href="index.html#services">查看全部服务 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-link-grid">
+<a class="mega-link" href="ai-readiness-audit.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><span><b>AI 准备度审核</b><small>先判断价值、基础、风险和 30/90 天路线</small></span><em>01</em></a>
+<a class="mega-link" href="service-ai-enablement.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-layers"></use></svg></span><span><b>AI 采用与团队赋能</b><small>把零散试用变成岗位方法与采用指标</small></span><em>02</em></a>
+<a class="mega-link" href="service-data-governance.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><span><b>AI 数据与知识治理</b><small>统一口径、质量、权限与知识来源</small></span><em>03</em></a>
+<a class="mega-link" href="service-agent-build.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-agent"></use></svg></span><span><b>企业 Agent 与工作流</b><small>连接知识、系统、工具和人工审批</small></span><em>04</em></a>
+<a class="mega-link" href="service-ai-training.html"><span class="mega-icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-training"></use></svg></span><span><b>AI 实战培训</b><small>管理层、业务与技术团队分角色训练</small></span><em>05</em></a>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">场景与工具 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--tools" data-mega-panel="">
+<div class="mega-panel-intro"><span>TOOLS &amp; SCENARIOS</span><h2>从业务问题进入，工具放在后面。</h2><p>方向还不清楚，可以做诊断；已有问题，直接看场景或搜索资料。</p><a href="navigator.html">立即开始诊断 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="mega-feature-stack">
+<a class="mega-feature" href="navigator.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-compass"></use></svg></span><div><b>AI 场景诊断</b><small>3 分钟排出一个建议起点</small></div><em>开始</em></a>
+<a class="mega-feature" href="category-hrms.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-people"></use></svg></span><div><b>HR 场景地图</b><small>招聘、入职、培训、员工服务与绩效</small></div><em>浏览</em></a>
+<button class="mega-feature search-trigger" type="button"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></span><div><b>全站搜索</b><small>查找服务、场景、资料、案例与博客</small></div><em>搜索</em></button>
+</div>
+</div>
+</li>
+<li class="mega-item">
+<button aria-expanded="false" class="mega-trigger" data-mega-trigger="" type="button">手册与洞察 <svg aria-hidden="true" class="ff-icon"><use href="#i-chevron"></use></svg></button>
+<div class="mega-panel mega-panel--insights" data-mega-panel="">
+<a class="mega-editorial" href="playbook.html"><span class="mega-editorial-kicker">FEATURED GUIDE</span><strong>企业生成式 AI<br/>实战手册</strong><p>从基础、商业价值和买或建，到风险、安全与实施路线。</p><span class="mega-editorial-link">在线阅读 <svg aria-hidden="true" class="ff-icon"><use href="#i-arrow"></use></svg></span></a>
+<div class="mega-insight-list">
+<a href="cases.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-cases"></use></svg></span><div><b>案例&amp;博客</b><small>按问题、过程和结果阅读案例与文章</small></div></a>
+<a href="case-wren-kitchens.html"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-growth"></use></svg></span><div><b>Wren Kitchens 案例</b><small>从紧急扩容到长期技术合作</small></div></a>
+<a href="document-viewer.html?doc=playbook"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-document"></use></svg></span><div><b>PDF 在线阅读</b><small>在浏览器中查看与下载参考文件</small></div></a>
+</div>
+</div>
+</li>
+<li><a aria-current="page" href="cases.html">案例&amp;博客</a></li>
+<li><a href="contact.html">联系</a></li>
+</ul>
+</nav>
+<div class="header-actions">
+<button aria-label="打开全站搜索" class="icon-btn search-trigger" type="button"><svg aria-hidden="true" class="ff-icon"><use href="#i-search"></use></svg></button>
+<a class="btn btn--green header-cta" href="navigator.html">开始诊断 <span aria-hidden="true">→</span></a>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="打开菜单" class="menu-toggle" type="button"><span></span></button>
+</div>
+</header>
+<div aria-hidden="true" class="mobile-menu-panel ff-mobile-menu" id="mobile-menu">
+<a class="mobile-menu-home" href="index.html">首页 <span>01</span></a>
+<details><summary>企业服务 <span>02</span></summary><div class="mobile-subnav"><a href="ai-readiness-audit.html">AI 准备度审核</a><a href="service-ai-enablement.html">AI 采用与团队赋能</a><a href="service-data-governance.html">AI 数据与知识治理</a><a href="service-agent-build.html">企业 Agent 与工作流</a><a href="service-ai-training.html">AI 实战培训</a></div></details>
+<details><summary>场景与工具 <span>03</span></summary><div class="mobile-subnav"><a href="navigator.html">AI 场景诊断</a><a href="category-hrms.html">HR 场景地图</a><button class="search-trigger" type="button">全站搜索</button></div></details>
+<details><summary>手册与洞察 <span>04</span></summary><div class="mobile-subnav"><a href="playbook.html">企业 AI 实战手册</a><a href="cases.html">案例&amp;博客</a><a href="document-viewer.html?doc=playbook">PDF 阅读器</a></div></details>
+<a aria-current="page" href="cases.html">案例&amp;博客 <span>05</span></a>
+<a href="contact.html">联系 <span>06</span></a>
+<a class="btn btn--green" href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">→</span></a>
+</div>
+<main id="main"><section class="case-study-hero case-study-hero--energy">
+<div class="container">
+<nav class="breadcrumbs"><a href="index.html">首页</a><span>/</span><a href="cases.html">案例&amp;博客</a><span>/</span><strong>工厂能效优化 Agent</strong></nav>
+<div class="case-study-hero__grid">
+<div class="case-study-hero__copy">
+<div class="case-study-meta"><span>合作场景材料</span><span>工业能效</span><span>实时电价</span><span>源网荷储</span></div>
+<h1><span class="mobile-title-line">实时电价驱动的</span><span class="mobile-title-line">工厂能效优化 Agent</span></h1>
+<p class="case-study-lead">固定时间表很难应对每 15 分钟变化的价格信号，也看不见冷机、水泵、空压机、储能和生产计划之间的牵连。这份方案材料保留从工业协议接入、负荷与电价预测，到多目标调度、PLC / DCS 执行和人工接管的完整技术链。</p>
+<div class="case-study-actions"><a class="btn btn--green" href="#architecture">先看五层闭环 ↓</a><a class="btn btn--ghost" href="#safety">查看安全边界 ↘</a></div>
+</div>
+<figure class="case-study-hero__media case-study-hero__media--scene">
+<img alt="工厂能源工程师在中控室查看负荷、电价与设备运行曲线" decoding="async" fetchpriority="high" loading="eager" src="assets/cases/energy-optimization-agent-hero.png"/>
+<figcaption>主视觉由 Image Gen 生成，用于说明工业能源中控场景，不代表具体合作工厂或已上线系统。</figcaption>
+</figure>
+</div>
+<div aria-label="本案例的技术与验收结构" class="case-proof-rail"><div><strong>15 分钟</strong><span>现货价格与日内滚动优化的关键时间粒度</span></div><div><strong>5 层闭环</strong><span>感知、预测、决策、执行、反馈</span></div><div><strong>3 类预测</strong><span>负荷、光伏出力、短期电价</span></div><div><strong>受控上线</strong><span>先建议模式，再逐步放开低风险设备</span></div></div>
+<p class="case-proof-note">本文根据项目方提供的“国家电网合作场景”材料整理；目前未随稿提供客户可披露授权、工厂名称、原始运行日志、独立审计或验收记录。合作名称在取得书面披露确认前不作为公开背书；所有数字仅按方案设定、示例测算或待验收目标理解。</p>
+</div>
+</section>
+<div class="container case-detail-shell case-story-shell">
+<aside class="case-toc"><div class="case-toc-inner"><small>本页目录</small><nav data-scrollspy=""><a class="is-active" href="#overview">业务问题</a><a href="#architecture">五层闭环</a><a href="#prediction">预测引擎</a><a href="#decision">调度模型</a><a href="#dispatch">日前与日内</a><a href="#equipment">设备群优化</a><a href="#safety">安全边界</a><a href="#pilot">分阶段上线</a><a href="#evidence">验收证据</a><a href="#references">资料来源</a></nav><a class="case-toc-source" href="#case-source">案例边界 ↘</a></div></aside>
+<article>
+<section class="case-section case-overview" data-section="" id="overview">
+<p class="eyebrow">The operating problem</p>
+<h2>问题不只是“电用多了”，而是价格、生产和设备约束没有放在同一张调度表里。</h2>
+<p>很多工厂仍按班次或固定时段启停冷冻机、空压机和循环水系统。遇到动态电价，设备可能在高价时满功率运行，低价窗口反而已经停机。单独降低一台冷机频率也不一定省电：供水温度变化可能让水泵提速，工艺冷却不足还会影响良品率。</p>
+<div class="case-question-panel"><div><small>原来的工作方式</small><h3>人工看报表、按经验调设备，决策周期以小时或天计算。</h3><p>EMS 能采数，也能按规则执行，但价格、订单、设备效率、储能 SOC 和安全边界往往分散在不同系统里。</p></div><div class="case-goal"><small>目标工作单元</small><h3>感知 → 预测 → 决策 → 执行 → 复盘</h3><p>把实时价格、生产计划和设备状态合在一起，先给出可解释的调度建议，再在明确权限内自动执行。</p></div></div>
+<div class="case-fact-grid"><div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><div><small>数据入口</small><strong>电表、传感器、MES / WMS / APS</strong></div></div><div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-flow"></use></svg></span><div><small>控制入口</small><strong>PLC / DCS 与设备控制网络</strong></div></div><div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><div><small>优化对象</small><strong>购电成本、设备效率、交付与碳排</strong></div></div><div class="case-fact"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>责任边界</small><strong>硬约束、锁定清单、人工接管</strong></div></div></div>
+</section>
+<section class="case-section" data-section="" id="architecture">
+<p class="eyebrow">Five-layer closed loop</p>
+<h2>不是再加一块能源看板，而是把传感器到执行器接成可审查的闭环。</h2>
+<div class="case-document-grid"><article><span>01</span><small>感知层</small><h3>统一设备与生产数据</h3><p>老设备可能使用 Modbus RTU，新设备可能使用 OPC UA、PROFINET 或厂商协议。采集层要完成协议适配、时间戳对齐和单位统一，并把用能数据与 MES、WMS、APS 的订单、班次和设备状态关联。</p></article><article><span>02</span><small>预测层</small><h3>提前看到负荷、光伏和价格</h3><p>滚动预测未来 1–24 小时负荷，并结合气象与历史发电数据预测光伏出力；短期电价预测输出概率区间，供调度模型选择保守或积极策略。</p></article><article><span>03</span><small>决策层</small><h3>在多目标和硬约束中找方案</h3><p>模型同时计算购电成本、设备启停损耗、生产计划完成率和碳排，并把关键工序、设备手册与安全规则写成不可越过的约束。</p></article><article><span>04</span><small>执行层</small><h3>把调度结果送进 PLC / DCS</h3><p>控制指令通过工业网络下发。每条指令都应带版本、时间、设备、参数、触发原因与授权状态，方便现场人员确认和追溯。</p></article><article><span>05</span><small>反馈层</small><h3>用真实偏差更新下一轮</h3><p>系统持续比较预测与实际负荷、电价和设备响应，把偏差、异常与人工否决原因写回评估集，决定模型是否重训或回退。</p></article></div>
+<aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>技术边界</small><h3>“秒级闭环”是系统指标，不等于所有设备都应自动控制。</h3><p>材料提出数据采集 1 秒、模型计算 2–5 秒、指令下发小于 1 秒、设备动作 1–10 秒，目标端到端小于 15 秒。这个数字必须用真实 PLC / DCS 链路和设备响应日志验收，不能只在算法环境里计时。</p></div></aside>
+</section>
+<section class="case-section" data-section="" id="prediction">
+<p class="eyebrow">Prediction engines</p>
+<h2>三个预测引擎回答三个不同问题，不能合成一个“万能模型”。</h2>
+<div class="case-value-cards case-value-cards--triple"><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-chart"></use></svg></span><small>负荷滚动预测</small><h3>未来什么时候需要多少电？</h3><p>可用 LSTM 或 Transformer 结合历史曲线、订单、班次和设备状态，以 15 分钟粒度预测 1–24 小时负荷。材料把 MAPE &lt; 5% 设为目标，实际阈值应按工厂波动性分场景制定。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-data"></use></svg></span><small>光伏出力预测</small><h3>自有电源能覆盖多少负荷？</h3><p>把云量、辐照度、温度与历史发电曲线结合，预测各时段光伏出力。材料目标为 MAPE &lt; 8%，需要按晴天、阴天和快速云变分别验收。</p></article><article><span><svg aria-hidden="true" class="ff-icon"><use href="#i-brain"></use></svg></span><small>短期电价预测</small><h3>未来 6–24 小时价格风险在哪？</h3><p>输入区域历史成交、全网负荷、新能源出力和供需结构。输出不应只给一个点估计，还要给置信区间；不确定区间默认保守运行。</p></article></div>
+<div aria-label="三类预测引擎的输入输出与验收方法" class="case-data-table" role="region" tabindex="0"><table><thead><tr><th>引擎</th><th>主要输入</th><th>输出</th><th>建议验收</th></tr></thead><tbody><tr><th scope="row">负荷预测</th><td>用电曲线、订单、班次、设备状态</td><td>1–24 小时、15 分钟粒度负荷曲线</td><td>MAPE、峰值漏判率、不同生产日稳定性</td></tr><tr><th scope="row">光伏预测</th><td>气象、辐照度、温度、历史发电</td><td>各时段可用光伏出力</td><td>分天气 MAPE、快速波动响应</td></tr><tr><th scope="row">电价预测</th><td>成交、负荷、新能源、供需结构</td><td>价格区间与方向概率</td><td>方向准确率、极端价格召回率、策略收益</td></tr></tbody></table></div>
+</section>
+<section class="case-section" data-section="" id="decision">
+<p class="eyebrow">Constrained optimization</p>
+<h2>强化学习只是候选方法，真正决定能否上线的是状态、动作、奖励和约束有没有定义清楚。</h2>
+<div class="case-layer-notes"><article><small>状态空间</small><p>设备功率与运行状态、生产订单进度、未来电价、历史用电曲线、设备效率参数、储能荷电状态 SOC。</p></article><article><small>动作空间</small><p>设备启停时间、功率调节幅度、储能充放电功率，以及是否接受需求响应邀约。</p></article><article><small>奖励函数</small><p>购电成本、启停损耗、生产计划完成率和碳排放加权。权重必须由能源、生产、设备和财务共同确认。</p></article></div>
+<p>材料列出 SAC、DQN、PPO 等强化学习算法。算法名称不应先于业务建模：离散启停、连续功率调节、混合动作空间和长周期设备损耗，可能需要不同求解器，也可以先用混合整数优化或模型预测控制建立可解释基线，再比较强化学习是否真的提高收益。</p>
+<div class="case-reading-note"><strong>上线判断</strong><p>如果模型无法解释“为什么在这个时段调这台设备”、无法重放当时的状态与约束、无法证明生产和安全约束没有被违反，就不能进入自动控制。</p></div>
+</section>
+<section class="case-section" data-section="" id="dispatch">
+<p class="eyebrow">Day-ahead + intraday</p>
+<h2>两级调度：日前先排 24 小时，日内再处理预测偏差。</h2>
+<ol class="case-process"><li><span>01</span><div><h3>读取次日电价与生产计划</h3><p>获取 24 小时价格预测、MES 生产计划、设备维保状态、天气与光伏预测。</p></div></li><li><span>02</span><div><h3>生成 15 分钟粒度时间表</h3><p>模型在生产、设备、安全和储能约束内，安排设备启停、功率和充放电计划。</p></div></li><li><span>03</span><div><h3>日内每 15 分钟重新比较</h3><p>将实际电价、负荷和设备响应与预测值比较；材料建议偏差超过 5% 时触发未来 3–4 小时重优化。</p></div></li><li><span>04</span><div><h3>高价时压低可柔性负荷</h3><p>切换非关键冷机、安排储能放电或延后可移动工序，但关键生产线保持锁定。</p></div></li><li><span>05</span><div><h3>低价时吸收可转移负荷</h3><p>优先储能充电，并在生产计划允许时前移高耗能预处理工序。</p></div></li><li><span>06</span><div><h3>保存指令、结果与人工干预</h3><p>记录价格信号、预测版本、约束命中、执行结果和人工否决，供次日复盘。</p></div></li></ol>
+<p class="source-note">材料中的 0.65 元/kWh、1.20 元/kWh、4200 元与 1.8 万元等数字属于情景演示，没有随稿提供结算单、设备日志或生产记录，因此本文不把它们展示为已验证客户成效。</p>
+</section>
+<section class="case-section" data-section="" id="equipment">
+<p class="eyebrow">Equipment fleet optimization</p>
+<h2>设备群优化看总系统，不追求某一台机器的局部最低功率。</h2>
+<p>冷冻站、空压站和循环水系统存在耦合。冷机降频后，水泵可能提速；供水温度变化还可能影响工艺质量。优化模型需要同时读取每台设备的效率曲线、最低运行时长、启停次数、爬坡速率和关键负荷优先级。</p>
+<div class="case-comparison-table"><div><span>示例</span><span>方案 A：单机满载</span><span>方案 B：两机分配</span><strong>制冷需求</strong><p>1 号机承担 800 RT</p><p>1 号机 500 RT，2 号机 300 RT</p><strong>效率假设</strong><p>满载 COP = 4.5</p><p>约 65% 负荷 COP = 5.8，另一台按 COP = 4.2</p><strong>折算功率</strong><p>800 ÷ 4.5 × 0.293 ≈ 52 kW</p><p>(500 ÷ 5.8 + 300 ÷ 4.2) × 0.293 ≈ 46 kW</p><strong>说明</strong><p>只追求少开一台设备</p><p>按真实性能曲线分配负荷，示例测算约节电 11%</p></div></div>
+<p>这只是说明计算逻辑的简化示例，不是通用结论。真实项目要用每台设备的厂商曲线、老化状态、现场工况和校准后的流量、温差数据重新计算。</p>
+</section>
+<section class="case-section" data-section="" id="safety">
+<p class="eyebrow">Safety &amp; control boundary</p>
+<h2>自动调度之前，先把“绝对不调”和“什么时候必须交给人”写成系统规则。</h2>
+<div class="case-fit-grid"><article class="case-fit-card case-fit-card--yes"><small>生产约束</small><h3>紧急订单与关键工序锁定</h3><ul><li>正在执行的关键订单不可被价格信号打断</li><li>工艺冷却与质量相关设备设最低供给</li><li>生产计划变化后重新求解，不直接沿用旧指令</li><li>任何降载都要留下业务责任人</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>设备约束</small><h3>启停、最小运行与爬坡边界</h3><ul><li>每日最大启停次数按设备手册设置</li><li>启动后满足最小运行时长</li><li>功率调节不超过允许爬坡速率</li><li>指令下发前再次校验实时状态</li></ul></article><article class="case-fit-card case-fit-card--no"><small>绝对不调</small><h3>安全系统独立于 AI</h3><ul><li>消防水泵与应急照明</li><li>关键工艺冷却和生命安全系统</li><li>处于故障、检修或通讯异常的设备</li><li>没有可靠反馈信号的执行器</li></ul></article><article class="case-fit-card case-fit-card--yes"><small>人工接管</small><h3>异常时回到保守策略</h3><ul><li>预测置信度低或数据延迟超阈值</li><li>设备响应与指令偏差持续扩大</li><li>价格异常但原因无法确认</li><li>人工一键切回原有 EMS 规则</li></ul></article></div>
+<aside class="case-callout"><span><svg aria-hidden="true" class="ff-icon"><use href="#i-risk"></use></svg></span><div><small>不建议直接宣称 L4</small><h3>“全程无人工参与”不适合作为项目起点。</h3><p>对于生产和能源控制，合理路径是先影子运行，再建议模式，再对低风险设备有限授权。每次权限扩大都要有回放、故障注入、人工接管和恢复测试。</p></div></aside>
+</section>
+<section class="case-section" data-section="" id="pilot">
+<p class="eyebrow">Phased rollout</p>
+<h2>三阶段推进，每一步都要有可以拒绝上线的验收门。</h2>
+<div class="case-adoption-grid"><article><span>01</span><small>1–3 个月</small><h3>数据基座</h3><p>盘点仪表与传感器，打通工业网络和 MES / ERP，治理缺失、异常、单位与时间戳。材料建议以设备覆盖率 ≥95%、数据可用率 ≥98%、延迟 &lt;5 秒作为候选目标。</p></article><article><span>02</span><small>2–4 个月</small><h3>预测与回测</h3><p>至少用 3 个月历史数据训练和回测负荷、光伏与电价模型。除了平均误差，还要检查峰值、极端天气、换班和停机日。</p></article><article><span>03</span><small>2–3 个月</small><h3>建议模式</h3><p>Agent 先输出建议，由能源主管确认执行。比较“原策略、Agent 建议、实际执行”三条曲线，记录人工否决原因。</p></article><article><span>04</span><small>受控放权</small><h3>低风险设备闭环</h3><p>只对通过回放与故障测试的设备开放自动控制，设置动作上限、回退策略和实时告警。</p></article><article><span>05</span><small>持续运行</small><h3>漂移与收益复评</h3><p>电价机制、生产结构和设备性能都会变化。预测误差、策略收益、设备损耗和人工接管率要持续复评。</p></article><article><span>06</span><small>扩展范围</small><h3>源网荷储协同</h3><p>在负荷侧闭环稳定后，再加入光伏、储能与需求响应，不一次性扩大优化边界。</p></article></div>
+</section>
+<section class="case-section" data-section="" id="evidence">
+<p class="eyebrow">Evidence packet</p>
+<h2>这类项目的证据，不是一张“节省 30%”的汇总图。</h2>
+<div aria-label="能效优化项目验收证据表" class="case-data-table case-data-table--wide" role="region" tabindex="0"><table><thead><tr><th>证据</th><th>要回答的问题</th><th>建议口径</th><th>不能省略</th></tr></thead><tbody><tr><th scope="row">预测报告</th><td>模型是否真的提前看见变化？</td><td>分工况 MAPE、峰值召回、方向准确率</td><td>基线模型、时间窗口、异常日</td></tr><tr><th scope="row">调度回放</th><td>当时为什么做这个动作？</td><td>状态、约束、模型版本、候选方案</td><td>被拒绝方案和约束命中</td></tr><tr><th scope="row">控制日志</th><td>指令是否被设备正确执行？</td><td>下发、确认、响应、恢复时间</td><td>PLC / DCS 回执与通讯异常</td></tr><tr><th scope="row">生产影响</th><td>省电有没有伤害交付与质量？</td><td>产量、良品率、温度压力、停机</td><td>同期生产结构与订单差异</td></tr><tr><th scope="row">财务结算</th><td>节省是否真实进入账单？</td><td>电费、需求响应、储能损耗、运维成本</td><td>基准期、天气和产量校正</td></tr><tr><th scope="row">安全记录</th><td>系统有没有越权或频繁接管？</td><td>约束违规数、人工接管率、回退成功率</td><td>故障注入与恢复测试</td></tr></tbody></table></div>
+<p>只有把这些证据放在一起，才能判断节省来自更好的调度，还是来自减产、天气变化、设备停机或电价本身下降。收益区间必须以经过校正的基线和真实结算数据为准。</p>
+</section>
+<section class="case-section" data-section="" id="references">
+<p class="eyebrow">Sources &amp; boundaries</p>
+<h2>公开政策支持这个方向，但具体成效仍要回到项目证据。</h2>
+<p>国家发展改革委、国家能源局在 2025 年发布的“人工智能+”能源实施意见中，明确提出电力供需预测、智能辅助决策、调度控制和源网荷储安全低碳运行等方向。南方区域电力市场公开资料也说明，现货交易可每 15 分钟形成价格信号。</p>
+<div class="case-reference-list"><a href="https://www.nea.gov.cn/20250908/8a90bf7f17b141038fe7be0988a2c603/c.html" rel="noopener" target="_blank">国家能源局：“人工智能+”能源高质量发展实施意见</a><a href="https://www.sasac.gov.cn/n2588025/n2588124/c32265384/content.html" rel="noopener" target="_blank">国务院国资委：南方区域电力市场每 15 分钟形成价格</a></div>
+<div class="case-reading-note"><strong>合作与成效边界</strong><p>“国家电网合作场景”来自项目方提供的信息，尚未随稿提供客户书面披露授权。本文未使用客户标识，也未把情景数字写成客户官方发布或第三方审计结论；正式公开合作名称前，仍需确认可披露范围、客户引用与指标附件。</p></div>
+</section>
+</article>
+</div>
+<section class="case-related"><div class="container"><div class="case-related-head"><div><p class="eyebrow">Related cases</p><h2>继续看相邻的工业与决策问题。</h2></div><a class="text-link" href="cases.html">查看全部案例&amp;博客 →</a></div><div class="case-related-grid"><a class="case-related-card" href="case-manufacturing-pid-intelligence.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/thumb-manufacturing-pid.webp"/><div><small>制造知识资产</small><h3>P&amp;ID 图纸如何进入工厂运营</h3><p>图纸解析、知识图谱、工程师复核与追溯</p><span>继续阅读 <b>↗</b></span></div></a><a class="case-related-card" href="case-supply-chain-agentic-decision.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/supply-chain-agentic-decision-hero.png"/><div><small>多智能体决策</small><h3>供应链数据如何进入行动闭环</h3><p>语义层、查询、根因归因与审批</p><span>继续阅读 <b>↗</b></span></div></a><a class="case-related-card" href="case-agent-evaluation-first.html"><img alt="" decoding="async" loading="lazy" src="assets/cases/agent-evaluation-first-hero.png"/><div><small>评估优先</small><h3>Agent 为什么要先建立评估基线</h3><p>生产 Trace、持续评估与质量门控</p><span>继续阅读 <b>↗</b></span></div></a></div></div></section>
+<section class="case-next-cta"><div class="container case-next-cta__inner"><div><small>把案例映射到你的工厂</small><h2>先选一组可调设备，算清数据、控制和安全边界。</h2><p>不要从“全厂自动调度”开始。先用一条冷冻站、空压站或储能策略跑完影子模式和建议模式。</p></div><div><a class="btn btn--light" href="navigator.html">开始 AI 场景诊断 →</a><a class="btn btn--ghost" href="contact.html?topic=energy-agent">讨论能效场景</a></div></div></section>
+<section aria-labelledby="energy-case-source-title" class="case-source-foot" id="case-source"><div class="container"><div class="case-source-card"><span class="case-source-card__icon"><svg aria-hidden="true" class="ff-icon"><use href="#i-shield"></use></svg></span><div><small>案例价值</small><h2 id="energy-case-source-title">能效 Agent 的价值，不是“自动调设备”，而是把每一次调度变成可解释、可回退、可验收的经营动作。</h2><p>价格、产量、设备寿命、质量和安全必须一起进入判断。技术链越完整，证据和责任边界越不能被压缩。</p><a href="navigator.html">开始 AI 场景诊断 <span aria-hidden="true">↗</span></a></div></div></div></section>
+</main>
+<footer class="site-footer">
+<div class="container footer-main">
+<div class="footer-brand">
+<img alt="ForFlow 萬維流形" src="assets/forflow-lockup-transparent.png"/>
+<p>判断投入，验证结果；<br/>跑通后再扩大。</p>
+</div>
+<div class="footer-col"><h3>企业服务</h3>
+<a href="ai-readiness-audit.html">AI 准备度审核</a>
+<a href="service-ai-enablement.html">AI 采用与团队赋能</a>
+<a href="service-data-governance.html">AI 数据与知识治理</a>
+<a href="service-agent-build.html">企业 Agent 与工作流</a>
+<a href="service-ai-training.html">AI 实战培训</a>
+</div>
+<div class="footer-col"><h3>工具与资源</h3>
+<a href="navigator.html">AI 场景诊断</a>
+<a href="playbook.html">企业 AI 实战手册</a>
+<a href="category-hrms.html">HR AI 场景地图</a>
+<a href="document-viewer.html?doc=playbook">PDF 阅读器</a>
+</div>
+<div class="footer-col"><h3>案例&amp;博客与行动</h3>
+<a href="cases.html">案例&amp;博客</a>
+<a href="case-wren-kitchens.html">Wren Kitchens 案例</a>
+<button class="footer-search search-trigger" type="button">全站搜索</button>
+<a href="navigator.html">开始诊断</a>
+<a href="contact.html">联系</a>
+</div>
+</div>
+<div class="container footer-bottom"><span>© 2026 ForFlow.ai 萬維流形</span><span>企业 AI 场景工程 · 诊断、案例与交付路径持续更新</span><a href="privacy.html">隐私说明</a></div>
+</footer>
+<div aria-hidden="true" aria-labelledby="search-modal-title" aria-modal="true" class="search-modal" data-search-modal="" role="dialog">
+<div class="search-modal-backdrop" data-search-close=""></div>
+<div class="search-modal-panel">
+<h2 class="sr-only" id="search-modal-title">搜索 ForFlow</h2>
+<form action="search.html" class="search-modal-form" method="get">
+<span class="search-modal-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4.3 4.3"></path></svg></span>
+<input aria-label="搜索关键词" autocomplete="off" name="search" placeholder="输入服务、场景或资料，例如：Agent" type="search"/>
+<button class="btn btn--green" type="submit">搜索</button>
+</form>
+<button class="search-modal-close" data-search-close="" type="button">关闭 <span aria-hidden="true">×</span></button>
+<div class="search-suggestions"><span>常用搜索</span><a href="search.html?search=Agent">企业 Agent</a><a href="search.html?search=供应链">供应链</a><a href="search.html?search=DFMEA">DFMEA</a><a href="search.html?search=医疗">医疗智能体</a><a href="search.html?search=数据治理">数据治理</a><a href="search.html?search=Playbook">企业 AI 手册</a></div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,23 @@
+version = 1
+name = "Forflow website · GitHub"
+
+[setup]
+script = ""
+
+[[actions]]
+name = "GitHub 状态"
+icon = "tool"
+command = "github_project_root=\"$(git rev-parse --show-toplevel)\" && python3 \"$github_project_root/.codex/scripts/github-workflow.py\" check --repo \"$github_project_root\""
+platform = "darwin"
+
+[[actions]]
+name = "上传预检"
+icon = "test"
+command = "github_project_root=\"$(git rev-parse --show-toplevel)\" && python3 \"$github_project_root/.codex/scripts/github-workflow.py\" preflight --repo \"$github_project_root\""
+platform = "darwin"
+
+[[actions]]
+name = "上传已提交版本"
+icon = "run"
+command = "github_project_root=\"$(git rev-parse --show-toplevel)\" && python3 \"$github_project_root/.codex/scripts/github-workflow.py\" push --repo \"$github_project_root\""
+platform = "darwin"

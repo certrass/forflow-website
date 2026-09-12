@@ -131,18 +131,7 @@
             if (status) status.textContent = '已提交。项目顾问会通过你填写的工作邮箱联系。';
             form.reset();
           } else {
-            const draft = {};
-            for (const [key, value] of data.entries()) {
-              if (value instanceof File) {
-                if (value.name) draft[key] = { name: value.name, size: value.size, type: value.type };
-              } else if (Object.prototype.hasOwnProperty.call(draft, key)) {
-                draft[key] = Array.isArray(draft[key]) ? [...draft[key], value] : [draft[key], value];
-              } else {
-                draft[key] = value;
-              }
-            }
-            try { localStorage.setItem(`forflow:${form.dataset.formKind || 'inquiry'}:draft`, JSON.stringify(draft)); } catch (_) { /* storage can be blocked */ }
-            if (status) status.textContent = '原型已保存本次填写内容；上线时接入 CRM / Webhook 后即可真实发送。';
+            if (status) status.textContent = '该表单尚未接入提交服务，内容不会保存在浏览器中。请改用联系邮箱。';
           }
         } catch (error) {
           if (status) status.textContent = '暂时无法提交，请稍后重试或使用“联系我们”入口。';
