@@ -15,7 +15,7 @@ const scenes=[
 export function ProductDemo({index,onEvidence}){
  const root=useRef(null),scene=scenes[index],player=useScenePlayback(root,scene.durations);
  const focus=()=>root.current?.querySelector('.showcase-controls')?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
- return <div className={`product-presentation presentation-${index}`} ref={root} onClickCapture={player.takeOver} onKeyDownCapture={player.takeOver} data-step={player.step} data-playing={player.playing} data-time={Math.floor(player.time)}> 
+ return <div className={`product-presentation presentation-${index}`} ref={root} onClickCapture={player.takeOver} onKeyDownCapture={player.takeOver} data-step={player.step} data-playing={player.playing} data-time={Math.floor(player.time)}>
   <ShowcaseViewport label={scene.name} width={1108} focusTarget={index===1&&player.step===2?'.film-fields':undefined} focusVersion={player.run}>
    {index===0?<BusinessBoard player={player} onEvidence={onEvidence}/>:index===1?<DocumentDemo player={player} onEvidence={onEvidence}/>:<KnowledgeDemo player={player} onEvidence={onEvidence}/>}
    <ProductPlaybackGuide root={root} index={index} player={player}/>
@@ -58,7 +58,7 @@ function DocumentDemo({player,onEvidence}){
   <div className="document-film-body">
    <div className="film-source"><div className="film-panel-title"><FileText size={14}/>原始文档<span>PDF <i/> 第 1 页 / 共 1 页</span></div>
     <div className={`film-paper ${player.step===1?'is-reading':''}`}>
-     <div className="paper-letterhead"><span>采购与交付</span><span>CONTRACT</span></div><h3>供应商合作协议</h3><p className="paper-subline">双方约定 · 采购与履行</p>
+     <h3>供应商合作协议</h3>
      <div className="paper-clauses">{contractFields.map((field,i)=><button key={field.name} onClick={()=>choose(i)} className={(player.step===2&&i===selected)||(player.step===1&&i===count-1)?'active':''}><span className="clause-number">{String(i+1).padStart(2,'0')}</span><span><strong>{field.source} · {field.name}</strong><span>{field.text}</span></span>{player.step===2&&i===selected&&<ReviewMark done={confirmed.includes(i)}/>}</button>)}</div>
      <div className="paper-end"><span>供应商合作协议</span><span>1</span></div><div className="document-scan" style={{animation:'none',transform:`translateY(${50+490*Math.min(1,player.elapsed/3400)}px)`,opacity:player.step===1&&player.elapsed>150&&player.elapsed<3400?1:0}}/>
     </div>

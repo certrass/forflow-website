@@ -1,0 +1,37 @@
+{
+  "scope": "Homepage #platform mechanism section; accepted /product/one bundle preserved",
+  "reference": "User-supplied Qoder bento screenshot and official current page content; actual ForFlow One screen captures and user manual",
+  "implementation": "http://127.0.0.1:8903/#platform",
+  "build": "passed",
+  "static": "Only three pre-existing unrelated workbench_prototype.html errors; business-flow invariants now target the retained full workbench, replacing selectors for the removed duplicate flow.",
+  "viewports": [
+    1440,
+    1063,
+    440,
+    390
+  ],
+  "interaction_checks": [
+    "agent selection updates name, logo, checkmark and aria-pressed",
+    "agent menu collapse and expand",
+    "manual step selection pauses automatic sequence",
+    "normal motion resume",
+    "context buttons change explanation",
+    "file/browser/terminal panels and ArrowRight keyboard selection",
+    "review material/result tabs",
+    "full screenshot modal, initial close focus, Esc close and opener focus restore",
+    "mobile main-pane initial horizontal scroll and pan hint",
+    "prefers-reduced-motion stops animation; next-step button advances manually"
+  ],
+  "layout": "No document horizontal overflow; no mechanism card content overflow after fixes. Desktop screenshot is host-cropped; geometry additionally verified.",
+  "fixes": [
+    "Set menu typography explicit line-height to retain bottom link padding",
+    "Increase upper card row to 310px and use overflow:clip to prevent internal focus scroll",
+    "Set screenshot height:auto to prevent image distortion",
+    "Mobile screenshot dialog starts at main pane rather than sidebar"
+  ],
+  "console_errors_warnings": [],
+  "product_files_byte_identical": 72,
+  "ios_device_test": "not run",
+  "native_capture_attempt": "Mac locked; used curated actual product screenshots, not a new live app capture.",
+  "strict_reference_visual_comparison": "Blocked by expired source attachment path and host screenshot cropping; preview delivered without pixel-fidelity claim."
+}

@@ -1,0 +1,41 @@
+{
+  "scope": "Homepage copy refinement and removal of review labels and sample identifiers",
+  "created_at": "2026-10-13T17:08:02.972150+00:00",
+  "viewports": [
+    320,
+    440,
+    1280
+  ],
+  "horizontal_overflow": false,
+  "clipped_changed_text": false,
+  "removed_visible_copy": [
+    "layout reference label",
+    "SUP-018",
+    "CTR-1042",
+    "TK-1042",
+    "third-version subtitle"
+  ],
+  "interactions": {
+    "contract_chapter_switch": true,
+    "source_open_close": true,
+    "task_created_without_identifier": true,
+    "diagnosis_expand_collapse": true,
+    "diagnosis_next_back_retains_answer": true,
+    "method_single_expand": true
+  },
+  "console_error_warn": [],
+  "source_generated": true,
+  "js_syntax": "PASS",
+  "static_check": "Only 3 pre-existing workbench_prototype.html errors",
+  "changed_preview_files": [
+    "assets/site/home-workspace.js",
+    "index.html"
+  ],
+  "product_files_unchanged": 72,
+  "ios_device_tested": false,
+  "screenshots": [
+    "/private/tmp/forflow-home-label-clean-20261013.png",
+    "/private/tmp/forflow-workspace-copy-clean-20261013.png",
+    "/private/tmp/forflow-method-copy-mobile-20261013.png"
+  ]
+}

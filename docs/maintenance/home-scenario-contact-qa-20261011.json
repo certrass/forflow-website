@@ -1,0 +1,23 @@
+{
+  "scope": "Homepage business-scenario portraits, neutral conversation style and order follow-up copy",
+  "viewport_widths": [
+    320,
+    440,
+    1063,
+    1440
+  ],
+  "horizontal_overflow": 0,
+  "six_mobile_scenarios_checked": true,
+  "portraits_loaded": true,
+  "followup_and_evidence_expand": true,
+  "details_single_open": true,
+  "details_keyboard_enter": true,
+  "reduced_motion": true,
+  "console_errors": [],
+  "product_files_unchanged": 72,
+  "other_homepage_sections_unchanged": true,
+  "copy_source": "build_site.py supply-chain case: unpaid orders triggered credit-control freeze; channel account manager and credit-control team involved in release request",
+  "static_check": "3 pre-existing workbench_prototype.html issues",
+  "ios_device_tested": false,
+  "screenshot_limitation": "Desktop host capture clipped; supplemented with DOM geometry"
+}

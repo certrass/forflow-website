@@ -3,6 +3,8 @@ from shutil import copy2, rmtree
 import json
 import os
 import re
+from package_product_one import package
+from package_company import package as package_company
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -113,5 +115,16 @@ if list((DIST / 'assets').rglob('*.md')):
     raise SystemExit('Non-runtime markdown leaked into public assets')
 if (DIST / 'assets' / 'explore-digital-solutions.pdf').exists():
     raise SystemExit('Internal design-reference PDF leaked into public assets')
+
+# Preserve the independently reviewed product page on subsequent full-site builds.
+# A missing or changed build fails closed; refresh its preview receipt first.
+package(
+    ROOT / 'output/homepage-v6/dist/client',
+    ROOT / 'docs/maintenance/product-one-source.json',
+    DIST,
+    write_receipt=False,
+)
+
+package_company(ROOT, DIST, write_receipt=False)
 
 print(f'public bundle ready: {DIST}')

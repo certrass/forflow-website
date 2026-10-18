@@ -1,0 +1,16 @@
+/* Guru's broad type and logo rhythm, translated into the accepted light system. */
+.v6-hero:has(.rotating-hero){padding-top:76px;background:#fff}
+.v6 .hero-headline.rotating-hero{max-width:1100px;margin:0 auto 40px;padding:0;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;align-items:start}
+.v6 .rotating-hero .hero-brand-line{grid-column:1/-1;justify-self:start;border:0;border-radius:0;padding:0;font-size:12px;gap:11px;color:#838b96;background:none}
+.v6 .rotating-hero h1{grid-column:1/-1;font-size:clamp(54px,5.6vw,80px);line-height:1.18;font-weight:460;letter-spacing:-.032em;margin-top:28px;margin-bottom:28px}
+.v6 .rotating-hero .hero-task-window{color:#8a919d}
+.v6 .hero-headline.rotating-hero>p{font-size:16px;line-height:1.85;margin:0;color:#79828f;max-width:610px}
+.v6 .hero-headline.rotating-hero .v6-actions{margin:7px 0 0;gap:12px;justify-content:flex-end;align-items:center}
+.v6 .hero-task-controls{grid-column:1/-1;justify-content:flex-start;margin:19px 0 0}
+.v6-hero>.workspace-story{max-width:1240px;margin:32px auto 0}
+.v6-hero>.reference-logo-wall+.workspace-story{margin-top:18px}
+.v6 .source-workbench .story-task-brief{padding-block:10px 22px}
+.v6 .source-workbench .story-task-brief h2{font-size:25px;font-weight:500}
+.v6 .source-workbench .story-task-brief .overline{font-size:10px;letter-spacing:.04em}
+@media(max-width:1023px){.v6 .hero-headline.rotating-hero{display:block;margin-bottom:25px}.v6 .hero-headline.rotating-hero .v6-actions{justify-content:flex-start;margin-top:25px}.v6 .rotating-hero h1{font-size:60px}.v6 .hero-task-controls{margin-top:16px}.v6-hero:has(.rotating-hero){padding-top:55px}}
+@media(max-width:700px){.v6-hero:has(.rotating-hero){padding-top:38px}.v6 .rotating-hero h1{font-size:clamp(33px,8.7vw,43px);line-height:1.28;margin-top:23px;margin-bottom:21px;letter-spacing:-.025em}.v6 .hero-headline.rotating-hero>p{font-size:13px;line-height:1.85}.v6 .hero-headline.rotating-hero>p br{display:none}.v6 .hero-headline.rotating-hero .v6-actions{gap:8px;flex-wrap:wrap}.v6 .source-workbench .story-task-brief h2{font-size:20px;line-height:1.5}.v6-hero>.workspace-story{margin-top:26px}.v6 .hero-brand-line{font-size:11px!important}}

@@ -1,0 +1,19 @@
+/* Shared marketing motion. Product interfaces remain actual interactive DOM. */
+.guru-activity{position:relative;width:100%;overflow:hidden;padding:20px 0 50px;color:#121416;isolation:isolate}
+.guru-activity:before,.guru-activity:after{content:'';position:absolute;inset:0 auto 0 0;width:8%;background:linear-gradient(90deg,#090b0e,transparent);z-index:2;pointer-events:none}
+.guru-activity:after{left:auto;right:0;transform:rotate(180deg)}
+.guru-marquee{display:flex;width:max-content;will-change:transform;animation:guru-drift 48s linear infinite;animation-play-state:paused;margin:20px 0 34px;transform:translate3d(0,0,0)}
+.guru-marquee:nth-child(2){animation-direction:reverse;animation-duration:57s;margin-left:-170px}
+.guru-marquee:nth-child(3){animation-duration:65s;margin-left:-75px}
+.guru-marquee-group{display:flex;align-items:center;gap:24px;padding-right:24px}
+.guru-work-chip{display:inline-flex;align-items:center;gap:10px;padding:15px 20px;background:#fff;border:1px solid #e5e6e5;border-radius:7px;font-size:14px;font-weight:500;line-height:1.3;white-space:nowrap;transform:rotate(-3deg);box-shadow:0 2px 0 #ffffff12}
+.guru-work-chip:nth-child(2n){transform:rotate(4deg)}
+.guru-work-chip:nth-child(3n){transform:rotate(-6deg)}
+.guru-work-chip i{font-style:normal;color:#518a62;font-size:17px;width:18px;text-align:center}
+.guru-activity[data-motion-state=running] .guru-marquee{animation-play-state:running}
+.guru-activity:is(:hover,:focus-within) .guru-marquee{animation-play-state:paused}
+.guru-motion-toggle{display:flex;align-items:center;gap:7px;position:absolute;right:max(24px,calc((100% - 1152px)/2));bottom:8px;z-index:3;border:1px solid #33383d;border-radius:99px;background:#11151a;color:#bbc0c4;font:inherit;font-size:11px;padding:7px 13px;cursor:pointer;min-height:32px}
+.guru-motion-toggle:hover{color:#fff;border-color:#7bd58b}.guru-motion-toggle:focus-visible{outline:2px solid #7bd58b;outline-offset:4px}
+@keyframes guru-drift{to{transform:translate3d(-50%,0,0)}}
+@media(max-width:700px){.guru-activity{padding-bottom:38px}.guru-marquee{margin:10px 0 24px;animation-duration:62s}.guru-work-chip{font-size:12px;padding:12px 16px;gap:8px}.guru-marquee-group{gap:18px;padding-right:18px}.guru-work-chip i{font-size:14px}.guru-motion-toggle{right:20px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.guru-marquee{animation:none!important;will-change:auto}.guru-motion-toggle{display:none}.guru-work-chip{transform:none}}

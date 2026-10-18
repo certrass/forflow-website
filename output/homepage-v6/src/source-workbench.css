@@ -1,15 +1,21 @@
 /* Framing only: the workspace itself is the source app from demo video. */
-.source-workbench{width:min(1440px,100%)}
-.source-workbench-stage{width:1440px;height:900px;background:#fff;border:1px solid #dfe3dc;border-radius:11px;overflow:hidden;box-shadow:0 8px 32px #263b2206}
+.source-workbench{width:min(1280px,100%)}
+.source-workbench>.showcase-viewer:not(.is-expanded){padding:0 22px 22px;border:1px solid #e8e9ed;border-radius:15px;background:linear-gradient(135deg,#fafbfc,#f1f3f7);box-shadow:none}
+.workspace-story.source-workbench>.showcase-viewer:not(.is-expanded)>.showcase-controls{height:44px;padding:0 2px;margin:0;color:#7b818b;font-size:11px}
+.source-workbench>.showcase-viewer:not(.is-expanded)>.showcase-controls>button{font-size:11px;gap:6px;border-radius:5px;transition:color .2s,background .2s}
+.source-workbench>.showcase-viewer:not(.is-expanded)>.showcase-controls>button:hover{color:#282d36;background:#e8ebf1}
+.source-workbench>.showcase-viewer:not(.is-expanded)>.showcase-viewport{border:1px solid #dfe2e8;border-radius:9px;background:#fff;box-shadow:0 2px 4px #1c243205,0 16px 36px -18px #1c243222}
+.source-workbench-stage{width:1440px;height:900px;background:#fff;border:0;border-radius:0;overflow:hidden;box-shadow:none}
 .source-workbench-frame{display:block;width:1440px;height:900px;border:0;background:#fff}
 .source-workbench-loading{position:absolute;inset:0;display:grid;place-items:center;background:#fff;color:#828981;font-size:13px}
-.source-workbench-caption{padding:23px 4px 7px;display:flex;justify-content:space-between;gap:24px;align-items:center;text-align:left}
-.source-workbench-caption strong{font-size:15px;color:#333a35;font-weight:500;letter-spacing:-.2px}
-.source-workbench-caption p{font-size:12px;line-height:1.8;color:#939a93;margin:7px 0 0}
-.source-workbench-caption a{font-size:12px;color:#5e6d61;display:flex;align-items:center;gap:9px;white-space:nowrap}
-.source-workbench-controls{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 4px}
+.source-workbench-caption{padding:24px 4px 4px;display:flex;justify-content:space-between;gap:24px;align-items:center;text-align:left}
+.source-workbench-caption strong{font-size:15px;color:#343840;font-weight:500;letter-spacing:0}
+.source-workbench-caption p{font-size:12px;line-height:1.8;color:#838a95;margin:6px 0 0}
+.source-workbench-caption a{font-size:12px;color:#606873;display:flex;align-items:center;gap:9px;white-space:nowrap;border-bottom:1px solid #dce0e6;padding-block:7px}
+.source-workbench-controls{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 4px 10px}
 .source-workbench-controls .film-controls{margin:0;padding:19px 0}
-.source-workbench-controls>span{font-size:10px;color:#9da49c;white-space:nowrap}
+.source-workbench-controls>span{font-size:10px;color:#959ba4;white-space:nowrap}
 .source-workbench-error{font-size:11px;color:#8c7250;margin:8px 0}
 .source-workbench .film-cursor svg path{fill:#546a56}.source-workbench .film-cursor>span{background:#546a56}
 @media(max-width:700px){.source-workbench-caption{display:block;padding:16px 3px 3px}.source-workbench-caption strong{font-size:13px}.source-workbench-caption p{font-size:11px}.source-workbench-caption a{font-size:11px;margin-top:13px}.source-workbench-controls{display:block}.source-workbench-controls .film-controls{padding:14px 0 7px;justify-content:space-between;gap:12px}.source-workbench-controls>span{display:block;font-size:9px;text-align:center;margin-bottom:10px}.source-workbench .film-chapters{gap:14px}.source-workbench .film-chapters button{font-size:10px}}
+@media(max-width:700px){.source-workbench>.showcase-viewer:not(.is-expanded){padding:0 8px 8px;border-radius:10px}.workspace-story.source-workbench>.showcase-viewer:not(.is-expanded)>.showcase-controls{height:36px;font-size:9px;padding:0 2px}.source-workbench>.showcase-viewer:not(.is-expanded)>.showcase-controls>button{font-size:10px;min-height:32px}.source-workbench>.showcase-viewer:not(.is-expanded)>.showcase-viewport{border-radius:5px}.source-workbench-caption a{display:inline-flex}}

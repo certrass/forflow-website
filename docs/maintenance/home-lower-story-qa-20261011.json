@@ -1,0 +1,28 @@
+{
+  "scope": "Homepage from diagnostic section through footer",
+  "viewport_widths": [
+    320,
+    440,
+    1063,
+    1440
+  ],
+  "horizontal_overflow": 0,
+  "diagnosis_default_collapsed": true,
+  "diagnosis_selection_preserved": "operations retained after collapse reopen and back",
+  "diagnosis_anchor_opens": true,
+  "method_single_open": true,
+  "method_keyboard_toggle": true,
+  "case_click_and_keyboard_tabs": true,
+  "mobile_case_height_consistent": {
+    "440": 596.43,
+    "320": 530.0
+  },
+  "search_open_escape_close": true,
+  "reduced_motion": true,
+  "console_errors": [],
+  "product_files_unchanged": 72,
+  "upper_homepage_unchanged": true,
+  "static_check": "3 pre-existing workbench_prototype.html issues",
+  "ios_device_tested": false,
+  "screenshot_limitation": "Desktop host capture clipped; supplemented with DOM geometry"
+}

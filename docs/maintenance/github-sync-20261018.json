@@ -1,0 +1,48 @@
+{
+  "scope": "Website source push to the existing private GitHub repository",
+  "repository": "certrass/forflow-website",
+  "branch": "main",
+  "base_commit": "6ace69e4258cfa36d2c0b7613c2263e03645e30d",
+  "source_snapshot_files": 337,
+  "changed_source_files_before_sync_record": 221,
+  "homepage_generation": "PASS",
+  "homepage_js_syntax": 9,
+  "product_vite_build": "PASS",
+  "product_hosting_tests": 4,
+  "product_workspace_state_tests": 7,
+  "secret_check": {
+    "scanned_text_files": 263,
+    "known_credential_pattern_findings": [],
+    "credential_and_dependency_directories_excluded": true
+  },
+  "existing_dependency_audit": {
+    "moderate": 1,
+    "high": 5,
+    "critical": 0,
+    "direct_dependency": "vite",
+    "decision": "Existing versions and lockfile retained; dependency upgrades are outside this source-sync task."
+  },
+  "published_netlify_deploy_before_push": "6acf755c573ae60400561b0a",
+  "netlify_git_cd_connected": false,
+  "original_working_tree": "Preserved; commit is created in an isolated checkout",
+  "excluded_from_new_selection": [
+    "credential files",
+    ".netlify",
+    "node_modules",
+    "dist",
+    "old screenshot directories",
+    "raw release API dumps"
+  ],
+  "gate_static_check": "PASS",
+  "gate_runtime_check": "PASS",
+  "diff_whitespace_check": "PASS",
+  "company_rebuild_matches_published_files": 43,
+  "static_check": {
+    "new_errors": 0,
+    "existing_errors": [
+      "workbench_prototype.html: missing stylesheet",
+      "workbench_prototype.html: missing search modal",
+      "workbench_prototype.html: site footer must be a direct body child"
+    ]
+  }
+}

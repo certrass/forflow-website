@@ -1,7 +1,7 @@
 import {useEffect,useRef,useState} from 'react';
 
 // One clock drives product state, progress and the operation guide.
-export function usePlaybackClock(root,duration,{enabled=true,reducedEnd=false}={}){
+export function usePlaybackClock(root,duration,{enabled=true,reducedEnd=false,observeKey}={}){
  const clock=useRef(0),intent=useRef(true),visible=useRef(false),reducedRef=useRef(false),explicit=useRef(false);
  const [time,setTime]=useState(0),[playing,setPlaying]=useState(false),[revision,setRevision]=useState(0),[reduced,setReduced]=useState(false);
  const update=useRef(()=>{});
@@ -20,7 +20,7 @@ export function usePlaybackClock(root,duration,{enabled=true,reducedEnd=false}={
   if(stage)observer.observe(stage);
   preference.addEventListener('change',onMotion);document.addEventListener('visibilitychange',sync);
   return()=>{observer.disconnect();preference.removeEventListener('change',onMotion);document.removeEventListener('visibilitychange',sync);update.current=()=>{}};
- },[root,duration,enabled,reducedEnd]);
+ },[root,duration,enabled,reducedEnd,observeKey]);
  useEffect(()=>{
   if(!playing)return;
   let previous=performance.now();

@@ -13,3 +13,30 @@
 [[edge_functions]]
   path = "/*"
   function = "auth-gate"
+  excludedPath = ["/product/one", "/product/one/*", "/company", "/company/*"]
+
+[[redirects]]
+  from = "/product/one/ai-governance"
+  to = "/product/one/ai-governance.html"
+  status = 200
+
+[[headers]]
+  for = "/product/one/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/company"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/company/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

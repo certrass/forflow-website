@@ -4,6 +4,13 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parent
+
+# Targeted homepage generation keeps unrelated generated pages intact.
+from scripts.sync_homepage_theme import sync as sync_homepage_theme
+if '--homepage-only' in sys.argv:
+    sync_homepage_theme(ROOT)
+    print('Homepage template and isolated theme generated')
+    sys.exit(0)
 sys.path.insert(0, str(ROOT / '.python-deps'))
 
 from bs4 import BeautifulSoup
@@ -2425,3 +2432,6 @@ for _filename, _active in (
     if (ROOT / _filename).exists():
         patch_existing(_filename, _active)
 version_asset_links()
+
+# Refresh the isolated homepage base after normal full-site generation.
+sync_homepage_theme(ROOT)

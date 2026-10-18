@@ -1,0 +1,60 @@
+{
+  "scope": "Homepage redundant copy cleanup",
+  "created_at": "2026-10-14T11:06:17.108938+00:00",
+  "css_viewport_widths": [
+    320,
+    440,
+    1280
+  ],
+  "horizontal_overflow": false,
+  "clipped_changed_copy": false,
+  "removed_ui": [
+    "outside-workspace chapter tutorial paragraph",
+    "assistant task subtitle",
+    "duplicate creation receipt",
+    "conversation status and attachment footer",
+    "source quote paraphrase",
+    "operations next-step footer",
+    "duplicate scenario introduction",
+    "mechanism agent inventory paragraph",
+    "mechanism progress summary paragraph"
+  ],
+  "copy_refinement": [
+    "Each of 6 scenario descriptions is one sentence",
+    "FAQ title is Common questions",
+    "Context tabs show actual contract task contents",
+    "Removed unverified 3-minute diagnosis estimate"
+  ],
+  "interactions": {
+    "source_open_close": true,
+    "task_creation": true,
+    "replay_resets_phase": true,
+    "mobile_task_creation": true,
+    "six_scenario_switches": true,
+    "operations_evidence_expand": true,
+    "context_material_caption": true,
+    "faq_single_item_expand": true
+  },
+  "console_warning_error": [],
+  "homepage_generation": "PASS",
+  "js_syntax": "PASS",
+  "static_check": {
+    "existing_errors_only": [
+      "workbench_prototype.html: missing stylesheet",
+      "workbench_prototype.html: missing search modal",
+      "workbench_prototype.html: site footer must be a direct body child"
+    ]
+  },
+  "changed_preview_files": [
+    "assets/site/home-workspace.js",
+    "index.html"
+  ],
+  "product_files_byte_identical_to_previous_review": 72,
+  "ios_device_tested": false,
+  "screenshots": [
+    "/private/tmp/forflow-lean-workspace-desktop-20261014.png",
+    "/private/tmp/forflow-lean-scenarios-mobile-20261014.png"
+  ],
+  "diff_whitespace_check": "PASS",
+  "packaged_html_matches_final_generated_source": true
+}

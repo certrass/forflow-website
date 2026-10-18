@@ -1,0 +1,30 @@
+{
+  "scope": "Homepage mobile product composition and alignment",
+  "viewport_widths": [
+    320,
+    390,
+    440,
+    1280
+  ],
+  "horizontal_overflow": 0,
+  "mobile_workbench_scale": 1,
+  "result_fills_window": true,
+  "chapter_pan_to_result": true,
+  "sources_open": true,
+  "six_scenarios_no_text_overflow": true,
+  "followup_expand": true,
+  "reduced_motion_running_animations": 0,
+  "console_errors": [],
+  "product_files_unchanged": 72,
+  "generated_homepage": true,
+  "asset_packaging": "existing package generator; reused verified unchanged assets when iCloud source was dataless",
+  "static_check": "3 pre-existing workbench_prototype.html issues; replaced obsolete numeric-band count with validation of retained primary destinations",
+  "ios_device_tested": false,
+  "reference_url": "https://qoder.com/zh/qoder",
+  "reference_visual_limit": "Current Qoder mobile browser inspection timed out; used supplied Qoder visuals and current official page structure",
+  "screenshots": [
+    "/private/tmp/forflow-mobile-result-20261013.png",
+    "/private/tmp/forflow-mobile-story-20261013.png"
+  ],
+  "autoplay_pans_to_result": true
+}

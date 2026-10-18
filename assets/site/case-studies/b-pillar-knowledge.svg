@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="440" viewBox="0 0 660 440" fill="none">
+  <title>B 柱的材料、工艺与失效机理关联</title>
+  <desc>围绕 B 柱部件关联 22MnB5、热冲压与焊接工艺、候选失效模式，设计变更后重新核对风险。</desc>
+  <defs>
+    <linearGradient id="metal" x1="125" y1="98" x2="258" y2="335" gradientUnits="userSpaceOnUse"><stop stop-color="#e3e8e2"/><stop offset=".42" stop-color="#f8faf7"/><stop offset=".65" stop-color="#c6d0c4"/><stop offset="1" stop-color="#e9eee6"/></linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#e7ebe4" stroke-width=".7"/></pattern>
+  </defs>
+  <style>text{font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}.label{fill:#7d897d;font-size:15px}.main{fill:#354838;font-size:20px;font-weight:500}.detail{fill:#869081;font-size:14px}</style>
+  <path fill="#edf1e9" d="M0 0h660v440H0z"/>
+  <rect x="30" y="27" width="600" height="386" rx="12" fill="#fcfdfa" stroke="#dce3d6"/>
+  <path d="M31 77h598" stroke="#e6ebe1"/>
+  <rect x="49" y="43" width="26" height="21" rx="5" fill="#edf3e9"/>
+  <path d="m56 49 6-3 6 3v8l-6 3-6-3v-8Zm0 0 6 3 6-3m-6 3v8" stroke="#70876a" stroke-width="1.3"/>
+  <text x="87" y="60" class="main" style="font-size:17px">B 柱 · 工程知识</text>
+  <text x="522" y="59" class="label" style="font-size:13px">DFMEA</text>
+  <rect x="54" y="98" width="248" height="245" rx="6" fill="url(#grid)"/>
+  <path d="M126 110c28 11 48 9 82-1l12 27-16 17 8 130c1 17 14 22 36 22l4 29H114l7-29c24 0 31-5 31-26l-5-126-20-16-1-27Z" fill="url(#metal)" stroke="#9fae9b" stroke-width="1.5"/>
+  <path d="m144 120 17 28 6 133c0 28-10 31-34 36m65-195-9 25 9 137c2 29 16 32 38 31" stroke="#adbba7" stroke-width="1.1"/>
+  <path d="M173 150h8l7 143h-9l-6-143Z" fill="#d6dfcf" stroke="#b4c3ac"/>
+  <rect x="169" y="166" width="17" height="38" rx="7" transform="rotate(-3 169 166)" fill="#f6f8f2" stroke="#9eae96"/>
+  <rect x="174" y="228" width="15" height="31" rx="6" transform="rotate(-3 174 228)" fill="#f6f8f2" stroke="#9eae96"/>
+  <g fill="#eff3e9" stroke="#a2b19b"><circle cx="144" cy="131" r="3"/><circle cx="202" cy="131" r="3"/><circle cx="133" cy="326" r="3"/><circle cx="157" cy="326" r="3"/><circle cx="224" cy="326" r="3"/><circle cx="245" cy="326" r="3"/></g>
+  <path d="M204 140h47l21-19h40" stroke="#91a68b" stroke-width="1.4"/><circle cx="205" cy="140" r="4" fill="#64845c" stroke="#f8faf5" stroke-width="2"/>
+  <text x="243" y="114" class="detail" style="font-size:12px">焊接连接</text>
+  <path d="M312 121h19v54m0 0v90m0-90h17m-17 90h17m-17-144h17" stroke="#bccbb5" stroke-width="1.2"/>
+  <g>
+    <rect x="349" y="96" width="249" height="60" rx="7" fill="#fff" stroke="#e1e7dc"/>
+    <text x="366" y="119" class="label" style="font-size:12px">材料</text><text x="366" y="141" class="main" style="font-size:17px">22MnB5</text>
+    <rect x="349" y="170" width="249" height="60" rx="7" fill="#fff" stroke="#e1e7dc"/>
+    <text x="366" y="193" class="label" style="font-size:12px">工艺</text><text x="366" y="215" class="main" style="font-size:17px">热冲压 · 焊接</text>
+    <rect x="349" y="244" width="249" height="74" rx="7" fill="#f0f5ea" stroke="#ccdcbf"/>
+    <text x="366" y="268" class="label" style="font-size:12px">失效机理</text><text x="366" y="294" class="main" style="font-size:17px">关联历史失效与试验证据</text>
+  </g>
+  <path d="M54 358h552" stroke="#e3e9de"/>
+  <circle cx="65" cy="383" r="4" fill="#729669"/><text x="81" y="389" class="label">设计变更</text><path d="M174 384h27m-5-5 5 5-5 5" stroke="#9aaa91" stroke-width="1.5"/><text x="214" y="389" class="main" style="font-size:15px">重新核对风险与依据</text>
+</svg>

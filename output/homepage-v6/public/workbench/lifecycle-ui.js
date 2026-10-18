@@ -7,7 +7,7 @@
  const select=(label,key,value,options)=>`<label class="lc-field">${label}<select data-lc-field="${key}" ${!L.can('define')?'disabled':''}>${options.map(v=>`<option value="${E(v)}" ${value===v?'selected':''}>${E(v||'Select a source field…')}</option>`).join('')}</select></label>`;
  const check=(label,key,value,desc='')=>`<label class="lc-check"><input type="checkbox" data-lc-field="${key}" ${value?'checked':''} ${!L.can('define')?'disabled':''}><span>${label}${desc?`<small>${desc}</small>`:''}</span></label>`;
  const denied=()=>`<div class="lc-empty">${ic('lock')}<h2>Record access is restricted</h2><p>Your role can inspect definitions, coverage and asset metadata.<br>Run inputs and feedback require business data access.</p>${B('View asset definitions','page:assets','arrow')}</div>`;
- const date=x=>x?new Date(x).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Shanghai'}):'—';
+ const date=x=>x?new Date(x).toLocaleString('zh-CN',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Shanghai'}):'—';
  function tabs(values,selected,key){return `<div class="tabs">${values.map(v=>B(v,'tab:'+key+':'+v,'',v===selected?'active':'')).join('')}</div>`}
  const subtitle=()=>({studio:'Procurement / Supplier renewal · WF-RENEWAL',knowledge:'Workspace memory / Supplier renewal',assets:'Reusable workflows, rules and evaluation evidence',projects:'Adapt registered assets to a new business context',activity:'Changes, executions and approvals across the workspace'})[C.S.page];
  function journey(){const d=L.state,e=L.evaluation();return `<div class="lc-journey">${[['studio','01','Run a workflow',d.runs.length>0],['knowledge','02','Improve with evidence',e&&!e.stale&&e.passed===e.total],['assets','03','Register & reuse',d.releases.length>0]].map(([p,n,t,ok])=>B(`<span class="lc-step-index ${ok?'done':''}">${ok?ic('check'):n}</span>${t}`,'page:'+p,'',C.S.page===p||p==='assets'&&C.S.page==='projects'?'current':'')).join(`<span class="lc-step-line"></span>`)}<span class="spacer"></span><span class="small muted">${ic('cube')} Supplier v2.1</span></div>`}
@@ -56,7 +56,7 @@
  else if(cmd==='evaluate'){if(s.lcDirty)throw Error('Save your rule changes before evaluating.');const e=L.evaluate();nav('knowledge');s.knowledgeTab='Evaluations';s.lcCase=e.results.find(r=>!r.passed)?.id||'TC-001';s.toast=e.passed+'/'+e.total+' workflow checks'+(e.q2q?' · Q2Q '+e.q2q.passed+'/'+e.q2q.total:'')+' passed';s.toastTone=e.passed===e.total&&(!e.q2q||e.q2q.ready)?'good':'warn';}
  else if(cmd==='open-evaluations'){nav('knowledge');s.knowledgeTab='Evaluations';}
  else if(cmd==='case')s.lcCase=v;
- else if(cmd==='register'){s.modal='lc-register';s.lcForm=L.evaluation()?.q2q?.ready?{releaseNote:'Reviewed contract content and all workflow checks passed. Register this version for controlled renewal review.'}:{};}
+ else if(cmd==='register'){s.modal='lc-register';s.lcForm=L.evaluation()?.q2q?.ready?{releaseNote:'合同内容已复核，工作流检查全部通过。登记此版本，用于受控的续约复核。'}:{};}
  else if(cmd==='confirm-register'){const a=L.release(s.lcForm.releaseNote||'');nav('assets');s.lcAssetVersion=a.version;s.assetTab='Overview';s.toast='AI-RENEWAL @ '+a.version+' registered with evidence';}
  else if(cmd==='asset-version'){nav('assets');s.lcAssetVersion=v;s.assetTab='Overview';}
  else if(cmd==='reuse'){L.createReuse(v);nav('projects');s.toast='Project draft created · Map target fields before verification';}

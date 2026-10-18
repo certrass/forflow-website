@@ -1129,3 +1129,381 @@
 - 入口：`src/ProductDemos.jsx`、`ScenePlayback.jsx`、`ShowcaseFilmUI.jsx`、`design-tokens.css`、`hero-headline.css`、`playback-refinements.css`，以及展示适配层 `public/workbench/showcase-bridge.js` / `showcase.css`。
 - 验证：构建通过；15 个源工作台文件哈希一致。Chrome 1440 × 1000、440 × 956、390 × 844 检查；手机模式完整触摸手势从工作台滚入业务/合同/工程自动播放，合同画面上滑后时间从 551 ms 继续到 1301 ms；手动章节暂停在上下滚动后仍为 3000 ms。手机标题/章节/字段没有横向文字溢出，440 px 放大合同确认按钮在 103.18–405.86 px 内，确认成功。源工作台点击接管与重播恢复、reduced-motion 通过，控制台无 error/warn，测试设置已恢复。iOS Safari 实机未测。
 - 远端：https://6aa4cf937b730691532ec80a--forflow-enterprise-suite-v3.netlify.app/ 。Draft ready，38 个文件 HTTP 200、逐字节一致且 noindex；正式部署仍为 `6a526ad3f3353819365b175e`。远端浏览器回读超时，实际交互仅记本地验证；README 和回执已更新，旧回执归档，8898 预览保持运行。
+
+
+## 2026-09-12 — Dataify 对照与大陆客户表达校准
+
+- 用户明确首页面向大陆客户，要求继续参考 Dataify。已把目标受众与参考范围记入独立原型 AGENTS.md，本轮为内容与路径检查，未改页面或发布。
+- 读取 Dataify 当前官方首页的产品分类、解决方案、接入、安全说明及电话/微信咨询入口；浏览器捕获超时，没有声称观察了其实时动效。对照当前首页代码，后续优先项为真实工作台中文化、区分产品与应用场景、补齐实际接入/交付说明和咨询路径。
+- 实测 https://forflow.ai/contact 返回 HTTP 200，但最终地址为 /landing.html?next=%2Fcontact，标题为受邀访问；目前预览中的预约按钮统一指向该路径。此为当前可复现的访客障碍，未更改正式站门禁。
+- 当前两张展示 PNG 合计 2,545,729 字节，其中工程图纸未设置延迟加载；大陆网络和微信浏览器体验仍需专项实测。对照依据：https://www.dataify.com/ 。仅文档校准，无全站构建或部署。
+
+
+## 2026-09-12 — 独立首页预览：预约恢复、中文工作台与完整案例索引
+
+- 范围为 `output/homepage-v6`；正式站生成入口与业务模型保持不变。导航、首屏和案例预约统一接回历史 Git 提交 `65c839f` 中的飞书需求表，增加明确的填写需求→联系确认安排说明、邮件入口与复制状态。公开 HTTP 元数据可用；未提交线索，飞书浏览器捕获超时。
+- 沿真实 demo video 工作台增加 `showcase-zh.js` 显示层，覆盖主流程标签、状态、角色、表单说明与日期；保留原字段值、业务模型、引用原文与 action ID。自动演示期间抑制主动聚焦，修复首屏/案例浏览被拉回工作台；手动操作仍保留焦点行为。
+- 三个原有案例改为页内详解，并补回用户指出的汽车 B 柱 DFMEA。`scripts/sync-case-catalog.py` 从 `build_site.py` 的 `CASE_LIBRARY_ITEMS` 生成15条预览目录及 `docs/maintenance/case-catalog.md`，支持搜索、分类、空状态；原文入口沿用既有地址和访问权限。用户确认事项已写入本地 `forflow-website` 工作上下文、原型 AGENTS 及 Codex 记忆更新笔记；本轮未执行 GitHub commit/push。
+- 验证：桌面及440×956/390×844设备模拟；新页 scrollY=0，手机无横向溢出，触摸滑动后自动播放继续，案例筛选/空状态/切换/Esc焦点返回和独立触摸滚动、联系邮箱复制通过。中文工作台提取、复核、5/5内容检查、8/8工作流检查、1.0.0登记与依据页通过；中文筛选保留 `All checks`/`Failed` 原值。构建、4项Sites打包检查、JS语法、差异空白检查和15条来源/副本哈希校验通过。只观察到无关Grammarly扩展消息；iOS Safari实机未测。
+- 远端：https://6aa4e4e37c82178a5644dee6--forflow-enterprise-suite-v3.netlify.app/ 。Draft ready；39个文件和根入口HTTP200、逐字节一致且noindex；正式部署仍为 `6a526ad3f3353819365b175e`。本地交互与远端资源核验分别记录于 `mainland-preview-qa.json`、`remote-preview.json`；旧回执归档，8898服务保留。
+
+
+## 2026-09-12 — 独立首页预览：Attio / Sana 局部视觉微调
+
+- 按用户指定只做局部优化；通过 Chrome 原生截图观察 Attio 首屏与场景结构、Sana 轮换标题与产品窗口。网页自动捕获接口超时，原生截图成功。保留真实工作台、产品交互和已有业务内容；未新增生图资产。
+- 入口为 `output/homepage-v6/src/HeroHeadline.jsx`、`hero-headline.css`、`source-workbench.css`、`product-editorial.css`、`motion-type.css` 与 `site-system.css`。调整中文标题字重/字距、简化辅助说明、统一主次按钮，首屏工作台改为1280px外框与轻中性背景，场景灰阶和圆角收紧。
+- 验证：构建与4项Sites检查通过；15条真实工作台来源/副本哈希不变。1440×1000、440×956、390×844无页面溢出，手机标题无横向溢出；工作台46秒巡览到资产登记、合同自动完成1/5复核，手机放大保持1440px原生宽度，关闭、重播及触摸滑动保留tour通过。字体可变范围100–900，首屏与工作台文案无缺字；应用控制台无error/warn。iOS Safari实机未测。详见 `visual-refinement-qa.json`。
+- Drive 已回查私人 ForFlow Memory Hub 和00入口，作为可复查资料索引；留档邮箱已向用户询问，尚未发送邮件。远端：https://6aa4e921983dd2411a1fe8f9--forflow-enterprise-suite-v3.netlify.app/ 。Draft ready，39个文件HTTP200、逐字节一致且noindex，正式部署保持 `6a526ad3f3353819365b175e`。回执已更新，上一版归档，8898服务保留。
+
+
+## 2026-09-12 — 独立首页按 Attio 实测细化
+
+- 依据用户“还是有点简陋，像素级学习attio”的纠正，截图并读取 Attio 公开样式；独立原型采用 24 列贯通栅格、1/4 固定目录、36px 主按钮和淡色竖纹。中文场景标题由 42px 调整为 26px，产品展示改为共享边线，保留 demo video 工作台层级。入口为 `output/homepage-v6/src/attio-fidelity.css` 及对应 React 组件。
+- 修正横竖目录指示测量、章节锚点重复页头偏移，放大组件增加占位和阅读位置/焦点恢复。实测手机关闭前后 scrollY 均 2191.71，目录仍为文档处理。
+- 本地构建、4/4 Sites 打包检查、git diff --check、15/15 工作台源和适配副本哈希通过。1440×1000、1316×635、440×956、390×844 检查无页面横向溢出；进入视区自动播放、下一合同字段与原文联动、放大、平移、返回已测试。iOS Safari 实机与触摸未测。
+- 预览 https://6aa520f0f0b7211b123168d8--forflow-enterprise-suite-v3.netlify.app/ ，draft ready，39 文件 HTTP200、逐字节一致、noindex；正式部署仍为 `6a526ad3f3353819365b175e`。远端控制台 error/warn 空，远端截图超时；视觉与交互结论来自同构本地构建。上一回执归档，当前回执/README/设计 QA/项目反馈均已保存。本轮没有 Git commit/push、邮件发送或 Drive 写入。
+
+
+## 2026-09-12 — 独立首页下半部分与交互细化
+
+- 用户指定优化下半部分。范围仅 `output/homepage-v6` 的 CLI、优势、能力资产、案例与联系页脚；新增 `src/lower-editorial.css`，统一贯通边线、字号、控件与案例封面。CLI 改为左命令/右结果窗口并使18.9s虚拟点击实际展开核验依据；能力层级支持键盘切换；预约保留飞书需求表并说明后续联系步骤。
+- 手机章节与播放控制分行，完整横向工作台仍可放大/平移；440px放大结果宽386.4px、视窗418px。1440×1000、440×956和390×844无页面溢出，章节锚点偏移修正；触摸上滑80px保持播放。CLI复制/自动依据、优势切换、模型加载/键盘、15案例/B柱搜索/弹窗/Esc、联系邮箱复制通过。构建、4/4打包检查、15/15工作台源与副本哈希、git diff --check与凭据模式扫描通过；本地console error/warn为空。
+- 预览 https://6aa52ce8d8321b545c1145e1--forflow-enterprise-suite-v3.netlify.app/ ，draft ready，39文件HTTP200、逐字节一致且noindex；正式部署保持 `6a526ad3f3353819365b175e`。远端浏览器更新URL/标题但截图/DOM超时，实际视觉与交互仅记本地通过，iOS Safari实机未测。QA/README/项目反馈已保存，旧回执归档；临时浏览器视口已恢复、测试页关闭，8898服务保留。
+
+
+## 2026-09-12 — AI 治理产品研究、独立展示与交流模板
+
+- 用户请求研究 Holistic AI 和 a16z 投资的 Neo，结合 Q2Q 形成偏差、幻觉、噪音三类能力，在 AI 资产之后新增独立板块；随后明确按既有关系配合展示、做可替换模板。第一层改为检查对象、配合方式与交付，采购口径留在内部研究。核对客户侧 Caseware、公示采购与当前 Q2Q 代码，确认 Neo 为 neo.ai；保留原完整竞品研究，不把他人客户或尚未接入的引擎能力写成已有交付。
+- 范围仅 `output/homepage-v6`：新增治理工作台、`/ai-governance.html` 独立方案及 `/ai-governance-brief.html` 编辑模板。三类能力包含四个视图，支持选行、筛选、依据、整改复测、键盘和自动播放；工作台维持1280×646原生构图，手机可放大查看。模板可改单位、场景、问题和正文、保存独立HTML或浏览器打印；修复下载包含扩展注入DOM问题。研究与交流稿、项目有范围反馈已保存。
+- 验证：构建、4/4打包检查、15/15源工作台/副本哈希、中文缺字与凭据扫描通过；Chrome 1440×1050/440×956/390×844无横向溢出，349.6px手机侧栏、交互和减少动态效果通过。实际下载回读保留修改且无Grammarly注入；打印CSS已检查，未生成PDF。没有实际引擎调用、iOS真机或本轮触摸手势验收；应用无error/warn，编辑页有无关扩展消息。
+- 远端 https://6aa537bee275bb8affc7c7d4--forflow-enterprise-suite-v3.netlify.app/ ，draft ready，41资源HTTP200/noindex，40字节一致，1个仅为已验证的Netlify Pretty URLs链接改写；干净方案路径已核验。正式部署保持 `6a526ad3f3353819365b175e`。本地视觉交互和远程资源回读分别记录；QA/README/回执更新，旧回执归档，浏览器测试设置恢复、本次测试页关闭，8898服务保留。未执行Git push、邮件或Drive写入。
+
+
+## 2026-09-12 — 补齐业务上下文、连接器与重点案例展示
+
+- 用户指出后半段与连接器展示不足，附 Attio 四张参考。核对原有资产、治理与案例仍在；在独立 `output/homepage-v6` 新增深色上下文章节和六类来源连接器，案例改为 B柱/供应链/合同/工程知识四个可切换大幅图文。保留3个产品场景、CLI、资产、治理、15条案例及飞书预约。
+- 连接器参照真实 demo 的来源/数据表/对象/流程层级，字段、业务关联与权限可切换；完整1280×590窗口支持手机放大和横向浏览。没有新增真实系统接入或品牌连接器承诺。复用原网站案例配图转WebP，共287600字节；补齐字体字符，提高文字对比度。缺失图标导入导致的初次渲染错误已修复并重建。
+- 构建、4项打包检查、15/15工作台源与副本哈希、凭据模式扫描和diff检查通过。1440×1050、440×956、390×844无页面溢出；放大侧栏329.36px，横向控制、触摸能力条滚动306px、字段/权限/关联、案例检索与详情、自动推进及减少动态效果已测；首次根入口scrollY=0，最终本地error/warn空。iOS实机和本轮键盘自动化未完成。
+- 预览 https://6aa53fe6e0de31148f1ee7ef--forflow-enterprise-suite-v3.netlify.app/ ，45资源HTTP200/noindex；44个逐字节一致，1个仅为已验证的Pretty URLs链接改写，生产部署`6a526ad3f3353819365b175e`保持。远端浏览器导航和恢复超时，不记为远端视觉通过。详见`connectors-context-qa.json`与`remote-preview.json`；旧回执归档，项目反馈回读通过，8898保留。未执行Git commit/push、正式站发布或外部消息发送。
+
+## 2026-09-12｜homepage-v6 连续版式与 UI 一致性修正
+
+- 反馈对象：6aa53fe6 预览；用户指出页面断层，以及新增 UI 与上半段不一致。
+- 修正：上下文从独立黑色大首屏改为相同的白底标题与交互图；上下文、连接器、治理与原页面共用外框断点；下半段文字和控件统一灰阶。入场动画不再隐藏整块内容，连接器详情避免裁切。
+- 实际验证：构建、4 项打包检查通过；390–1600px 共 12 档外框 / 接缝 / 横向溢出检查通过；16 屏连续滚动内容可见；6 类连接器、权限视图、手机详情、键盘切换通过。远程 45 资源均 200 / noindex 并核对正文。远程浏览器自动回读超时，视觉为同一构建本地 Chrome；未验证 iOS 实机。
+- 预览：https://6aa571cdfa3641ac3084ecc1--forflow-enterprise-suite-v3.netlify.app/ 。生产版本未变。证据：output/homepage-v6/continuity-qa.json、remote-preview.json。
+
+## 2026-10-07 — Qoder 参考的局部能力动效
+
+- 用户选定 Qoder 的模型/Harness/电脑操控卡片组。通过实际页面截图与样式读取，参考480ms胶囊过渡和有停留的光标/选区节奏；只调整独立 `output/homepage-v6` 的优势区，增加资料关联、Q2Q步骤展开、条款划选与保存反馈。入口为 `Advantages.jsx`、`method-motion.css`、`useAmbientSequence.js`。原工作台、连接器、资产、治理、案例和联系均保留。
+- 支持视区自动播放、离屏/隐藏页面暂停、点击接管与全组继续；减少动态效果显示完成状态。手机横向卡片保留原生小界面及放大返回。无新增生成图或第三方图像，展示状态不代表在线系统接入。
+- 实测：构建和4/4打包检查通过；IAB桌面1440×1000及手机440×956/390×844无页面横向溢出、标题与界面无重叠；步骤切换、保存、自动推进、离屏暂停、放大返回、减少动态效果通过，error/warn为空。20个原工作台发布文件哈希保持；5个本机云端占位素材按上版SHA256恢复。本轮未测iOS真机和触摸手势。正式站静态检查另有旧 `workbench_prototype.html` 结构失败，与本次独立原型无关，未修改该页。
+- 远程预览 https://6ac53cbc1f7b6dd9fd07650e--forflow-enterprise-suite-v3.netlify.app/ ：draft ready；45资源200/noindex，44逐字节一致，1个仅为Netlify已核实的链接/引号改写。远端首次打开在hero，3卡片/10章节/保存反馈已回读；生产版本未变。回执和上版归档已保存，局部反馈沉淀于原型AGENTS.md；本地8898静态预览保持。未推送Git、未发送邮件或写入Drive。
+
+## 2026-10-08 — Q2Q 交互概览与修订对比
+
+- 用户指定 OpenAI GPT-6 / Intelligent UI 页面，并要求部分1:1复刻。仅在独立 homepage-v6 治理部分新增场景胶囊、问答到图表的展示、版本切换和原文依据联动；原评估工作台、连接器、资产、15案例与预约入口全部保留。入口为 EvaluationCanvas.jsx / evaluation-canvas.css / GovernanceSection.jsx。
+- 图表来自现有 authored walkthrough 记录，未新增客户成绩。修订后点击柱条仍保留比较值；手动操作同步播放章节；展示模式变化后重新观察画布，避免换回工作台后无法播放。
+- 相同package-lock的项目外暂存构建通过，Sites 4/4；原目录iCloud占位导致初次构建阻塞，公开占位素材在暂存目录按上一回执SHA256恢复，输出同步回dist。20个原工作台发布文件哈希保持，案例15条。1440×1000、440×956、390×844无横向溢出；82/74到80/80、证据高亮与数值保留、P-041/S-071记录定位、三次补证复测、播放/离屏暂停、减少动态效果和手机放大平移/返回通过，console error/warn空；iOS实机及本轮触摸未测。
+- Draft https://6ac76b7c397123c707404c46--forflow-enterprise-suite-v3.netlify.app/ ready，45资源HTTP200/noindex，44字节一致，1个仅有已验证Netlify链接改写；B柱图首次网络回读不完整，重试哈希一致。生产部署保持6a526ad3f3353819365b175e。远端浏览器导航超时，远端渲染不计通过；原页精确样式/动画与逐像素比对未完成，不声称1:1。截图在 /private/tmp/forflow-intelligent-ui-qa/，回执与上版归档已更新。本次未commit/push、未发送邮件或写入Drive。
+
+## 2026-10-08 — homepage-v6 阅读衔接与案例检索
+
+- 用户认可当前方向并允许继续改善UX。保持既有视觉与全部章节；治理概览/工作台往返保留比较版本和阅读视图、统一 S-071 路由并交接键盘焦点；放大阅读暂停播放，窄屏增加图表/依据快速定位；案例空结果恢复全部15条，清空搜索恢复焦点，收起回到案例标题。
+- 修改入口：GovernanceSection / EvaluationCanvas / ShowcaseViewport / CaseLibrary，以及两处既有样式。相同锁文件的暂存构建、Sites 4/4、源码diff空白检查通过。IAB实测1440×1000、440×956、390×844：80/80与核验视图往返保留、P-041/S-071定位、放大暂停、双柱与依据定位、关闭/Esc焦点恢复、15条恢复与4条收起通过；原文档展示放大回归通过，无页面横向溢出及console error/warn。20工作台发布文件哈希保持。原生截图被IAB视口裁切，本轮不记为整屏视觉验收；iOS实机/触摸未测。
+- Draft https://6ac779fa4a72f1217e797e36--forflow-enterprise-suite-v3.netlify.app/ ready；45资源200/noindex，44逐字节一致，交流模板只有既有Netlify链接改写；生产版本6a526ad3f3353819365b175e未变。远端浏览器导航超时，远端渲染未记通过。上一版回执归档，详见ux-refinement-qa.json与remote-preview.json。8898继续服务当前构建；未commit/push、未发送邮件或写入Drive。
+
+## 2026-10-09 — 上下文板块改为可理解的续约流程
+
+- 用户标注 context-stage，指出关系图与文案不明所以。仅调整独立 homepage-v6 的 ConnectedContext.jsx / connected-context.css：同一笔 SUP-018 续约按「找齐资料、核对条件、负责人确认」展示；合同与规则可打开，返回保留原步骤和暂停状态。负责人待办写明待确认问题与三份材料，底部从五项泛化说明改为三项具体用途。
+- 复用既有工作台的供应商/合同标识与规则，未增加真实查询、审批或客户效果宣称。640×544原生工作台在中等屏宽独占一行，手机可放大并定位资料/内容；操作接管播放、键盘方向键/Home/End和减少动态效果沿用现有机制。所有后续章节、连接器、15条案例和预约入口保留。
+- 验证：相同package-lock暂存构建、4/4 Sites检查、源文件diff空白检查通过；IAB实测1440×1000、806×750、440×956、390×844无页面横向溢出或详情正文裁切。资料/规则原文与返回、负责人待办、手机定位/放大/Esc、Home/ArrowDown切换、减少动态效果通过，console error/warn空。20个工作台发布文件哈希不变。IAB原生截图裁切，不记整屏视觉验收；iOS实机未测。
+- 预览 https://6ac7cc80195297efb38c0be7--forflow-enterprise-suite-v3.netlify.app/ ready；45资源200/noindex，44逐字节一致，交流模板仅有已确认的Netlify链接改写；正式部署6a526ad3f3353819365b175e保持。远端浏览器导航45秒超时，本地检查使用同一部署构建。旧回执已归档，当前回执/README/项目反馈已保存，8898服务保留。未执行Git commit/push、生产发布、邮件或Drive写入。
+
+## 2026-10-10 — ForFlow One 挂载到正式产品路径
+
+- 用户授权将当前预览 `6ac7cc80195297efb38c0be7` 发布到 `https://forflow.ai/product/one`，并明确产品页公开，其他页面继续保留访问码。本次不改产品视觉或内容。
+- 新增 `scripts/package_product_one.py`：以预览回执验证45个构建文件，重定位资源、工作台和治理页链接，设置子路径 base 与 canonical。`scripts/build_public.py` 加入相同打包入口，缺文件或构建与回执不符时停止，避免后续全站构建遗漏产品页。Netlify 门禁只排除 `/product/one` 及其子路径；产品页允许同源工作台嵌入。
+- 发布以正式版本 `6a526ad3f3353819365b175e` 的文件摘要为底，保留73个原文件，仅调整边缘路由清单，并保留5个函数的代码摘要、路由和限流配置；新增45个产品文件及重定向/响应头文件。不部署本地正式站的其他未发布修改。
+- 发布前校验版 `6ac91a63fc7dc0dcc8d511bc` ready：121文件摘要核对，45个产品文件HTTP200并逐字节回读（交流模板仅有已确认的Netlify链接改写），10项路由检查通过。原官网仍跳转访问码页，产品近似前缀 `/product/one-other` 仍受保护。门禁静态/运行测试、子路径边界检查、JS语法检查、Python语法检查和源码diff空白检查通过。产品打包从原型dist再次生成通过；本地IAB首页/工作台嵌入/治理页导航通过，无损坏图片和console error。远端IAB导航超时，未记远端视觉通过。
+- 根目录静态检查仍为既有 `workbench_prototype.html` 的样式/搜索/页脚结构三项失败，该本地原型不在本次生产发布包内。此次不重新生成旧正式页面；以原生产摘要保留代替全站重建。iOS实机未测。正式发布与回读结果见随后记录及 `docs/maintenance/product-one-deployment.json`。
+- 正式最终发布 `6ac91f00a3371bf5a7fa42d3`，2026-10-10 01:06:38 +08:00。初次生产上传遗漏流式调用模式导致 gate-login GET 502，已向前修复；4个函数ZIP只改归档注释（所有可执行成员逐字节一致），显式上传 invocation_mode=stream，5个函数路由/限流/模式核对通过。最终正式域名10项路由回读通过，登录GET恢复405；首页、治理页、工作台及主要JS/CSS共6项内容校验通过，HTML差异仅为既有Cloudflare检测脚本。固定正式源回执为 product-one-source.json，未来预览不会自动替换正式源。完整记录见 product-one-deployment.json。未Git push、未发送邮件或写入Drive。
+
+
+## 2026-10-10 — Guru 设计体系、ForFlow 内容与动效联合预览
+
+- 用户最终指定按 Guru design system 重做并补动效。主站首页由 templates/index.html 生成，采用深色／绿色、大字、两类独立 logo 墙、三排可暂停工作动态；保留五项服务、诊断与资源，案例使用原有 B 柱、供应链、P&ID。产品开场同步主题并增加并行／审阅／接续说明，首屏改32秒合同原文→复核→处理待办；所有下半章节、连接器与15案例保留。Guru 客户标识仅按用户要求作临时版式参考，正常构建不显示；固定正式产品源未覆盖。
+- 入口与来源清单：guru-homepage-20261010.md、homepage-brand-assets.json；共享 guru-system.css / guru-motion.css / guru-motion.js、BrandWall.jsx / WorkActivity.jsx，联合打包脚本 package_homepage_review.py。首页基样式与脚本隔离，避免影响其他正式详情页。
+- 验证：Vite 与 Sites4/4、JS/Python语法检查通过；首页静态检查通过，既有 workbench_prototype.html 仍有3项结构错误。桌面1440px、440×956、390×844无页面横向溢出；两类标识加载、按钮位置、播放／暂停／离屏／减少动态、合同第三章与重播、手机放大返回通过，console error/warn为空。IAB截图裁切，不记整页1:1视觉通过；iOS真机未测。
+- 联合预览 https://6ac9389bb0b5a08718433763--forflow-enterprise-suite-v3.netlify.app/ ready，104个资源HTTP200/noindex并校验内容；主站与产品路径均在该版本，正式部署 6ac91f00a3371bf5a7fa42d3 保持。远程浏览器导航超时，不计远端视觉通过。回执为 homepage-guru-preview.json，旧独立产品预览与正式源回执保留。未Git push、未发送邮件或写入Drive。
+
+
+## 2026-10-10 — 主站与 ForFlow One 顶栏统一
+
+- 按用户补充同步顶栏，归为产品、企业服务、资源、案例与实践四组；保留连接器、治理、能力资产和 CLI。右侧为场景诊断与既有飞书预约，统一 logo 比例、桌面 78px / 手机 68px 高度、字号、间距、绿色按钮与深色下拉面板。
+- 样式与行为在 assets/site/guru-navigation.css / guru-navigation.js，首页内容在 templates/index.html，产品入口在 navigation-content.json 与 SiteNavigation.jsx；修改文案时同步两处。悬停进入 100ms、离开容错 180ms；支持方向键进入、Esc 返回焦点、手机分组滚动、点击章节后收起与减少动态。修复横向 overflow 导致吸顶失效，以及产品挂载误改 logo 返回地址。
+- 验证：主站和产品 1440px、440px、390px 无横向溢出，滚动顶栏 top=0；菜单切换、键盘、手机关闭、连接器跳转、减少动态通过，控制台 error/warn 空。Vite 与 Sites 4/4 通过，静态检查仅有无关 workbench_prototype.html 三项既有错误。IAB 桌面截图裁切，iOS 实机未测。检查明细与源码摘要见 guru-navigation-qa-20261010.json。
+- 预览 https://6ac93ef4dc72e5af311332da--forflow-enterprise-suite-v3.netlify.app/ ready，109 个资源 HTTP200/noindex 并完成内容回读；正式部署 6ac91f00a3371bf5a7fa42d3 未变。远端 IAB 导航 20 秒超时，本地交互检查使用同一构建。旧回执已归档，当前为 homepage-guru-preview.json。未 Git push、未正式发布。
+
+
+## 2026-10-10 — 首页合同展示框与连续操作动效
+
+- 按用户对 Qoder / OpenAI 框内展示与动效的要求，先改首页合同产品框。将整块跳转链接替换为保持位置稳定的任务对话、结果工作区和原文侧栏；围绕 SUP-018、CTR-1042 第3版和第4.2条，演示提问、对照依据、生成复核待办。合同条款与业务审批规则分开展示，法务顺序不冒充合同原文。所有交互为官网本地展示状态，未接后端提交。
+- 新入口 assets/site/home-workspace.css / home-workspace.js，模板为 templates/index.html；生成根 index.html。25秒连续过程包括逐字输入、虚拟鼠标定位与点击、原文高亮、依据切换、状态反馈；可手动选择章节、开关原文、生成待办、暂停及重播。离屏和页面隐藏时停止计时，操作接管播放，减少动态时停在完成状态。手机保留左右构图，可放大并横向查看。静态检查保留合同来源、结果和完整工作台入口要求，并改查实际按钮结构。
+- 来源：Qoder 当前官网 HTML/CSS 与模块资产仅存临时参考页并在本地浏览器查看，未复制其图像资产进入发布包；OpenAI 页面正文经 web 读取，直接 HTML 403、原页交互未完成视觉核对，不记为已实现像素级或时序1:1。参考拆解用于稳定框架、局部状态和操作结果的对应关系。
+- 验证：首页生成、JS语法通过；1440px 桌面结果内容在工作区边界内，440×956 / 390×844无整页横向溢出、标题与控制不重叠。章节/来源切换、Esc焦点恢复、待办状态、播放到结束、离屏暂停并恢复、减少动态、放大后方向键横移通过；console error/warn空。IAB截图受到宿主裁切，不记完整桌面截图验收；iOS实机未测。静态检查仅余 workbench_prototype.html 的3个既有问题。明细见 home-workspace-qa-20261010.json。
+- 远程预览 https://6ac947da5ab3e8272b6b9239--forflow-enterprise-suite-v3.netlify.app/#one ready，111个资源HTTP200/noindex并逐字节核对；72个产品子树文件与上一预览完全相同，顶栏及产品下半内容未重写。正式部署6ac91f00a3371bf5a7fa42d3未变。远端IAB导航25秒超时，本地已按同一发布包验证；当前回执 homepage-guru-preview.json，旧回执已归档。8903预览继续保留，本轮临时8905参考服务已停止。未Git push或正式发布。
+
+
+## 2026-10-10 — 首页三张案例配图按正文重做
+
+- 用户指出三张配图生搬硬套。核对后确认原版混用两张泛行业场景照与一张带标题的旧文章封面，首页 cover 裁切不能说明各案例工作内容。替换为三张统一660×440的原创SVG视觉：B柱材料/工艺/失效机理与变更复评；渠道B履行异常→信用控制冻结→待审批放行请求；P&ID阀门定位与设备连接查询。正文来源及图形表达边界记录在 home-case-visuals-20261010.json，不将说明性视觉称为真实客户工作台截图。
+- 图片位于 assets/site/case-studies/，布局为 home-case-studies.css；生成来源 templates/index.html 已同步。三卡等宽、完整contain显示、移除灰度滤镜及旧图片强制裁切；标题和摘要改成与对应案例一致的具体问题。案例详情页和固定产品构建不变；未引入新的量化效果或客户背书。
+- 验证：首页生成、三张SVG XML解析通过；静态检查仅有无关workbench_prototype.html三个既有错误。浏览器目视检查三张图，1440px三卡等高514.63px、等宽369.33px；440px与390px图片加载、文字间距、完整边界检查通过，无整页横向溢出，console error/warn为空。iOS实机未测。
+- 预览 https://6ac94c4ca545c33274d20db5--forflow-enterprise-suite-v3.netlify.app/#cases ready，112资源HTTP200/noindex及内容回读通过。包仅改首页HTML、案例CSS和三张SVG，并移除首页不再使用的旧三张位图；产品子树、顶栏、上一轮工作台动效文件保持。正式部署6ac91f00a3371bf5a7fa42d3未变。当前回执homepage-guru-preview.json，前版回执按ID归档。未重复此前持续超时的远程IAB导航，本地按相同包核验，8903本地预览保留。未Git push、未正式发布。
+
+## 2026-10-10 — 产品页保留原版，仅轻微对齐主站
+
+- 用户明确 /product/one 保持原有页面，风格略微靠近主站。产品恢复浅色居中首屏，标题后直接进入真实工作台；移除本轮额外叠入的客户墙、滚动状态条与首屏功能／生态栏。原有三个场景、处理过程、优势、AI 资产、治理、连接器、CLI、15 条案例与联系部分全部保留，合同讲解流程也保留。主站首页继续使用已经接受的 Guru 方案。
+- App.jsx 与 main.jsx 分开主站／产品样式；新增 product-brand-alignment.css，仅调整浅色导航、灰绿色强调与浅绿圆角预约按钮。共享导航只增加产品选择器别名，不改变首页样式声明；产品导航降至 z-index 60，修复放大工作台时关闭按钮被导航层截获的问题。工作台 20 个文件逐字节未变；主站 HTML、案例配图和工作台文件未变。最新范围同步至产品 AGENTS.md 与 guru-homepage-20261010.md。
+- 验证：最终 Vite 构建与 Sites 4/4 通过。IAB 检查 1440px、440×956、390×844 无页面横向溢出，首屏标题／说明／CTA 边界不重叠；桌面导航方向键和 Esc、手机菜单展开关闭、合同章节／重播／暂停通过。发现并修复导航与放大层层级冲突，390px 下复测关闭成功、恢复 body 滚动。控制台 error/warn 为空；九个下半区块及 15 条案例入口保留。桌面截图受宿主裁切，配合 DOM 几何检查；iOS 真机未测。根静态检查仍为无关 workbench_prototype.html 三项既有错误。
+- 预览 https://6ac95170650074502b34ff9f--forflow-enterprise-suite-v3.netlify.app/product/one/ ready，112 个资源 HTTP200/noindex 并校验内容。正式部署 6ac91f00a3371bf5a7fa42d3 未变，固定正式产品源未覆盖；当前回执 homepage-guru-preview.json，上一版已按 ID 归档。本地 8903 继续可用。远程 IAB 不重复此前的导航超时，本地验证相同包并逐文件回读远程内容。未 Git push、未正式发布。
+
+## 2026-10-10 — 补齐首页知识连接与聚合动效
+
+- 用户指出 Guru 首页关键动效遗漏。核对发现首页只有倾斜卡片滚动，缺少来源连线、中心知识聚合与 AI 工具联动。重新读取官网源码并在临时本地参考页观察 SVG、CSS 与原时间线；远程 IAB 超时，不记为原站交互实测或逐像素复刻。
+- 仅在主站首屏状态条与产品工作台之间新增知识连接板块。入口为 templates/index.html、assets/site/home-knowledge-motion.css / .js；原生 SVG 与 Web Animations API 实现分批出场、路径绘制、环形标签、知识卡片和持续光点，采用参考的出场顺序与约 2 秒展开节奏，无新增运行依赖或外部请求。原动态卡片、工作台、案例与其他内容保留。
+- 加入暂停、重播、滚入播放、离屏及页面隐藏暂停、减少动态模式。修复完成动画恢复时重复闪现、Codex 标识对比不足、手机放大缩放布局留下空白；手机可完整查看或放大横移。产品页 72 个包文件与上一版逐字节一致。
+- 验证：首页生成与 JS 语法通过；首页静态检查通过，仅无关 workbench_prototype.html 三项既有错误。IAB 的 1440px、440×956、390×844 无整页横向溢出，图标加载、暂停计时保持、重播起点、离屏恢复、减少动态、手机放大恢复与键盘横移通过，console error/warn 空。局部构图已目视检查，大尺寸截图受宿主裁切并结合 DOM 边界检查，iOS 真机未测。详见 home-knowledge-motion-qa-20261010.json。
+- Draft https://6ac95943b0b5a0778a4337de--forflow-enterprise-suite-v3.netlify.app/#knowledge-flow ready，114 个资源 HTTP200/noindex 且内容回读通过；只改变首页 HTML 和两份新动效资产。正式部署 6ac91f00a3371bf5a7fa42d3 未变。当前回执已更新，上版已归档；8903 预览保留，临时 8906 参考服务已结束。未 Git push 或正式发布。
+
+## 2026-10-10 — 修正知识连接图的中文排布和标签样式
+
+- 用户指出「来源可追溯」等十五字显示异常、合同条款等标签样式突兀。移除 SVG textPath 弧形中文，顶部改为水平上下文标题；三句说明移至图下方，手机保持正常 12px 字号，不跟随整个图缩小旋转。
+- 十二个原知识标签全部保留，改为低饱和深底、细边框、圆角胶囊与对应小图标，自然排列为四行；取消亮绿色实底和渐隐遮罩。修改模板及 home-knowledge-motion.css / .js，连线和光点动效保持。产品页 72 个包文件与上版逐字节相同。
+- 验证：首页生成、JS 语法通过；首页静态检查通过，仍只有无关 workbench_prototype.html 三项既有错误。IAB 检查 1440px、440px、390px 无整页横向溢出，十二标签无裁字、图标引用全部有效，弧形文字数量为零。暂停、重播、手机 840px 放大和恢复通过，console error/warn 空；局部截图已目视核对。大尺寸使用 DOM 边界辅助检查，iOS 实机未测。
+- 远程预览 https://6ac966962f49dee977839197--forflow-enterprise-suite-v3.netlify.app/#knowledge-flow ready，114 个资源 HTTP200/noindex 与内容回读通过。只改变首页及两份动效资产；正式部署未变。当前回执已更新，上版已归档，8903 本地预览保留。未 Git push 或正式发布。
+
+## 2026-10-10 — 聚合中心直接使用 ForFlow One 产品图标
+
+- 按用户要求，将首页知识连接图中央临时绘制的 SVG 符号替换为 ForFlow One 原版应用图标。来源为已安装 Forflow One.app 的 app.asar.unpacked/resources/forflow/forflow-app-icon.png，原文件直接复制至 assets/site/forflow-one-app-icon.png；无重绘或生成改造。保留 ForFlow One 名称、知识标签、连线和播放过程，去掉旧绿色图标框，柔光改为沿原图透明边缘显示。
+- 修改 templates/index.html 和 home-knowledge-motion.css / .js；生成与 JS 语法通过，静态检查仍仅有无关 workbench_prototype.html 三项既有错误。IAB 确认原图加载 1024px、旧 SVG 数量为零、动效运行；目视检查及 1440px/390px 边界检查通过，图标／名称／标签无重叠、无页面横向溢出，console error/warn 空。iOS 真机未测。
+- 预览 https://6ac9cbcefb5a9c000f51ff7f--forflow-enterprise-suite-v3.netlify.app/#knowledge-flow ready，115 资源 HTTP200/noindex 和内容回读通过。产品页 72 个文件保持不变，正式部署未变。回执更新并归档上一版，8903 本地预览保留；未 Git push 或正式发布。
+
+## 2026-10-10 — 首页工作台细节、任务状态与 Cursor 标识
+
+- 按用户反馈删除“所有材料在同一工作区”“资料保持关联”等泛化解释，改为材料数量、合同条款、复核顺序与待办状态；同步细化工作台下方三项能力文案。保留既有主站视觉与知识聚合动画，不修改产品页。
+- 实际浏览 Qoder 中文产品页，点击竞争分析任务及 HTML 产物，参考其稳定的对话／产物分区、紧凑状态行和原文阅读层级。首页复核过程改为提交前只显示材料、提交后读取、核对完成再显示结论；手动第三步停在待创建，点击才生成 TK-1042，完成后禁止重复创建。发送按钮提交当前问题，不再重播整个过程。
+- 原文改为完整右侧阅读面板，增加返回入口、Esc 返回及焦点恢复；修复切换依据后读屏播报错误来源。放大模式保留横向工作台，补任务／结果视野切换与 Esc 收起；字体、对比度、表格间距和内容高度统一调整。暂停、重播、滚入播放、离屏暂停及减少动态模式保留。
+- Cursor 原位图被统一反白滤镜抹成白块，替换为官方品牌包 General Logos/Cube/SVG/CUBE_2D_LIGHT.svg（https://cursor.com/brand），原 SVG 直接复制；知识聚合和工具栏都使用此资产。工具栏撤销整图反白，为各标识设置相同尺寸，Codex 保留深色底以承载白色标识。
+- 验证：主页生成、JS 语法通过；静态检查仅 workbench_prototype.html 三项既有错误。IAB 实测提交至自动完成、手动章节、依据切换与播报、Esc／焦点恢复、创建前后状态与禁用重复创建。桌面 1440px 布局及局部截图检查，440px 手机放大切换实际点击后 scrollLeft=331px、整页无溢出；390px 标题和控件无重叠。减少动态停在待创建并隐藏虚拟鼠标；控制台 error/warn 空。宿主缩放影响大尺寸截图，辅以 DOM 测量；iOS 真机未测。
+- 最终包 workspace-refinement-final 与上一版相比，仅首页、工作台 CSS/JS、工具栏样式与 Cursor 资产变更；产品子树 72 文件逐字节一致。旧预览回执已按 ID 归档；本地 8903 保留。
+
+- Draft https://6ac9dec27bc79588a72a0c48--forflow-enterprise-suite-v3.netlify.app/#one ready，115 个资源 HTTP200/noindex 与内容回读通过；正式部署 6ac91f00a3371bf5a7fa42d3 未变。远程 IAB 导航 30 秒超时，使用同包本地交互与逐文件 HTTPS 回读验证。当前回执更新，未 Git push 或正式发布。
+
+## 2026-10-10 — 工作台切换节奏与动作说明细化
+
+- 按用户对 Qoder 点击、切换、小动效和文案的反馈，核对当前官网正文及官网 CSS 的 220ms 面板、480ms 选中项与 140–160ms 显隐节奏。当前远程参考页 IAB 超时，参考结论来自官网内容与样式，不记作本轮原站交互实测或逐像素复刻。
+- 仅细化主站合同工作台：章节改为“发起复核 / 查看依据 / 交给负责人”，增加各步说明；材料依次显示读取状态，结果分层出现，引用局部展开，按钮按压反馈，待办生成先显示处理状态。保持工作台边界和整体视觉，去掉整块重复入场；快速切换取消旧动画与延迟创建。
+- 验证：主页生成及 JS 语法通过；静态检查仍仅 workbench_prototype.html 三项既有错误。IAB 实测完整自动播放、手动章节、原文切换与关闭、生成中到 TK-1042、快速跳转取消创建；暂停后时间线动画保持相同时间戳，恢复播放；减少动态时停在待创建、隐藏鼠标、活动动画为零。控制台 error/warn 空。1063px、1440px 桌面及 440×956、390×844 手机边界检查，无整页横向溢出、说明与控件无重叠。宿主缩放裁切截图，辅以 DOM 几何；iOS 真机未测。
+- 发布包 workspace-qoder-motion 相对 workspace-refinement-final 仅 index.html、home-workspace.css、home-workspace.js 改变，产品子树 72 文件逐字节一致。8903 本地预览保留。部署脚本准备首次失败后误建了上一包的重复草稿 6ac9f178c15e4a453265571b，无内容变化，正式部署未变；该回执已归档，后续交付使用本轮包。
+- 交付预览 https://6ac9f355c15d91d7303c0957--forflow-enterprise-suite-v3.netlify.app/#one ready，115 个资源 HTTP200/noindex 并逐文件回读通过，正式部署 6ac91f00a3371bf5a7fa42d3 未变。当前回执 homepage-guru-preview.json 已更新；未重复远程浏览器导航超时，以同包本地交互和远端文件核对验证。未 Git push、未正式发布。
+
+## 2026-10-10 — 知识连接区改为开放构图
+
+- 用户提供 Guru 截图，指出当前表达过于规整。本次按截图调整知识连接区的重心、疏密与层次：去掉两侧统一方框，保留原产品标识；拉开两侧弧线，中心扩大为五行错位知识卡片，由浅绿逐层过渡到深绿。ForFlow One 原图标略倾斜，只有图标轻微浮动；光点沿资料汇入和工具接出的路径移动。保留十二个知识主题，不改合同工作台和产品页。
+- 标题简化为“把企业的知识，交到 AI 手中”，说明直接使用合同、业务记录、团队经验。三个原则放在圆环附近，中文保持完整横排，不再使用容易挤字的中文 textPath。移除底部横线与清单式说明，连接入口居中、播放控件退至次要位置。
+- 维护入口：templates/index.html、home-knowledge-motion.css / .js；生成根 index.html。包 knowledge-open-composition 与 workspace-qoder-motion 相比仅三份首页文件变更，72 个产品文件逐字节一致。生成和 JS 语法通过，静态检查仍仅无关 workbench_prototype.html 三项既有问题。
+- IAB 验证：1440px 桌面构图与局部截图，440px 和 390px 页面无横向溢出、控件不重叠；7 个图标加载，12 条连接线、12 个知识标签完整；手机放大为1020px画布并可横移、恢复全貌。暂停时光点时间戳保持不变，重播回到起点；减少动态模式活动动画为零、全部卡片可见；控制台 error/warn 空。桌面截图受宿主缩放裁切，CDP 大图捕获出现拼接异常，不作为完整桌面截图验收；已用 DOM 边界辅助检查，iOS 真机未测。8903 预览保留。
+- 预览 https://6ac9ff7ae3ef053a94fa6890--forflow-enterprise-suite-v3.netlify.app/#knowledge-flow ready；115 个资源 HTTP200/noindex 及内容回读通过，正式部署 6ac91f00a3371bf5a7fa42d3 未变。当前回执 homepage-guru-preview.json 已更新，上一版按 ID 归档；未 Git push 或正式发布。
+
+## 2026-10-10 — 业务场景从困难描述改为问题、结果与依据
+
+- 用户要求参考 Guru 讲清“从业务问题开始”下方内容。读取 Guru 首页、solutions 与 how-it-works：团队场景先讲能完成的工作，机制段用问题、处理过程与具体输出衔接。参考地址：https://www.getguru.com/、https://www.getguru.com/solutions、https://www.getguru.com/product/how-it-works。远程 IAB 导航超时，未将网页源码阅读记为原站交互实测。
+- 主站六张挑战卡改为六个可切换场景，保留客户服务、营销内容、企业知识、运营流程、财务经营、人才组织范围。标题改为“把 AI 用在每天都要做的工作里”，各场景展示具体提问、回复／邮件／差异清单／待办／办理清单，以及可展开的依据；供应链入口关联已有案例，其余保留带场景参数的诊断入口。图内文字是说明性工作场景，不增加客户、上线、效果数字或实际产品截图的断言。
+- 沿用已接受的深绿主站和浅色工作界面。手动切换、局部错峰过渡、来源展开；支持方向键、Home/End、焦点和读屏状态，减少动态模式停止过渡。手机保留可读的结果内容，横滑选择场景。补齐固定展示高度和展开图标余量，避免切换跳动与文字裁切。
+- 入口为 templates/index.html 与新增 home-scenarios.css / .js，执行 homepage-only 生成和独立预览打包。119 个包文件，相对 knowledge-open-composition 仅首页 HTML 与两份场景资产变化，产品子树 72 文件逐字节相同。未改工作台、知识连接动效、案例详情或 /product/one。
+- 验证：JS 语法、首页生成通过；静态检查仍只余无关 workbench_prototype.html 三个既有错误。IAB 六场景切换、原文展开/关闭、方向键与 Home、焦点和状态播报通过；1440px 六面板均高 591.87px，390px 均高 798.43px，无整页溢出或内容裁切。440px 初检后统一修正展示高度与图标余量；减少动态时本区活动动画为零，键盘切换 scrollY 差为零，图标全部加载，console error/warn 空。手机局部截图已目视检查，桌面截图受宿主缩放裁切，辅以 DOM 几何；iOS 真机未测。
+- 预览 https://6aca0c7cabc97a970d516824--forflow-enterprise-suite-v3.netlify.app/#challenges ready；117 个资源 HTTP200/noindex 并逐文件回读通过，正式部署 6ac91f00a3371bf5a7fa42d3 未变。回执更新并归档上一版。8903 本地预览保留；未 Git push 或正式发布。
+
+## 2026-10-10 — 知识标签细化与圆环中文可读性
+
+- 用户截图标注弧形中文拉散、标签过厚且缺乏 Guru 式细节。基于最新版本继续细化：标签从 17px/42px 改为 15px/34px，减小内边距、边框与圆角，保留五行错位和由浅到深的层次。新增九种本地 SVG 小图标，用于十二个知识标签，按文档、规则、工程图、历史、流程、复核、关系、材料和权限分别表达。
+- 圆环标题取消字距，三项原则改为完整水平文字。手机全览将三项说明放在图下，以正常 12px 字号显示；放大后回到图内。真实 ForFlow One 图标、连接线与光点、十二项主题保持。旧截图中的大方框与中文 textPath 不带回当前版本。
+- 维护入口 templates/index.html、home-knowledge-motion.css、knowledge-tag-icons.svg。预览打包脚本补充 SVG use href 资源收集，避免外部 sprite 遗漏。主页生成、SVG XML 和九个 symbol 校验通过；静态检查仍只余无关 workbench_prototype.html 三个既有错误。
+- IAB 验证：1063px 桌面局部构图；十二个 SVG use 均有非零绘制尺寸，标签不裁字、三个说明 transform=none、textPath 数量零。440px 放大为 1020px 可横移画布，图标与横排说明目视通过，暂停后活动动画为零、重播恢复运行。390px 全览无整页溢出，三项说明均为 12px，减少动态时活动动画零且五行标签可见，console error/warn 空。宿主裁切大尺寸截图，结合 DOM 几何核对；iOS 真机未测。
+- 包 knowledge-tag-detail-final 共 120 文件，相对 scenario-stories-final 仅首页 HTML、知识样式与新图标 sprite 改变；72 个产品文件逐字节相同，上一轮六场景完整保留。8903 本地预览保留。
+- 预览 https://6aca12669f486c47c77dfce6--forflow-enterprise-suite-v3.netlify.app/#knowledge-flow ready，118 个资源 HTTP200/noindex 且逐文件内容核对通过。正式部署 6ac91f00a3371bf5a7fa42d3 未变；当前回执更新并归档上一版。未 Git push 或正式发布。
+
+## 2026-10-10 — ForFlow One 工作机制与真实产品界面
+
+- 按用户的 Qoder「如何工作」参考，替换重复的三列续约流程，保留 #platform。新增智能体选择、步骤进度、项目背景、工作台工具、人工审阅五张错落卡片，沿用深绿主站与浅色界面。完整业务工作台、案例、场景及产品页保留。
+- 支持菜单选择、步骤播放／暂停、资料与工具切换、审阅截图切换、完整图片弹层；含键盘方向键、离屏暂停、减少动态手动步进与弹层焦点恢复。手机图片从主操作区开始，可左右查看。
+- 使用 ForFlow One 2026-09-28 产品截图集的三张原图，文件与来源哈希相同，仅 CSS 裁切。来源与适用范围见 home-mechanisms-assets.json。Mac 当前锁定，未取得新的实时截图；使用已有真实产品素材。没有套用 Qoder 的智能路由、语音伙伴或多人实时对话承诺。
+- 验证修复菜单行高、内部焦点滚动、截图拉伸及手机弹层位置。主页生成和 JS 语法通过；静态检查改为检查保留的完整工作台三阶段和播放入口，仍仅有 workbench_prototype.html 三个既有错误。IAB 在 1440／1063／440／390px 验证无整页溢出，卡片内容不裁切；主要选择、切换、键盘、暂停与弹层通过。减少动态时本区活动动画零，控制台 error/warn 空。
+- 大尺寸截图受宿主裁切，结合局部目视与 DOM 几何检查；Qoder 同屏等密度严格视觉对照未完成，design-qa.md 记为 blocked，不声称像素级复刻。iOS 真机未测。预览包 mechanisms-final 共 124 文件，72 个产品文件逐字节不变；本地 8903 预览保留。
+
+- Draft https://6aca24ee208c9cfa7530f90c--forflow-enterprise-suite-v3.netlify.app/#platform ready; all 122 served assets passed HTTP 200, noindex and byte readback. Production 6ac91f00a3371bf5a7fa42d3 unchanged. Receipt archived and updated; no production release or Git push.
+
+## 2026-10-10 — 首页手机阅读、点按与产品放大
+
+- 按用户补充的手机版要求，保留当前首页内容和视觉，调整首屏字号随屏宽变化，修复 320px 下标题四行且“一步步”断开的情况。机制卡片、播放、工具切换、场景切换、导航及来源展开的主要控件扩大到至少 44px；小字和说明适度调大，窄屏不强行重排工作台内部层级。
+- 真实产品截图补充“查看全貌／放大细看”。手机从 1200px 图片的主操作区开始，可双向滑动；弹层采用动态视口高度、安全区余量与背景定位锁定，关闭及 Esc 恢复原滚动位置和触发焦点。修正手机材料截图裁切后底部留白。合同工作台保留 1000px 横向画布，并增大任务／结果视野切换与播放按钮。
+- 维护入口为 templates/index.html 和对应首页样式／机制脚本，执行 homepage-only 生成，独立打包 mobile-refinement-reviewed。相对 mechanisms-final，72 个 product 文件逐字节一致。生成、JS 语法、差异空白检查通过；静态检查仍只有无关 workbench_prototype.html 三个既有错误。
+- IAB 在 320／375／390／440／1440px 检查：整页横向溢出为零；主要点按控件达到 44px；320px 步骤控件保持一行，机制卡片没有内容裁切；320／440px 首屏为两行标题。智能体／工具／审阅切换、场景横滑与依据展开、工作台放大和平移、截图全貌／细节与关闭位置恢复通过；减少动态时机制区活动动画为零，手动步进可用。console error/warn 空。实际 iOS Safari 真机尚未测试，不把浏览器窄屏检查记为真机验收。详情见 home-mobile-qa-20261010.json。
+- 远程预览 https://6aca311bb69e965b30629c54--forflow-enterprise-suite-v3.netlify.app/ ready，122 个资源 HTTP200/noindex 及逐文件内容回读通过。正式部署保持 6ac91f00a3371bf5a7fa42d3；回执归档并更新，未 Git push 或正式发布。8903 本地预览继续可用。
+
+## 2026-10-10 — 审阅截图去掉教学浮层并统一取景
+
+- 用户指出审阅展示的教程浮层与图片尺寸不合适。替换两张旧截图为已有的真实产品 QA 原图：1.4.220-forflow.1 的审阅活动、1.4.222-forflow.1 的材料选择；原始像素与来源哈希保持一致。图片没有教学提示浮层，素材版本、路径与用途写入 home-mechanisms-assets.json。使用的是合成 QA 工作区与记录，不作为客户成果或模型效果证据。
+- 首页默认页签改为“看审阅记录”，说明与实际图片内容对齐。用固定比例的取景窗口替代各断点的大幅百分比偏移，两张图切换高度相同；全图按钮移到图片下方，避免遮住内容。窄屏保留 520px 画布，可横向查看并打开原图；全图弹层依据每张图片的主体位置定位。
+- IAB 验证 320／440／1063／1440px 整页无横向溢出；440px 两页签卡片高度同为 674.61px，材料原图宽高比 1.42223 与原始 1.42222 一致。320px 实际横移到 107.77px，主要按钮约 44px；放大全图／恢复全貌、键盘页签切换、关闭后恢复滚动 5423.06px 和触发焦点通过，控制台 error/warn 空。原图及手机局部截图已目视核对；桌面宿主截图裁切，辅以 DOM 几何检查，未做 iOS 真机验收。
+- homepage-only 生成、JS 语法通过；静态检查仅剩无关 workbench_prototype.html 三项既有问题。review-captures-clean 包相对上一预览只改变首页 HTML、机制 CSS／JS 和两张截图；72 个产品文件逐字节相同。8903 本地预览保留。
+- 新预览 https://6aca52f80dec4ccbfa69384f--forflow-enterprise-suite-v3.netlify.app/#platform ready；122 个资源 HTTP200/noindex 与内容回读通过，正式部署 6ac91f00a3371bf5a7fa42d3 未变。当前回执归档并更新，未 Git push 或正式发布。
+
+## 2026-10-10 — 首页诊断入口统一视觉与四步交互
+
+- 用户指出诊断卡不符合整页审美。原浅色卡片仍继承深色方案的浅字色；去掉厚绿背景与仿浏览器圆点，采用单层浅色卡片、深灰文字、细边框和低饱和选中状态。英文步骤标签换为四段中文进度，左侧说明改为具体输出。
+- 选项增加图标与一行工作说明，使用原生 radio 支持方向键、焦点与读屏；取消预选，未选择时下一步不可用。新增上一步并保留答案，切题采用 220ms 局部过渡，减少动态时停止过渡。手机切题将问题带回可见区域。末步传递四项选择至现有完整诊断。
+- 维护入口 templates/index.html、script.js、新增 home-navigator.css；homepage-only 生成 home-interactions.js 和 index.html。独立预览包 navigator-refined-final 保留上轮审阅截图修正。
+- IAB 在 320／440／1063／1440px 检查无整页横向溢出；320px 选项未溢出、下一步高约 44px；1063px 两题切换卡片高度均为 675.95px。四步推进、返回保留 knowledge/risk、键盘选择 operations、减少动态时活动动画零、console error/warn 空。手机局部与桌面局部截图目视通过；桌面宿主截图裁切，辅以 DOM 边界检查，未做 iOS 真机验收。
+- 完整诊断跳转带齐四项参数，线上仍进入既有访问码页 landing.html?next=/navigator.html?...；首轮浏览器等待超时，随后标签清单确认目标和参数。未改已有门禁，未将该跳转记为诊断结果页验收。
+- 生成和 JS 语法通过；静态检查仍只有无关 workbench_prototype.html 三项既有错误。一次发布准备脚本编码错误，使旧审阅包产生了重复 draft 6aca5d45a3371b3771fa42aa；不作为本轮交付，正式站点未变。
+- 本轮交付 https://6aca5dbc2212dc4e03be0b6d--forflow-enterprise-suite-v3.netlify.app/#navigator ready；125 个包文件中的 123 个资源 HTTP200/noindex 与逐文件回读通过。相对上轮仅首页 HTML、首页交互脚本、新诊断样式三份文件变化，72 个产品文件逐字节不变。正式部署 6ac91f00a3371bf5a7fa42d3 未变；回执更新，未 Git push。8903 本地预览保留。
+
+## 2026-10-11 — 首页资料、问答与页尾收尾打磨
+
+- 用户要求继续打磨底部。工具与资料改成三张紧凑、等高的入口卡，统一线性图标、中文标签和箭头反馈；诊断入口回到本页四步卡。常见问题改为产品用途、已有系统接入、试点材料、效果判断，使用一问一答的单项展开；补齐问题与答案的 aria 关联、收起状态和键盘操作。
+- 页尾删除重复诊断号召和大尺寸装饰，改为左右分区的预约产品演示入口，沿用既有飞书需求表，并说明填写后联系确认内容与时间。重排产品、企业服务、探索与资料三个导航组，补齐 ForFlow One、连接器、隐私说明与返回顶部，去掉“案例详情示范”。保留上部所有已接受内容、诊断改造和真实审阅截图。
+- 维护入口 templates/index.html、script.js、新增 assets/site/home-closing.css；homepage-only 生成 index.html/home-interactions.js。搜索弹窗中文化、缩短输入提示、修复关闭按钮对比度，手机底栏目标至少 44px。
+- IAB 检查 320／440／1063／1440px 无整页横向溢出；桌面三卡等宽等高，窄屏标题与链接不裁切。FAQ 单项展开、Enter 展开与 Space 收起、搜索打开／Esc／关闭及触发焦点恢复、返回顶部 scrollY=0 均通过；减少动态下卡片与答案过渡为 0s；console error/warn 空。手机与桌面局部目视检查通过，桌面截图受宿主裁切，辅以 DOM 几何检查；未做 iOS 真机验收。
+- 生成与 JS 语法检查通过，静态检查仍仅有 workbench_prototype.html 三项既有问题。closing-refined-final 共 125 文件，72 个产品文件与上一预览逐字节一致。8903 本地预览保留；只更新独立预览，不改正式站点或 Git 远端。
+- 新预览 https://6aca68412f49deea9f83923c--forflow-enterprise-suite-v3.netlify.app/ ready；123 个资源 HTTP200/noindex 与逐文件内容回读通过。正式部署 6ac91f00a3371bf5a7fa42d3 未变，回执更新并归档上一版。本包仅 index.html、home-interactions.js、新增 home-closing.css 改变，移除不再使用的 logo 副本；浏览器远程导航两次超时（第二次为状态检查），不计为远程视觉验收，本地视觉与交互结果不受影响。
+
+## 2026-10-11 — 首页诊断以下按需展开与案例切换
+
+- 用户要求诊断区域及后续内容重新调整，允许折叠。沿用当前首页视觉，诊断压缩为一条入口，点击展开原有四步表单；收起保留答案与当前步骤，资料区和页尾诊断入口会直接展开。手机只保留必要提示，主要点按目标至少 44px。
+- 实施方法改为四项单项展开，每项给出具体工作和交付；案例改为汽车工程、供应链、工程知识三个可点击／键盘切换的面板，沿用各自机制图和案例来源。资源区压缩为三个简洁入口，减少问答和预约区间距与字号。借鉴 OpenAI／Qoder 的按需查看节奏，无自动切换。
+- 维护 templates/index.html，新增 assets/site/home-lower-story.css/js，执行 homepage-only 构建。lower-story 预览包相对 closing-refined-final 只改 index.html 和两项新增资产，诊断之前的首页内容逐字节一致，72 个 product/one 文件逐字节一致。
+- IAB 检查 320／440／1063／1440px 无整页横向溢出；窄屏标题不裁切。诊断展开／收起、选择后下一步、返回保留答案、页内入口展开通过；方法单项展开与 Enter 切换、案例点击与方向键切换、搜索打开／Esc 关闭通过。440px 三案例面板高度均为 596.43px，320px 检查汽车与工程知识均为 530px。减少动态时新案例动画为零、抽屉过渡 0s；console error/warn 空。桌面宿主截图存在裁切，辅以 DOM 几何；未进行 iOS 真机测试。
+- 构建及 JS 语法通过；静态检查仍仅 workbench_prototype.html 三项既有问题。QA 保存在 home-lower-story-qa-20261011.json。本地 8903 预览保留，发布仅独立 draft。
+- 新预览 https://6aca71b5b321ea466677801f--forflow-enterprise-suite-v3.netlify.app/ ready；125 个资源 HTTP200/noindex 与逐文件内容回读通过。正式部署 6ac91f00a3371bf5a7fa42d3 未变；回执更新并归档上一版，未 Git push。
+
+## 2026-10-11 — 场景对话联系人头像与异常跟进文案
+
+- 用户指出紫色“我”与绿色“业”字块缺少真实产品感，订单放行文案含混。六个业务场景提问头像统一复用已有合成联系人肖像，售后与信用控制联系人同步替换；素材复制到 assets/site/people，来源与哈希记录在 home-scenario-contact-assets.json，未使用真人员工身份或客户资料。
+- 沿用整体深色官网，局部对话借鉴 Sana 已提供参考的浅灰提问气泡、白色回答区和独立结果卡层级。去掉重复的内嵌边框与过小的字标，状态、标题、正文与跟进人分级。只统一场景组件，首屏及其他部分保持不变。
+- 运营文案依据现有供应链案例：未付款订单增加触发信用控制冻结。改为“待核对回款”，明确渠道客户经理补充回款凭证、信用控制组核对后提出放行意见并提交审批；未写成已经批准或解除冻结。跟进事项和两项分析依据支持点击与键盘展开，同组一次展开一项。
+- IAB 检查 320／440／1063／1440px 无整页横向溢出，320px 六个场景标题与气泡未裁切；头像加载成功，手机头像 32px／窄屏 28px，跟进目标高 76px。跟进与依据展开、Enter 切换、六页签切换通过；减少动态模式下当前场景活动动画为零，展开过渡 0s；console error/warn 空。手机局部截图目视检查，桌面截图受宿主裁切并辅以 DOM 几何；未测试 iOS 真机。
+- homepage-only 生成通过；静态检查仍仅 workbench_prototype.html 三项既有错误。contact-story-final 共 129 文件，相对 lower-story 仅 index.html、home-scenarios.css、两张联系人头像变化，72 个产品文件与首页其他部分逐字节一致。8903 预览继续可用；只更新独立 draft，未改正式站或 Git 远端。
+- 新预览 https://6acae7440dec4c6d8669384e--forflow-enterprise-suite-v3.netlify.app/ ready，127 个资源 HTTP200/noindex 与逐文件内容回读通过，正式部署 6ac91f00a3371bf5a7fa42d3 保持不变。回执更新并归档上一版。
+
+## 2026-10-13 — 首页删减重复文案
+
+- 用户明确本轮重点为多余文案。删除六场景重复分类与同义结果总结、无操作的省略号、产品演示下重复三步说明与数字入口带、能力区重复介绍、案例图下同义说明及页尾重复口号；缩短审阅说明、上下文提示与 FAQ。保留具体业务判断、依据、负责人、状态和预约说明。
+- 已改 templates/index.html，并同步现有生成 HTML。iCloud 将构建依赖与部分资产卸载，homepage-only 与标准打包读取被阻塞，已中止本次等待；以已有完整 contact-story-final 包同步同一文案修改，未改 CSS 或 JS。后续文件恢复后运行标准生成与打包。QA 记录 home-copy-trim-qa-20261013.json。
+- IAB 440／1280px 无横向溢出，删减目标在 DOM 中为零，场景切换正常，console error/warn 空。保存手机及桌面截图；桌面截图临时缩放用于克服宿主截图比例异常，随后恢复并关闭本地检查标签。未做 iOS 真机测试。结构标签平衡、所引用资产存在、72 个 product/one 文件逐字节不变。
+- 新 draft https://6acdbcd7bee14c5be42a099f--forflow-enterprise-suite-v3.netlify.app/ ready；127 个资源 HTTP200/noindex 与逐文件内容回读通过，正式部署未变。回执保存 homepage-guru-preview-copy-trim-20261013.json（旧回执受 iCloud 卸载阻塞，未覆盖）。远程浏览器打开超时，不记为远程视觉验收。本地 8903 预览保留。
+
+## 2026-10-13 — 手机产品窗口信息与对齐
+
+- 用户要求调整手机屏幕信息、参考 Qoder 的视觉对齐。原工作台把 1000px 桌面画面整体缩小，手机正文难以辨认；改为同一工作台的任务／结果两个视野，手机原字号展示、横向平移，章节切换自动定位结果。保留材料、原文、核对字段、复核待办与来源交互。手机收掉重复放大控件，统一标题、结果表格、来源页和按钮边距。
+- 六场景统一问题气泡、状态、结果与依据的字号和边距，收起重复结果标签与固定 450px 留白；能力卡片及真实审阅截图调整内边距与裁切宽度。仅作用于 <=700px；桌面工作台构图保留。
+- 维护 templates/index.html、home-workspace.js、新 home-mobile-product.css；homepage-only 生成完成。标准打包因 iCloud 卸载资产卡住，使用同一打包函数与按字节复制，未变的卸载资产复用上一已验证包。新包只改首页 HTML、工作台脚本与新手机样式，72 个产品文件逐字节相同。
+- 浏览器宽度 320／390／440／1280px 无整页横向溢出，手机结果区与窗口等宽、scale=1，判断正文 14px；原文打开、章节与视野切换、六场景文字未横向裁切、跟进展开通过。减少动态模式下活动动画零；console error/warn 空。截图保存 /private/tmp/forflow-mobile-result-20261013.png、forflow-mobile-story-20261013.png。未做 iOS 真机验收。当前 Qoder 浏览器检查超时，参考用户已给视觉与本轮官方页面结构，未声称当前手机像素复刻。
+- JS 语法通过。静态检查发现上轮删掉重复数字入口带后仍保留“四链接”结构断言，已改为验证产品、诊断、准备度、工作流四个实际入口仍可到达；重跑仅 workbench_prototype.html 三项既有问题。QA 保存 home-mobile-product-qa-20261013.json。
+- 额外播放验证：可见窗口重播后 is-playing=true；随后自动进入第三章 created，视野移至结果，scrollLeft=397.67、窗口宽398。手机截图验证完成后恢复浏览器宽度并关闭检查页。
+- 新 draft https://6acdc3a82ba08b5700ec769c--forflow-enterprise-suite-v3.netlify.app/ ready；128 个资源 HTTP200/noindex 与逐文件内容回读通过，正式部署未变。回执保存 homepage-guru-preview-mobile-product-20261013.json。8903 本地预览保留。
+
+## 2026-10-13 — 浅色产品页案例区视觉与交互
+
+- 用户指定 6aa571cdfa3641ac3084ecc1 预览的 #cases，明确先优化网页视觉交互。沿用当前浅色产品原型，调整 CaseSpotlight、CaseLibrary、connected-context.css 和 lower-editorial.css；保留四个重点案例与完整 15 条目录及归属。重点案例统一留白、字级和实色“查看案例”按钮；案例库增加分类数量、精选/全部/匹配数量，整卡可点击并保留原文链接的原生快捷打开行为。
+- 补齐重点案例 Home/End/方向键切换、空结果恢复全部、搜索 Escape 清空和关闭详情后的焦点返回。手机正文 14px、搜索 16px，主要案例按钮、分类及清除按钮至少 44px。
+- 本地浏览器验证 1280/440/320px 无整页横向溢出；制造类 4 条、B 柱检索 1 条、空结果恢复 15 条、收起恢复精选 4 条及标题焦点通过；B 柱详情打开、Escape 关闭并返回按钮通过。桌面/手机截图已目视检查；console error/warn 空，未做 iOS 真机测试。
+- iCloud 卸载文件阻塞原依赖和部分源码读取。使用同一锁文件 npm ci，在 /tmp/forflow-cases-build-20261013 独立构建；未修改的卸载文件从 HEAD 还原到临时目录，其余复制当前工作区。15 条目录同步成功，最终 Vite 构建、4 项 Sites 打包测试及 diff 空白检查通过。全站静态检查仍为 workbench_prototype.html 的 3 项既有问题。
+- 四个改动文件与临时构建源逐字节相同，前后哈希及截图记录在 output/homepage-v6/design-review/20261013-cases/qa.json。保留 http://127.0.0.1:8899/ 本地预览；本轮未发布远端、未 Git push，未改其他任务的 8903 服务。
+- 最终本地服务已切至构建目录，HTTP 200、产物脚本 main-CC2zz9VN.js 与 4 条精选 DOM 可读。切换后 IAB 截图返回与当前 DOM 不一致的旧弹窗画面，未记为构建版视觉验收；视觉交付使用已核对的开发态截图，四个源文件哈希与最终构建一致。
+
+## 2026-10-13 — 企业服务手机对齐与文案简化
+
+- 用户指出五项服务手机未适配，并要求调整同一部分文案。手机元信息置于标题上方，标题、说明、交付项统一左边界，交付项自然换行，收掉占宽图标；桌面排版保留。五项名称保留，说明改为具体工作，交付项明确为清单、规则、记录等；移除重复总介绍及抽象周期标签。
+- 维护 templates/index.html 与 assets/site/home-mobile-product.css，homepage-only 生成完成。320/390/440/700/768/1280px 无整页与服务文字横向溢出，手机五项对齐；390px 目视检查并保存截图，console error/warn 空。未做 iOS 真机测试。静态检查仍仅 workbench_prototype.html 三项既有问题。
+- 独立预览包相对上一版仅 index.html 与手机样式变化，服务目标链接相同，服务区外首页内容相同，72 个 product/one 文件逐字节相同。QA 保存 home-services-mobile-qa-20261013.json，8903 预览保留。
+- 新 draft https://6acdede9c7904eca1f68c174--forflow-enterprise-suite-v3.netlify.app/#services ready；128 个资源 HTTP200/noindex 与逐文件内容回读通过，正式部署未变。回执保存 homepage-guru-preview-mobile-services-20261013.json，未 Git push。
+
+## 2026-10-13 — 产品展示删除无信息量的编号标签
+
+- 用户明确要求删掉“供应商 SUP-018／合同 CTR-1042 · 第 3 版”这类废话。删除工作台标题旁整组标签、续约界面重复编号与公司占位行、资料卡和连接器展示的装饰性编号/版本；展示内容直接指向合同条款、负责团队与待处理事项。内嵌 Q2Q 复核界面同步删除重复合同编号、版本标记，保留条款位置和复核操作；底层记录标识和数据关联未变。
+- 修改 WorkspaceStory、Advantages、ConnectedContext、ConnectorSection、public/workbench/q2q-ui.js。复用已建立的独立构建目录；Vite 构建、内嵌 JS 语法、diff 空白检查通过。浏览器回读外层展示及初始内嵌复核页面的目标编号为零；634px 宽度无横向溢出，切换复核章节打开对话框、重播及暂停正常，无流程错误。
+- 已更新本地 8899 预览；未发布远端。截图、源文件哈希和验证结果保存在 output/homepage-v6/design-review/20261013-copy-trim/。
+
+## 2026-10-13 — 产品展示继续精简重复说明
+
+- 按用户“还有别的吗”继续通读并落实上一轮文案方向。删除任务卡、列表、详情与处理记录里展示的 CH 编号，以及核验依据中的 Q 编号；保留底层记录标识和交互。删除三场景重复结果总结、显然的操作提示、重复来源标记、连接器英文装饰与通用说明、核验和连接器底部套话、CLI 重复文件名；相应收紧两个窗口高度。
+- Vite 构建与 diff 空白检查通过，9 个源文件与临时构建目录逐字节一致。1280px 浏览器无页面横向溢出，目标文案无残留；看板/列表打开正确任务、关闭详情、合同连接器续约字段切换、权限面板、核验依据高亮通过；两个收紧窗口的内容均位于边界内，console error/warn 空。
+- 本地 8899 预览已更新；未发布远端。仅本轮差异、前版备份、哈希、截图和验证记录位于 output/homepage-v6/design-review/20261013-copy-trim-followup/。
+
+## 2026-10-14 - Homepage copy cleanup
+
+- Continued the service copy refinement. Removed the visible layout-reference label from the review logo wall, keeping the internal reference-asset markers. Removed repeated SUP/CTR/TK identifiers and version subtitles from the homepage contract walkthrough; source links and review handoff remain functional.
+- Shortened diagnosis and implementation copy: select work, verify real tasks, integrate into the team flow, review results. Simplified the resource heading and contact explanation. Sources: templates/index.html, home-workspace.js, package_homepage_review.py. Homepage-only generation completed.
+- Browser checks at 320/440/1280px: no horizontal overflow or clipped changed copy. Chapter switch, original-source open/close, task creation, diagnosis expand/choose/next/back with answer retention/collapse, and single-item method expansion passed. Two high-level browser clicks did not execute due to mapping/timeouts; after checking the unchanged state, ordinary same-page DOM clicks completed the interactions and were read back. Console warning/error list empty; desktop/mobile screenshots saved. No iOS device test. JS syntax passed; static check retained only the three pre-existing workbench_prototype.html issues.
+- Review bundle changes only index.html and home-workspace.js; 72 pinned product files remain byte-identical. Concurrent product-prototype work was preserved. QA: home-copy-refined-qa-20261014.json. Local preview 8903 remains available.
+- Draft https://6ace659b8c55f8a77a789db9--forflow-enterprise-suite-v3.netlify.app ready; 128 served resources verified HTTP200/noindex and byte-equal. Production unchanged; receipt homepage-guru-preview-copy-refined-20261014.json. No Git push.
+
+## 2026-10-14 — 产品原型整页精简与留白调整
+
+- 用户要求整页去重、精简无意义文案，并学习 Qoder / ChatGPT 官网。范围为 output/homepage-v6 独立浅色产品原型；依据官方页面的信息层级，将首屏、场景、流程、能力、资产、治理、连接器、CLI、案例和联系区收为明确标题、必要说明与操作展示。
+- 删除三场景六张重复说明卡、流程后的重复总结、章节间重复引导、装饰性序号和预约介绍。连接器合并重复视图入口，保留字段、关联与权限三个页签；工作依据卡片与联系区收紧高度、正文和间距。保留三场景、六类连接器、三类治理、完整 15 条案例及归属。
+- Vite 构建与改动文件 diff 空白检查通过，14 个改动文件与临时构建源逐字节一致。IAB 320/440/634/1280px 无整页横向溢出；案例搜索/15 条展开/4 条收起、详情返回、连接器权限切换、治理依据与复测、资产方向键、合同字段定位确认、窄屏详情开关和菜单通过，console error/warn 空。桌面及移动截图目视通过；未测试物理手机。参考官网只核对内容与层级，远程截图获取未成功，不记为像素对齐。
+- 本地 8899 预览已更新，构建脚本 main-CUDhrWVI.js；未发布远端、未 Git push，未改 8903 服务。记录位于 output/homepage-v6/design-review/20261014-whole-page/，含前版备份、仅本轮差异、哈希、构建日志、截图和 qa.json。
+
+## 2026-10-14 — ForFlow One 精简版正式上线
+
+- 用户明确要求上线当前产品页。正式发布到 https://forflow.ai/product/one/，生产部署 6acf5716ab87222a3fb75bf0；先在候选 6acf56abb2434905a10f89b3 验证同一 payload，再创建正式部署。仅更新产品目录，原正式站其他 76 个文件、5 个函数的代码/路由/流式模式及边缘访问控制保持一致。未发布并行任务的官网首页草稿。
+- 候选和生产的 72 个产品资源 HTTP 200 与内容核对通过；正式域名产品、治理和工作台入口 200，原门禁路径与 gate-login GET 405、无效短链 404 均保持预期，共 11 路径通过。正式域名新 JS/CSS/q2q-ui 逐字节一致，HTML 带现有 Cloudflare 检测脚本。Python 请求被 Cloudflare 1010 拒绝后，普通 curl 请求正常；未修改访问控制。IAB 页面/截图超时，不计远端视觉验收；本轮发布沿用已验本地构建。
+- 同步已发布构建到 output/homepage-v6/dist/client，并更新 product-one-source.json 与 product-one-deployment.json；重新打包的 72 个挂载文件逐字节一致。旧回执和本次验证归档在 docs/maintenance/releases/product-one-20261014/。正式站无 Git 自动部署连接，本轮未 Git push。
+
+## 2026-10-14 - Homepage role and status hierarchy
+
+- User flagged the unexplained legal label at the upper right. The walkthrough window bar now shows material/task counts, and the result badge uses a short review state. Role names and duties stay with the review task. Replaced role initial letters with consistent people icons; removed the current-task label, process-stage count, and redundant flow footer.
+- Sources: templates/index.html, home-workspace.js/css. Homepage-only generation and JS syntax passed. Removing the footer exposed an old cached JS reference during local reload; changed both asset query versions and verified a fresh page completing the task with an empty warning/error list.
+- Measured CSS widths 320/440/927/1279: no page overflow or clipped role text. Task creation, approval-source open/close, and replay resetting the material count passed. Screenshots saved; no iOS device test. Browser bindings/remote reads timed out initially and the local server had stopped; restored 8903 and used a fresh local tab. Static check retained only three pre-existing workbench_prototype.html issues.
+- Draft package differs only in homepage HTML and workspace JS/CSS; 72 product files are byte-identical to the previous review package. No production or unrelated product-prototype changes. QA: home-role-labels-qa-20261014.json. The restored local preview remains available.
+- Draft https://6acf5cbbfdddea8d01b0eba1--forflow-enterprise-suite-v3.netlify.app/#one ready; 128 resources verified HTTP200/noindex and byte-equal. Current production deployment remained unchanged. Receipt: homepage-guru-preview-role-labels-20261014.json. No Git push.
+
+## 2026-10-14 - Homepage redundant copy cleanup
+
+- User asked for further copy reduction. Removed chapter tutorials outside the workspace, assistant task subtitle, repeated creation receipt, conversation status/attachment footer, original-clause paraphrase and operations next-step footer. Six scenario descriptions now each have one sentence; removed duplicate scenario/mechanism introductions, simplified FAQ heading, and replaced the unverified diagnosis duration with a direct action label. Context tabs now describe the actual contract task.
+- Sources: templates/index.html and home-workspace.js. Homepage-only generation and JS syntax passed. CSS viewport widths 320/440/1280: no page horizontal overflow or clipped changed copy. Source open/close, task creation and replay, six scene switches, operations evidence, material-caption update and single-item FAQ expansion passed. Mobile task creation also completed; console warning/error list empty. Screenshots saved; no physical iOS test. Static check retained only the three pre-existing workbench_prototype.html errors.
+- Review bundle changes only homepage HTML and workspace JS. All 72 product files remain byte-identical to the previous review bundle; parallel product source and production were not incorporated. QA: home-lean-copy-qa-20261014.json. Local preview 8903 remains available.
+- Draft https://6acf622c49d76d543265e009--forflow-enterprise-suite-v3.netlify.app/#one ready; 128 served resources verified HTTP200/noindex and byte-equal. Final source whitespace cleanup produces byte-identical packaged HTML; diff whitespace check passed. Current production remained unchanged. Receipt: homepage-guru-preview-lean-copy-20261014.json. No Git push.
+
+## 2026-10-14 - Public company page release
+
+- User explicitly approved publishing the accepted homepage at forflow.ai/company. Added scripts/package_company.py using the template-generated index as source, with assets isolated under /company/assets, company-local section/brand navigation and a canonical URL. Reference-only Guru customer marks are excluded; actual tool ecosystem marks remain. Added company packaging to build_public.py and scoped Netlify gate exclusions/headers to the new page.
+- Current production snapshot 6acf5716ab87222a3fb75bf0 is the base. Candidate preserves 147 existing file digests, all 74 product files and 5 function archives with their routes and invocation modes; only edge exclusions and company headers change. The gated root and unrelated routes stay protected.
+- Company package generation, syntax and whitespace checks passed. All 79 asset references resolve; edge exclusion checks distinguish /company from /company-other. Gate static/runtime checks passed. Static site check has only the three existing workbench_prototype.html errors. Browser CSS widths 320/440/1280 have no page overflow; navigation, mobile menu, source open/close, task creation, material caption, scenario switch and review image dialog passed. No failed loaded images or console warnings/errors. Local screenshots saved; no physical iOS check.
+- Candidate 6acf73eff889e4d8013bbd54 passed 43 served-file and 13 route checks. Netlify Pretty URLs changed only same-domain .html hrefs and opening anchor quotes; all other HTML parts and 42 assets matched byte-for-byte. Published the identical payload as production 6acf755c573ae60400561b0a. forflow.ai/company and /company/ return 200 without a gate cookie; five custom-domain resources and original gated/functional routes passed. Actual product digests and five functions remain unchanged.
+- Formal-domain browser navigation completed, but DOM/screenshot reads and a recovery attempt timed out; not counted as remote visual acceptance. Local screenshots remain the visual record. Release receipt: company-deployment.json; archived sources, payload and QA: releases/company-20261014/. No Git push.
+
+## 2026-10-14 · Q2Q 与企业 AI 资产的说明及交互
+
+- 依据用户提供的资产工程稿，将产品页 Q2Q 的默认概览改为“核对依据 → 记录纠正 → 形成资产 → 再次验证”。借鉴 OpenAI Intelligent UI 的问题与交互表达、TypeSafe Jev 的输入与结构化判断表达，保留现有浅色体系、原三类评估模块及详细工作台。独立治理页仍默认显示评估概览。
+- 新增 `output/homepage-v6/src/Q2QAssetCanvas.jsx`、`src/q2q-asset-canvas.css`，调整 `src/GovernanceSection.jsx`；设计与口径来源在 `output/homepage-v6/q2q-assets-design.md`。采购阈值、边界样本和制度变化为编写的本地交互，不是模型、客户效果或资产持久化接入结果。
+- 验证：Vite 构建通过；四个步骤、阈值边界、制度变更使结果待复核、产品默认入口及独立治理页共 8 项 React 服务端渲染/状态检查通过；本地两个 HTML 入口及引用资源共 10 项字节回读通过。证据在 `output/homepage-v6/design-review/20261014-q2q-assets/`。
+- 根站 `tests/static_check.py` 报告未改动的 `workbench_prototype.html` 缺 stylesheet、search modal、直接 body footer，未扩大修改该独立页面。该检查不扫描本次原型源码。浏览器工具读取当前内部错误页被 URL 安全策略拒绝，已请求用户刷新，未绕过，视觉及浏览器交互验收待补。
+- 本地预览 `http://127.0.0.1:8899/#governance` 已更新；本轮未发布，正式站仍保留此前已发布版本。
+
+## 2026-10-15 · Q2Q 资产交互浏览器验证
+
+- 用户确认 Jev 产品官网为参考，并刷新本地预览。继续检查既有四步资产链，保留原有评估与工作台。修复意外显示的表格说明，改用表格无障碍标签；制度变更时保留原候选处理，仅将核验状态置为待复核，便于追查旧判断。
+- Vite 构建及 8 项 React 渲染/状态检查重新通过。浏览器验证阈值 100/50 对应 2/3 与 3/3、制度变化、原文工作台往返保留步骤与条件；440 × 956 CSS 视口的章节、放大面板与阈值/制度控件通过，整页无横向溢出；1279 × 1000 桌面截图目视通过。浏览器 warning/error 列表为空。
+- 手机截图接口未取得可靠完整画面，未记为完整手机视觉或物理设备验收；Jev 远程页打开超时，未记为像素对齐。截图、当前源文件哈希与详细检查范围保存在 Codex visualizations 的 `q2q-assets-20261015/`。临时视口已恢复，8899 预览可用。只更新本地构建，未发布、未改生产快照。
+
+## 2026-10-18 - Website source sync to GitHub
+
+- User explicitly requested pushing website content to the existing private certrass/forflow-website repository. Prepared an immutable snapshot of the current static homepage/company source, interactive assets, independent ForFlow One source, case catalog, packaging scripts and curated maintenance receipts. Credentials, dependency directories, compiled builds, old screenshot folders and raw release API dumps are outside the new selection.
+- The original workspace contains slow-reading historical screenshots; used an isolated Git checkout to preserve its files and index. Remote main was 6ace69e4258cfa36d2c0b7613c2263e03645e30d. Netlify has no Git continuous deployment connection; production deployment remained 6acf755c573ae60400561b0a before the push. This task synchronizes source, not a new website release.
+- Homepage generation, 9 homepage JS syntax checks, the current product Vite build, 4 hosting checks and 7 workbench state checks passed. Generation did not change the frozen source bytes. Known credential-pattern scan covered 263 text files with no findings. Existing dependency audit has 1 moderate and 5 high findings on the Vite dependency chain; versions and lockfile were retained rather than upgraded during the source sync. Additional check results are recorded in github-sync-20261018.json.
+- Company package rebuilt from the commit source matches all 43 published files. Both gate checks passed. Static check retains only the three pre-existing workbench_prototype.html errors; no new static errors. Whitespace check passed. Production is not redeployed by this source push.

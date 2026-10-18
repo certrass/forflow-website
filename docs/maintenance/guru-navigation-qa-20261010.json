@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-10T03:23:35.338735",
+  "scope": "Main homepage and ForFlow One navigation, draft only",
+  "source_sha256": {
+    "templates/index.html": "8e06a1802adeda4d95aef7062ae1accfe8056e1a1911f67613b0bf000e74b4d4",
+    "assets/site/guru-navigation.css": "b1eec7a7a81d59f1c006192a85b6ee28d3e127ffea46fba8b93eec9e9adce075",
+    "assets/site/guru-navigation.js": "6389fd5360bdb787c88fcdcb5b81749941e3517f74f06cc4eb5471e890d436d7",
+    "assets/site/navigation-content.json": "825ed4ab1ee26fb029d87cd0bb272b192b10d7c4a00fffc677e2442382a5597e",
+    "output/homepage-v6/src/SiteNavigation.jsx": "a6a46e2c07447ce1658001efa6bd71730ab823e9412bf1ff39c32af61b0de922",
+    "output/homepage-v6/src/main.jsx": "b038bdb0b58dbbf9baf2ee74bf126b776824b922f7e8795578e43394feca5835",
+    "scripts/sync_homepage_theme.py": "17c5e91ddef7855b45ad9ff3f34cf5189eb0594c28e93325a02d23a7521ae7df"
+  },
+  "checks": {
+    "main_and_product_desktop_width": 1440,
+    "main_and_product_mobile_widths": [
+      440,
+      390
+    ],
+    "horizontal_overflow": false,
+    "sticky_header": {
+      "desktop_height": 78,
+      "mobile_height": 68,
+      "top_after_scroll": 0
+    },
+    "navigation_groups": [
+      "产品",
+      "企业服务",
+      "资源",
+      "案例与实践"
+    ],
+    "keyboard": [
+      "ArrowDown focuses panel link",
+      "Escape closes panel and returns trigger focus",
+      "Escape closes mobile navigation and returns toggle focus"
+    ],
+    "mobile": [
+      "Grouped inline disclosure",
+      "Scrollable panel within viewport",
+      "Clicking a product chapter closes navigation and unlocks scroll"
+    ],
+    "product_connector_jump": "#connectors; heading visible below header after scrolling settles",
+    "homepage_return": "/#main survives product mount packaging",
+    "reduced_motion": "Panel transition 0s",
+    "console_errors": [],
+    "build": "pass",
+    "sites_tests": "4/4 pass",
+    "static_check": "Homepage passes; 3 existing errors only in unrelated workbench_prototype.html"
+  },
+  "limits": [
+    "Desktop IAB screenshot is cropped; geometry and DOM inspected",
+    "Physical iOS Safari not tested",
+    "Reference customer logos remain preview only"
+  ]
+}

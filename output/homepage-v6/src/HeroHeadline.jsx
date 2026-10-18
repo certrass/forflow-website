@@ -1,3 +1,4 @@
+import {bookingUrl} from './contact-config.js';
 import React, {useEffect, useRef, useState} from 'react';
 import {ArrowRight, Pause, Play} from '@phosphor-icons/react';
 import './hero-headline.css';
@@ -54,17 +55,17 @@ export function HeroHeadline() {
   }
 
   return <div className="hero-headline rotating-hero" ref={root} data-task={index} data-running={running}>
-    <div className="hero-brand-line">让 AI 真正流入业务</div>
+    <a className="hero-brand-line" href="#platform"><span>ForFlow One</span><i aria-hidden="true"/>企业 AI 工作台<ArrowRight size={12}/></a>
     <h1 aria-label="与 AI 一起完成业务跟进、合同复核、知识查询。">
       <span className="hero-task-anchor" aria-hidden="true">与 AI 一起完成</span>
       <span className="hero-task-window" aria-hidden="true">
         {tasks.map((task, i) => <span key={task} className={`hero-task-word${i === index ? ' is-current' : i === previous ? ' is-leaving' : ''}${previous === null ? '' : ' is-transitioning'}`}>{task}</span>)}
       </span>
     </h1>
-    <p>ForFlow 帮助企业把 AI 用进业务流程，<br/>解决具体问题，并把有效方法沉淀为可复用的能力。</p>
+    <p>调度智能体、处理资料、审阅结果，都在同一工作台。</p>
     <div className="v6-actions">
-      <a className="v6-button dark" href="https://forflow.ai/contact">预约产品演示<ArrowRight size={15}/></a>
-      <a className="v6-button light" href="#platform"><Play size={13}/>查看工作台</a>
+      <a className="v6-button dark" href={bookingUrl} target="_blank" rel="noreferrer">预约演示<ArrowRight size={15}/></a>
+      <a className="v6-button light" href="#platform"><Play size={13}/>看一次合同复核</a>
     </div>
     <div className="hero-task-controls" role="group" aria-label="首屏工作场景"
       onPointerEnter={() => setInteracting(true)} onPointerLeave={() => setInteracting(false)}

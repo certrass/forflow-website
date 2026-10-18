@@ -1,0 +1,71 @@
+/* Keep the page narrative shorter than the product demonstration. */
+.story-task-brief{display:flex;align-items:center;gap:28px;margin:0 4px 20px;text-align:left}
+.story-task-brief h2{font-size:clamp(20px,2.25vw,30px);line-height:1.45;letter-spacing:-.035em;margin:0;font-weight:500}
+.product-one .source-workbench-caption{padding-block:20px;align-items:center}
+.product-one .source-workbench-caption strong{font-size:14px;line-height:1.8;font-weight:400;color:var(--secondary)}
+.product-one .journey-intro{display:block;padding-block:64px 48px}
+.product-one .journey-intro>.overline{margin-bottom:18px}
+.product-one .journey-intro h2{font-size:38px;line-height:1.4}
+.product-one .continuous-product .product-lead{padding-block:48px 28px}
+.product-one .continuous-product .product-lead h3 span{color:var(--editorial-ink)}
+.product-one .continuous-product .case-strip{display:flex;align-items:center;justify-content:space-between;padding-block:16px;border-top:0}
+.product-one .continuous-product .case-strip small{font-size:11px;line-height:1.8;color:var(--ui-secondary);margin:0}
+.product-one .continuous-product .case-strip>button{margin:0;min-height:44px;font-size:12px}
+.product-one :is(.context-heading,.advantages-heading,.connector-heading,.cli-heading,.gov-heading,.v6-section-heading){padding-top:64px;padding-bottom:36px}
+.product-one :is(.context-heading,.advantages-heading,.connector-heading,.cli-heading,.gov-heading,.v6-section-heading) .overline{margin-bottom:18px}
+.product-one :is(.context-heading,.advantages-heading,.connector-heading,.cli-heading,.gov-heading,.v6-section-heading) h2 span{color:var(--editorial-ink)}
+.product-one .advantages-heading{border-bottom:0;padding-bottom:0;display:block}
+.product-one .method-motion-toolbar{height:48px;justify-content:flex-end}
+.product-one .method-motion-toolbar>button{min-height:44px}
+.product-one .method-card>header{min-height:130px;padding:24px}
+.product-one .method-card>header p{font-size:13px;line-height:1.8}
+.product-one .method-grid{padding-bottom:36px}
+.product-one .context-story-copy h3{margin:0 0 24px;font-size:20px}
+.product-one .capability-description{min-height:0}
+.product-one .capability-steps>button{min-height:64px;padding:20px 28px;align-items:center}
+.product-one .capability-steps strong{font-size:14px}
+.product-one .connector-catalog>button{padding-block:24px}
+.product-one .contact-section{align-items:center}
+.product-one .contact-intro{padding-block:64px}
+.product-one .contact-card{padding:48px 56px;border:0;background:transparent}
+.product-one .contact-card>.v6-button{min-height:44px;font-size:14px;border-radius:var(--radius);box-shadow:none}
+.product-one .contact-form-hint{font-size:12px;color:var(--secondary);margin-block:14px 24px}
+.product-one .contact-email{border:0;padding-top:0}
+.product-one .contact-email button{min-width:44px;min-height:44px}
+.product-one .contact-copy-status:empty{display:none}
+.product-one .gov-inspector>header{justify-content:flex-end}
+.product-one .case-library-heading h3{font-size:24px}
+@media(max-width:1023px){
+ .product-one .journey-intro{padding-block:48px 36px}
+ .product-one .journey-intro h2{font-size:32px}
+ .product-one :is(.context-heading,.advantages-heading,.connector-heading,.cli-heading,.gov-heading,.v6-section-heading){padding-top:48px;padding-bottom:30px}
+ .product-one .advantages-heading{padding-bottom:0}
+ .product-one .contact-intro{padding-block:48px}
+ .product-one .contact-card{padding:36px 30px}
+}
+@media(max-width:700px){
+ .story-task-brief{display:block;margin-bottom:16px}
+ .story-task-brief h2{font-size:21px;line-height:1.5;letter-spacing:-.025em}
+ .product-one .source-workbench-caption{padding:16px 4px}
+ .product-one .source-workbench-caption strong{font-size:13px}
+ .product-one .source-workbench-controls .film-chapters{gap:10px}
+ .product-one .source-workbench-controls .film-chapters button{white-space:normal;text-align:left;line-height:1.6}
+ .product-one .journey-intro{padding-block:40px 30px}
+ .product-one .journey-intro h2{font-size:27px}
+ .product-one .continuous-product .product-lead{padding-block:32px 24px}
+ .product-one .continuous-product .case-strip{gap:16px;padding-block:14px}
+ .product-one .continuous-product .case-strip small{font-size:11px}
+ .product-one :is(.context-heading,.advantages-heading,.connector-heading,.cli-heading,.gov-heading,.v6-section-heading){padding-top:40px;padding-bottom:28px}
+ .product-one :is(.context-heading,.connector-heading,.cli-heading,.gov-heading) p,
+ .product-one .scenario-description,.product-one .context-moments p,
+ .product-one .capability-copy>p,.product-one .contact-intro p{font-size:14px;line-height:1.85}
+ .product-one .advantages-heading{padding-bottom:0}
+ .product-one .method-card>header{min-height:124px;padding:22px}
+ .product-one .method-motion-toolbar{height:48px}
+ .product-one .method-motion-toolbar>button{display:flex}
+ .product-one .capability-steps>button{padding:18px 10px;min-height:60px;text-align:center}
+ .product-one .capability-steps strong{font-size:12px;white-space:normal}
+ .product-one .contact-intro{padding:40px 22px 20px}
+ .product-one .contact-card{padding:4px 22px 32px;width:100%}
+ .product-one .case-library-heading h3{font-size:22px}
+}

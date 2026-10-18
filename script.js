@@ -170,11 +170,14 @@
       const button = qs('.faq-question', item);
       item.classList.toggle('is-open', open);
       if (button) button.setAttribute('aria-expanded', String(open));
+      const answer = qs('.faq-answer', item);
+      if (answer) answer.setAttribute('aria-hidden', String(!open));
     };
 
     items.forEach((item) => {
       const button = qs('.faq-question', item);
       if (!button) return;
+      setOpen(item, item.classList.contains('is-open'));
       button.addEventListener('click', () => {
         const willOpen = !item.classList.contains('is-open');
         items.forEach((otherItem) => setOpen(otherItem, willOpen && otherItem === item));
@@ -649,101 +652,90 @@
   function initHomeNavigatorDemo() {
     const root = qs('[data-home-navigator]');
     if (!root) return;
-
-    const stepLabel = qs('[data-home-navigator-step]', root);
     const question = qs('[data-home-navigator-question]', root);
+    const hint = qs('[data-home-navigator-hint]', root);
     const options = qs('[data-home-navigator-options]', root);
     const progressLabel = qs('[data-home-navigator-progress-label]', root);
-    const progress = qs('[data-home-navigator-progress]', root);
     const next = qs('[data-home-navigator-next]', root);
+    const back = qs('[data-home-navigator-back]', root);
     const live = qs('[data-home-navigator-live]', root);
-    if (!stepLabel || !question || !options || !progressLabel || !progress || !next) return;
-
+    const content = qs('[data-home-navigator-content]', root);
+    const stages = qsa('.navigator-stages li', root);
+    if (!question || !hint || !options || !next || !back) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const steps = [
-      {
-        key: 'challenge',
-        label: 'BUSINESS CHALLENGE',
-        question: '日常工作里，哪件事最该改？',
-        options: [['customer', '客户服务'], ['marketing', '营销增长'], ['knowledge', '知识管理'], ['operations', '运营效率']],
-      },
-      {
-        key: 'goal',
-        label: 'VALUE TARGET',
-        question: '这次最想先看到哪种变化？',
-        options: [['speed', '缩短处理时间'], ['revenue', '增加收入'], ['experience', '改善体验'], ['risk', '降低风险']],
-      },
-      {
-        key: 'readiness',
-        label: 'CURRENT READINESS',
-        question: '团队目前准备到哪一步？',
-        options: [['idea', '还在想法阶段'], ['process', '已有明确流程'], ['data', '已有数据基础']],
-      },
-      {
-        key: 'deployment',
-        label: 'DEPLOYMENT PREFERENCE',
-        question: '你更倾向哪种部署方式？',
-        options: [['cloud', '云端快速启动'], ['hybrid', '混合部署'], ['private', '私有化优先']],
-      },
+      {key:'challenge', question:'你想先改善哪项工作？', hint:'选一个最接近当前需求的方向。', options:[
+        ['customer','客户服务','回复咨询、处理服务请求','i-customer'],
+        ['marketing','营销增长','准备内容、跟进潜在客户','i-marketing'],
+        ['knowledge','知识管理','查找制度、复用团队经验','i-book'],
+        ['operations','运营效率','核对单据、推进业务流程','i-flow']]},
+      {key:'goal', question:'你最想先看到什么变化？', hint:'先确定一个目标，后续更容易判断是否有效。', options:[
+        ['speed','处理得更快','减少重复操作与等待时间','i-flow'],
+        ['revenue','带来更多收入','提高获客与销售转化','i-marketing'],
+        ['experience','服务体验更好','回复及时、交接顺畅','i-customer'],
+        ['risk','减少差错','提前发现遗漏与异常','i-check']]},
+      {key:'readiness', question:'这项工作，目前准备到哪一步？', hint:'按团队的实际情况选择。', options:[
+        ['idea','先找方向','还在探索值得尝试的场景','i-compass'],
+        ['process','流程已经明确','知道具体步骤和参与人','i-flow'],
+        ['data','已有可用资料','相关文档或业务数据可以准备','i-document']]},
+      {key:'deployment', question:'你希望 AI 在哪里运行？', hint:'选择当前倾向，具体方案可在后续诊断中细化。', options:[
+        ['cloud','云端启动','使用云端服务，先验证具体任务','i-cube'],
+        ['hybrid','混合部署','结合现有系统与云端能力','i-layers'],
+        ['private','私有化优先','优先在企业自己的环境中运行','i-data']]}
     ];
-
-    const answers = { challenge: 'customer' };
-    let currentStep = 0;
-
-    const announce = (message) => {
-      if (live) live.textContent = message;
+    const answers = {};
+    let currentStep = 0, transition;
+    const icon = name => {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.classList.add('ff-icon');svg.setAttribute('aria-hidden','true');
+      const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+      use.setAttribute('href','#'+name);svg.append(use);return svg;
     };
-
-    const render = () => {
-      const step = steps[currentStep];
-      root.dataset.currentStep = String(currentStep + 1);
-      stepLabel.textContent = `STEP ${String(currentStep + 1).padStart(2, '0')} / ${step.label}`;
-      question.textContent = step.question;
-      progressLabel.textContent = `第 ${currentStep + 1} / ${steps.length} 步`;
-      progress.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
-      next.textContent = currentStep === steps.length - 1 ? '进入完整诊断 ↗' : '继续 →';
-      next.disabled = !answers[step.key];
+    const render = (direction=0) => {
+      const step=steps[currentStep];
+      root.dataset.currentStep=String(currentStep+1);
+      question.textContent=step.question;hint.textContent=step.hint;
+      progressLabel.replaceChildren(document.createTextNode(String(currentStep+1).padStart(2,'0')+' '));
+      const total=document.createElement('i');total.textContent='/ 04';progressLabel.append(total);
+      progressLabel.setAttribute('aria-label',`第 ${currentStep+1} 步，共 4 步`);
+      stages.forEach((item,i)=>{item.classList.toggle('is-complete',i<currentStep);if(i===currentStep)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current');});
+      next.querySelector('span').textContent=currentStep===steps.length-1?'继续完整诊断':'下一步';
+      next.disabled=!answers[step.key];back.disabled=currentStep===0;
       options.replaceChildren();
-
-      step.options.forEach(([value, label]) => {
-        const button = document.createElement('button');
-        const selected = answers[step.key] === value;
-        button.type = 'button';
-        button.dataset.value = value;
-        button.textContent = label;
-        button.classList.toggle('is-selected', selected);
-        button.setAttribute('aria-pressed', String(selected));
-        options.append(button);
+      step.options.forEach(([value,title,description,iconName])=>{
+        const label=document.createElement('label');label.className='navigator-choice';
+        const input=document.createElement('input');input.type='radio';input.name='home-navigator-choice';input.value=value;input.checked=answers[step.key]===value;
+        const copy=document.createElement('span'),name=document.createElement('b'),detail=document.createElement('small');
+        name.textContent=title;detail.textContent=description;copy.append(name,detail);
+        const check=document.createElement('span');check.className='navigator-choice-check';check.setAttribute('aria-hidden','true');check.append(icon('i-check'));
+        label.append(input,icon(iconName),copy,check);options.append(label);
       });
-    };
-
-    options.addEventListener('click', (event) => {
-      const button = event.target.closest('button[data-value]');
-      if (!button || !options.contains(button)) return;
-      const step = steps[currentStep];
-      answers[step.key] = button.dataset.value || '';
-      qsa('button[data-value]', options).forEach((item) => {
-        const selected = item === button;
-        item.classList.toggle('is-selected', selected);
-        item.setAttribute('aria-pressed', String(selected));
-      });
-      next.disabled = false;
-      announce(`已选择${button.textContent || ''}`);
-    });
-
-    next.addEventListener('click', () => {
-      const step = steps[currentStep];
-      if (!answers[step.key]) return;
-      if (currentStep < steps.length - 1) {
-        currentStep += 1;
-        render();
-        announce(`进入第 ${currentStep + 1} 步：${steps[currentStep].question}`);
-        return;
+      if(direction){
+        transition?.cancel();
+        if(!reduced.matches)transition=content.animate([{opacity:0,transform:`translateX(${direction*8}px)`},{opacity:1,transform:'translateX(0)'}],{duration:220,easing:'cubic-bezier(.22,1,.36,1)'});
+        question.focus({preventScroll:true});
+        if (innerWidth <= 900) {
+          const bounds = root.getBoundingClientRect();
+          if (bounds.top < 84 || bounds.top > innerHeight * .3) root.scrollIntoView({block:'start',behavior:reduced.matches?'instant':'smooth'});
+        }
+        live.textContent=`第 ${currentStep+1} 步：${step.question}`;
       }
-      const params = new URLSearchParams();
-      Object.entries(answers).forEach(([key, value]) => params.set(key, value));
-      window.location.href = `navigator.html?${params.toString()}`;
+    };
+    options.addEventListener('change',event=>{
+      const input=event.target;
+      if(!input.matches('input[type="radio"]'))return;
+      answers[steps[currentStep].key]=input.value;next.disabled=false;
+      live.textContent='已选择'+steps[currentStep].options.find(option=>option[0]===input.value)[1];
     });
-
+    back.addEventListener('click',()=>{if(currentStep>0){currentStep-=1;render(-1);}});
+    next.addEventListener('click',()=>{
+      if(!answers[steps[currentStep].key])return;
+      if(currentStep<steps.length-1){currentStep+=1;render(1);return;}
+      const target=new URL(qs('[data-home-navigator-target]',root.closest('section')).href);
+      Object.entries(answers).forEach(([key,value])=>target.searchParams.set(key,value));
+      window.location.assign(target.href);
+    });
+    reduced.addEventListener('change',()=>{if(reduced.matches)transition?.cancel();});
     render();
   }
 

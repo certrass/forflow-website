@@ -1,0 +1,16 @@
+{
+  "purpose": "Homepage scenario contact avatars",
+  "source": "Existing generated portraits in homepage-v6; illustrative contacts, not staff identities",
+  "assets": [
+    {
+      "path": "assets/site/people/operations-v1.png",
+      "source": "output/homepage-v6/public/assets/people/operations-v1.png",
+      "sha256": "3ed27ecf467c4a9a71f72c45c698f679d7a6f70dcd5ab5e5ce32e2710a140be3"
+    },
+    {
+      "path": "assets/site/people/credit-v1.png",
+      "source": "output/homepage-v6/public/assets/people/credit-v1.png",
+      "sha256": "f8b45b392ebfb410da5d96a0d0bfa8f9056cfe3b372fa0060432e618913688c1"
+    }
+  ]
+}

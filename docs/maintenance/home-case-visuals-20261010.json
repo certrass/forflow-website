@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-10",
+  "scope": "Three main-homepage case cards",
+  "feedback": "Previous assets mixed generic industry photographs with a cropped article cover. They did not express the individual case mechanisms.",
+  "visualTreatment": "Three original vector illustrations with a shared 660x440 frame, restrained sage/white palette, full-image contain layout, and case-specific objects and actions. These are editorial explanations, not customer software screenshots.",
+  "cases": [
+    {
+      "asset": "assets/site/case-studies/b-pillar-knowledge.svg",
+      "source": "case-automotive-dfmea-ontology-agent.html#ontology",
+      "content": "B-pillar, 22MnB5, hot stamping/welding, failure mechanisms and evidence; re-evaluation after design change",
+      "boundary": "Stylized component outline; no geometry, material validation, or risk ranking claim."
+    },
+    {
+      "asset": "assets/site/case-studies/supply-chain-investigation.svg",
+      "source": "case-supply-chain-agentic-decision.html#workflow",
+      "content": "Channel B fulfillment anomaly in footwear weeks 2-3, unpaid orders triggering credit control, release request pending approval",
+      "boundary": "No new quantitative results introduced."
+    },
+    {
+      "asset": "assets/site/case-studies/pid-connected-equipment.svg",
+      "source": "case-manufacturing-pid-intelligence.html#knowledge",
+      "content": "Locate a valve in a P&ID, trace connected equipment, retain drawing context for engineer confirmation",
+      "boundary": "Explanatory schematic, not a reproduction of the original plant circuit."
+    }
+  ],
+  "validation": {
+    "homepageBuild": "pass",
+    "svgXml": "3/3 valid",
+    "staticCheck": "Only pre-existing workbench_prototype.html stylesheet/search/footer failures",
+    "browser": {
+      "desktop1440": "Three equal 369.33px-wide, 514.63px-high cards, loaded images, contain fit, no page overflow",
+      "mobile440": "All three assets loaded; images stay within cards, title does not overlap paragraph",
+      "mobile390": "350.15px cards, no page overflow",
+      "visual": "All three assets visually inspected through local IAB at 478px rendered image width",
+      "console": "No captured errors or warnings",
+      "iOSHardware": "Not tested"
+    },
+    "packageDiff": "Only homepage HTML, case CSS and three new SVGs changed; old three homepage bitmap assets omitted. Product subtree, navigation and workspace motion assets unchanged."
+  }
+}

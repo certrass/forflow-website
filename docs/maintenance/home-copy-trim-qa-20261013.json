@@ -1,0 +1,14 @@
+{
+  "scope": "Homepage redundant copy removal",
+  "widths": [
+    440,
+    1280
+  ],
+  "horizontal_overflow": false,
+  "removed_duplicate_copy": true,
+  "scenario_switch": true,
+  "console_errors": [],
+  "product_files_unchanged": 72,
+  "standard_build": "blocked by iCloud dataless files; edited source template, synchronized existing generated HTML and previous verified package",
+  "screenshot": "/private/tmp/forflow-copy-trim-mobile.png"
+}

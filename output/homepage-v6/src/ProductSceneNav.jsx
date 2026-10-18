@@ -9,6 +9,8 @@ export function ProductSceneNav({items,active,onSelect}){
    const link=nav.querySelector('[aria-current="true"]');if(!link)return;
    nav.style.setProperty('--chapter-x',`${link.offsetLeft}px`);
    nav.style.setProperty('--chapter-width',`${link.offsetWidth}px`);
+   nav.style.setProperty('--chapter-y',`${link.offsetTop}px`);
+   nav.style.setProperty('--chapter-height',`${link.offsetHeight}px`);
    nav.dataset.indicatorReady='true';
   };
   const observer=new ResizeObserver(measure);observer.observe(nav);

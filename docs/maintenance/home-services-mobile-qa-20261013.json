@@ -1,0 +1,27 @@
+{
+  "scope": "Homepage enterprise services mobile alignment and concise service copy",
+  "viewport_widths": [
+    320,
+    390,
+    440,
+    700,
+    768,
+    1280
+  ],
+  "horizontal_overflow": false,
+  "five_services_aligned_on_mobile": true,
+  "title_description_deliverables_overflow": false,
+  "changed_files": [
+    "assets/site/home-mobile-product.css",
+    "index.html"
+  ],
+  "product_files_unchanged": 72,
+  "source_html_unchanged": false,
+  "other_homepage_sections_unchanged": true,
+  "service_destinations_unchanged": true,
+  "ios_device_tested": false,
+  "console_error_warn": [],
+  "static_check": "3 pre-existing workbench_prototype.html issues",
+  "screenshot": "/private/tmp/forflow-services-mobile-copy-390.png",
+  "copy_change": "Shortened descriptions to concrete work, clarified three deliverables per service, removed repeated section intro and abstract duration labels"
+}

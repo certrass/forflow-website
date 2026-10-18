@@ -15,7 +15,7 @@ export function usePageReveal(root) {
       if(!isIntersecting)return;
       target.dataset.revealState=preference.matches?'visible':'entering';
       observer.unobserve(target);
-    }),{threshold:.12,rootMargin:'0px 0px -24px 0px'});
+    }),{threshold:0,rootMargin:'100px 0px'});
     const finish=event=>{if(event.target.dataset.revealState==='entering')settle(event.target)};
     const reduce=()=>{if(preference.matches){observer.disconnect();nodes.forEach(settle)}};
     nodes.forEach(node=>{
@@ -51,7 +51,8 @@ export function useChapterNavigation(root){
   const update=()=>{
    frame=0;if(disposed)return;
    const header=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height'))||72;
-   const probe=header+rail.offsetHeight+48;
+   const vertical=matchMedia('(min-width:1024px)').matches;
+   const probe=header+(vertical?Math.min(innerHeight*.24,220):rail.offsetHeight+48);
    const boxes=sections.map(section=>section.getBoundingClientRect());
    const current=Math.max(0,boxes.findLastIndex(box=>box.top<=probe));
    if(requested.current===null)setActive(current);

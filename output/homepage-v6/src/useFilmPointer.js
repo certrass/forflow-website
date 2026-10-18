@@ -1,11 +1,11 @@
 import {useLayoutEffect, useState} from 'react';
 
 // Track real element geometry, including fitted and expanded product canvases.
-export function useFilmPointer(root, selector, revision) {
+export function useFilmPointer(root, selector, revision, stageSelector = '.story-stage') {
   const [position, setPosition] = useState({x:0,y:0});
   useLayoutEffect(() => {
     const measure = () => {
-      const stage = root.current?.querySelector('.story-stage');
+      const stage = root.current?.querySelector(stageSelector);
       const target = stage?.querySelector(selector);
       if (!stage || !target) return;
       const canvas = stage.getBoundingClientRect();
@@ -15,11 +15,11 @@ export function useFilmPointer(root, selector, revision) {
       setPosition({x:(bounds.left+bounds.width/2-canvas.left)/scale,y:(bounds.top+bounds.height/2-canvas.top)/scale});
     };
     measure();
-    const stage = root.current?.querySelector('.story-stage');
+    const stage = root.current?.querySelector(stageSelector);
     stage?.addEventListener('scroll',measure,true);
     const observer = new ResizeObserver(measure);
     if (root.current) observer.observe(root.current);
     return () => { observer.disconnect(); stage?.removeEventListener('scroll',measure,true); };
-  }, [root, selector, revision]);
+  }, [root, selector, revision, stageSelector]);
   return position;
 }

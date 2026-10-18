@@ -14,6 +14,15 @@ export function CapabilitySection() {
   const [rotating, setRotating] = useState(false);
   const [interactive, setInteractive] = useState(false);
   const [status, setStatus] = useState('loading');
+  const selectLayerWithKey = (event, index) => {
+    const next = event.key === 'ArrowRight' ? (index + 1) % layers.length
+      : event.key === 'ArrowLeft' ? (index + layers.length - 1) % layers.length
+      : event.key === 'Home' ? 0 : event.key === 'End' ? layers.length - 1 : null;
+    if (next === null) return;
+    event.preventDefault();
+    setActive(next);
+    event.currentTarget.parentElement.querySelectorAll('[role="tab"]')[next]?.focus();
+  };
   useEffect(() => {
     if (!interactive) return;
     setStatus('loading');
@@ -37,20 +46,20 @@ export function CapabilitySection() {
   useEffect(() => {model.current?.setRotating(rotating);}, [rotating, status]);
   return <section className="capability-section v6-container" id="capabilities">
     <div className="capability-copy">
-      <span className="overline">CAPABILITY, THAT COMPOUNDS</span>
-      <h2>把验证过的方法，<br/><span>变成可复用的 AI 资产。</span></h2>
-      <p>知识、规则、工作流与评估样本共同保留。<br/>每次复用，都能查到来源、版本和适用条件。</p>
+      <span className="overline"><Cube size={14}/>企业 AI 资产</span>
+      <h2>把有效方法，<br/><span>留给下一次工作。</span></h2>
+      <p>管理规则、工作流和评测样本的版本、依据与适用条件。</p>
       <a className="v6-button light" href="https://forflow.ai/service-agent-build">了解企业服务<ArrowRight size={15}/></a>
-      <div className="capability-description" aria-live="polite"><span>0{active + 1} / {layers[active].name}</span><p>{layers[active].description}</p></div>
+      <div className="capability-description" id="capability-detail" aria-live="polite"><span>{layers[active].name}</span><p>{layers[active].description}</p></div>
     </div>
-    <div className="capability-model">
+    <div className="capability-model">{interactive&&<div className="model-caption"><span>拖动查看结构</span></div>}
       <div className="capability-canvas" ref={mount} role="img" aria-label="三维能力结构：底层业务上下文连接中层工作流，上层保留知识、规则、流程和评估资产" data-render-state={status}/>
       {interactive && status === 'loading' && <span className="model-loading"><Cube size={18}/>正在呈现能力结构</span>}
       {(!interactive || status === 'fallback') && <div className="model-fallback"><img src="/assets/capability-poster.png" loading="lazy" alt="业务上下文、工作流与能力资产的三层结构"/></div>}
-      <div className="model-labels">{[2,1,0].map(i => <button className={active===i?'active':''} onClick={() => setActive(i)} key={i}><i/><span>{layers[i].name}</span></button>)}</div>
+      <div className="model-labels">{[2,1,0].map(i => <button className={active===i?'active':''} aria-pressed={active===i} onClick={() => setActive(i)} key={i}><i/><span>{layers[i].name}</span></button>)}</div>
       <div className="model-tools">{interactive ? <><button onClick={() => {setInteractive(false);setRotating(false);}}>返回渲染图</button>{status === 'ready' && <><button aria-pressed={rotating} onClick={() => setRotating(!rotating)}>{rotating?<Pause size={13}/>:<Cube size={13}/>} {rotating?'暂停旋转':'旋转模型'}</button><button onClick={() => {setRotating(false);model.current?.reset();}} aria-label="恢复模型视角"><ArrowCounterClockwise size={14}/></button></>}</> : <button onClick={() => setInteractive(true)}><Cube size={14}/>查看立体结构</button>}</div>
     </div>
-    <div className="capability-steps" role="tablist" aria-label="能力形成的三个层次">{layers.map((layer, i) => <button key={layer.name} role="tab" aria-selected={active===i} onClick={() => setActive(i)}><span>0{i+1}</span><div><strong>{layer.name}</strong><small>{layer.examples}</small></div></button>)}</div>
-    
+    <div className="capability-steps" role="tablist" aria-label="能力形成的三个层次">{layers.map((layer, i) => <button key={layer.name} role="tab" aria-selected={active===i} aria-controls="capability-detail" tabIndex={active===i?0:-1} onKeyDown={event => selectLayerWithKey(event, i)} onClick={() => setActive(i)}><strong>{layer.name}</strong></button>)}</div>
+
   </section>;
 }

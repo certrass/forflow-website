@@ -1,0 +1,199 @@
+[
+  {
+    "id": "wren",
+    "title": "Wren Kitchens：从紧急团队扩容，到长期技术合作",
+    "description": "公开案例摘要：团队接手关键系统后，把安装、物流、产品、QA 和移动应用逐步纳入长期协作。",
+    "type": "制造与零售 · 公开技术合作参考",
+    "tags": [
+      "retail",
+      "manufacturing",
+      "data"
+    ],
+    "search": "Wren 厨房 零售 制造 物流 技术合作 跨模块 软件交付 知识交接 长期合作",
+    "source": "case-wren-kitchens.html",
+    "status": ""
+  },
+  {
+    "id": "jan-elly",
+    "title": "把单篇内容制作从 18 小时缩短到 30 分钟",
+    "description": "IMDA Playbook 报告的案例结果；页面仅做摘要，具体流程与口径以原文为准。",
+    "type": "IMDA 公开案例摘要",
+    "tags": [
+      "education"
+    ],
+    "search": "",
+    "source": "https://file.go.gov.sg/genai-playbook-pdf.pdf",
+    "status": ""
+  },
+  {
+    "id": "crestar",
+    "title": "智能客服把每周常规询问工时从 18 小时降到 8 小时",
+    "description": "Crestar Fan 的公开材料结果；强调高频问答分流，不把数字延伸为 ForFlow 成效。",
+    "type": "IMDA 公开案例摘要",
+    "tags": [
+      "retail",
+      "service"
+    ],
+    "search": "",
+    "source": "https://www.imda.gov.sg/-/media/imda/files/news-and-events/media-room/media-releases/2024/10/singapore-digital-economy-remains-robust/annex-3-how-crestar-fan-supercharged-sales-and-efficiency-with-genai-powered-chatbot-solutions.pdf",
+    "status": ""
+  },
+  {
+    "id": "etonhouse",
+    "title": "让教师把时间从行政工作还给学生",
+    "description": "IMDA 材料中的预期行政时间目标，不是已验证结果；实际变化仍需项目测量。",
+    "type": "IMDA 公开材料 · 预期目标",
+    "tags": [
+      "education"
+    ],
+    "search": "",
+    "source": "https://file.go.gov.sg/genai-playbook-pdf.pdf",
+    "status": ""
+  },
+  {
+    "id": "ihub",
+    "title": "用自然语言查询多源供应链数据",
+    "description": "IMDA 材料中的预期报表时长目标，不是已验证结果；实际变化仍需项目测量。",
+    "type": "IMDA 公开材料 · 预期目标",
+    "tags": [
+      "data"
+    ],
+    "search": "物流 数据 Agent 自然语言 报表 iHub 供应链 多源数据",
+    "source": "https://file.go.gov.sg/genai-playbook-pdf.pdf",
+    "status": ""
+  },
+  {
+    "id": "pid",
+    "title": "P&ID 智能化扩展工厂运营",
+    "description": "把静态管线图纸变成可查询、可关联、可由工程师复核的运营知识网络。",
+    "type": "ForFlow 团队实践 · 工业知识",
+    "tags": [
+      "manufacturing",
+      "data"
+    ],
+    "search": "制造业 P&ID 工厂运营 工业知识资产化 工程师复核 图纸 查询 关联",
+    "source": "case-manufacturing-pid-intelligence.html",
+    "status": ""
+  },
+  {
+    "id": "energy-optimization-agent",
+    "title": "实时电价驱动的工厂能效优化 Agent",
+    "description": "从电价、负荷和设备状态出发，拆解感知、预测、调度、执行与反馈闭环，以及自动控制必须守住的安全边界。",
+    "type": "工业能效 · 合作场景材料",
+    "tags": [
+      "manufacturing",
+      "data"
+    ],
+    "search": "工业能效 工厂 能源管理 能效优化 Agent 智能体 实时电价 电力现货 需求响应 源网荷储 EMS MES WMS APS OT IT Modbus OPC UA PROFINET PLC DCS LSTM Transformer SAC DQN PPO 负荷预测 光伏预测 电价预测 储能 SOC 冷冻站 空压站 COP 多目标优化 人工接管 安全约束",
+    "source": "case-energy-optimization-agent.html",
+    "status": ""
+  },
+  {
+    "id": "healthcare-agent-roi",
+    "title": "医疗智能体的受限架构与验证方法",
+    "description": "把就诊前中后和患者语音入口拆成可验收、可追踪、可升级人工的生产级流程。",
+    "type": "ForFlow 团队实践 · 医疗 AI",
+    "tags": [
+      "healthcare",
+      "service",
+      "data"
+    ],
+    "search": "医疗 医院 诊所 受限多智能体 ROI 患者语音 EHR EMR 保险验证 预约管理 SFT GRPO 临床记录 医疗编码 CPT ICD 就诊前 就诊中 就诊后 状态机 人工升级",
+    "source": "case-healthcare-agent-roi.html",
+    "status": ""
+  },
+  {
+    "id": "automotive-dfmea-ontology-agent",
+    "title": "本体智能体如何重塑安全关键零部件 DFMEA",
+    "description": "以 B 柱为例，把材料、工艺、失效机理和法规要求连成可推理、可追溯、可复评的风险情报系统。",
+    "type": "ForFlow 工程方法 · 汽车知识",
+    "tags": [
+      "automotive",
+      "manufacturing",
+      "data"
+    ],
+    "search": "汽车 汽车工程 B柱 B 柱 B-pillar 安全关键零部件 侧面碰撞 车顶抗压 安全带锚固 DFMEA FMEA 本体 Ontology 知识图谱 智能体 Agent AI RFLP 22MnB5 硼钢 热冲压 氢脆 疲劳 腐蚀 电偶腐蚀 粘接失效 失效模式 RPN AP ECO 工程变更 工程推理 知识流失 老师傅经验 组织记忆 经验断档 机构记忆 跨项目迁移 供应商教训 设计变更复评 FMVSS 214 FMVSS 216 Euro NCAP IIHS AIAG VDA",
+    "source": "case-automotive-dfmea-ontology-agent.html",
+    "status": ""
+  },
+  {
+    "id": "supply-chain-agentic-decision",
+    "title": "多智能体 AI 如何将供应链数据转化为决策与行动",
+    "description": "基于团队成员在原组织中积累的项目经验，讲清自然语言查询、异常钻取、根因归因和行动协同；匿名客户与测量边界按公开资料保留。",
+    "type": "ForFlow 团队实践 · 供应链",
+    "tags": [
+      "retail",
+      "data",
+      "service"
+    ],
+    "search": "供应链 零售 鞋服 库存 SKU 控制塔 control tower 多智能体 Agent 语义层 自然语言 SQL 履行率 渠道履行 订单 冻结 信用控制 工具网关 可观测性 决策 行动",
+    "source": "case-supply-chain-agentic-decision.html",
+    "status": ""
+  },
+  {
+    "id": "financial-bda-document-automation",
+    "title": "把金融文档提取接入可复核工作流",
+    "description": "围绕银行对账单、税务文件和供应商合同，讲清字段蓝图如何把文档提取变成可复用、可复核的工作流。",
+    "type": "ForFlow 工程方法 · 文档自动化",
+    "tags": [
+      "finance",
+      "data",
+      "service"
+    ],
+    "search": "金融 文档 金融文档 字段蓝图 OCR IDP 智能文档处理 银行对账单 bank statement W-2 W2 1099-B 1099B 税务表格 供应商合同 vendor contract 结构化提取 JSON CSV 置信度 视觉定位 visual grounding 幻觉缓解 字段验证 会计 对账 税务 合同管理",
+    "source": "case-financial-bda-document-automation.html",
+    "status": ""
+  },
+  {
+    "id": "vanguard-virtual-analyst",
+    "title": "先锋集团虚拟分析师：AI 就绪数据的八项原则",
+    "description": "从 SQL 等待、指标口径和数据治理出发，说明金融企业如何把对话式 AI 建在可靠数据基础上。",
+    "type": "ForFlow 团队实践 · 金融数据",
+    "tags": [
+      "finance",
+      "data",
+      "service"
+    ],
+    "search": "先锋集团 Vanguard 虚拟分析师 AI-ready data AI 就绪数据 金融分析师 SQL 自助分析 数据架构 数据产品 运营模式 元数据目录 语义层 业务元数据 技术元数据 示例库 回归测试 数据质量 变更控制 持续评估 知识图谱 RAG 合规 安全",
+    "source": "case-vanguard-virtual-analyst.html",
+    "status": ""
+  },
+  {
+    "id": "agent-evaluation-first",
+    "title": "企业 Agent 上线前，先建立评估基线",
+    "description": "从原型到生产的鸿沟、ADLC 飞轮、持续评估、可观测性和可评估架构。",
+    "type": "ForFlow 工程方法 · Agent 评估",
+    "tags": [
+      "service",
+      "data"
+    ],
+    "search": "企业智能体 Agent AI Agent Evaluation 评估 评测 ADLC Agent Development Lifecycle 原型 生产可信赖 单元测试 非确定性 Prompt 变更 静默漂移 CI CD LLM-as-a-Judge 基准数据集 工具选择 参数提取 拒绝准确率 延迟 Token 可观测性 Trace OpenTelemetry 漂移检测 A/B测试 多智能体 解耦 Supervisor MCP A2A Gateway Policy 安全 个性化",
+    "source": "case-agent-evaluation-first.html",
+    "status": ""
+  },
+  {
+    "id": "reference-13",
+    "title": "Pension Lab：把单份文档处理从 15 分钟缩短到 40 秒",
+    "description": "TSH 原文报告使用 AI OCR 与敏感数据匿名化，将文档流程时间减少约 95%；本页不把它混写成投标 Agent。",
+    "type": "TSH 公开客户案例摘要",
+    "tags": [
+      "data",
+      "service"
+    ],
+    "search": "",
+    "source": "https://tsh.io/portfolio/pension-lab-ai-case-study",
+    "status": ""
+  },
+  {
+    "id": "reference-14",
+    "title": "员工制度与入职知识助手",
+    "description": "把分散制度转为按权限检索、带引用的员工服务入口。",
+    "type": "HR 服务 · 场景示例",
+    "tags": [
+      "service"
+    ],
+    "search": "",
+    "source": null,
+    "status": "概念场景 · 非客户案例"
+  }
+]

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="440" viewBox="0 0 660 440" fill="none">
+  <title>从 P&amp;ID 图纸追踪阀门与上下游设备的连接关系</title>
+  <desc>保留图纸位置、设备对象和管线关系，通过工程师确认把静态图纸变为可查询知识。</desc>
+  <defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#e9ede5" stroke-width=".65"/></pattern></defs>
+  <style>text{font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}.label{fill:#7d897d;font-size:15px}.main{fill:#354838;font-size:20px;font-weight:500}.detail{fill:#8b9584;font-size:14px}</style>
+  <path fill="#edf1e9" d="M0 0h660v440H0z"/>
+  <rect x="30" y="27" width="600" height="386" rx="12" fill="#fcfdfa" stroke="#dce3d6"/>
+  <path d="M31 77h598" stroke="#e6ebe1"/>
+  <rect x="49" y="43" width="26" height="21" rx="5" fill="#edf3e9"/>
+  <path d="M56 49h12v10H56zM59 46v3m6-3v3m-6 10v3m6-3v3m-12-10h3m12 0h3" stroke="#70876a" stroke-width="1.3"/>
+  <text x="87" y="60" class="main" style="font-size:17px">设备关系查询</text><text x="548" y="59" class="label" style="font-size:13px">P&amp;ID</text>
+  <text x="59" y="117" class="main" style="font-size:22px">这个阀门，连接哪些设备？</text>
+  <rect x="54" y="144" width="552" height="180" rx="6" fill="url(#grid)"/>
+  <g stroke="#d8e1d1" stroke-width="1.2"><path d="M54 170h42v114h109v40m-109-96h53m199-84v31h59m83-31v40h116M494 287h112M208 144v20h43"/><circle cx="160" cy="228" r="11"/><path d="M150 228h20m-10-10v20M407 164v23m-9-23 18 23m-18 0 18-23"/></g>
+  <path d="M77 244h187m56 0h118m48 0h96" stroke="#7f9c70" stroke-width="2"/>
+  <path d="m201 239 6 5-6 5m190-10 6 5-6 5m140-10 6 5-6 5" stroke="#7f9c70" stroke-width="1.5"/>
+  <rect x="243" y="194" width="98" height="100" rx="9" fill="#f0f6e9" stroke="#a8c198" stroke-width="1.5"/>
+  <path d="m265 229 54 31v-31l-54 31v-31Zm27 15v-27m-12 0h24" fill="#ebf3e3" stroke="#6e8c5e" stroke-width="1.7" stroke-linejoin="round"/>
+  <circle cx="462" cy="244" r="24" fill="#fdfefb" stroke="#9daf91" stroke-width="1.5"/><path d="m453 229 25 15-25 15v-30Z" stroke="#92a587" stroke-width="1.4"/>
+  <rect x="115" y="216" width="62" height="56" rx="17" fill="#fdfefb" stroke="#b0bea4" stroke-width="1.5"/><path d="m123 230 9 9 9-9 9 9 9-9 9 9m-45 8 9 9 9-9 9 9 9-9 9 9" stroke="#aabb9c" stroke-width="1.2"/>
+  <text x="123" y="301" class="label" style="font-size:13px">换热器</text><text x="278" y="279" class="main" style="font-size:13px">阀门</text><text x="454" y="291" class="label" style="font-size:13px">泵</text>
+  <rect x="378" y="157" width="204" height="36" rx="6" fill="#fff" stroke="#d9e4cf"/><circle cx="396" cy="175" r="4" fill="#7b9b67"/><text x="410" y="181" class="label" style="font-size:14px">沿管线追踪连接关系</text><path d="M441 193v20" stroke="#bbcca8" stroke-dasharray="3 4"/>
+  <path d="M54 342h552" stroke="#e3e9de"/>
+  <text x="62" y="376" class="label" style="font-size:14px">图纸定位</text><path d="M140 371h29m-5-5 5 5-5 5" stroke="#b1c1a4" stroke-width="1.3"/><text x="183" y="376" class="main" style="font-size:15px">连接关系</text><path d="M263 371h29m-5-5 5 5-5 5" stroke="#b1c1a4" stroke-width="1.3"/><text x="306" y="376" class="label" style="font-size:14px">工程师确认</text>
+</svg>

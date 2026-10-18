@@ -1,42 +1,34 @@
-# Design QA
+# ForFlow One mechanism section — review preview
 
-- Source reference: `/var/folders/l0/9_h89x255qx_3ktxr85ryxlw0000gn/T/codex-clipboard-5af83eb8-5a6d-4742-a267-b7162d3b1ddd.png`
-- HR implementation: `/tmp/forflow-hr-v2-desktop-final.png`
-- Full-view comparison: `/tmp/forflow-hr-reference-vs-implementation-final.png`
-- Focused workbench comparison: `/tmp/forflow-hr-workbench-focus-compare-final.png`
-- Homepage six-choice desktop: `/tmp/forflow-home-six-final-visible.png`
-- Homepage six-choice mobile cards: `/tmp/forflow-home-six-mobile-cards.png`
-- Reference viewport: 1488 x 1058
-- Responsive check: in-app browser mobile override, effective CSS viewport 424 x 917
-- State: employee service selected by default
+- Scope: homepage `#platform`, adapting the Qoder “How it works” composition to the accepted ForFlow dark-green homepage. This is a scoped design adaptation, not a whole-site or pixel-identical clone.
+- Source visual truth: Qoder bento screenshot supplied in the conversation; https://qoder.com/zh/qoder. The historical attached file is no longer present at its supplied temporary path. The official page copy was read this turn; remote browser navigation timed out.
+- Actual product sources opened: `/Users/zezhou/Documents/ChatGPT/Forflow One/outputs/ip-20260928-expanded/figures/forflow-one/FO-01_初次启动与智能体选择.png`, `FO-05_选取审阅材料.png`, `FO-07_查看判断与登记问题.png`.
+- Rendered implementation: http://127.0.0.1:8903/#platform
+- Implementation screenshot paths: `/private/tmp/forflow-guru-iteration/evidence/mechanisms-tablet.png`, `/private/tmp/forflow-guru-iteration/evidence/mechanisms-mobile.png`.
+- Browser CSS viewports: 1440 × 1000, 1063 × 1000, 440 × 956, 390 × 844. Host devicePixelRatio is approximately 1.93. Host screenshots crop large emulated viewports; screenshots plus DOM geometry were used for implementation checks. CDP screenshot normalization returned incorrect regions and was discarded.
+- State: agent selection, task-step selection, project context, file/browser/terminal panels, review image switching, native full-image dialog.
 
-## Full-view comparison
+## Comparison history and fixes
 
-The reference and implementation were placed side by side in the same image. The implementation keeps the selected reference structure: compact breadcrumb and title, six-stage tab rail, one active scenario workbench, four responsibility columns, an evidence strip, and a three-step starting guide. The final pass reduced the title scale and vertical gap so the stage rail and workbench align more closely with the source density.
+1. P2: Agent menu rows inherited tall line heights and displaced the bottom link. Set explicit 18px / 13px type line heights. Post-fix menus retain the link and bottom padding.
+2. P2: Upper card contents were taller than their track, and keyboard focus scrolled clipped cards internally. Increased upper row to 310px and applied overflow:clip. Post-fix 1440px / 1063px / 440px / 390px checks have no card content overflow or page horizontal overflow after animations settle.
+3. P1: Actual PNG screenshots retained HTML height attributes when width changed, stretching the interface. Set height:auto. Verified rendered width/height matches source ratio and visually reread material selection.
+4. P2: Phone image dialog initially showed the sidebar. It now starts at the main product pane, includes horizontal-pan guidance, and returns focus to its opener on Escape.
 
-## Focused workbench comparison
+## Required fidelity surfaces
 
-The focused side-by-side crop confirms that the active employee-service state, column hierarchy, evidence area, light borders, green accent, and CTA placement remain legible without reproducing the reference's decorative arc. The implementation uses the site's existing icon sprite and button system.
+- Typography: inherited ForFlowInter + PingFang SC fallback; main heading 32–52px, card headings 21–27px, body 14px. Explicit menu label line heights prevent unintended card growth. Existing homepage type retained intentionally.
+- Layout: asymmetric three-column desktop composition (two tall cards and a stacked middle), full-width review below; two-column intermediate layout and individually readable mobile cards. Product captures remain horizontally pannable in mobile dialogs. No internal product UI reflow into arbitrary stacked columns.
+- Color: restrained off-white / grey-green cards, one green execution card, dark homepage background. Intentional deviation from Qoder's white page to preserve accepted site style.
+- Image quality: three authentic, unchanged product captures, hash-verified against local source. No upstream Orca screenshot or generated fake product UI used. Browser/file/terminal card is an interactive explanatory fragment, not a claim of a recorded live session.
+- Copy: concrete agent choice, task steps, materials, tools and human review. Qoder's Auto model routing, voice pet and live team chat were not imported as ForFlow capability claims.
 
-## Interaction and responsive checks
+## Implementation verification
 
-- Six stage tabs and six matching workbench panels are present.
-- Clicking Training Development changes `aria-selected`, the visible panel, and the title to `岗位学习与领导力陪练`.
-- Eight HR system cards are present.
-- Desktop document overflow is 0 px.
-- Homepage challenge entry count is six; enterprise service count remains five.
-- Homepage challenge cards render as two columns on desktop and one column at the mobile breakpoint.
-- Mobile card text, icons, labels, and CTA fit without horizontal document overflow.
+Agent/menu selection, four step controls, pause/resume, context buttons, tool tabs, keyboard arrows, review tabs, three original image sources, dialog focus/Escape restoration, phone pan position and reduced-motion manual stepping were checked through IAB. Reduced-motion active animations in this section: 0. Console errors/warnings: none. Build and JS syntax passed. Static check reports only the three documented unrelated workbench_prototype.html errors. 72 product-page bundle files match the preceding draft byte-for-byte. Physical iOS device testing was not performed.
 
-## Comparison history
+## Full-view comparison gate
 
-1. First HR pass preserved the structure but made the title too large and pushed the workbench too low.
-2. Final HR pass reduced title scale and intro spacing, then repeated the combined full-view and focused comparisons.
-3. First homepage mobile pass exposed a heading that was too wide; the heading size and kicker length were reduced, then the single-column cards were recaptured.
+The strict same-input, matched-density source-versus-implementation image comparison is not complete: the source attachment file has expired and large host screenshots are cropped. No pixel-level fidelity claim is made. The working preview and implementation checks are available for user review; this does not certify a 1:1 reproduction.
 
-## Findings
-
-- No remaining P1 or P2 visual issues in the implemented scope.
-- Rippling and Factorial use published remote logo assets; production deployment should keep network access available or replace them with locally licensed files later.
-
-Final result: passed
+final result: blocked

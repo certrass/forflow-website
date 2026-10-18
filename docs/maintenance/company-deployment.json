@@ -1,0 +1,673 @@
+{
+  "url": "https://forflow.ai/company",
+  "access": "public",
+  "recorded_at": "2026-10-14T12:33:12.086692+00:00",
+  "source_preview": "6acf622c49d76d543265e009",
+  "published": {
+    "id": "6acf755c573ae60400561b0a",
+    "state": "ready",
+    "created_at": "2026-10-14T12:28:12.740Z",
+    "published_at": "2026-10-14T12:28:14.163Z",
+    "context": "production"
+  },
+  "previous_production": "6acf5716ab87222a3fb75bf0",
+  "draft": "6acf73eff889e4d8013bbd54",
+  "payload_sha256": "7d4a0ca2974b0f0a7a3f46002e0cc059559b725f9ba22ec97168ed001ea007bf",
+  "existing_files_preserved": 147,
+  "product_file_digests_preserved": 74,
+  "functions_preserved": 5,
+  "edge_change": "Only /company and its resources excluded; original protected routes retain access control",
+  "customer_reference_logos_published": false,
+  "source_package": {
+    "mount": "/company",
+    "source": "/Users/zezhou/Documents/Forflow website/index.html",
+    "source_sha256": "8ab48a06f4e4c555ee25981757549c375bd578b53de2ffa3aaf8181cb142c9c7",
+    "customer_reference_logos": false,
+    "files": [
+      {
+        "path": "/company/assets/forflow-lockup-transparent.png",
+        "sha1": "ef2b1a8479002e941f9f1d5dd2831c676150147c",
+        "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+        "bytes": 43435
+      },
+      {
+        "path": "/company/assets/forflow-mark.png",
+        "sha1": "3140a5234a7e45f8e629aff9cf115d9338afc857",
+        "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+        "bytes": 15601
+      },
+      {
+        "path": "/company/assets/site/agent-logos/claude.svg",
+        "sha1": "849d9542dbae8ce74a9ca59af1fcb91c39808f62",
+        "sha256": "609957f16f4c95d003a816b3cf4ec59e2bdfd0a9933bd2b0cd0574ce766e94ef",
+        "bytes": 1785
+      },
+      {
+        "path": "/company/assets/site/agent-logos/codex.svg",
+        "sha1": "d54e4ede3e5b7e455c995dc8b86ec9f4838b5a53",
+        "sha256": "154a9e96226f5a2676add93fee9f4806768f6f1feba7dc020d152d99a6a5ee0f",
+        "bytes": 2712
+      },
+      {
+        "path": "/company/assets/site/agent-logos/cursor.svg",
+        "sha1": "6d2f1dbf7bb69865af64863baa8b178b14c6fb2c",
+        "sha256": "c483c02f78eb2619778fdd959e72a9adfac4844854472cd2653d4cbfd60e4d71",
+        "bytes": 793
+      },
+      {
+        "path": "/company/assets/site/agent-logos/gemini.png",
+        "sha1": "9b11bfbff3a9e86faa425d3fe9740a89fbd7a155",
+        "sha256": "69ddb188bf3705889bd16c26f945efc878556cb5ae926a645fd33b3ec8e053ab",
+        "bytes": 1445
+      },
+      {
+        "path": "/company/assets/site/agent-logos/kimi.png",
+        "sha1": "e3c2317330a398a0cde4d90ce51267c3f441b836",
+        "sha256": "179d5d5014667ad5605c92cfeb72318e40683bc28001216582f8abc600877795",
+        "bytes": 1664
+      },
+      {
+        "path": "/company/assets/site/agent-logos/opencode.png",
+        "sha1": "8726647d09b7242285a69954967bb4e2b4a8616b",
+        "sha256": "c76c2913b058e2fde9a694d305356bc3bb48e68f46f73169d20e7ce2d3aafc41",
+        "bytes": 181
+      },
+      {
+        "path": "/company/assets/site/agent-logos/qwen-code.png",
+        "sha1": "61b952c36c67cfb284eea0edbca5043da048f4e0",
+        "sha256": "f9a49592809c1357495bcbe97fd253d6cbaf6954027f09a040893ca1610c0e55",
+        "bytes": 1261
+      },
+      {
+        "path": "/company/assets/site/brand-wall.css",
+        "sha1": "e9cc2ee59dec1bb86ac5701006f21a22aa467fec",
+        "sha256": "90fca9438c29c7ae4b09924e647b7561f0c2f30d2c84348b7837fdbe85370374",
+        "bytes": 2862
+      },
+      {
+        "path": "/company/assets/site/case-studies/b-pillar-knowledge.svg",
+        "sha1": "c9bb22783fbd4cad54974dc78006257fe371485f",
+        "sha256": "3d52e2b2cd11d522c44c875ace85764b0064336ba1cb4260d1784f9eeacccd2d",
+        "bytes": 3782
+      },
+      {
+        "path": "/company/assets/site/case-studies/pid-connected-equipment.svg",
+        "sha1": "aec4d0d43335c6a9a52b4976f00034c4d7d26982",
+        "sha256": "0370e8ac20aab38deaa01dff8e66a52597de411f368075a3e52232877ea44b03",
+        "bytes": 3337
+      },
+      {
+        "path": "/company/assets/site/case-studies/supply-chain-investigation.svg",
+        "sha1": "ce7d17dd2c13f2f720d5a9290caede50df6bbf34",
+        "sha256": "0af9ef414a5e5f7e277000a3869fb063bfa6f5bce4c7808b6a015b7fff3ff685",
+        "bytes": 3028
+      },
+      {
+        "path": "/company/assets/site/forflow-one-app-icon.png",
+        "sha1": "a06a9876b7dee9e3604cfa2146f714bce37c001c",
+        "sha256": "f70dd2a4bdfbee3b8cecce09e6538cd8e424e8121de14ae7b50d9ca64f112319",
+        "bytes": 285955
+      },
+      {
+        "path": "/company/assets/site/guru-motion.css",
+        "sha1": "351df7a9fe10faaf0826d8f5c857e8a20bb2809d",
+        "sha256": "cbc469891cb65760b55ea194714f8203eb08dfbba8d95aeabbb40041ac5a374f",
+        "bytes": 2460
+      },
+      {
+        "path": "/company/assets/site/guru-motion.js",
+        "sha1": "0963b621ce258aa5e90cb0e8bb3c36be8fbcf69a",
+        "sha256": "eaf7c1615fcb881a81da981ef8fd50c329c5b73634ad4f333a38fde20fe3a9d8",
+        "bytes": 1325
+      },
+      {
+        "path": "/company/assets/site/guru-navigation.css",
+        "sha1": "aa4e5124f1a45a359bcf615be06988f73b43387b",
+        "sha256": "a02f0d6e2fecde78b98dc453c9e90debb90b348a35f0eab3c908f44eddd8d627",
+        "bytes": 9522
+      },
+      {
+        "path": "/company/assets/site/guru-navigation.js",
+        "sha1": "24e6b4c346cdc6e89c70d657b7358f6cea723b27",
+        "sha256": "6389fd5360bdb787c88fcdcb5b81749941e3517f74f06cc4eb5471e890d436d7",
+        "bytes": 3826
+      },
+      {
+        "path": "/company/assets/site/guru-system.css",
+        "sha1": "df004fa48124d1e0ca941ca3d81647e26fbfe34b",
+        "sha256": "d2deb66a9ccba6f32602e807dd5d22129b4b0dcf713a847c551db02564ac0b63",
+        "bytes": 19146
+      },
+      {
+        "path": "/company/assets/site/home-base.css",
+        "sha1": "e92933f6c605d283e4b2da8be8bc65a7cb541abd",
+        "sha256": "2876841f081ab18c024fea2a7747fed0c839e0a622647eb4f1705e7777b01cd4",
+        "bytes": 305796
+      },
+      {
+        "path": "/company/assets/site/home-case-studies.css",
+        "sha1": "03b1b20f5d11bf44b81264f82e21447604f0a5ad",
+        "sha256": "2c98b612d458b793d6e84699563dac4f6038c0d4180b558aace138cd9d0ddd27",
+        "bytes": 2768
+      },
+      {
+        "path": "/company/assets/site/home-closing.css",
+        "sha1": "168e1100ec3d88b6f5139c3b2ecb6acd351a9f0b",
+        "sha256": "0517b8f690dd0868f073a89a0b1d505bed135653f54f656a22b86ad96ee5c9c7",
+        "bytes": 9767
+      },
+      {
+        "path": "/company/assets/site/home-interactions.js",
+        "sha1": "f3dd8a5bf8de797dba153132f853478f037e7790",
+        "sha256": "aa99fe33be24e06490014f003a55bd35cc002c2aed5280048196a7ca580df92a",
+        "bytes": 76082
+      },
+      {
+        "path": "/company/assets/site/home-knowledge-motion.css",
+        "sha1": "082fb65cbce08f20b3ee2c1123036b8a3d823c58",
+        "sha256": "fe89821463d00842a57c5ea6855e67d94e5323b97f0455e46ee704825aca2c6c",
+        "bytes": 8639
+      },
+      {
+        "path": "/company/assets/site/home-knowledge-motion.js",
+        "sha1": "b8a14742f8d38735695454656378b27b7964fde1",
+        "sha256": "3bec7ce705ae86e9e11e56e428c74d2985302377b1fab502f959a5263012e4af",
+        "bytes": 6209
+      },
+      {
+        "path": "/company/assets/site/home-lower-story.css",
+        "sha1": "b78b607a62dfdec8454a001cc4a02755e2a91ea9",
+        "sha256": "fe06ebca9d1c4c0c3538ec7527f1b7c08aff515666a9c9680b79dac3bc65cd23",
+        "bytes": 12505
+      },
+      {
+        "path": "/company/assets/site/home-lower-story.js",
+        "sha1": "6bacb19ffea10190526d9639dc7f1719476c4a28",
+        "sha256": "4d8c214b0bc29012a775cd6c8b93e8a98ff95ab6c66f4e8ba1d8f0aad3dbe397",
+        "bytes": 2898
+      },
+      {
+        "path": "/company/assets/site/home-mechanisms.css",
+        "sha1": "4f1d87dc5e95e9ccb1b418296b9b59815cc6a942",
+        "sha256": "222353223482d971f2a0beed2b5f5144b24d8b7e3959567d9aa011cfb6794f37",
+        "bytes": 15111
+      },
+      {
+        "path": "/company/assets/site/home-mechanisms.js",
+        "sha1": "dca39035d40d915f9048e47926515072042496ca",
+        "sha256": "f1c2e554ba98daf2e54730d31b5df3812578ff55dff17c0655a3fef0b14fdb8a",
+        "bytes": 7378
+      },
+      {
+        "path": "/company/assets/site/home-mobile-product.css",
+        "sha1": "255c0295005c8ff722a47a3487b5491015d4d5da",
+        "sha256": "c028f34cb2a7eb4b0233ecc434b7ed6550d688465fc894ed340af9a20c544357",
+        "bytes": 9517
+      },
+      {
+        "path": "/company/assets/site/home-navigator.css",
+        "sha1": "462d84502c481838259abf0e9dc2b721f69f5adc",
+        "sha256": "b2ade7dd81080c338fddce6b32dc5b461465b167c93b602cba829e9b1a1eada0",
+        "bytes": 7390
+      },
+      {
+        "path": "/company/assets/site/home-one.css",
+        "sha1": "e8529b127d5cbbe3f113b2043a3ebae9235b63b7",
+        "sha256": "3c46db574de13d52e9764638b663dd6c9272bf6b350c63a3daf14e5eb9272808",
+        "bytes": 21820
+      },
+      {
+        "path": "/company/assets/site/home-scenarios.css",
+        "sha1": "25e16cfef307d987e983e7a00a6d999408388e3b",
+        "sha256": "bcdea10b04413827c4b9b064a64180dc0742a410882b63b3ff75c065b205d629",
+        "bytes": 15127
+      },
+      {
+        "path": "/company/assets/site/home-scenarios.js",
+        "sha1": "6ded22c3632a430bac310463bae34b054797f79b",
+        "sha256": "f3d8175a3cfa08889d5adbe5ddef919072534cb03bb42750b1748ac027751f40",
+        "bytes": 2022
+      },
+      {
+        "path": "/company/assets/site/home-workspace.css",
+        "sha1": "a93eea4f1ee713e4681a4a4aa6bee8279203c758",
+        "sha256": "3067065e6cc3e0d39cc9ba71a2aa988a21a13fea0da1bc7948679fb30be2f802",
+        "bytes": 20933
+      },
+      {
+        "path": "/company/assets/site/home-workspace.js",
+        "sha1": "1f910b23d60a920c53922efc5dc12c32cb74c4b1",
+        "sha256": "648cac0b2853cb40f327c4e7130a532d4cbf1a0fd5718595e6eb22d03a31146d",
+        "bytes": 17963
+      },
+      {
+        "path": "/company/assets/site/knowledge-tag-icons.svg",
+        "sha1": "2c54806c143c1df3be2156270bbebffeec6059a5",
+        "sha256": "e7fe7d521bc3bb1629b652077207c09149f86dcbef78145271a9ac5c3eced022",
+        "bytes": 3196
+      },
+      {
+        "path": "/company/assets/site/people/credit-v1.png",
+        "sha1": "834dc31ae08f255c8ec148c298ebb2c4e322b6e6",
+        "sha256": "f8b45b392ebfb410da5d96a0d0bfa8f9056cfe3b372fa0060432e618913688c1",
+        "bytes": 25208
+      },
+      {
+        "path": "/company/assets/site/people/operations-v1.png",
+        "sha1": "1a1449a022023af51df55f2c61aa3478b23af179",
+        "sha256": "3ed27ecf467c4a9a71f72c45c698f679d7a6f70dcd5ab5e5ce32e2710a140be3",
+        "bytes": 26419
+      },
+      {
+        "path": "/company/assets/site/product-captures/agent-selection.png",
+        "sha1": "b1377678259925a8f977d9217d1694b4cf452ddd",
+        "sha256": "179c2f486c31fab9e7a78ea5520e5d5fdea0cbfac66f365c3d77adfcf40399a8",
+        "bytes": 193809
+      },
+      {
+        "path": "/company/assets/site/product-captures/review-activity-clean.png",
+        "sha1": "b2e52bdfb4e5de22cb6cee2938e87573eb10b74d",
+        "sha256": "f6e021b94e7a3831a84c9b5271e22b70b57c22a72b91c5452ba821a5e2480742",
+        "bytes": 355306
+      },
+      {
+        "path": "/company/assets/site/product-captures/review-materials-clean.png",
+        "sha1": "3ef15a78b246fe89efcd0df22e3b4a935db6f0d1",
+        "sha256": "91ff674942b3301042a050afc834d1ca233fb087095d5959ed1e84217bfb1b12",
+        "bytes": 260954
+      },
+      {
+        "path": "/company/index.html",
+        "sha1": "ee8add7c7bee9bd0fc40b3e0792b113bf619931d",
+        "sha256": "97b44b81c71c855fa8aa4ca034ece9941844f1e7f893dfa30b1ce908a6b50d19",
+        "bytes": 85378
+      }
+    ]
+  },
+  "local_qa": {
+    "scope": "Public /company page from the accepted latest homepage",
+    "source_preview": "6acf622c49d76d543265e009",
+    "created_at": "2026-10-14T12:28:01.551298+00:00",
+    "css_viewport_widths": [
+      320,
+      440,
+      1280
+    ],
+    "horizontal_overflow": false,
+    "broken_loaded_images": [],
+    "reference_customer_marks_removed": true,
+    "tool_ecosystem_retained": true,
+    "canonical": "https://forflow.ai/company",
+    "asset_reference_count_checked": 79,
+    "interactions": {
+      "desktop_navigation": true,
+      "mobile_menu_open_close": true,
+      "contract_source_open_close": true,
+      "task_creation": true,
+      "context_materials": true,
+      "scenario_switch": true,
+      "review_capture_open_close": true
+    },
+    "console_warning_error": [],
+    "generation": "package_company.py passed; homepage already generated from current template",
+    "static_check": "Only three pre-existing workbench_prototype.html errors",
+    "invite_gate_check": "PASS",
+    "gate_runtime_check": "PASS",
+    "edge_scope_check": "Company and its resources public; company-other and unrelated paths protected",
+    "diff_whitespace_check": "PASS",
+    "ios_device_tested": false,
+    "screenshots": [
+      "/private/tmp/forflow-company-release-20261014/desktop.png",
+      "/private/tmp/forflow-company-release-20261014/mobile.png"
+    ]
+  },
+  "production_qa": {
+    "passed": true,
+    "deploy_id": "6acf755c573ae60400561b0a",
+    "url": "https://forflow.ai",
+    "payload_sha256": "7d4a0ca2974b0f0a7a3f46002e0cc059559b725f9ba22ec97168ed001ea007bf",
+    "verified_files": [
+      {
+        "path": "/company/assets/forflow-lockup-transparent.png",
+        "status": 200,
+        "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/forflow-mark.png",
+        "status": 200,
+        "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/agent-logos/claude.svg",
+        "status": 200,
+        "sha256": "609957f16f4c95d003a816b3cf4ec59e2bdfd0a9933bd2b0cd0574ce766e94ef",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/agent-logos/codex.svg",
+        "status": 200,
+        "sha256": "154a9e96226f5a2676add93fee9f4806768f6f1feba7dc020d152d99a6a5ee0f",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/agent-logos/cursor.svg",
+        "status": 200,
+        "sha256": "c483c02f78eb2619778fdd959e72a9adfac4844854472cd2653d4cbfd60e4d71",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/agent-logos/gemini.png",
+        "status": 200,
+        "sha256": "69ddb188bf3705889bd16c26f945efc878556cb5ae926a645fd33b3ec8e053ab",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/agent-logos/kimi.png",
+        "status": 200,
+        "sha256": "179d5d5014667ad5605c92cfeb72318e40683bc28001216582f8abc600877795",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/agent-logos/opencode.png",
+        "status": 200,
+        "sha256": "c76c2913b058e2fde9a694d305356bc3bb48e68f46f73169d20e7ce2d3aafc41",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/agent-logos/qwen-code.png",
+        "status": 200,
+        "sha256": "f9a49592809c1357495bcbe97fd253d6cbaf6954027f09a040893ca1610c0e55",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/brand-wall.css",
+        "status": 200,
+        "sha256": "90fca9438c29c7ae4b09924e647b7561f0c2f30d2c84348b7837fdbe85370374",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/case-studies/b-pillar-knowledge.svg",
+        "status": 200,
+        "sha256": "3d52e2b2cd11d522c44c875ace85764b0064336ba1cb4260d1784f9eeacccd2d",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/case-studies/pid-connected-equipment.svg",
+        "status": 200,
+        "sha256": "0370e8ac20aab38deaa01dff8e66a52597de411f368075a3e52232877ea44b03",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/case-studies/supply-chain-investigation.svg",
+        "status": 200,
+        "sha256": "0af9ef414a5e5f7e277000a3869fb063bfa6f5bce4c7808b6a015b7fff3ff685",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/forflow-one-app-icon.png",
+        "status": 200,
+        "sha256": "f70dd2a4bdfbee3b8cecce09e6538cd8e424e8121de14ae7b50d9ca64f112319",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/guru-motion.css",
+        "status": 200,
+        "sha256": "cbc469891cb65760b55ea194714f8203eb08dfbba8d95aeabbb40041ac5a374f",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/guru-motion.js",
+        "status": 200,
+        "sha256": "eaf7c1615fcb881a81da981ef8fd50c329c5b73634ad4f333a38fde20fe3a9d8",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/guru-navigation.css",
+        "status": 200,
+        "sha256": "a02f0d6e2fecde78b98dc453c9e90debb90b348a35f0eab3c908f44eddd8d627",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/guru-navigation.js",
+        "status": 200,
+        "sha256": "6389fd5360bdb787c88fcdcb5b81749941e3517f74f06cc4eb5471e890d436d7",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/guru-system.css",
+        "status": 200,
+        "sha256": "d2deb66a9ccba6f32602e807dd5d22129b4b0dcf713a847c551db02564ac0b63",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-base.css",
+        "status": 200,
+        "sha256": "2876841f081ab18c024fea2a7747fed0c839e0a622647eb4f1705e7777b01cd4",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-case-studies.css",
+        "status": 200,
+        "sha256": "2c98b612d458b793d6e84699563dac4f6038c0d4180b558aace138cd9d0ddd27",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-closing.css",
+        "status": 200,
+        "sha256": "0517b8f690dd0868f073a89a0b1d505bed135653f54f656a22b86ad96ee5c9c7",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-interactions.js",
+        "status": 200,
+        "sha256": "aa99fe33be24e06490014f003a55bd35cc002c2aed5280048196a7ca580df92a",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-knowledge-motion.css",
+        "status": 200,
+        "sha256": "fe89821463d00842a57c5ea6855e67d94e5323b97f0455e46ee704825aca2c6c",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-knowledge-motion.js",
+        "status": 200,
+        "sha256": "3bec7ce705ae86e9e11e56e428c74d2985302377b1fab502f959a5263012e4af",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-lower-story.css",
+        "status": 200,
+        "sha256": "fe06ebca9d1c4c0c3538ec7527f1b7c08aff515666a9c9680b79dac3bc65cd23",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-lower-story.js",
+        "status": 200,
+        "sha256": "4d8c214b0bc29012a775cd6c8b93e8a98ff95ab6c66f4e8ba1d8f0aad3dbe397",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-mechanisms.css",
+        "status": 200,
+        "sha256": "222353223482d971f2a0beed2b5f5144b24d8b7e3959567d9aa011cfb6794f37",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-mechanisms.js",
+        "status": 200,
+        "sha256": "f1c2e554ba98daf2e54730d31b5df3812578ff55dff17c0655a3fef0b14fdb8a",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-mobile-product.css",
+        "status": 200,
+        "sha256": "c028f34cb2a7eb4b0233ecc434b7ed6550d688465fc894ed340af9a20c544357",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-navigator.css",
+        "status": 200,
+        "sha256": "b2ade7dd81080c338fddce6b32dc5b461465b167c93b602cba829e9b1a1eada0",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-one.css",
+        "status": 200,
+        "sha256": "3c46db574de13d52e9764638b663dd6c9272bf6b350c63a3daf14e5eb9272808",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-scenarios.css",
+        "status": 200,
+        "sha256": "bcdea10b04413827c4b9b064a64180dc0742a410882b63b3ff75c065b205d629",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-scenarios.js",
+        "status": 200,
+        "sha256": "f3d8175a3cfa08889d5adbe5ddef919072534cb03bb42750b1748ac027751f40",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-workspace.css",
+        "status": 200,
+        "sha256": "3067065e6cc3e0d39cc9ba71a2aa988a21a13fea0da1bc7948679fb30be2f802",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/home-workspace.js",
+        "status": 200,
+        "sha256": "648cac0b2853cb40f327c4e7130a532d4cbf1a0fd5718595e6eb22d03a31146d",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/knowledge-tag-icons.svg",
+        "status": 200,
+        "sha256": "e7fe7d521bc3bb1629b652077207c09149f86dcbef78145271a9ac5c3eced022",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/people/credit-v1.png",
+        "status": 200,
+        "sha256": "f8b45b392ebfb410da5d96a0d0bfa8f9056cfe3b372fa0060432e618913688c1",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/people/operations-v1.png",
+        "status": 200,
+        "sha256": "3ed27ecf467c4a9a71f72c45c698f679d7a6f70dcd5ab5e5ce32e2710a140be3",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/product-captures/agent-selection.png",
+        "status": 200,
+        "sha256": "179c2f486c31fab9e7a78ea5520e5d5fdea0cbfac66f365c3d77adfcf40399a8",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/product-captures/review-activity-clean.png",
+        "status": 200,
+        "sha256": "f6e021b94e7a3831a84c9b5271e22b70b57c22a72b91c5452ba821a5e2480742",
+        "transformation": null
+      },
+      {
+        "path": "/company/assets/site/product-captures/review-materials-clean.png",
+        "status": 200,
+        "sha256": "91ff674942b3301042a050afc834d1ca233fb087095d5959ed1e84217bfb1b12",
+        "transformation": null
+      },
+      {
+        "path": "/company/index.html",
+        "status": 200,
+        "sha256": "9aa2c3872331298f4cef570852033a3bc04a8de86616ea0d8d46316112741bf0",
+        "transformation": "Netlify Pretty URLs changed only same-domain .html links and opening anchor tag quotes"
+      }
+    ],
+    "routes": [
+      {
+        "path": "/company",
+        "status": 200
+      },
+      {
+        "path": "/company/",
+        "status": 200
+      },
+      {
+        "path": "/product/one/",
+        "status": 200
+      },
+      {
+        "path": "/product/one/ai-governance",
+        "status": 200
+      },
+      {
+        "path": "/",
+        "status": 302
+      },
+      {
+        "path": "/cases.html",
+        "status": 302
+      },
+      {
+        "path": "/company-other",
+        "status": 302
+      },
+      {
+        "path": "/assets/site/home-workspace.js",
+        "status": 302
+      },
+      {
+        "path": "/api/gate-login",
+        "status": 405
+      },
+      {
+        "path": "/api/leads",
+        "status": 302
+      },
+      {
+        "path": "/api/events",
+        "status": 302
+      },
+      {
+        "path": "/api/assessments",
+        "status": 302
+      },
+      {
+        "path": "/q/company-check-nonexistent",
+        "status": 404
+      }
+    ],
+    "custom_domain_files": [
+      {
+        "path": "/company/",
+        "status": 200,
+        "sha256": "7cd616e97fa7edf5a664d91e1957875bda41483646761f0a4c98b94e2ba0632c"
+      },
+      {
+        "path": "/company/assets/site/home-workspace.js",
+        "status": 200,
+        "sha256": "648cac0b2853cb40f327c4e7130a532d4cbf1a0fd5718595e6eb22d03a31146d"
+      },
+      {
+        "path": "/company/assets/site/home-workspace.css",
+        "status": 200,
+        "sha256": "3067065e6cc3e0d39cc9ba71a2aa988a21a13fea0da1bc7948679fb30be2f802"
+      },
+      {
+        "path": "/company/assets/site/product-captures/review-activity-clean.png",
+        "status": 200,
+        "sha256": "f6e021b94e7a3831a84c9b5271e22b70b57c22a72b91c5452ba821a5e2480742"
+      },
+      {
+        "path": "/product/one/assets/inter-regular.woff2",
+        "status": 200,
+        "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823"
+      }
+    ]
+  },
+  "remote_browser": "Formal-domain navigation completed; subsequent DOM/screenshot read and retry timed out. No remote visual acceptance claimed. Local route screenshots and current production HTTP resources verified.",
+  "git_push": false
+}

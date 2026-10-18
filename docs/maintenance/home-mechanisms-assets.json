@@ -1,0 +1,34 @@
+{
+  "purpose": "Homepage ForFlow One how-it-works product mechanism section",
+  "reference": "https://qoder.com/zh/qoder",
+  "reference_scope": "Asymmetric card layout, local state changes, status rhythm; not a pixel-for-pixel page clone.",
+  "product_evidence": [
+    "docs/forflow/user-manual.md",
+    "docs/forflow/gui-workbench.md"
+  ],
+  "assets": [
+    {
+      "file": "assets/site/product-captures/agent-selection.png",
+      "source": "/Users/zezhou/Documents/ChatGPT/Forflow One/outputs/ip-20260928-expanded/figures/forflow-one/FO-01_初次启动与智能体选择.png",
+      "sha256": "179c2f486c31fab9e7a78ea5520e5d5fdea0cbfac66f365c3d77adfcf40399a8",
+      "treatment": "Unedited original; CSS crops only. Full screenshot available in dialog.",
+      "capture_collection_date": "2026-09-28"
+    },
+    {
+      "file": "assets/site/product-captures/review-activity-clean.png",
+      "source": "/Users/zezhou/Library/Caches/Forflow One/builds/1.4.220-forflow.1/qa/packaged-final/review-pr-activity.png",
+      "sha256": "f6e021b94e7a3831a84c9b5271e22b70b57c22a72b91c5452ba821a5e2480742",
+      "product_version": "1.4.220-forflow.1",
+      "treatment": "Unedited installed-product QA capture; fixed-aspect CSS crop, horizontal pan on narrow screens, original available in dialog. No tutorial popover.",
+      "evidence_scope": "Product interface with synthetic QA workspace and recorded test activity; not customer data or model performance evidence."
+    },
+    {
+      "file": "assets/site/product-captures/review-materials-clean.png",
+      "source": "/Users/zezhou/Library/Caches/Forflow One/builds/1.4.222-forflow.1/qa-installed/feature-review-materials.png",
+      "sha256": "91ff674942b3301042a050afc834d1ca233fb087095d5959ed1e84217bfb1b12",
+      "product_version": "1.4.222-forflow.1",
+      "treatment": "Unedited installed-product QA capture; fixed-aspect CSS crop, horizontal pan on narrow screens, original available in dialog. No tutorial popover.",
+      "evidence_scope": "Product interface with synthetic QA workspace and recorded test activity; not customer data or model performance evidence."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-10",
+  "scope": "Homepage mobile refinement; accepted product bundle preserved",
+  "stage": "/private/tmp/forflow-guru-iteration/mobile-refinement-reviewed",
+  "build": "passed",
+  "js_syntax": "passed",
+  "static": "Only the three pre-existing unrelated workbench_prototype.html errors",
+  "viewports_checked": [
+    320,
+    375,
+    390,
+    440,
+    1440
+  ],
+  "document_horizontal_overflow_px": 0,
+  "interaction_checks": [
+    "Mobile navigation opens, product submenu scrolls to last link, menu closes",
+    "Primary mechanism, playback, knowledge and scenario touch controls measure at least 44 by 44 CSS px within browser rounding",
+    "Agent selection updates active agent",
+    "Manual task step selection pauses playback",
+    "File/browser/terminal and review tabs switch",
+    "Mobile capture opens at readable 1200px width and main pane, overview fits container, detail restores pan",
+    "Capture close and Escape restore opener focus and scroll to within 0.01px",
+    "Contract workbench expands to 1000px horizontal canvas; task/result view buttons pan correctly",
+    "Scenario tabs scroll horizontally, select HR and expand source",
+    "Reduced motion pauses animations and permits manual next step"
+  ],
+  "layout_checks": [
+    "320px and 440px hero title retains two lines",
+    "320px mechanism cards have no content overflow; progress controls remain on one row",
+    "440px materials crop covers frame to border with no bottom blank area",
+    "1440px mechanism cards have no content overflow; capture defaults to overview"
+  ],
+  "console_errors_warnings": [],
+  "product_files_byte_identical": 72,
+  "changed_package_files": [
+    "index.html",
+    "assets/site/guru-system.css",
+    "assets/site/home-knowledge-motion.css",
+    "assets/site/home-scenarios.css",
+    "assets/site/home-workspace.css",
+    "assets/site/guru-navigation.css",
+    "assets/site/home-mechanisms.css",
+    "assets/site/home-mechanisms.js"
+  ],
+  "ios_device_test": "Not run; responsive Chromium browser checks only",
+  "screenshot_note": "Local mobile captures visually reviewed. Desktop host captures are cropped; DOM geometry used in addition.",
+  "changed_asset_sha256": {
+    "index.html": "56f97bde892e2d26f8fa3df92a7b6216e607c53ebb3a84de503dd939467a613f",
+    "assets/site/guru-system.css": "d2deb66a9ccba6f32602e807dd5d22129b4b0dcf713a847c551db02564ac0b63",
+    "assets/site/home-knowledge-motion.css": "fe89821463d00842a57c5ea6855e67d94e5323b97f0455e46ee704825aca2c6c",
+    "assets/site/home-scenarios.css": "5e44ed2e934d1a2225b6322e166872bdf3ed2775dfd191dc18c5a9e08fd94c16",
+    "assets/site/home-workspace.css": "099c834a318f5c728bfe8068f0aeedb733b27894bb439ef9302366a41a0e4940",
+    "assets/site/guru-navigation.css": "a02f0d6e2fecde78b98dc453c9e90debb90b348a35f0eab3c908f44eddd8d627",
+    "assets/site/home-mechanisms.css": "0dc1fb90bc93b5130568b81cc522c97faa93760ff991bf7aa03f09588f03e38e",
+    "assets/site/home-mechanisms.js": "b9acd82e3770866d023f56300227aa0a0b2147e53b350d29b8c418e47fecc016"
+  }
+}

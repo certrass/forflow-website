@@ -5,3 +5,8 @@ body:not(.film) .app{width:100%;height:100%;border-radius:0;border:0;box-shadow:
 body .film-caption,body .film-label,body .film-brand,body .prototype-note{display:none!important}
 /* Keep the fixed product canvas stable when embedded in mobile Safari. */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:Interface,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+.lc-helper,.q2q-subtitle,.lc-note,.lc-rule-section p{line-height:1.75}
+.source-translation{font-size:13px;line-height:1.9;color:#48594c;margin:14px 0 0;padding-top:12px;border-top:1px solid #e8ece7}
+.q2q-document blockquote{font-size:13px;line-height:1.8;color:#7c857f}
+.q2q-dialog .source-translation{margin:0 0 14px;padding:10px 13px;background:#f5f7f3;border:0;border-radius:6px;font-size:12px}

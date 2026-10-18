@@ -1,0 +1,76 @@
+/* Shared Guru-inspired navigation. Scoped to avoid changing service detail pages. */
+:is(.guru-surface,.product-one) .ff-topbar{--nav-height:78px;position:sticky;top:0;z-index:100;height:var(--nav-height);background:#090b0ef5;color:#f0f2ee;border-bottom:1px solid transparent;backdrop-filter:blur(18px);transition:border-color .25s,box-shadow .25s;font-family:inherit}
+:is(.guru-surface,.product-one) .ff-topbar.is-scrolled{border-bottom-color:#2b302e;box-shadow:0 5px 24px #0002}
+:is(.guru-surface,.product-one) .ff-topbar-inner{max-width:1280px;width:calc(100% - 80px);height:100%;margin:auto;display:flex;align-items:center;gap:38px}
+:is(.guru-surface,.product-one) .ff-topbar a{text-decoration:none;color:inherit}
+:is(.guru-surface,.product-one) .ff-topbar button{font:inherit;cursor:pointer;border:0}
+:is(.guru-surface,.product-one) .ff-topbar-brand{display:flex;align-items:center;flex-shrink:0}
+:is(.guru-surface,.product-one) .ff-topbar-brand img{display:block;width:112px;height:42px;object-fit:contain;filter:brightness(0) invert(1)}
+:is(.guru-surface,.product-one) .ff-topbar-nav{display:flex;align-items:center;gap:12px}
+:is(.guru-surface,.product-one) :is(.ff-nav-trigger,.ff-nav-direct,.ff-nav-secondary){display:inline-flex;align-items:center;gap:7px;padding:12px 10px;color:#d7ddd8!important;font-size:14px;font-weight:500;line-height:20px;white-space:nowrap;border-radius:7px;background:none;transition:color .18s,background .18s}
+:is(.guru-surface,.product-one) :is(.ff-nav-trigger,.ff-nav-direct,.ff-nav-secondary):hover,:is(.guru-surface,.product-one) .ff-nav-trigger[aria-expanded=true]{color:#fff!important;background:#ffffff0d}
+:is(.guru-surface,.product-one) .ff-nav-trigger svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.4;transition:transform .22s}
+:is(.guru-surface,.product-one) .is-open .ff-nav-trigger svg{transform:rotate(180deg)}
+:is(.guru-surface,.product-one) .ff-topbar-actions{display:flex;align-items:center;gap:18px;margin-left:auto;flex-shrink:0}
+:is(.guru-surface,.product-one) a.ff-nav-cta{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:42px;box-sizing:border-box;padding:10px 23px;background:#7bd58b;color:#122918;font-size:14px;line-height:20px;font-weight:600;border-radius:999px;white-space:nowrap;transition:background .18s,box-shadow .18s}
+:is(.guru-surface,.product-one) a.ff-nav-cta:hover{background:#98e5a5;box-shadow:0 0 0 4px #7bd58b12}
+:is(.guru-surface,.product-one) .ff-nav-cta span{font-size:17px;transition:transform .2s}:is(.guru-surface,.product-one) .ff-nav-cta:hover span{transform:translate(2px,-2px)}
+:is(.guru-surface,.product-one) .ff-nav-panel{position:absolute;top:calc(100% - 1px);left:50%;width:min(1120px,calc(100vw - 80px));box-sizing:border-box;display:grid;grid-template-columns:280px 1fr;gap:30px;padding:30px;background:#131815;border:1px solid #303a33;border-radius:0 0 16px 16px;box-shadow:0 26px 60px #0005;opacity:0;visibility:hidden;transform:translate(-50%,-8px);pointer-events:none;transition:opacity .2s,transform .24s cubic-bezier(.22,1,.36,1),visibility 0s .2s}
+:is(.guru-surface,.product-one) .ff-nav-group.is-open .ff-nav-panel{opacity:1;visibility:visible;transform:translate(-50%,0);pointer-events:auto;transition-delay:0s}
+:is(.guru-surface,.product-one) .ff-nav-feature{display:flex;align-items:flex-start;flex-direction:column;border-right:1px solid #303a33;padding:12px 30px 12px 6px}
+:is(.guru-surface,.product-one) .ff-nav-kicker{color:#98b09e;font-size:10px;letter-spacing:1.8px;line-height:1.6}
+:is(.guru-surface,.product-one) .ff-nav-feature h2{font-size:25px;font-weight:500;line-height:1.45;letter-spacing:-.6px;color:#f1f5ee;margin:20px 0 12px}
+:is(.guru-surface,.product-one) .ff-nav-feature p{color:#a3b0a7;font-size:13px;line-height:1.8;margin:0 0 26px}
+:is(.guru-surface,.product-one) .ff-nav-feature>a{margin-top:auto;padding:0;font-size:13px;color:#a0dfa9;display:flex;gap:14px;align-items:center}
+:is(.guru-surface,.product-one) .ff-nav-feature>a:hover{color:#d1f4d4}
+:is(.guru-surface,.product-one) .ff-nav-links{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;align-content:start}
+:is(.guru-surface,.product-one) .ff-nav-links>a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-radius:9px;transition:background .18s}
+:is(.guru-surface,.product-one) .ff-nav-links>a:hover,:is(.guru-surface,.product-one) .ff-nav-links>a:focus-visible{background:#ffffff07}
+:is(.guru-surface,.product-one) .ff-nav-links strong{display:block;font-size:14px;font-weight:500;line-height:1.5;color:#f2f5ef}
+:is(.guru-surface,.product-one) .ff-nav-links small{display:block;font-size:12px;line-height:1.6;color:#95a49a;margin-top:5px}
+:is(.guru-surface,.product-one) .ff-nav-links>a>span:last-child{color:#99cda3;opacity:0;transform:translate(-4px,4px);transition:opacity .18s,transform .2s}
+:is(.guru-surface,.product-one) .ff-nav-links>a:is(:hover,:focus-visible)>span:last-child{opacity:1;transform:none}
+:is(.guru-surface,.product-one) .ff-topbar :is(a,button):focus-visible{outline:2px solid #9ce9ac;outline-offset:4px}
+:is(.guru-surface,.product-one) :is(.ff-nav-toggle,.ff-nav-mobile-link){display:none}
+@media(max-width:1100px) and (min-width:981px){:is(.guru-surface,.product-one) .ff-topbar-inner{gap:22px;width:calc(100% - 48px)}:is(.guru-surface,.product-one) .ff-topbar-nav{gap:2px}:is(.guru-surface,.product-one) .ff-topbar-actions{gap:6px}}
+@media(max-width:980px){
+ html.ff-navigation-open{overflow:hidden}
+ :is(.guru-surface,.product-one) .ff-topbar{--nav-height:68px}
+ :is(.guru-surface,.product-one) .ff-topbar-inner{width:calc(100% - 40px);gap:14px}
+ :is(.guru-surface,.product-one) .ff-topbar-brand img{width:104px;height:39px}
+ :is(.guru-surface,.product-one) .ff-topbar-actions{gap:0}
+ :is(.guru-surface,.product-one) .ff-nav-secondary{display:none}
+ :is(.guru-surface,.product-one) a.ff-nav-cta{min-height:36px;padding:8px 16px;font-size:12px;gap:10px}
+ :is(.guru-surface,.product-one) .ff-nav-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:40px;height:40px;padding:8px;background:none;flex-shrink:0}
+ :is(.guru-surface,.product-one) .ff-nav-toggle span{height:1.5px;width:22px;display:block;background:#eef3ec;transition:transform .2s}
+ :is(.guru-surface,.product-one) .is-mobile-open .ff-nav-toggle span:first-child{transform:translateY(3.75px) rotate(45deg)}
+ :is(.guru-surface,.product-one) .is-mobile-open .ff-nav-toggle span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+ :is(.guru-surface,.product-one) .ff-topbar-nav{position:absolute;display:block;top:100%;left:0;width:100%;max-height:calc(100dvh - var(--nav-height));overflow:auto;overscroll-behavior:contain;box-sizing:border-box;padding:12px 24px 28px;background:#101612;border-bottom:1px solid #344037;opacity:0;visibility:hidden;transform:translateY(-8px);pointer-events:none;transition:opacity .2s,transform .22s,visibility 0s .2s}
+ :is(.guru-surface,.product-one) .is-mobile-open .ff-topbar-nav{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition-delay:0s}
+ :is(.guru-surface,.product-one) .ff-nav-group{border-bottom:1px solid #2b362e}
+ :is(.guru-surface,.product-one) :is(.ff-nav-trigger,.ff-nav-direct,.ff-nav-mobile-link){display:flex;width:100%;box-sizing:border-box;justify-content:space-between;padding:19px 0;font-size:16px;line-height:1.5;border-radius:0}
+ :is(.guru-surface,.product-one) .ff-nav-mobile-link{color:#9fdba8;margin-top:12px;border-top:1px solid #2b362e;font-size:14px}
+ :is(.guru-surface,.product-one) .ff-nav-panel{position:static;display:none;width:100%;max-width:none;padding:0 0 20px;border:0;border-radius:0;box-shadow:none;background:none;transform:none;transition:none;opacity:1;visibility:visible;pointer-events:auto}
+ :is(.guru-surface,.product-one) .ff-nav-group.is-open .ff-nav-panel{display:block;transform:none;animation:ff-nav-mobile-in .2s ease both}
+ :is(.guru-surface,.product-one) .ff-nav-feature{display:none}
+ :is(.guru-surface,.product-one) .ff-nav-links{grid-template-columns:1fr 1fr;gap:3px 12px}
+ :is(.guru-surface,.product-one) .ff-nav-links>a{padding:12px;background:#ffffff03;align-items:flex-start}
+ :is(.guru-surface,.product-one) .ff-nav-links strong{font-size:13px}
+ :is(.guru-surface,.product-one) .ff-nav-links small{font-size:11px}
+ :is(.guru-surface,.product-one) .ff-nav-links>a>span:last-child{opacity:1;transform:none}
+}
+@media(max-width:520px){:is(.guru-surface,.product-one) .ff-nav-links{grid-template-columns:1fr}:is(.guru-surface,.product-one) .ff-nav-links>a{padding:12px 14px}:is(.guru-surface,.product-one) .ff-nav-links small{margin-top:2px}}
+@media(max-width:700px){
+ .guru-surface .ff-topbar a.ff-nav-cta{min-height:44px}
+ .guru-surface .ff-nav-toggle{width:44px;height:44px}
+ .guru-surface .ff-topbar-nav{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+}
+@media(max-width:360px){
+ .guru-surface .ff-topbar-inner{width:calc(100% - 24px);gap:8px}
+ .guru-surface .ff-topbar a.ff-nav-cta{padding-inline:12px}
+}
+@keyframes ff-nav-mobile-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){:is(.guru-surface,.product-one) .ff-topbar,:is(.guru-surface,.product-one) .ff-topbar *{animation:none!important;transition:none!important}}
+/* Avoid creating a non-scrolling overflow ancestor for the sticky header. */
+body.home-one.guru-surface{overflow-x:clip}
+.v6.guru-surface{overflow-x:clip;overflow-y:visible}

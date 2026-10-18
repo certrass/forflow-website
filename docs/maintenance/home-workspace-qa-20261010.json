@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-10",
+  "scope": "Homepage contract workspace frame only",
+  "sources": [
+    "templates/index.html",
+    "assets/site/home-workspace.css",
+    "assets/site/home-workspace.js"
+  ],
+  "references": {
+    "qoder": {
+      "url": "https://qoder.com/zh/qoder",
+      "evidence": "Current official HTML/CSS and module assets captured to a temporary reference page; local browser inspected. Live remote browser navigation timed out. No Qoder assets shipped."
+    },
+    "openai": {
+      "url": "https://openai.com/zh-Hans-CN/index/gpt-6-for-everyone/",
+      "evidence": "Current page text and interactive examples read through web tool. Direct HTML returned 403; exact animation timing was not verified."
+    }
+  },
+  "local_browser": {
+    "desktop": {
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "artifactFitsScene": true
+    },
+    "mobile": [
+      {
+        "width": 440,
+        "height": 956,
+        "overflow": false,
+        "preserveSideBySide": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "captionControlOverlap": false,
+        "chapterControlOverlap": false
+      }
+    ],
+    "interaction": [
+      "Chapter selection pauses autoplay",
+      "Contract and business-rule sources show different quotes",
+      "Escape closes source drawer and returns focus to external opener",
+      "Create action changes badge and handoff state",
+      "25-second film reaches final state and stops with Replay control",
+      "Offscreen playback paused at unchanged progress 0.0335",
+      "Returning to viewport resumes playback",
+      "Reduced-motion changes to final state, stops playback and hides cursor",
+      "Expanded viewport has 1000px content within 349px viewport; ArrowRight produces horizontal scroll",
+      "No captured console warnings or errors"
+    ],
+    "screenshotLimit": "IAB viewport screenshot is cropped by desktop host; layout boundaries and mobile overlap also checked using rendered DOM geometry.",
+    "actualIPhone": "not tested"
+  },
+  "checks": {
+    "homepageBuild": "pass",
+    "javascriptSyntax": "pass",
+    "staticCheck": "Only the three pre-existing workbench_prototype.html failures remain: stylesheet, search modal, direct-body footer."
+  },
+  "behavior": "Locally authored marketing interaction using the existing SUP-018 / CTR-1042 v3 / clause 4.2 scenario. No backend submission.",
+  "production": "No production release. Existing product subtree reused unchanged."
+}

@@ -1,0 +1,828 @@
+{
+  "deploy_id": "6ac9ff7ae3ef053a94fa6890",
+  "context": "deploy-preview",
+  "state": "ready",
+  "url": "https://6ac9ff7ae3ef053a94fa6890--forflow-enterprise-suite-v3.netlify.app",
+  "created_at": "2026-10-10T09:04:52.552974+00:00",
+  "production_before": "6ac91f00a3371bf5a7fa42d3",
+  "production_after": "6ac91f00a3371bf5a7fa42d3",
+  "production_unchanged": true,
+  "service_clean_url_verified": true,
+  "staging_directory": "/private/tmp/forflow-guru-iteration/knowledge-open-composition",
+  "verified_files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "002ec46d0d788ecb1ccb182de3b0f2bcf999bbeb3dbc429a0b687afc7d743e27",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/ai-governance-brief.html",
+      "status": 200,
+      "sha256": "1377896fffdcaa48175259a3e5cafa864cca1f3e280e36f469dbf3fde6f7eadb",
+      "robots": "noindex, nofollow",
+      "transformation": "Netlify Pretty URLs rewrote only the service-page link"
+    },
+    {
+      "path": "product/one/index.html",
+      "status": 200,
+      "sha256": "0ee404873e9d93f87313b450ae76b1acc325ddc2b1792818531ed79cebe8f3b1",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/ai-governance.html",
+      "status": 200,
+      "sha256": "3dd6971a0fe2ba51fa59acee6a1e28362562fb3f30293bef77ceb85dd147ad69",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/showcase.css",
+      "status": 200,
+      "sha256": "a33e33405ff57139597d82209ee01faafb06edbe8bad00e8b4f2b1ecccaf8207",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/shared-data.js",
+      "status": 200,
+      "sha256": "ffad3ce34434c2375f591f39d2573eaf95cc458b2a550d2b049906ccd7472e1c",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/index.html",
+      "status": 200,
+      "sha256": "8ead360ebee70ea3a14c6e081d5dde48f17c9ae84cdccc4322014ad5cce5e91d",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/runtime.js",
+      "status": 200,
+      "sha256": "3d37300929be8d8dd928b7ea350165704f7236d4f578a5838253d11cd11fc3a2",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/showcase-storage.js",
+      "status": 200,
+      "sha256": "cdb360f413d4096e173a1f4cd4ee0915e365df0574dd92b2f1191eaeedee43e8",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/lifecycle-model.js",
+      "status": 200,
+      "sha256": "cf4b3c69325045df1e34a37b91cfe0b25c3ddb9d1561c48ea8e8079aba0a0978",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/q2q-ui.js",
+      "status": 200,
+      "sha256": "21e2634c00311d882eb5a8ab62a5d16400252464d55b158ba6ef3923576d6a75",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/showcase-zh.js",
+      "status": 200,
+      "sha256": "3cf915f4c17b3079944a3a69ee93a80dbbb45195d3fececf3f2b06fa8e59e2bb",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/discovery.js",
+      "status": 200,
+      "sha256": "f46e48bbce72fbef97c8de86f6c97f831a2d418d26b2d705ec61539539447352",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/product.css",
+      "status": 200,
+      "sha256": "00fcac8724e427d6d404aef6eb82c9dcc8fb043b3ebc67535483df6cb45d6b0c",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/showcase-bridge.js",
+      "status": 200,
+      "sha256": "5280bf9d2f80292a8707b14ce95c9f6e21e59056aa40a953e166d745268857c2",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/q2q-model.js",
+      "status": 200,
+      "sha256": "ef1c8592e022994aaf574780c51ac54011b42b977004e995f4f4de40073fa913",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/data.js",
+      "status": 200,
+      "sha256": "bce2327a7ced2d78bb85df6eb84331aeef3b5eeeb6046085e4734b1f242bcf8d",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/style.css",
+      "status": 200,
+      "sha256": "e8267d8297c3b5e8807ca010045e9d76c0e9c1ecd9191c0147c2f9b9a62663fe",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/motion.js",
+      "status": 200,
+      "sha256": "ecb181fbcfe5c3a0af26925add9daef8b9e380760135660cad97eb48cc39ece2",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/discovery.css",
+      "status": 200,
+      "sha256": "64a5c4fd94a93cbccc77c5b5dce1fb5b2d1b9d5a5b8834f47966786768c51417",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/lifecycle-ui.js",
+      "status": 200,
+      "sha256": "eae903157f6ec039bd14ad0c9231c9881d24bff45b81f6e21563eeb1cf57c4d4",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/app.js",
+      "status": 200,
+      "sha256": "7ebada605fc57a9abb9d8ec2fc11f0faf382ee5e396d9af1c545f3862f46c08b",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/q2q.css",
+      "status": 200,
+      "sha256": "53b4430e98eb763276c0ff86223ba87e6d35047dff41b797a89533294fca935f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/workbench/renewal.css",
+      "status": 200,
+      "sha256": "16bcd69a91c0d0a75ed3ff417a94b847c4c02fd7315a0c7fa98a5be76f229a23",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/inter-OFL.txt",
+      "status": 200,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/capability-poster.png",
+      "status": 200,
+      "sha256": "880f6b91e9b1d1b416cc8563b72526c2670e21f7e6a9c2fbbf7a8bf570d2bac3",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/capability-scene-BDEsJ6fh.js",
+      "status": 200,
+      "sha256": "8895f62420618108abc51fb3a6d294001b0efa2e7e2b9e422000ae7e54cbc699",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/noto-sans-sc-OFL.txt",
+      "status": 200,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/forflow.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/main-w2V2E0KH.css",
+      "status": 200,
+      "sha256": "cdc86c87a503d5700b144e8af8a8da4653670c4836e6cb468c74e76a65890913",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/forflow-sans-sc.woff2",
+      "status": 200,
+      "sha256": "added25b33700620e288a79e2570a4f2ffc573ad032129dd365064d40dbeb197",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/inter-display-medium.woff2",
+      "status": 200,
+      "sha256": "a5b16b4bd4d1ad12a11c12bc3325bd09250364237e943974a7560ec2b7f22c9a",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/main-Dd6Z5epM.js",
+      "status": 200,
+      "sha256": "74d3007932dc2b5def2b166f9e33dc768fed048e608aab1ef410494b57f28d5b",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/inter-display-semibold.woff2",
+      "status": 200,
+      "sha256": "d8bb10ec73c52ddeeed35b9e7913cf0cf0226ca3469c696883413f49ef03aa61",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/pid.png",
+      "status": 200,
+      "sha256": "c9ab88ec2f6913abcadf18c4aed5e1a3d61bcb1bb327dcf20b0e69b1d1bdc469",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/cases/financial-bda-document-automation-hero.webp",
+      "status": 200,
+      "sha256": "0b14b659158a7728af179a682eefe468a9d46a476b2dcc37b20063c0d24644ca",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/cases/cover-manufacturing-pid.webp",
+      "status": 200,
+      "sha256": "2e775aade9783988ff89053a3b42858841b07b74fb8cb1acc0294444b3998dcc",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/cases/automotive-dfmea-bpillar-hero.webp",
+      "status": 200,
+      "sha256": "4a198f6b1b9143bc44093724cb8b95f0f8ff06559582b80fb46a7862949e03c0",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/cases/supply-chain-agentic-decision-hero.webp",
+      "status": 200,
+      "sha256": "a56cbb4b33854a6bbdb55509edb99e2374d3b8842abef77395c4135002500b0d",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/people/procurement-v1.png",
+      "status": 200,
+      "sha256": "b0deb6138e80559eea6d232cba06920b8d6b0d827156d8dea1c19aa87fdafa80",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/people/operations-v1.png",
+      "status": 200,
+      "sha256": "3ed27ecf467c4a9a71f72c45c698f679d7a6f70dcd5ab5e5ce32e2710a140be3",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/people/engineering-v1.png",
+      "status": 200,
+      "sha256": "5a86a11ecd1812978c0ec42eb4c62e258377ae34760fc8afbb7485c7bd30bd31",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/people/credit-v1.png",
+      "status": 200,
+      "sha256": "f8b45b392ebfb410da5d96a0d0bfa8f9056cfe3b372fa0060432e618913688c1",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/brand-wall.css",
+      "status": 200,
+      "sha256": "90fca9438c29c7ae4b09924e647b7561f0c2f30d2c84348b7837fdbe85370374",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/guru-system.css",
+      "status": 200,
+      "sha256": "5687ad217099abb4f0f3b1a648bb95387ab281fdeb3232429a826c36d74bb996",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/navigation-content.json",
+      "status": 200,
+      "sha256": "825ed4ab1ee26fb029d87cd0bb272b192b10d7c4a00fffc677e2442382a5597e",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/guru-motion.css",
+      "status": 200,
+      "sha256": "cbc469891cb65760b55ea194714f8203eb08dfbba8d95aeabbb40041ac5a374f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/guru-motion.js",
+      "status": 200,
+      "sha256": "eaf7c1615fcb881a81da981ef8fd50c329c5b73634ad4f333a38fde20fe3a9d8",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/guru-navigation.js",
+      "status": 200,
+      "sha256": "6389fd5360bdb787c88fcdcb5b81749941e3517f74f06cc4eb5471e890d436d7",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/guru-navigation.css",
+      "status": 200,
+      "sha256": "0bae455ca179265824249b5090e6dba16011eff2d5bdd0b6528c7cb129777b63",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-01.svg",
+      "status": 200,
+      "sha256": "130070e9b9e2673517ffd5d2c337371f71dcbba0a4a1053ebb024b1b960918db",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-03.svg",
+      "status": 200,
+      "sha256": "3f5a611c81a45b9ef7cd736302a7375f33333eb601f54b9e894f426f26e18dad",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-02.svg",
+      "status": 200,
+      "sha256": "00ac72ea08756ec9dec198c27e2af26935701e71c40cb7b3e9b6b59d2b09454f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-12.svg",
+      "status": 200,
+      "sha256": "abe173e7589fdbe4b8e62c23647156979454a461e64d62ccfe52363916ddd2d2",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-06.svg",
+      "status": 200,
+      "sha256": "43c9472eaa3d8a5d2f1a4f74fdbef34b0c1eea547b1862befbd4dad33ef18819",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-07.svg",
+      "status": 200,
+      "sha256": "8169e80a23232c24003da98a6dc5d6b6822b7b7e1a3a73d255015ab9fc21a0b6",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-13.svg",
+      "status": 200,
+      "sha256": "dc490c89e350326a766f660e2272cdf958f6da5c72dba9de3198f404a77ca7f5",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-05.svg",
+      "status": 200,
+      "sha256": "18d07bef5d50e4639197a756b995c25b1798b90395fcddd02d4b243ceee0d8c2",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-11.svg",
+      "status": 200,
+      "sha256": "90f314055aa97545b36bede36caf99589a0176f99d0ae5ecfed272912c284c6a",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-10.svg",
+      "status": 200,
+      "sha256": "5ed4c6893c0f164a44b1ed3292e7934351d9966fbf3027fe5d0ecdbbd9c80339",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-04.svg",
+      "status": 200,
+      "sha256": "13bd60f9712e10994c86f6775b147e06bde3c4aef53be163f6b3be8d5257f586",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-09.svg",
+      "status": 200,
+      "sha256": "51f1f1c68258a44727b0df89e47ed39d61a1069cd0cf33be83418d1bed6780e5",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/reference-logos/guru-reference-08.svg",
+      "status": 200,
+      "sha256": "2798bdee61494ad5c9e22c49e43228fd82224503e0ff6c61362a35ce12f4db23",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/agent-logos/claude.svg",
+      "status": 200,
+      "sha256": "609957f16f4c95d003a816b3cf4ec59e2bdfd0a9933bd2b0cd0574ce766e94ef",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/agent-logos/cursor.png",
+      "status": 200,
+      "sha256": "1910c1c724f7c7e33188885b237d2bc64a261a7d8afa38c88679cf6e42d9c432",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/agent-logos/kimi.png",
+      "status": 200,
+      "sha256": "179d5d5014667ad5605c92cfeb72318e40683bc28001216582f8abc600877795",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/agent-logos/gemini.png",
+      "status": 200,
+      "sha256": "69ddb188bf3705889bd16c26f945efc878556cb5ae926a645fd33b3ec8e053ab",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/agent-logos/codex.svg",
+      "status": 200,
+      "sha256": "154a9e96226f5a2676add93fee9f4806768f6f1feba7dc020d152d99a6a5ee0f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/agent-logos/qwen-code.png",
+      "status": 200,
+      "sha256": "f9a49592809c1357495bcbe97fd253d6cbaf6954027f09a040893ca1610c0e55",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "product/one/assets/site/agent-logos/opencode.png",
+      "status": 200,
+      "sha256": "c76c2913b058e2fde9a694d305356bc3bb48e68f46f73169d20e7ce2d3aafc41",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/forflow-mark.png",
+      "status": 200,
+      "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/forflow-lockup.png",
+      "status": 200,
+      "sha256": "ce69fa4bd42445e04ea0c70dc9ae6aecd935060de4e6a1be35181949fc4372be",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/forflow-lockup-transparent.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-knowledge-motion.js",
+      "status": 200,
+      "sha256": "3bec7ce705ae86e9e11e56e428c74d2985302377b1fab502f959a5263012e4af",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/brand-wall.css",
+      "status": 200,
+      "sha256": "90fca9438c29c7ae4b09924e647b7561f0c2f30d2c84348b7837fdbe85370374",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/forflow-one-app-icon.png",
+      "status": 200,
+      "sha256": "f70dd2a4bdfbee3b8cecce09e6538cd8e424e8121de14ae7b50d9ca64f112319",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-base.css",
+      "status": 200,
+      "sha256": "2876841f081ab18c024fea2a7747fed0c839e0a622647eb4f1705e7777b01cd4",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/guru-system.css",
+      "status": 200,
+      "sha256": "620f4c0823f061a2f3973172b92e81c365fc55fbb066f566dacbbee462bf242c",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-knowledge-motion.css",
+      "status": 200,
+      "sha256": "2a83331e107827451e9b1691892cab072dc3f4d278c9a3f40473142aecfad76d",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-case-studies.css",
+      "status": 200,
+      "sha256": "2c98b612d458b793d6e84699563dac4f6038c0d4180b558aace138cd9d0ddd27",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-one.css",
+      "status": 200,
+      "sha256": "3c46db574de13d52e9764638b663dd6c9272bf6b350c63a3daf14e5eb9272808",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/guru-motion.css",
+      "status": 200,
+      "sha256": "cbc469891cb65760b55ea194714f8203eb08dfbba8d95aeabbb40041ac5a374f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/guru-motion.js",
+      "status": 200,
+      "sha256": "eaf7c1615fcb881a81da981ef8fd50c329c5b73634ad4f333a38fde20fe3a9d8",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-flow.js",
+      "status": 200,
+      "sha256": "b19c693696e7d5025e4c0c5ac22f07c2d59e1fb0a7d0ef7a77ae82036ce2bd71",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-workspace.css",
+      "status": 200,
+      "sha256": "bc2b8a805906da7a8caf1b97c98fae7a5b0e3ad8c29bf81f718ffedfef2dc30c",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/guru-navigation.js",
+      "status": 200,
+      "sha256": "6389fd5360bdb787c88fcdcb5b81749941e3517f74f06cc4eb5471e890d436d7",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/guru-navigation.css",
+      "status": 200,
+      "sha256": "0bae455ca179265824249b5090e6dba16011eff2d5bdd0b6528c7cb129777b63",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-interactions.js",
+      "status": 200,
+      "sha256": "f32e31126280e8ac9ef5e081182f04381992fe4004624c5b07ef9fb086a799ce",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/home-workspace.js",
+      "status": 200,
+      "sha256": "ef76572afd3a2813dfcb3ecd417c61123b4573ec65f40ae392e662a0c9f6bb12",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-01.svg",
+      "status": 200,
+      "sha256": "130070e9b9e2673517ffd5d2c337371f71dcbba0a4a1053ebb024b1b960918db",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-03.svg",
+      "status": 200,
+      "sha256": "3f5a611c81a45b9ef7cd736302a7375f33333eb601f54b9e894f426f26e18dad",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-02.svg",
+      "status": 200,
+      "sha256": "00ac72ea08756ec9dec198c27e2af26935701e71c40cb7b3e9b6b59d2b09454f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-12.svg",
+      "status": 200,
+      "sha256": "abe173e7589fdbe4b8e62c23647156979454a461e64d62ccfe52363916ddd2d2",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-06.svg",
+      "status": 200,
+      "sha256": "43c9472eaa3d8a5d2f1a4f74fdbef34b0c1eea547b1862befbd4dad33ef18819",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-07.svg",
+      "status": 200,
+      "sha256": "8169e80a23232c24003da98a6dc5d6b6822b7b7e1a3a73d255015ab9fc21a0b6",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-13.svg",
+      "status": 200,
+      "sha256": "dc490c89e350326a766f660e2272cdf958f6da5c72dba9de3198f404a77ca7f5",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-05.svg",
+      "status": 200,
+      "sha256": "18d07bef5d50e4639197a756b995c25b1798b90395fcddd02d4b243ceee0d8c2",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-11.svg",
+      "status": 200,
+      "sha256": "90f314055aa97545b36bede36caf99589a0176f99d0ae5ecfed272912c284c6a",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-10.svg",
+      "status": 200,
+      "sha256": "5ed4c6893c0f164a44b1ed3292e7934351d9966fbf3027fe5d0ecdbbd9c80339",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-04.svg",
+      "status": 200,
+      "sha256": "13bd60f9712e10994c86f6775b147e06bde3c4aef53be163f6b3be8d5257f586",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-09.svg",
+      "status": 200,
+      "sha256": "51f1f1c68258a44727b0df89e47ed39d61a1069cd0cf33be83418d1bed6780e5",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/reference-logos/guru-reference-08.svg",
+      "status": 200,
+      "sha256": "2798bdee61494ad5c9e22c49e43228fd82224503e0ff6c61362a35ce12f4db23",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/agent-logos/claude.svg",
+      "status": 200,
+      "sha256": "609957f16f4c95d003a816b3cf4ec59e2bdfd0a9933bd2b0cd0574ce766e94ef",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/agent-logos/kimi.png",
+      "status": 200,
+      "sha256": "179d5d5014667ad5605c92cfeb72318e40683bc28001216582f8abc600877795",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/agent-logos/cursor.svg",
+      "status": 200,
+      "sha256": "c483c02f78eb2619778fdd959e72a9adfac4844854472cd2653d4cbfd60e4d71",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/agent-logos/gemini.png",
+      "status": 200,
+      "sha256": "69ddb188bf3705889bd16c26f945efc878556cb5ae926a645fd33b3ec8e053ab",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/agent-logos/codex.svg",
+      "status": 200,
+      "sha256": "154a9e96226f5a2676add93fee9f4806768f6f1feba7dc020d152d99a6a5ee0f",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/agent-logos/qwen-code.png",
+      "status": 200,
+      "sha256": "f9a49592809c1357495bcbe97fd253d6cbaf6954027f09a040893ca1610c0e55",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/agent-logos/opencode.png",
+      "status": 200,
+      "sha256": "c76c2913b058e2fde9a694d305356bc3bb48e68f46f73169d20e7ce2d3aafc41",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/case-studies/supply-chain-investigation.svg",
+      "status": 200,
+      "sha256": "0af9ef414a5e5f7e277000a3869fb063bfa6f5bce4c7808b6a015b7fff3ff685",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/case-studies/b-pillar-knowledge.svg",
+      "status": 200,
+      "sha256": "3d52e2b2cd11d522c44c875ace85764b0064336ba1cb4260d1784f9eeacccd2d",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    },
+    {
+      "path": "assets/site/case-studies/pid-connected-equipment.svg",
+      "status": 200,
+      "sha256": "0370e8ac20aab38deaa01dff8e66a52597de411f368075a3e52232877ea44b03",
+      "robots": "noindex, nofollow",
+      "transformation": null
+    }
+  ],
+  "validation": {
+    "build": "Homepage regenerated; JS syntax passes; static check only 3 pre-existing unrelated workbench_prototype errors",
+    "local_browser": "IAB 1440px partial desktop screenshot and geometry; 440px and 390px no page overflow or control overlap, all seven icon images loaded, twelve paths and twelve tags retained. Mobile expand to 1020px, keyboard horizontal pan and restore checked. Particle animation timestamps remain unchanged while paused; replay restarts at zero. Reduced motion shows all rows and zero running animations. No console errors/warnings. Large desktop screenshots are cropped by host zoom; raw CDP capture stitched incorrectly and was not accepted as full screenshot evidence.",
+    "scope": "Only homepage index.html and home-knowledge-motion CSS/JS changed against workspace-qoder-motion; 72 product subtree files byte-identical",
+    "reference": "User-supplied Guru screenshot: bare logos, converging paths, large central ring, staggered light-to-dark knowledge cards. Existing ForFlow assets retained; no third-party assets copied in this iteration.",
+    "remote_browser": "Same-package local validation plus full-file HTTPS readback; remote IAB not retried after repeated navigation timeouts",
+    "reference_customer_logos": true,
+    "ios_device": "not tested"
+  }
+}

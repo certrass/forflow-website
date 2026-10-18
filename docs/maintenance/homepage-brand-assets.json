@@ -1,0 +1,157 @@
+{
+  "reference_url": "https://www.getguru.com/?r=0",
+  "reference_only": true,
+  "user_direction": "按 Guru 的先来，后续调整；两类分开",
+  "release_rule": "Reference customer logos may appear only in review previews, never a production build. Replace with approved actual customer/partner records before release.",
+  "reference_logos": [
+    {
+      "src": "assets/site/reference-logos/guru-reference-01.svg",
+      "alt": "Guru 参考品牌标识",
+      "width": 80,
+      "height": 17,
+      "source": "https://www.getguru.com/?r=0#hp-social_logos",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-02.svg",
+      "alt": "shopify",
+      "width": 80,
+      "height": 23,
+      "source": "https://cdn.prod.website-files.com/5d8d029013ffd80bbb91320d/68acb435150f27e3f888aed5_shopify_white.svg",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-03.svg",
+      "alt": "Guru 参考品牌标识",
+      "width": 35,
+      "height": 20,
+      "source": "https://www.getguru.com/?r=0#hp-social_logos",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-04.svg",
+      "alt": "seatgeek",
+      "width": 106,
+      "height": 22,
+      "source": "https://cdn.prod.website-files.com/5d8d029013ffd80bbb91320d/68acb43507483865b48c0bf1_seatgeek_white.svg",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-05.svg",
+      "alt": "Guru 参考品牌标识",
+      "width": 93,
+      "height": 16,
+      "source": "https://www.getguru.com/?r=0#hp-social_logos",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-06.svg",
+      "alt": "branch",
+      "width": 84,
+      "height": 26,
+      "source": "https://cdn.prod.website-files.com/5d8d029013ffd80bbb91320d/68acb43548c03ad69a2f5d5a_branch_white.svg",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-07.svg",
+      "alt": "Guru 参考品牌标识",
+      "width": 91,
+      "height": 21,
+      "source": "https://www.getguru.com/?r=0#hp-social_logos",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-08.svg",
+      "alt": "Guru 参考品牌标识",
+      "width": 71,
+      "height": 19,
+      "source": "https://www.getguru.com/?r=0#hp-social_logos",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-09.svg",
+      "alt": "Lemonade",
+      "width": 114,
+      "height": 27,
+      "source": "https://cdn.prod.website-files.com/5d8d029013ffd80bbb91320d/68acb435cfaa0c0056039c40_Lemonade_white.svg",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-10.svg",
+      "alt": "Guru 参考品牌标识",
+      "width": 101,
+      "height": 15,
+      "source": "https://www.getguru.com/?r=0#hp-social_logos",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-11.svg",
+      "alt": "trusted",
+      "width": 98,
+      "height": 19,
+      "source": "https://cdn.prod.website-files.com/5d8d029013ffd80bbb91320d/68acb46d066ca5f4d74b4df6_trusted_white.svg",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-12.svg",
+      "alt": "Guru 参考品牌标识",
+      "width": 76,
+      "height": 22,
+      "source": "https://www.getguru.com/?r=0#hp-social_logos",
+      "status": "layout_reference_only"
+    },
+    {
+      "src": "assets/site/reference-logos/guru-reference-13.svg",
+      "alt": "Logo",
+      "width": 64,
+      "height": 33,
+      "source": "https://cdn.prod.website-files.com/5d8d029013ffd80bbb91320d/68b75906ce8f84b65c40ca66_TravelPerk_Logo_white.svg",
+      "status": "layout_reference_only"
+    }
+  ],
+  "ecosystem": [
+    {
+      "id": "codex",
+      "name": "Codex",
+      "src": "assets/site/agent-logos/codex.svg",
+      "source": "https://www.getguru.com/?r=0#hp-logo-chatgpt",
+      "meaning": "OpenAI brand mark; Codex agent listed in Forflow One src/shared/tui-agent.ts"
+    },
+    {
+      "id": "claude",
+      "name": "Claude Code",
+      "src": "assets/site/agent-logos/claude.svg",
+      "source": "/Users/zezhou/Documents/ChatGPT/Forflow One/docs/assets/claude-logo.svg"
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini CLI",
+      "src": "assets/site/agent-logos/gemini.png",
+      "source": "/Users/zezhou/Documents/ChatGPT/Forflow One/src/shared/agent-icons/gemini.png"
+    },
+    {
+      "id": "qwen-code",
+      "name": "Qwen Code",
+      "src": "assets/site/agent-logos/qwen-code.png",
+      "source": "/Users/zezhou/Documents/ChatGPT/Forflow One/src/shared/agent-icons/qwen-code.png"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "src": "assets/site/agent-logos/cursor.png",
+      "source": "/Users/zezhou/Documents/ChatGPT/Forflow One/src/shared/agent-icons/cursor.png"
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi",
+      "src": "assets/site/agent-logos/kimi.png",
+      "source": "/Users/zezhou/Documents/ChatGPT/Forflow One/src/shared/agent-icons/kimi.png"
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "src": "assets/site/agent-logos/opencode.png",
+      "source": "/Users/zezhou/Documents/ChatGPT/Forflow One/src/shared/agent-icons/opencode.png"
+    }
+  ]
+}

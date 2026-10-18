@@ -1,0 +1,44 @@
+{
+  "scope": "Homepage contract walkthrough role and status hierarchy",
+  "created_at": "2026-10-14T10:43:04.862607+00:00",
+  "css_viewport_widths": [
+    320,
+    440,
+    927,
+    1279
+  ],
+  "horizontal_overflow": false,
+  "clipped_role_copy": false,
+  "header_created": "1 task",
+  "result_badge_created": "Pending review",
+  "role_icon_count": 2,
+  "interactions": {
+    "task_creation": true,
+    "approval_source_open_close": true,
+    "replay_returns_material_count": true
+  },
+  "removed_ui": [
+    "repeated legal-review status in window bar",
+    "role initial letters",
+    "current-task label",
+    "number of process stages",
+    "redundant flow footer"
+  ],
+  "cache_fix": "Updated JS and CSS query version; fresh tab completed task with no warnings or errors",
+  "fresh_console_error_warn": [],
+  "transient_errors": "Before cache version update, old cached JS referenced the removed footer node. Fixed and verified in a fresh tab.",
+  "js_syntax": "PASS",
+  "homepage_generation": "PASS",
+  "static_check": "Only 3 pre-existing workbench_prototype.html errors",
+  "changed_preview_files": [
+    "assets/site/home-workspace.css",
+    "assets/site/home-workspace.js",
+    "index.html"
+  ],
+  "product_files_unchanged": 72,
+  "ios_device_tested": false,
+  "screenshots": [
+    "/private/tmp/forflow-role-labels-desktop-20261014.png",
+    "/private/tmp/forflow-role-labels-mobile-20261014.png"
+  ]
+}

@@ -158,16 +158,29 @@ gate_form=landing_soup.select_one('form[data-gate-form]')
 if not gate_form or gate_form.get('method', '').lower() != 'post' or gate_form.get('action') != '/api/gate-login':
     errors.append('landing.html: gate form must fail closed to POST /api/gate-login')
 home_soup=BeautifulSoup((ROOT/'index.html').read_text(encoding='utf-8'),'html.parser')
-if not home_soup.select_one('.home-hero-photo img[src="assets/home/forflow-workflow-hero-v2.jpg"]'):
-    errors.append('index.html: clean generated home hero visual missing')
+hero_preview = home_soup.select_one('.one-product-preview[data-workspace-film]')
+if not hero_preview or not all(hero_preview.select_one(selector) for selector in ['.one-source', '.one-result', 'a.one-preview-action[href="/product/one#platform"]', 'button[data-fw-play]', 'button[data-fw-source="contract"]', 'button[data-fw-create]']):
+    errors.append('index.html: product entry must connect contract source, result and full walkthrough')
 if home_soup.select_one('.home-hero-photo img[src="assets/hero-hand.jpg"]'):
     errors.append('index.html: poster-style legacy hero visual still in use')
 if home_soup.select_one('.home-vertical-type'):
     errors.append('index.html: oversized vertical hero text should be removed')
-if len(home_soup.select('.home-flow-line circle.home-flow-node')) != 3:
-    errors.append('index.html: hero flow nodes must share the SVG coordinate system')
-if len(home_soup.select('.home-proof-band > a')) != 4:
-    errors.append('index.html: hero proof band should keep four concise entry points')
+# The full business sequence lives in the contract workbench. The former
+# duplicate three-column flow is now the interactive product-mechanism section.
+if [button.get('data-fw-chapter') for button in home_soup.select('.fw-film-controls [data-fw-chapter]')] != ['0', '1', '2']:
+    errors.append('index.html: business flow must retain source, verification and handoff controls')
+if not home_soup.select_one('.fw-film-controls button[data-fw-play]'):
+    errors.append('index.html: business flow must expose a playback control')
+# The duplicate numeric entry band was removed during the accepted copy trim.
+# Validate the destinations are still reachable through their primary controls.
+for selector, label in [
+    ('.fw-film-controls a[href^="/product/one"]', 'full product'),
+    ('#navigator button[data-diagnosis-toggle]', 'scenario diagnosis'),
+    ('#services a[href="ai-readiness-audit.html"]', 'readiness service'),
+    ('#services a[href="service-agent-build.html"]', 'workflow service'),
+]:
+    if not home_soup.select_one(selector):
+        errors.append(f'index.html: missing primary entry for {label}')
 
 cases_soup=BeautifulSoup((ROOT/'cases.html').read_text(encoding='utf-8'),'html.parser')
 search_soup=BeautifulSoup((ROOT/'search.html').read_text(encoding='utf-8'),'html.parser')

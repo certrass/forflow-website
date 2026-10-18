@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-10",
+  "scope": "Main homepage only; /product/one keeps accepted light version",
+  "reference": {
+    "url": "https://www.getguru.com/?r=0",
+    "source_sha256": "291399a1d2b82dd045f4c58a5d40e4cddd1d6d641bfd38e1cd5962bc748dd815",
+    "component": ".hp-img1_component",
+    "inspection": "Fresh source identical to prior same-day fetch; isolated local reference rendered with its SVG, CSS and GSAP timeline. Remote IAB timed out. No full live-page or pixel-match claim.",
+    "timing_ms": {
+      "sources": 0,
+      "incoming_paths": 150,
+      "ring": 550,
+      "hub": 600,
+      "particles": 650,
+      "pills": 700,
+      "outgoing_paths": 900,
+      "targets": 1150
+    }
+  },
+  "implementation": {
+    "files": [
+      "templates/index.html",
+      "assets/site/home-knowledge-motion.css",
+      "assets/site/home-knowledge-motion.js"
+    ],
+    "technique": "Native SVG paths and Web Animations API; dependency-free; precomputed motion paths; existing local brand assets",
+    "reduced_motion": "all content visible, particles and playback controls hidden",
+    "mobile": "whole composition scaled; optional 840px detail view in horizontal scroller"
+  },
+  "validation": {
+    "javascript_syntax": "pass",
+    "homepage_generation": "pass",
+    "root_static_check": "index passes; only 3 pre-existing errors in unrelated workbench_prototype.html",
+    "local_browser": {
+      "widths_css_px": [
+        1440,
+        440,
+        390
+      ],
+      "overflow": false,
+      "images": "all 6 loaded",
+      "pause": "particle time unchanged on subsequent read; finite completed animations remain finished",
+      "replay": "all animation times restarted at about 185ms",
+      "offscreen": "paused with particle currentTime 0 at hero; scrolling to replay resumes",
+      "reduced_motion": "all 12 pills opacity 1; particles and play control display none",
+      "mobile_expand": "viewport 400px, scene and scrollWidth 840px, arrow-key horizontal scroll verified, restore fits 350px on 390px screen",
+      "console_errors_warnings": [],
+      "screenshots": "Native partial visual observations; large emulated viewport host-cropped, geometry checked through DOM",
+      "ios_physical_device": "not tested"
+    },
+    "product_subtree_identical_files": 72,
+    "package_delta": [
+      "index.html",
+      "assets/site/home-knowledge-motion.css",
+      "assets/site/home-knowledge-motion.js"
+    ]
+  }
+}

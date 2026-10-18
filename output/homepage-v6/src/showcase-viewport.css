@@ -13,6 +13,10 @@
 .is-expanded .showcase-viewport{overflow:auto;flex:1;border:1px solid #dfe4ea;border-radius:8px;background:#fff;touch-action:pan-x pan-y}
 .is-expanded .showcase-size{margin-top:15px;margin-bottom:15px}
 .showcase-viewer-help{font-size:11px;color:#6b7280;text-align:center;padding-top:14px}
+.showcase-detail-nav{display:flex;justify-content:center;gap:6px;flex-shrink:0;padding-top:12px}
+.showcase-detail-nav button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:42px;padding:9px 17px;border:1px solid #dddeda;border-radius:7px;background:#fff;color:#6b6e6a;font-size:12px}
+.showcase-detail-nav button[aria-pressed=true]{background:#282b29;border-color:#282b29;color:#fff}
+.showcase-detail-nav button:focus-visible{outline:2px solid #7c9178;outline-offset:3px}
 .showcase-native .console-shell{border-radius:8px;box-shadow:none}
 .console-wrap>.showcase-viewer{border-radius:12px}
 .showcase-native .motion-demo{width:100%}

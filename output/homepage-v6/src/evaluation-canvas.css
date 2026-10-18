@@ -1,0 +1,83 @@
+/* Scoped reference adaptation: interactive gallery + comparison, within the
+   accepted light editorial section. No global type or workbench overrides. */
+.governance-section .gov-module-tabs{display:flex;justify-content:center;gap:7px;border:0;padding:0 24px 28px;overflow-x:auto}
+.governance-section .gov-module-tabs>button{padding:11px 19px;border:0;border-radius:999px;flex-shrink:0;min-height:0;background:#f3f3f2;color:#686b70;transition:background 180ms,color 180ms}
+.governance-section .gov-module-tabs>button[aria-selected=true]{background:#202123;color:#fff}
+.governance-section .gov-module-tabs>button:hover:not([aria-selected=true]){background:#e9e9e7}
+.governance-section .gov-module-tabs>button:before,.governance-section .gov-module-tabs>button>svg,.governance-section .gov-tab-number,.governance-section .gov-module-tabs small{display:none}
+.governance-section .gov-module-tabs strong{font-size:12px;line-height:1.6;font-weight:450}
+.governance-section .gov-product-panel{background:#f7f7f5;border-top:1px solid var(--editorial-line)}
+.governance-section .gov-panel-caption{padding:24px 40px 0;min-height:65px}
+.gov-display-switch{display:flex;gap:4px;white-space:nowrap;flex-shrink:0}
+.gov-display-switch>button{padding:7px 11px;border-radius:6px;font-size:10px;color:#76787d}
+.gov-display-switch>button[aria-pressed=true]{background:#fff;color:#25272a;box-shadow:0 1px 4px #0000000a}
+.evaluation-showcase .showcase-viewer:not(.is-expanded){padding:10px 40px 34px}
+.evaluation-showcase .showcase-viewer:not(.is-expanded)>.showcase-viewport{border-radius:12px;border-color:#e7e7e3;box-shadow:0 8px 28px -18px #0002}
+.evaluation-canvas{width:1080px;height:560px;background:#fff;color:#252627;font-size:13px;letter-spacing:0;line-height:1.6;overflow:hidden}
+.evaluation-appbar{height:49px;border-bottom:1px solid #efefed;display:flex;justify-content:space-between;align-items:center;padding:0 28px;font-size:10px;color:#818185}
+.evaluation-appbar>span{display:flex;gap:10px;align-items:center}
+.evaluation-appbar strong{color:#27282a;font-size:12px;font-weight:550}
+.evaluation-appbar i:not(.evaluation-live-dot){height:12px;width:1px;background:#dededb;margin:0 3px}
+.evaluation-live-dot{height:5px;width:5px;border-radius:50%;background:#7b978b}
+.evaluation-conversation{padding:23px 36px 0}
+.evaluation-question{width:max-content;margin-left:auto;padding:10px 18px;background:#f3f3f2;border-radius:18px 18px 4px 18px;font-size:13px;animation:evaluation-enter 350ms ease both}
+.evaluation-response{display:flex;align-items:center;gap:11px;margin-top:18px}
+.evaluation-agent{border:1px solid #e6e6e3;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;flex-shrink:0}
+.evaluation-response p{font-size:12px;color:#696a6c;margin:0}
+.evaluation-result{display:grid;grid-template-columns:610px 1fr;margin:17px 36px 0;border:1px solid #e8e8e5;border-radius:10px;overflow:hidden;min-height:365px}
+.evaluation-visual{padding:23px 28px 0;min-width:0}
+.evaluation-visual>header{display:flex;justify-content:space-between;align-items:center;height:29px}
+.evaluation-visual>header>span{font-size:10px;color:#7b7d7f}
+.evaluation-version{display:flex;padding:3px;border:1px solid #e9e9e6;border-radius:999px;gap:2px}
+.evaluation-version>button{padding:4px 12px;border-radius:999px;font-size:10px;color:#797b7d;transition:background 200ms,color 200ms}
+.evaluation-version>button[aria-pressed=true]{background:#27282a;color:#fff}
+.evaluation-visual h3{font-size:19px!important;font-weight:500;line-height:1.6;margin:17px 0 0!important;color:#292a2c;letter-spacing:-.02em}
+.evaluation-chart{position:relative;height:135px;margin:32px 4px 31px 0;padding-left:30px}
+.evaluation-chart-scale{position:absolute;top:0;left:0;bottom:0;display:flex;flex-direction:column-reverse;justify-content:space-between;font-size:9px;color:#939596;line-height:1;transform:translateY(4px)}
+.evaluation-chart-grid{position:absolute;inset:0 0 0 30px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
+.evaluation-chart-grid i{height:1px;width:100%;background:#f0f0ed}
+.evaluation-bars{display:flex;justify-content:center;gap:65px;height:100%;position:relative}
+.evaluation-bar-group{display:flex;align-items:center;justify-content:flex-end;flex-direction:column;position:relative;width:98px;height:100%;padding:0}
+.evaluation-bar{width:100%;height:var(--bar-height);background:#b6c8be;border-radius:4px 4px 0 0;position:relative;transition:height 700ms cubic-bezier(.22,1,.36,1),background 200ms;min-height:1px}
+.bar-1 .evaluation-bar{background:#e2e5e1}
+.evaluation-bar-group:hover .evaluation-bar,.evaluation-bar-group:focus-visible .evaluation-bar{filter:brightness(.96)}
+.evaluation-bar strong{position:absolute;bottom:100%;left:0;right:0;font-size:17px;line-height:1.5;font-weight:500;padding-bottom:5px;color:#323532;font-variant-numeric:tabular-nums}
+.evaluation-bar small{font-size:9px;font-weight:400;color:#888d87;margin-left:4px}
+.evaluation-bar-label{position:absolute;top:100%;margin-top:10px;font-size:10px;color:#6c6e70;white-space:nowrap}
+.evaluation-conclusion{display:flex;align-items:center;gap:7px;font-size:10px;border-top:1px solid #ecece9;padding:13px 0;color:#727572}
+.evaluation-conclusion>span{width:5px;height:5px;border-radius:50%;background:#b89e6b}
+.evaluation-conclusion>span.is-corrected{background:#7c9b88}
+.evaluation-conclusion>button{margin-left:auto;display:flex;align-items:center;gap:6px;color:#626663;font-size:10px}
+.evaluation-note{padding:24px 26px;background:#fafaf8;border-left:1px solid #e8e8e5;transition:background 400ms,box-shadow 400ms}
+.evaluation-note[data-emphasis=true]{background:#f5f7f1;box-shadow:inset 3px 0 #becbb8}
+.evaluation-note>header{display:flex;gap:8px;align-items:center;font-size:10px;color:#81857d}
+.evaluation-note>header>small{margin-left:auto;font-family:var(--font-mono,monospace);font-size:9px;color:#999b94}
+.evaluation-note h4{font-size:14px;line-height:1.6;margin:19px 0 5px;font-weight:500;color:#373b34}
+.evaluation-location{font-size:10px;color:#94958d}
+.evaluation-note blockquote{font-size:13px;line-height:1.95;margin:20px 0 0;padding:0 0 0 13px;border-left:2px solid #c7d2bd;color:#51594b;min-height:52px}
+.evaluation-note-divider{height:1px;background:#e9eae4;margin:20px 0 15px}
+.evaluation-note-label{font-size:9px;color:#92958b}
+.evaluation-note>p{font-size:11px;line-height:1.95;color:#6e7469;margin:7px 0 0;min-height:44px;animation:evaluation-enter 300ms ease both}
+.evaluation-workspace-link{display:flex;align-items:center;justify-content:space-between;width:100%;font-size:10px;color:#555e4f;margin-top:21px;padding:0}
+.evaluation-canvas-footer{display:flex;align-items:center;justify-content:space-between;padding:18px 38px;font-size:9px;color:#989b93}
+.evaluation-canvas-footer>span{display:flex;gap:7px;align-items:center}
+.evaluation-runs{display:flex;height:135px;margin:32px 0 31px;gap:13px;align-items:center}
+.evaluation-runs>button{border:1px solid #e8eae3;border-radius:9px;background:#fafbf8;flex:1;padding:16px 8px;color:#738267;transition:background 400ms,border-color 400ms}
+.evaluation-runs>button.needs-evidence{background:#f6f2e9;border-color:#e7ddc9;color:#9b8864}
+.evaluation-runs small{display:block;font-size:9px;color:#9a9d92}
+.evaluation-runs button>span{display:grid;place-items:center;margin:16px auto 9px}
+.evaluation-runs strong{display:block;font-size:14px;font-weight:500}
+.evaluation-runs p{margin:5px 0 0;font-size:9px;color:#92978b}
+.evaluation-canvas button:focus-visible,.gov-display-switch button:focus-visible{outline:2px solid #7c9178;outline-offset:4px}
+@keyframes evaluation-enter{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(max-width:1023px){.governance-section .gov-panel-caption{padding-inline:28px}.evaluation-showcase .showcase-viewer:not(.is-expanded){padding-inline:28px}}
+@media(max-width:700px){
+  .governance-section .gov-module-tabs{justify-content:flex-start;padding:0 16px 20px;gap:6px;scrollbar-width:none}
+  .governance-section .gov-module-tabs>button{padding:10px 13px}
+  .governance-section .gov-module-tabs strong{font-size:11px;max-width:none}
+  .governance-section .gov-panel-caption{padding:18px 16px 0;min-height:0}
+  .gov-display-switch{margin-top:10px;justify-content:flex-end}
+  .gov-display-switch>button{font-size:10px;padding:7px 10px}
+  .evaluation-showcase .showcase-viewer:not(.is-expanded){padding:8px 12px 20px}
+}
+@media(prefers-reduced-motion:reduce){.evaluation-canvas *{animation:none!important;transition:none!important}}

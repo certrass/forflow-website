@@ -1,5 +1,28 @@
 # ForFlow homepage v6 — design QA
 
+## 2026-09-12 — 本轮 Attio 实测细化
+
+Preview: https://6aa520f0f0b7211b123168d8--forflow-enterprise-suite-v3.netlify.app/
+
+参考由当日 Attio 官网原生截图、公开 HTML/CSS共同构成。图库位于 `design-review/20260912-attio/`，仅保留作项目内设计依据，不在公开站点发布参考图。原站截图为 1316×768（含浏览器栏）；实现对照按约 1316×636 内容视口规范化，构图状态不同，不将对照描述为逐像素差分通过。
+
+| 检查项 | 参考和改动 | 验证结论 |
+| --- | --- | --- |
+| 章节栅格 | Attio 24 列、左栏 6 列；改为贯穿的 25/75 布局 | 截图核对，边线和目录连续 |
+| 标题与正文 | 原站章节 24px；中文 26px / 13px，主次句用深浅两级 | 桌面与手机实看，窄屏不重叠 |
+| 首屏窗口 | 36px 按钮、10px 圆角、6px 外框内衬、竖纹淡色底景 | 真实工作台保留，未新增装饰图片 |
+| 目录定位 | 垂直指示改用 offsetTop/height；手机仍横排 | 文档锚点约 111px，含 60px 页头与 51px 目录 |
+| 产品操作 | 自动推进、核对下一项、来源同步、手动接管 | 本地交互通过 |
+| 手机细节 | 完整横向画布、放大和平移、占位与返回 | 关闭前后 scrollY 均 2191.71，当前仍为文档处理 |
+| 资源与构建 | 真实工作台源和适配副本 15 对 | 哈希一致；构建和 4 项打包测试通过 |
+| 发布 | 39 个文件回读，console error/warn 空 | 字节一致、HTTP200、noindex；生产未变 |
+
+已修复：重复页头偏移、展开时缺少占位和关闭后的阅读位置恢复。保留的差异：中文标题原文与轮换顺序、真实 workbench 的业务层级和绿色状态、三个业务场景和现有案例。没有引入 Attio 客户标识或其业务数据。
+
+边界：远端导航和截图调用超时，浏览器清单已显示新 URL/标题，实际视觉和交互检查在同构本地构建完成。iOS Safari 实机未测；本轮工具不支持 touch dispatch。用户浏览器的临时 viewport 已恢复默认；截图缩放不用于推断用户的默认浏览器字号。本轮只记录通过的实际检查，不沿用下方历史版本的结果。
+
+## 历史设计 QA（此前版本，保留原记录）
+
 final result: passed
 
 Scope: the independent homepage prototype, its reference-led composition, responsive layout and core demonstration interactions. This result does not imply user aesthetic approval, production readiness or pixel-identical replication of the source sites.
