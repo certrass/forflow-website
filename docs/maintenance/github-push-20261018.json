@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/certrass/forflow-website",
+  "visibility": "private",
+  "branch": "main",
+  "commit": "2aa7dac5c721ff9760697584c220f24ec6d5ec3c",
+  "commit_url": "https://github.com/certrass/forflow-website/commit/2aa7dac5c721ff9760697584c220f24ec6d5ec3c",
+  "previous_commit": "6ace69e4258cfa36d2c0b7613c2263e03645e30d",
+  "github_main_readback_verified": true,
+  "github_file_hashes_verified": 222,
+  "pushed_at": "2026-10-18T15:35:30.809782+00:00",
+  "site_after_push": {
+    "published_deploy": "6acf755c573ae60400561b0a",
+    "git_cd_connected": false,
+    "production_unchanged": true
+  },
+  "source_workspace": "/Users/zezhou/Documents/Forflow website",
+  "source_workspace_index_and_local_branch_not_reset": true,
+  "isolated_checkout": "/private/tmp/forflow-github-sync-20261018",
+  "scope": "Current static homepage/company source, One product prototype source, assets and curated release records",
+  "qa_file": "docs/maintenance/github-sync-20261018.json",
+  "temporary_checkout_cleaned": true,
+  "original_tracking_refresh": "Optional fetch was interrupted after slow reads in the original workspace; GitHub verification succeeded independently."
+}

@@ -1507,3 +1507,10 @@
 - The original workspace contains slow-reading historical screenshots; used an isolated Git checkout to preserve its files and index. Remote main was 6ace69e4258cfa36d2c0b7613c2263e03645e30d. Netlify has no Git continuous deployment connection; production deployment remained 6acf755c573ae60400561b0a before the push. This task synchronizes source, not a new website release.
 - Homepage generation, 9 homepage JS syntax checks, the current product Vite build, 4 hosting checks and 7 workbench state checks passed. Generation did not change the frozen source bytes. Known credential-pattern scan covered 263 text files with no findings. Existing dependency audit has 1 moderate and 5 high findings on the Vite dependency chain; versions and lockfile were retained rather than upgraded during the source sync. Additional check results are recorded in github-sync-20261018.json.
 - Company package rebuilt from the commit source matches all 43 published files. Both gate checks passed. Static check retains only the three pre-existing workbench_prototype.html errors; no new static errors. Whitespace check passed. Production is not redeployed by this source push.
+- Push completed: main commit 2aa7dac5c721ff9760697584c220f24ec6d5ec3c. GitHub main and all 222 selected file hashes were read back successfully. Production remains 6acf755c573ae60400561b0a. Local original index/branch were preserved; source push was made from an isolated checkout, so a dirty original checkout alone does not mean the source is absent from GitHub. Receipt: github-push-20261018.json.
+
+## 2026-10-19 · 官网改动默认同步 GitHub
+
+- 用户要求以后每次官网改完都同步到 GitHub，并沉淀重要改动和发布记录。已将日常提交、推送、远端回读及记录范围写入 `AGENTS.md` 和 `site-governance.md`，同时保存项目范围的工作记忆。此约定覆盖日常源码同步，正式发布继续按已授权目标和版本执行。
+- 同时补入上次已完成源码推送的回执 `github-push-20261018.json`，使已推送版本与验证记录可从仓库直接查到。
+- 本轮只改维护约定、日志及推送回执；文档内容、相对链接、回执 JSON 与提交差异检查通过，不重建、不部署站点。使用隔离检出提交四个项目文件，保留原工作区及其索引；推送完成与远端回读结果以本条对应的 GitHub 提交为准。
