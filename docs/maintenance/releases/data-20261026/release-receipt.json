@@ -26,8 +26,15 @@
     "Desktop/mobile interactive checks completed locally before publication.",
     "Remote browser navigation timed out; HTTP checks are recorded separately.",
     "Form uses existing general ForFlow Feishu consultation form; no submission tested.",
-    "Initial direct-domain HTTP checks timed out; retried through configured Veee proxy."
+    "Initial direct-domain HTTP checks timed out; retried through configured Veee proxy.",
+    "Initial full-build integration passed. After rebasing onto current main, the unchanged product bundle cache copy stalled on an existing local asset; that extra full-build rerun was stopped. Merged script syntax and the independent data package are verified."
   ],
   "production_http_verification": "passed: 35 files on deploy URL and custom domain, 16 routes",
-  "custom_domain_html_transform": "Only Cloudflare JavaScript detection script appended; original HTML otherwise identical"
+  "custom_domain_html_transform": "Only Cloudflare JavaScript detection script appended; original HTML otherwise identical",
+  "source_commit": "a3b8e36b040f1cbafdb133743bba280b41160310",
+  "github_sync": {
+    "branch": "main",
+    "verified_remote_commit": "a3b8e36b040f1cbafdb133743bba280b41160310",
+    "verified_html_blob": "c44922461e3d1dacd4def587515d472d74cd0187"
+  }
 }
