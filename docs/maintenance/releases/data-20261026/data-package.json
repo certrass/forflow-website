@@ -1,0 +1,255 @@
+{
+  "public_url": "https://forflow.ai/company/data/",
+  "source": "output/afterquery-data-zh/index.html",
+  "production_only_changes": [
+    "index, follow robots meta",
+    "canonical URL"
+  ],
+  "files": [
+    {
+      "path": "/company/data/index.html",
+      "bytes": 53039,
+      "sha1": "d7884c410e5f5ad7cd42d478d8ab18621fd44a65",
+      "sha256": "4c63dfe0d742d730c208d73a7a73542036ab481388c8ca492e814042bc903341",
+      "source_sha256": "ec1a8226f9ace048d5579a03ffa9dde4fe943d746aee0e6d317963b0db3eeedc"
+    },
+    {
+      "path": "/company/data/styles.css",
+      "bytes": 9509,
+      "sha1": "d8f439073002583951ab1f468b34da1a122bd4b1",
+      "sha256": "51648bc3157d44e2dd853aab05a717099711a9f0900abdcd160b99f63d07cc8d",
+      "source_sha256": "51648bc3157d44e2dd853aab05a717099711a9f0900abdcd160b99f63d07cc8d"
+    },
+    {
+      "path": "/company/data/script.js",
+      "bytes": 1588,
+      "sha1": "1d2742b6a2192916228dcdc215ff39746befda72",
+      "sha256": "de262d177ba3da71bff5a794403d5d4a30062b05d996dcb8e6df415bdb30a479",
+      "source_sha256": "de262d177ba3da71bff5a794403d5d4a30062b05d996dcb8e6df415bdb30a479"
+    },
+    {
+      "path": "/company/data/visuals.js",
+      "bytes": 2558,
+      "sha1": "415fe93d17c02f9e30ba9d7c311cef5813661954",
+      "sha256": "f10ebe6cc5ae9a08f4f7dabc60c610baa774d0d60505bcc126a0d045fa14da3b",
+      "source_sha256": "f10ebe6cc5ae9a08f4f7dabc60c610baa774d0d60505bcc126a0d045fa14da3b"
+    },
+    {
+      "path": "/company/data/assets/source-hero.js",
+      "bytes": 30931,
+      "sha1": "6fa834f0b4a47e9863086f309d87379aca1a5dd6",
+      "sha256": "95cfcb1c8f3ea86a5a955bc63d031e11a929f9ffc6b625f1caf82044e0cc7929",
+      "source_sha256": "95cfcb1c8f3ea86a5a955bc63d031e11a929f9ffc6b625f1caf82044e0cc7929"
+    },
+    {
+      "path": "/company/data/assets/source-styles.css",
+      "bytes": 105106,
+      "sha1": "26d5350a59659bbed1562880506b1b41df166db1",
+      "sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba",
+      "source_sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba"
+    },
+    {
+      "path": "/company/data/assets/source-fonts.css",
+      "bytes": 2570,
+      "sha1": "881758be8c367a028acc2904577df53766e7a22d",
+      "sha256": "ee5f1d15f7d8c2be2f2ca32c9eebe9b3844d842bc4396f505fce0ab47d338e90",
+      "source_sha256": "ee5f1d15f7d8c2be2f2ca32c9eebe9b3844d842bc4396f505fce0ab47d338e90"
+    },
+    {
+      "path": "/company/data/assets/forflow-mark.png",
+      "bytes": 15601,
+      "sha1": "3140a5234a7e45f8e629aff9cf115d9338afc857",
+      "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+      "source_sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f"
+    },
+    {
+      "path": "/company/data/assets/forflow-lockup-transparent.png",
+      "bytes": 43435,
+      "sha1": "ef2b1a8479002e941f9f1d5dd2831c676150147c",
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "source_sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060"
+    },
+    {
+      "path": "/company/data/assets/generated/work-records-office-v1.jpg",
+      "bytes": 316759,
+      "sha1": "de81a0376c2c14012671d1d11c435e3656c53372",
+      "sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9",
+      "source_sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9"
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Bold-s.p.2g11yfly1dr71.woff2",
+      "bytes": 61692,
+      "sha1": "536d9a20ae58dad7482623517000944f25811607",
+      "sha256": "e82efdec4910173b22aa56a6d338e391358fe8e2ebb6eb0b1b45268fe9706bad",
+      "source_sha256": "e82efdec4910173b22aa56a6d338e391358fe8e2ebb6eb0b1b45268fe9706bad"
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Medium-s.p.1zfhlow4l3tdq.woff2",
+      "bytes": 61972,
+      "sha1": "68950e29e263d5ac187aadae915b6ba546021117",
+      "sha256": "c855cc22a3c5b28744b86f53ea9b7fc98dce96f9515e9376006b60dd24b46029",
+      "source_sha256": "c855cc22a3c5b28744b86f53ea9b7fc98dce96f9515e9376006b60dd24b46029"
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Regular-s.p.101_s0sdv3-ds.woff2",
+      "bytes": 60892,
+      "sha1": "4db6cc1c0f0d93afea581f58adc82b7e8bdd0237",
+      "sha256": "5eb17bccbeacfb77f12bf277b354dd6ede273eb4c4adc46f1491b71648ef2da8",
+      "source_sha256": "5eb17bccbeacfb77f12bf277b354dd6ede273eb4c4adc46f1491b71648ef2da8"
+    },
+    {
+      "path": "/company/data/assets/MartinaPlantijn_Regular-s.p.09bvmw9c6lxyi.woff2",
+      "bytes": 51588,
+      "sha1": "480e39b2c8a286212c8bb279c05dc14941835f17",
+      "sha256": "d2ebd16946900cd91a539b5426755dc7dbbe41a9627d4f69a6168fa91783323d",
+      "source_sha256": "d2ebd16946900cd91a539b5426755dc7dbbe41a9627d4f69a6168fa91783323d"
+    },
+    {
+      "path": "/company/data/assets/a69e508140118fbc-s.1i-4lpdmefbdo.woff2",
+      "bytes": 7260,
+      "sha1": "b9153685c6a551bfb185b24d97e98edb64be95e8",
+      "sha256": "e3085219252209a8d4128f90ff6d793315c752f73a979082d1d85d9cb46f63a4",
+      "source_sha256": "e3085219252209a8d4128f90ff6d793315c752f73a979082d1d85d9cb46f63a4"
+    },
+    {
+      "path": "/company/data/assets/a9a434ecf764164f-s.p.09kihw1cxxru6.woff2",
+      "bytes": 15176,
+      "sha1": "94b30c636c58c05c0d1d63d1422ce618c66c247d",
+      "sha256": "4f4dc27f4a770c0d02fde800daa836c8adc0d1e423b28da74baaf0d1cc3ab96c",
+      "source_sha256": "4f4dc27f4a770c0d02fde800daa836c8adc0d1e423b28da74baaf0d1cc3ab96c"
+    },
+    {
+      "path": "/company/data/assets/d203b9464cfa0970-s.3tsglnldgzmbb.woff2",
+      "bytes": 900,
+      "sha1": "8127d541b53841368ad662865173c388cbf412f8",
+      "sha256": "ed108107e74221cc5e163f12c6b35ba3e75e7615283828d6862c7a0784e1b0c9",
+      "source_sha256": "ed108107e74221cc5e163f12c6b35ba3e75e7615283828d6862c7a0784e1b0c9"
+    },
+    {
+      "path": "/company/data/assets/inter-medium.woff2",
+      "bytes": 42720,
+      "sha1": "ac8a680cb1892e0205339cd89cb034498c779244",
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "source_sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504"
+    },
+    {
+      "path": "/company/data/assets/inter-regular.woff2",
+      "bytes": 41732,
+      "sha1": "b692bc3d6bef045b7b12e0f24ca7c5b66b7843e6",
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "source_sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823"
+    },
+    {
+      "path": "/company/data/assets/inter-semibold.woff2",
+      "bytes": 42868,
+      "sha1": "43d1c88cec356e76acfb8a7c95e00b16d5b17c3a",
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "source_sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a"
+    },
+    {
+      "path": "/company/data/assets/tools/asana.webp",
+      "bytes": 2818,
+      "sha1": "210f6fd6c2db2774bace0c0e4df330dff2275a4e",
+      "sha256": "e5515ce1e77621f4f1be0e8109369c8347e6c8d7d62c7f9361ed0a9845bc08fd",
+      "source_sha256": "e5515ce1e77621f4f1be0e8109369c8347e6c8d7d62c7f9361ed0a9845bc08fd"
+    },
+    {
+      "path": "/company/data/assets/tools/confluence.webp",
+      "bytes": 3390,
+      "sha1": "a60ca0774cc9d4936dc86ab891859034e87c0fd6",
+      "sha256": "97dafc312acbd446cdec2233bb860865f52fe2acbbc85487ebda763da19813fa",
+      "source_sha256": "97dafc312acbd446cdec2233bb860865f52fe2acbbc85487ebda763da19813fa"
+    },
+    {
+      "path": "/company/data/assets/tools/github.webp",
+      "bytes": 1620,
+      "sha1": "cfa259caffe0f34096b66bf24e67cc1735e78eec",
+      "sha256": "6fa64ed2e23b7cd34ebd7a824c5fb712890c9ff792c6452ff16de97c8c5b5d56",
+      "source_sha256": "6fa64ed2e23b7cd34ebd7a824c5fb712890c9ff792c6452ff16de97c8c5b5d56"
+    },
+    {
+      "path": "/company/data/assets/tools/gmail.webp",
+      "bytes": 2456,
+      "sha1": "fb1aca2f81b03e678e2feb6d611057ac7bdcb5c9",
+      "sha256": "9f3ff92ca381ee79dfaeb51484fc07b925dd1be04de1c1cf97ac71da62c5bf72",
+      "source_sha256": "9f3ff92ca381ee79dfaeb51484fc07b925dd1be04de1c1cf97ac71da62c5bf72"
+    },
+    {
+      "path": "/company/data/assets/tools/google-calendar.webp",
+      "bytes": 1362,
+      "sha1": "64a30becf094dd3e553f12a22165e600ab39c190",
+      "sha256": "68f0200a9c35ff47b0eb5463574ca495bbac2a0143c2f7a726174d13eadce50b",
+      "source_sha256": "68f0200a9c35ff47b0eb5463574ca495bbac2a0143c2f7a726174d13eadce50b"
+    },
+    {
+      "path": "/company/data/assets/tools/google-drive.webp",
+      "bytes": 2400,
+      "sha1": "b591e1b43a40913c566691d6099a77b34e761f91",
+      "sha256": "e5e0af23153034c9da465785917986d347bd486477f73beedfa9c69a1dd6ef45",
+      "source_sha256": "e5e0af23153034c9da465785917986d347bd486477f73beedfa9c69a1dd6ef45"
+    },
+    {
+      "path": "/company/data/assets/tools/hubspot.webp",
+      "bytes": 3134,
+      "sha1": "6b16d7725941c1a63cdfc932831fa908c525cb73",
+      "sha256": "d16e81cf9f45e9ab2e40f6fd91362d546cb598258726b0b0a9b3fcce37ea0409",
+      "source_sha256": "d16e81cf9f45e9ab2e40f6fd91362d546cb598258726b0b0a9b3fcce37ea0409"
+    },
+    {
+      "path": "/company/data/assets/tools/jira.webp",
+      "bytes": 2104,
+      "sha1": "6f1dcd8230d58a0433672053f9929e28a5d00d6c",
+      "sha256": "012dcd4dee78c38d86991c64b60ed67776c9292315d4080029917a51b414cf3d",
+      "source_sha256": "012dcd4dee78c38d86991c64b60ed67776c9292315d4080029917a51b414cf3d"
+    },
+    {
+      "path": "/company/data/assets/tools/microsoft-teams.webp",
+      "bytes": 2886,
+      "sha1": "99e0d79f6621b33befd7453a1966a877b541746b",
+      "sha256": "f4f81ce621b355ab6b7013d52861cfb22a3b01248deeb1dcfe3b822a4b4dfc09",
+      "source_sha256": "f4f81ce621b355ab6b7013d52861cfb22a3b01248deeb1dcfe3b822a4b4dfc09"
+    },
+    {
+      "path": "/company/data/assets/tools/notion.webp",
+      "bytes": 1798,
+      "sha1": "4ae36db1de7fa8d0c0686729304098114d595354",
+      "sha256": "ca58afdf9555ae43a2321e1e4c2bcc0185e6856a141fcacae21f9960d69dbdcc",
+      "source_sha256": "ca58afdf9555ae43a2321e1e4c2bcc0185e6856a141fcacae21f9960d69dbdcc"
+    },
+    {
+      "path": "/company/data/assets/tools/outlook.webp",
+      "bytes": 1828,
+      "sha1": "70cb0e912c9c9315c4efc0cd2eb0197db31ffad8",
+      "sha256": "1781e95ea137de2232cd30fa820f0dd0145245ee7c252d29d1475657e1b91ecd",
+      "source_sha256": "1781e95ea137de2232cd30fa820f0dd0145245ee7c252d29d1475657e1b91ecd"
+    },
+    {
+      "path": "/company/data/assets/tools/salesforce.webp",
+      "bytes": 3764,
+      "sha1": "15848ed68ff5fd7ecf8493d4f4dc48308646372b",
+      "sha256": "fadd838e5806a39d6e2f45ad08c07b81fbb9a19725a2e380cf8b4e4278cb44ff",
+      "source_sha256": "fadd838e5806a39d6e2f45ad08c07b81fbb9a19725a2e380cf8b4e4278cb44ff"
+    },
+    {
+      "path": "/company/data/assets/tools/sharepoint.webp",
+      "bytes": 2472,
+      "sha1": "77ba193dee1187efd5255421cd9ac26f824a0fe2",
+      "sha256": "bccff9dd310043090ec416041681ce6c9af85e6764a23729a9cadd34cea55e9a",
+      "source_sha256": "bccff9dd310043090ec416041681ce6c9af85e6764a23729a9cadd34cea55e9a"
+    },
+    {
+      "path": "/company/data/assets/tools/slack.webp",
+      "bytes": 3804,
+      "sha1": "65296e812d5a33698fee591cd00abd67addcdf40",
+      "sha256": "114e53c6f2c436187f5fa0e3e5c9266633de1c6305e69008bc360a9e5e68751d",
+      "source_sha256": "114e53c6f2c436187f5fa0e3e5c9266633de1c6305e69008bc360a9e5e68751d"
+    },
+    {
+      "path": "/company/data/assets/tools/trello.webp",
+      "bytes": 1378,
+      "sha1": "cd1a0913778ca071ded6b342ba2f4f61650c9e84",
+      "sha256": "cd45f687f008dd05c66e2e43a74a3bedf8b4924bfffa4b20628ea001db6758af",
+      "source_sha256": "cd45f687f008dd05c66e2e43a74a3bedf8b4924bfffa4b20628ea001db6758af"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "created_at_utc": "2026-10-26T13:02:19.493685+00:00",
+  "site_id": "cfe11c44-420e-4af6-9472-e2c4570d84c5",
+  "public_url": "https://forflow.ai/company/data/",
+  "production_deploy_id": "6adf4e420116de1e107d68df",
+  "production_deploy_url": "https://6adf4e420116de1e107d68df--forflow-enterprise-suite-v3.netlify.app",
+  "draft_deploy_id": "6adf4dd9f37c52372bf84c6b",
+  "previous_production_deploy_id": "6acf755c573ae60400561b0a",
+  "payload_sha256": "4efda290ff10f9e5498d1811e200cba890621e92b111908f67a1a41e6921b1bc",
+  "scope": "Add the reviewed root landing page from output/afterquery-data-zh at /company/data/. Do not publish the separate nested research experiment.",
+  "published_file_count": 35,
+  "total_deploy_file_count": 228,
+  "preserved_existing_files": 193,
+  "all_existing_file_digests_unchanged": true,
+  "preserved_function_digests": {
+    "assessments": "c2415df75909194acaa8bf01a26c3cbe719077eff44c690cfd77e925f7a97d92",
+    "events": "94f787ff54f9e8f1ab4ba392f7b0f51947f19b4063962e43861968237d73be56",
+    "gate-login": "12aab8545aa8773b6f4d158b97581eb1867f1b927f4e215f56f46926d54e5713",
+    "leads": "eaaade2c48d31c29bb9872fe7bcad3ac285e0bf9ca32d1a9936b3590b60018e0",
+    "q": "07faef780acc7886abb8cf82d9df813e4869230755dcce16a351783b9fdecb73"
+  },
+  "function_configuration_preserved": true,
+  "edge_bundle_and_manifest_preserved": true,
+  "git_cd_connected": false,
+  "verification_notes": [
+    "Desktop/mobile interactive checks completed locally before publication.",
+    "Remote browser navigation timed out; HTTP checks are recorded separately.",
+    "Form uses existing general ForFlow Feishu consultation form; no submission tested.",
+    "Initial direct-domain HTTP checks timed out; retried through configured Veee proxy."
+  ],
+  "production_http_verification": "passed: 35 files on deploy URL and custom domain, 16 routes",
+  "custom_domain_html_transform": "Only Cloudflare JavaScript detection script appended; original HTML otherwise identical"
+}

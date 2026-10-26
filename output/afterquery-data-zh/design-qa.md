@@ -1,0 +1,79 @@
+# 数据伙伴计划 · ForFlow 设计系统 QA
+
+final result: passed
+
+## 正式发布（2026-10-26）
+
+- 已上线 https://forflow.ai/company/data/ ，部署 `6adf4e420116de1e107d68df`。发布根数据伙伴页，独立研究实验页没有发布。
+- 35 个运行文件、16 条路由、现有 193 个文件及 5 个函数/门禁保持检查通过；自有域名 HTML 只有 Cloudflare 平台追加检测脚本，页面其余字节与发布包相同。
+- `package.py` 只收集正式页面所需文件；`scripts/build_public.py` 已接入，后续全站构建保留此路由。仅公开包移除 noindex 并加入 canonical。
+- 原始 API 数据和认证状态没有进入仓库或发布目录。部署验证记录在 `docs/maintenance/releases/data-20261026/`。
+- 远端浏览器读取超时；交互与视觉沿用下面的本地实测，线上资源和访问状态另行通过 HTTP 回读。
+
+## 当前版本：整页 ForFlow 文案与合作入口（2026-10-26）
+
+- 目标为根数据伙伴页；按照用户最新完整定稿，统一首屏、九个行业、六步流程、两类行动入口和页脚。法律描述按核心纠错去除「特权」用语。八个问答改为企业授权、保密、样本、访问范围、脱敏与结算安排。
+- 导航 Logo 再缩为桌面 108px、手机 96px。长 CTA 使用自适应高度与行距；手机标题字号适配包含「企业」的新标题。旧版本照片和 ForFlow 视觉保持。
+- 活动 HTML 的 AfterQuery、机翻用语和外链残留扫描通过。四个主行动入口接现有 ForFlow 飞书通用咨询表单，地址 HTTP 200；浏览器在线表单读取超时，未测试提交。
+- 实际检查 1440 × 1000、390 × 844、320px 窄屏；无页面横向溢出，320px 标题、按钮与流程标题无容器溢出。手机菜单/关闭/Esc、更多问答及脱敏问答开关通过，控制台无 error / warn。视口与临时减弱动效设置已恢复。
+- 当前截图为 `evidence/localized-desktop.png`、`localized-mobile.png`、`localized-full.png`；最终截图前返回页首，避免固定导航在全页图中错位。源码哈希与检查记录为 `evidence/localization-verification.json`。
+- 独立生成与范围内静态检查通过；根目录静态检查仍有已记录的无关工作台三项失败。此时尚未发布；后续发布见上节。
+
+以下为历史版本记录，金额、主体、链接和 Logo 尺寸以本节为准。
+
+## 2026-10-26 后续：数据伙伴页首屏文案与生成图片
+
+- 用户明确本轮目标为根数据伙伴页及行业区。首屏介绍与用户新文案逐字一致；行业区桌面和手机共用内置 image_gen 生成的 `work-records-office-v1.jpg`。生成记录及完整提示词见 `source/generated-images.json`。
+- 专家近景曾试放 Company / Data 页，用户纠正目标后已撤回，恢复该页此前资料图形；该近景仅保留为未使用备选。`company-data-generated-*.png` 是撤回前的中间状态，不代表当前页面。
+- 根页 1440 × 1000 / 390 × 844 实测无横向溢出；首屏介绍换行与图片加载通过。行业图已检查桌面纵向及手机横向裁切，手机焦点调整到 `50% 35%` 以保留人物头部。当前截图为 `forflow-data-copy-*.png` 与 `industries-generated-*.png`。
+- 生成与图片引用检查通过，Company / Data 来源和产物恢复一致；静态检查仍为既有 `workbench_prototype.html` 三项缺失。没有修改正式站点或执行发布。
+
+## 2026-10-26 后续：Company / Data 与标识比例
+
+- 用户确认新增 `/company/data` 页面；本地生成入口为 `source/company-data.html`，由 `build.py` 生成。完整原文已核对，页面以数据质量主张、三项研究方法及数据合作沟通组成。
+- 原页面导航标识从 206px / 175px 缩小为 144px / 132px；新页采用相同尺寸。原页面截图 `forflow-logo-refined.png` 为最新标识比例，其余原站对照图保留此前版本。
+- 新页 1440 × 1000 与 390 × 844 实际浏览器检查通过，页面 scrollWidth 等于视口；图片加载正常，控制台 error / warn 为空。已打开 `company-data-desktop.png`、`company-data-full.png` 与 `company-data-mobile.png` 检查排版。
+- 手机菜单展开/关闭、Esc 焦点返回与合作锚点通过；合作区 top 为 90.14px，低于导航底部 70.72px。浏览器视口设置检查后已恢复。
+- 两页资源、ID、锚点检查，新增 JS 语法及生成来源一致性通过；用户原文逐字一致。根目录静态检查仍为下述既有三项错误。本轮没有发布正式站点。
+
+## 当前验收目标
+
+用户先要求复刻 `https://www.afterquery.com/data-partnerships`，随后明确要求“design system 变成 forflow 的风格”。当前验收为：保留原计划的内容结构和主要交互，应用本库已有 ForFlow 品牌样式。原站的衬线字体、米白底和四色光晕不再是保真目标。
+
+视觉来源：`evidence/source-desktop.png`、`source-value.png`、`source-faq.png`、`source-mobile.png`、`source-mobile-menu.png`。ForFlow 依据为本库根目录 `styles.css` 的品牌 tokens / 按钮 / 标题规则，以及 `assets/forflow-lockup-transparent.png` 实际标识。
+
+实现证据：`evidence/forflow-desktop-top.png`、`forflow-desktop-full.png`、`forflow-mobile-top.png`、`forflow-industries-detail.png`。同一输入内的对照为 `comparison-desktop.png`、`comparison-mobile.png`，已打开复核。
+
+## 视口与归一化
+
+- 桌面 CSS 视口 1440 × 1000；首屏 PNG 1440 × 1000，全页 PNG 1440 × 3811。
+- 手机 CSS 视口 390 × 844；源与实现首屏均 390 × 844。另核对 440 像素宽布局。
+- 本机内置浏览器对 localhost 保留 138% 缩放。用 1987 × 1380 的视口约束获得实际 1440 × 1000 CSS 视口，再以 CDP 截图 `scale=1/1.38` 归一化；手机同样处理。没有把被裁切的早期截图当作最终对照。
+- 桌面最终全页证据采用减弱动效模式以固定画布；常规动效和减弱动效均实际运行。装饰图形的随机位置与瞬时形状不作为像素一致性要求。
+
+## 五项视觉检查
+
+1. 字体：已改为本地 Inter 与系统中文无衬线；桌面 H1 约 68px，手机约 34px，两个中文分句完整成行。原始复刻阶段出现的“授权”孤行已消除。
+2. 布局：采用 1200px 内容上限、80px 桌面侧边空间和 20px 手机边距；桌面行业为照片加九张卡片，手机保留横向滚动。流程、行动区、问答和页脚层级完整。
+3. 颜色：白色背景、`#050505` 主文字、`#6cf67e` 主要按钮、`#06e705` 强调、`#093e14` 深绿标题；四彩光晕改为淡绿色，卡片 18px 圆角及细边框。
+4. 资产：ForFlow 标识为已有位图；行业摄影、行业图标及画布模块来自原站实际资产/代码，没有用自绘图形替代。所有运行时资产为本地路径。
+5. 文案：用户提供的内容结构、九个行业和六步流程完整。修正机械翻译；问答使用简短中文摘要。金额与申请主体仍属于 AfterQuery，页脚保留来源。
+
+## 交互与检查
+
+- 菜单展开/收起、Esc 关闭及焦点返回通过；稳定展开状态下“合作行业”跳转通过，目标位于粘性导航下方。菜单已改为浮层，避免收起时改变章节布局。
+- 手机行业区域可用键盘右方向键横向浏览，实测 `scrollLeft=589.86`；没有页面级横向溢出。内置浏览器不支持 `Input.dispatchTouchEvent`，未声称实测真实触摸手势或 iOS Safari。
+- 首个问答键盘展开通过；“查看更多”展开为八题且移除 inert，收起通过。
+- 1440、390、440 像素宽度的页面 scrollWidth 与视口一致。
+- 标识、桌面行业照片、工具图标和本地字体加载通过；控制台无本页 error / warn。
+- 主要申请和推荐 href、`target=_blank`、`rel=noopener noreferrer` 已核对；没有提交外部表单。
+- 生成、JavaScript 语法、页面本地资源、锚点、重复 ID、外部链接安全属性检查通过。
+- 仓库全站静态检查仍报告已有 `workbench_prototype.html` 三项缺失：stylesheet、search modal、直接 body 子级 footer。本次未修改该文件；独立预览未被根目录 HTML 扫描器覆盖，已另做范围内检查。
+
+## 修复与复核记录
+
+- 初始中文标题的孤行：将两个分句分别包裹，后续 ForFlow 标题直接分为两行；修复后截图为 `forflow-mobile-top.png`。
+- 手机菜单推挤内容造成定位漂移：改为绝对定位浮层，稳定状态重测目标 top 约 178px，菜单关闭成功。
+- 浏览器缩放导致早期截图裁切：根据实际 CSS 视口和页面缩放归一化重新截图，最终对照无裁切。
+
+没有未解决的 P0 / P1 / P2 视觉或交互问题。P3：真实 iOS Safari 与触摸手势仍可在后续实机验收；本轮仅本地预览，没有发布。

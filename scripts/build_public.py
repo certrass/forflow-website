@@ -5,6 +5,8 @@ import os
 import re
 from package_product_one import package
 from package_company import package as package_company
+import subprocess
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -126,5 +128,13 @@ package(
 )
 
 package_company(ROOT, DIST, write_receipt=False)
+# Keep the independently maintained data partnership page in future full builds.
+# The packager selects the reviewed root page, not the older nested experiment.
+subprocess.run([
+    sys.executable,
+    str(ROOT / 'output/afterquery-data-zh/package.py'),
+    str(DIST),
+    '--no-receipt',
+], check=True)
 
 print(f'public bundle ready: {DIST}')

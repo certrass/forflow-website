@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-10-26",
+  "generator": "built-in image_gen",
+  "context": "Original fictional editorial scenes for the local ForFlow data pages; not photographs of actual staff or customers.",
+  "assets": [
+    {
+      "id": "work-records-office-v1",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for the industry section of a Chinese enterprise AI data partnership website, ForFlow. Generate a portrait 2:3 image. Scene: a real, contemporary small engineering and operations office in China, pale walls, soft daylight from tall windows, modest pale wood desks, neatly used folders, a few loose process sheets and one unbranded laptop. Three fictional Chinese adult colleagues in everyday smart casual clothes are working quietly, with one seated person reviewing a folder and two colleagues comparing paper records further back. Candid and understated, not looking at camera, no posing. Composition: photograph from the doorway down the room, strong but natural depth, keep the important people and records inside the central vertical half so a narrow vertical website crop still reads clearly; top and bottom retain breathing room. Style: sophisticated architectural/editorial photography, 35mm lens, realistic material detail, natural human proportions, mild film grain, gentle contrast, not glossy stock photography. Palette: white, warm light grey, charcoal, pale wood, one restrained light green folder echoing ForFlow Flow Green. Light and calm overall. No retro typewriters, no futuristic screens, no holograms, no dramatic spotlights. No readable text, no brand logos, no watermark, no overlaid graphics. This is an original fictional work scene, not an actual company or actual employees.",
+      "source": "/Users/zezhou/.codex/generated_images/01a17797-ef39-7182-869b-414ab9f8ccc1/exec-39294cad-044f-4adf-bf8c-67ffaaa97f41.png",
+      "original": "assets/generated/work-records-office-v1.png",
+      "web": "assets/generated/work-records-office-v1.jpg",
+      "sha256": {
+        "original": "6135e39b9dbb7b39a2274e7941c7e2b6595be746cfc3281c56954c0187010584",
+        "web": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9"
+      },
+      "web_bytes": 316759,
+      "usage": "Active: root data partnership page, industry photo"
+    },
+    {
+      "id": "expert-data-review-v1",
+      "prompt": "Use case: photorealistic-natural. Asset type: original horizontal 4:3 editorial photo for the hero of ForFlow's Chinese data research page. Scene: a quiet collaborative research desk in a contemporary Chinese office. Two fictional Chinese adult domain experts, one woman and one man, seated side by side, absorbed in carefully comparing a printed workflow diagram with a few organized paper records. One person points with a pencil to a specific part of a sheet, while the other's hand holds the adjacent page. A slim unbranded closed laptop sits off to the side, one pale green folder and neat clipped document bundles are visible. Composition: intimate medium-close photograph from a slightly elevated oblique angle, hands and documents central and crisp, partial natural profiles at the upper edge, work materials occupy the lower two thirds; balanced horizontal composition suitable for a rounded rectangular website image. Editorial photography, real paper texture, natural anatomically correct hands, soft window daylight from the side, subtle depth of field, gentle contrast. Palette: white, warm greys, charcoal clothing, understated pale wood, a single fresh light green accent echoing ForFlow Flow Green. Calm, thoughtful and precise; no posed smiles, no pointing at a large screen, no corporate handshake, no futuristic AI glow. Printed marks must be tiny abstract lines and diagram shapes, with absolutely no readable text, personal data or logos. No watermark, no UI overlay, no added typography. Original fictional scene, not documentary evidence of a real team.",
+      "source": "/Users/zezhou/.codex/generated_images/01a17797-ef39-7182-869b-414ab9f8ccc1/exec-bb6533ae-4763-43f2-a995-a4b83e05b4c9.png",
+      "original": "assets/generated/expert-data-review-v1.png",
+      "web": "assets/generated/expert-data-review-v1.jpg",
+      "sha256": {
+        "original": "8b5a87d96ef3db41b9fc400b54e3a63f9fa2d04e5bd7da2a0a892eb51118a5d5",
+        "web": "853a63512a3261f4bf09ab1e2b47e955361e4595b6ee2df1f7eb92ce16971e66"
+      },
+      "web_bytes": 361463,
+      "usage": "Unused alternative; Company / Data image change reverted at user request"
+    }
+  ]
+}

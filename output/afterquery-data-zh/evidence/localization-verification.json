@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-26",
+  "page": "http://127.0.0.1:8899/",
+  "checks": {
+    "copy_residuals": "passed",
+    "faq_count": 8,
+    "process_steps": 6,
+    "primary_cta_count": 4,
+    "local_assets_anchors_ids": "passed",
+    "external_link_attributes": "passed",
+    "javascript_syntax": "passed",
+    "git_diff_check": "passed"
+  },
+  "browser": {
+    "viewports": [
+      [
+        1440,
+        1000
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        844
+      ]
+    ],
+    "horizontal_overflow": false,
+    "narrow_heading_cta_clipping": false,
+    "header_logo_widths": [
+      108,
+      96
+    ],
+    "menu_escape": "passed",
+    "faq_expand_collapse": "passed",
+    "console_errors_warnings": [],
+    "temporary_viewport_and_media_restored": true
+  },
+  "form": {
+    "destination": "existing ForFlow general consultation Feishu form",
+    "http_status": 200,
+    "browser_read": "timed out",
+    "submitted": false
+  },
+  "root_static_check": {
+    "status": "existing failures",
+    "file": "workbench_prototype.html",
+    "errors": [
+      "missing stylesheet",
+      "missing search modal",
+      "site footer must be a direct body child"
+    ]
+  },
+  "screenshots": [
+    "localized-desktop.png",
+    "localized-mobile.png",
+    "localized-full.png"
+  ],
+  "sha256": {
+    "build.py": "a64e5e4964da928481fd1c8828ffb53d34393284e87c34698b622753f9293c72",
+    "source/zh.json": "ced8e9d13c232ac1c570a427c31862980cae48d8236f73aa5cbf3da0ae2b9fd2",
+    "source/faq.json": "5440ffc884d05dd4e7fd9fb31de6621500de248adb5e2d3a150e31d1e830dde1",
+    "source/site.json": "2fb92ae4114f201d69cdfbc33be9737134fc8ae8c780ee62fb36c17432b9a0e4",
+    "styles.css": "51648bc3157d44e2dd853aab05a717099711a9f0900abdcd160b99f63d07cc8d",
+    "script.js": "de262d177ba3da71bff5a794403d5d4a30062b05d996dcb8e6df415bdb30a479",
+    "index.html": "ec1a8226f9ace048d5579a03ffa9dde4fe943d746aee0e6d317963b0db3eeedc"
+  },
+  "deployed": false
+}

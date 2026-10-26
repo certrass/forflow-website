@@ -1,0 +1,497 @@
+{
+  "passed": true,
+  "deploy_id": "6adf4e420116de1e107d68df",
+  "url": "https://forflow.ai",
+  "payload_sha256": "4efda290ff10f9e5498d1811e200cba890621e92b111908f67a1a41e6921b1bc",
+  "verified_files": [
+    {
+      "path": "/company/data/index.html",
+      "status": 200,
+      "sha256": "4c63dfe0d742d730c208d73a7a73542036ab481388c8ca492e814042bc903341",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/styles.css",
+      "status": 200,
+      "sha256": "51648bc3157d44e2dd853aab05a717099711a9f0900abdcd160b99f63d07cc8d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/script.js",
+      "status": 200,
+      "sha256": "de262d177ba3da71bff5a794403d5d4a30062b05d996dcb8e6df415bdb30a479",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/visuals.js",
+      "status": 200,
+      "sha256": "f10ebe6cc5ae9a08f4f7dabc60c610baa774d0d60505bcc126a0d045fa14da3b",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-hero.js",
+      "status": 200,
+      "sha256": "95cfcb1c8f3ea86a5a955bc63d031e11a929f9ffc6b625f1caf82044e0cc7929",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-styles.css",
+      "status": 200,
+      "sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-fonts.css",
+      "status": 200,
+      "sha256": "ee5f1d15f7d8c2be2f2ca32c9eebe9b3844d842bc4396f505fce0ab47d338e90",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-mark.png",
+      "status": 200,
+      "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-lockup-transparent.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/generated/work-records-office-v1.jpg",
+      "status": 200,
+      "sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Bold-s.p.2g11yfly1dr71.woff2",
+      "status": 200,
+      "sha256": "e82efdec4910173b22aa56a6d338e391358fe8e2ebb6eb0b1b45268fe9706bad",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Medium-s.p.1zfhlow4l3tdq.woff2",
+      "status": 200,
+      "sha256": "c855cc22a3c5b28744b86f53ea9b7fc98dce96f9515e9376006b60dd24b46029",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Regular-s.p.101_s0sdv3-ds.woff2",
+      "status": 200,
+      "sha256": "5eb17bccbeacfb77f12bf277b354dd6ede273eb4c4adc46f1491b71648ef2da8",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/MartinaPlantijn_Regular-s.p.09bvmw9c6lxyi.woff2",
+      "status": 200,
+      "sha256": "d2ebd16946900cd91a539b5426755dc7dbbe41a9627d4f69a6168fa91783323d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/a69e508140118fbc-s.1i-4lpdmefbdo.woff2",
+      "status": 200,
+      "sha256": "e3085219252209a8d4128f90ff6d793315c752f73a979082d1d85d9cb46f63a4",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/a9a434ecf764164f-s.p.09kihw1cxxru6.woff2",
+      "status": 200,
+      "sha256": "4f4dc27f4a770c0d02fde800daa836c8adc0d1e423b28da74baaf0d1cc3ab96c",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/d203b9464cfa0970-s.3tsglnldgzmbb.woff2",
+      "status": 200,
+      "sha256": "ed108107e74221cc5e163f12c6b35ba3e75e7615283828d6862c7a0784e1b0c9",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/asana.webp",
+      "status": 200,
+      "sha256": "e5515ce1e77621f4f1be0e8109369c8347e6c8d7d62c7f9361ed0a9845bc08fd",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/confluence.webp",
+      "status": 200,
+      "sha256": "97dafc312acbd446cdec2233bb860865f52fe2acbbc85487ebda763da19813fa",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/github.webp",
+      "status": 200,
+      "sha256": "6fa64ed2e23b7cd34ebd7a824c5fb712890c9ff792c6452ff16de97c8c5b5d56",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/gmail.webp",
+      "status": 200,
+      "sha256": "9f3ff92ca381ee79dfaeb51484fc07b925dd1be04de1c1cf97ac71da62c5bf72",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/google-calendar.webp",
+      "status": 200,
+      "sha256": "68f0200a9c35ff47b0eb5463574ca495bbac2a0143c2f7a726174d13eadce50b",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/google-drive.webp",
+      "status": 200,
+      "sha256": "e5e0af23153034c9da465785917986d347bd486477f73beedfa9c69a1dd6ef45",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/hubspot.webp",
+      "status": 200,
+      "sha256": "d16e81cf9f45e9ab2e40f6fd91362d546cb598258726b0b0a9b3fcce37ea0409",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/jira.webp",
+      "status": 200,
+      "sha256": "012dcd4dee78c38d86991c64b60ed67776c9292315d4080029917a51b414cf3d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/microsoft-teams.webp",
+      "status": 200,
+      "sha256": "f4f81ce621b355ab6b7013d52861cfb22a3b01248deeb1dcfe3b822a4b4dfc09",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/notion.webp",
+      "status": 200,
+      "sha256": "ca58afdf9555ae43a2321e1e4c2bcc0185e6856a141fcacae21f9960d69dbdcc",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/outlook.webp",
+      "status": 200,
+      "sha256": "1781e95ea137de2232cd30fa820f0dd0145245ee7c252d29d1475657e1b91ecd",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/salesforce.webp",
+      "status": 200,
+      "sha256": "fadd838e5806a39d6e2f45ad08c07b81fbb9a19725a2e380cf8b4e4278cb44ff",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/sharepoint.webp",
+      "status": 200,
+      "sha256": "bccff9dd310043090ec416041681ce6c9af85e6764a23729a9cadd34cea55e9a",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/slack.webp",
+      "status": 200,
+      "sha256": "114e53c6f2c436187f5fa0e3e5c9266633de1c6305e69008bc360a9e5e68751d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/trello.webp",
+      "status": 200,
+      "sha256": "cd45f687f008dd05c66e2e43a74a3bedf8b4924bfffa4b20628ea001db6758af",
+      "transformation": null
+    }
+  ],
+  "routes": [
+    {
+      "path": "/company/data",
+      "status": 200
+    },
+    {
+      "path": "/company/data/",
+      "status": 200
+    },
+    {
+      "path": "/company/data/index.html",
+      "status": 200
+    },
+    {
+      "path": "/company",
+      "status": 200
+    },
+    {
+      "path": "/company/",
+      "status": 200
+    },
+    {
+      "path": "/product/one/",
+      "status": 200
+    },
+    {
+      "path": "/product/one/ai-governance",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 302
+    },
+    {
+      "path": "/cases.html",
+      "status": 302
+    },
+    {
+      "path": "/company-other",
+      "status": 302
+    },
+    {
+      "path": "/assets/site/home-workspace.js",
+      "status": 302
+    },
+    {
+      "path": "/api/gate-login",
+      "status": 405
+    },
+    {
+      "path": "/api/leads",
+      "status": 302
+    },
+    {
+      "path": "/api/events",
+      "status": 302
+    },
+    {
+      "path": "/api/assessments",
+      "status": 302
+    },
+    {
+      "path": "/q/company-check-nonexistent",
+      "status": 404
+    }
+  ],
+  "custom_domain_files": [
+    {
+      "path": "/company/data/index.html",
+      "status": 200,
+      "sha256": "b03aa5137ac80115c9c50f3883804fb918862209e6a517cc8b29edc2b3ff04c1",
+      "transformation": "Cloudflare appended its JavaScript detection script; page bytes otherwise identical"
+    },
+    {
+      "path": "/company/data/styles.css",
+      "status": 200,
+      "sha256": "51648bc3157d44e2dd853aab05a717099711a9f0900abdcd160b99f63d07cc8d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/script.js",
+      "status": 200,
+      "sha256": "de262d177ba3da71bff5a794403d5d4a30062b05d996dcb8e6df415bdb30a479",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/visuals.js",
+      "status": 200,
+      "sha256": "f10ebe6cc5ae9a08f4f7dabc60c610baa774d0d60505bcc126a0d045fa14da3b",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-hero.js",
+      "status": 200,
+      "sha256": "95cfcb1c8f3ea86a5a955bc63d031e11a929f9ffc6b625f1caf82044e0cc7929",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-styles.css",
+      "status": 200,
+      "sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-fonts.css",
+      "status": 200,
+      "sha256": "ee5f1d15f7d8c2be2f2ca32c9eebe9b3844d842bc4396f505fce0ab47d338e90",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-mark.png",
+      "status": 200,
+      "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-lockup-transparent.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/generated/work-records-office-v1.jpg",
+      "status": 200,
+      "sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Bold-s.p.2g11yfly1dr71.woff2",
+      "status": 200,
+      "sha256": "e82efdec4910173b22aa56a6d338e391358fe8e2ebb6eb0b1b45268fe9706bad",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Medium-s.p.1zfhlow4l3tdq.woff2",
+      "status": 200,
+      "sha256": "c855cc22a3c5b28744b86f53ea9b7fc98dce96f9515e9376006b60dd24b46029",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/ABCDiatype_Regular-s.p.101_s0sdv3-ds.woff2",
+      "status": 200,
+      "sha256": "5eb17bccbeacfb77f12bf277b354dd6ede273eb4c4adc46f1491b71648ef2da8",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/MartinaPlantijn_Regular-s.p.09bvmw9c6lxyi.woff2",
+      "status": 200,
+      "sha256": "d2ebd16946900cd91a539b5426755dc7dbbe41a9627d4f69a6168fa91783323d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/a69e508140118fbc-s.1i-4lpdmefbdo.woff2",
+      "status": 200,
+      "sha256": "e3085219252209a8d4128f90ff6d793315c752f73a979082d1d85d9cb46f63a4",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/a9a434ecf764164f-s.p.09kihw1cxxru6.woff2",
+      "status": 200,
+      "sha256": "4f4dc27f4a770c0d02fde800daa836c8adc0d1e423b28da74baaf0d1cc3ab96c",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/d203b9464cfa0970-s.3tsglnldgzmbb.woff2",
+      "status": 200,
+      "sha256": "ed108107e74221cc5e163f12c6b35ba3e75e7615283828d6862c7a0784e1b0c9",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/asana.webp",
+      "status": 200,
+      "sha256": "e5515ce1e77621f4f1be0e8109369c8347e6c8d7d62c7f9361ed0a9845bc08fd",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/confluence.webp",
+      "status": 200,
+      "sha256": "97dafc312acbd446cdec2233bb860865f52fe2acbbc85487ebda763da19813fa",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/github.webp",
+      "status": 200,
+      "sha256": "6fa64ed2e23b7cd34ebd7a824c5fb712890c9ff792c6452ff16de97c8c5b5d56",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/gmail.webp",
+      "status": 200,
+      "sha256": "9f3ff92ca381ee79dfaeb51484fc07b925dd1be04de1c1cf97ac71da62c5bf72",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/google-calendar.webp",
+      "status": 200,
+      "sha256": "68f0200a9c35ff47b0eb5463574ca495bbac2a0143c2f7a726174d13eadce50b",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/google-drive.webp",
+      "status": 200,
+      "sha256": "e5e0af23153034c9da465785917986d347bd486477f73beedfa9c69a1dd6ef45",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/hubspot.webp",
+      "status": 200,
+      "sha256": "d16e81cf9f45e9ab2e40f6fd91362d546cb598258726b0b0a9b3fcce37ea0409",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/jira.webp",
+      "status": 200,
+      "sha256": "012dcd4dee78c38d86991c64b60ed67776c9292315d4080029917a51b414cf3d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/microsoft-teams.webp",
+      "status": 200,
+      "sha256": "f4f81ce621b355ab6b7013d52861cfb22a3b01248deeb1dcfe3b822a4b4dfc09",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/notion.webp",
+      "status": 200,
+      "sha256": "ca58afdf9555ae43a2321e1e4c2bcc0185e6856a141fcacae21f9960d69dbdcc",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/outlook.webp",
+      "status": 200,
+      "sha256": "1781e95ea137de2232cd30fa820f0dd0145245ee7c252d29d1475657e1b91ecd",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/salesforce.webp",
+      "status": 200,
+      "sha256": "fadd838e5806a39d6e2f45ad08c07b81fbb9a19725a2e380cf8b4e4278cb44ff",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/sharepoint.webp",
+      "status": 200,
+      "sha256": "bccff9dd310043090ec416041681ce6c9af85e6764a23729a9cadd34cea55e9a",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/slack.webp",
+      "status": 200,
+      "sha256": "114e53c6f2c436187f5fa0e3e5c9266633de1c6305e69008bc360a9e5e68751d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/trello.webp",
+      "status": 200,
+      "sha256": "cd45f687f008dd05c66e2e43a74a3bedf8b4924bfffa4b20628ea001db6758af",
+      "transformation": null
+    }
+  ],
+  "checked_at_utc": "2026-10-26T13:02:16Z"
+}
