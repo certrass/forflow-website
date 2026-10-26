@@ -1,0 +1,61 @@
+{
+  "viewports": [
+    {
+      "height": 900,
+      "menuClosed": "false",
+      "overflow": 0,
+      "processColumns": "287.97px 287.97px 287.97px",
+      "width": 1024
+    },
+    {
+      "clipped": [],
+      "height": 844,
+      "heroHeight": 732.60302734375,
+      "overflow": 0,
+      "processColumns": "280.288px",
+      "width": 320
+    },
+    {
+      "height": 844,
+      "industryOpen": true,
+      "overflow": 0,
+      "photoReady": true,
+      "visibleIndustryCount": 9,
+      "width": 390
+    },
+    {
+      "faqCount": 8,
+      "height": 1000,
+      "overflow": 0,
+      "processColumns": "373.336px 373.336px 373.336px",
+      "stepCount": 6,
+      "width": 1440
+    }
+  ],
+  "interactions": {
+    "industryKeyboardToggle": true,
+    "privacyFaqToggle": true,
+    "allEightFaqsListed": true,
+    "menuEscapeAndFocusReturn": true,
+    "outsideClickClose": true,
+    "desktopBreakpointClosesMenu": true
+  },
+  "consoleErrors": [],
+  "remoteBrowser": "timeout; same-source local validation used",
+  "source_sha256": {
+    "index.html": "450b617fc879d2911149f6d5a9049131ce7991c68def55858ebf68f2ed1cde61",
+    "build.py": "7337f845c59fb70d672b7546e14881e3fd6680bfc1f959af5a7843a37a43ace6",
+    "styles.css": "0440eb837810af10d5d66910bda761cdb09cd6ac527bb5afbc3824d2b8f22955",
+    "script.js": "5c1ed233cb851ff1323734f7772403a21568ac3f57dd44fc0e3175b1dbbd4384",
+    "source/ui.json": "a89fd36f24e838967caee60e79d0a146a8a244c61690c9955d8671a438ff4bbe"
+  },
+  "static_scope": {
+    "industry_desktop_mobile_copy_match": true,
+    "faq_count": 8,
+    "industry_count": 9,
+    "process_step_count": 6,
+    "old_brand_residuals": false,
+    "contact_links": "existing ForFlow Feishu form; no submission tested",
+    "package_files": 35
+  }
+}

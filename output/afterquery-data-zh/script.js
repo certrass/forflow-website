@@ -22,13 +22,11 @@ document.addEventListener('keydown', event => {
   }
 });
 
-const moreButton = document.querySelector('[aria-controls="faq-more"]');
-const morePanel = document.getElementById('faq-more');
-moreButton.addEventListener('click', () => {
-  const expanded = moreButton.getAttribute('aria-expanded') !== 'true';
-  moreButton.setAttribute('aria-expanded', String(expanded));
-  moreButton.querySelector('span').textContent = expanded ? '收起问题' : '查看更多';
-  morePanel.classList.toggle('is-expanded', expanded);
-  morePanel.inert = !expanded;
-  morePanel.setAttribute('aria-hidden', String(!expanded));
+document.addEventListener('click', event => {
+  if (!menuPanel.contains(event.target) && !menuButton.contains(event.target)) {
+    setMenu(false);
+  }
+});
+window.matchMedia('(min-width: 768px)').addEventListener('change', event => {
+  if (event.matches) setMenu(false);
 });

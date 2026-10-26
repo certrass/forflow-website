@@ -13,6 +13,7 @@ soup = BeautifulSoup((ROOT / 'source/reference.html').read_text(), 'html.parser'
 translations = json.loads((ROOT / 'source/zh.json').read_text())
 site = json.loads((ROOT / 'source/site.json').read_text())
 faqs = json.loads((ROOT / 'source/faq.json').read_text())
+ui = json.loads((ROOT / 'source/ui.json').read_text())
 
 # Translate complete semantic paragraphs before handling individual text nodes.
 for node in soup.select('p'):
@@ -168,6 +169,77 @@ for node in soup.select('[aria-label="Industries"]'):
     node['aria-label'] = '行业卡片，可左右滑动'
     node['tabindex'] = '0'
 soup.select_one('#faq-more')['aria-hidden'] = 'true'
+
+# Separate the value heading from its supporting copy without rewriting it.
+why = soup.select_one('#why > div > div')
+why['class'] = 'value-layout'
+eyebrow, lead, explanation = why.find_all(recursive=False)
+title = eyebrow.get_text(strip=True)
+eyebrow.string = ui['why_label']
+heading_group = soup.new_tag('div', attrs={'class': 'value-heading'})
+heading_group.append(eyebrow.extract())
+value_title = soup.new_tag('h2')
+value_title.string = title
+heading_group.append(value_title)
+body_group = soup.new_tag('div', attrs={'class': 'value-body'})
+lead.name = 'p'
+lead['class'] = 'value-lead'
+body_group.append(lead.extract())
+explanation['class'] = 'value-description'
+body_group.append(explanation.extract())
+why.append(heading_group)
+why.append(body_group)
+
+# Make every mobile industry reachable without a long horizontal carousel.
+carousel = soup.select_one('#industries ul')
+mobile_industries = soup.new_tag('div', attrs={'class': 'industries-mobile'})
+figure = soup.new_tag('figure', attrs={'class': 'industry-photo'})
+photo = carousel.select_one('img').extract()
+photo.attrs.pop('style', None)
+figure.append(photo)
+mobile_industries.append(figure)
+hint = soup.new_tag('p', attrs={'class': 'industry-hint'})
+hint.string = ui['industry_hint']
+mobile_industries.append(hint)
+for item in carousel.select('li')[1:]:
+    disclosure = soup.new_tag('details', attrs={'class': 'industry-disclosure'})
+    summary = soup.new_tag('summary')
+    summary.append(item.select_one('svg').extract())
+    label = soup.new_tag('span', attrs={'class': 'industry-label'})
+    label.string = item.h3.get_text(strip=True)
+    summary.append(label)
+    indicator = soup.new_tag('span', attrs={'class': 'disclosure-indicator', 'aria-hidden': 'true'})
+    summary.append(indicator)
+    disclosure.append(summary)
+    description = item.p.extract()
+    description['class'] = 'industry-description'
+    disclosure.append(description)
+    mobile_industries.append(disclosure)
+carousel.replace_with(mobile_industries)
+
+# Make the first step explicit at the point of contact.
+hero_hint = soup.new_tag('p', attrs={'class': 'contact-hint'})
+hero_hint.string = ui['contact_hint']
+soup.select_one('[data-hero-copy]').append(hero_hint)
+for anchor in soup.select('header a[href="#process"]'):
+    if anchor.get_text(strip=True) != '了解合作':
+        continue
+    anchor.string = ui['nav_cta']
+    anchor['href'] = site['contact_url']
+    anchor['target'] = '_blank'
+    anchor['rel'] = 'noopener noreferrer'
+    anchor['title'] = '打开 ForFlow 合作咨询表单'
+
+# Keep privacy, valuation and timing questions visible in the question list.
+faq_extra = soup.select_one('#faq-more')
+faq_list = soup.select_one('#faq details').parent
+for detail in list(faq_extra.select('details')):
+    faq_list.append(detail.extract())
+faq_extra.decompose()
+soup.select_one('[aria-controls="faq-more"]').decompose()
+faq_intro = soup.new_tag('p', attrs={'class': 'faq-intro'})
+faq_intro.string = ui['faq_intro']
+soup.select_one('#faq h2').insert_after(faq_intro)
 
 for src in ('./assets/source-hero.js', './visuals.js', './script.js'):
     script = soup.new_tag('script', src=src, defer=True)

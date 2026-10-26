@@ -4,6 +4,15 @@
 
 2026-10-26 经用户授权发布，部署 ID `6adf4e420116de1e107d68df`。发布对象是本目录根 `index.html`，不是下面保留的 Company / Data 研究实验页。完整发布回执见 `docs/maintenance/releases/data-20261026/`。
 
+## 最新优化
+
+已发布至同一正式地址，部署 `6adf5849ad615a73004034d9`。本轮回执在 `docs/maintenance/releases/data-reading-20261026/`。
+
+- 价值段分清标题和解释；流程改为桌面三列、手机纵向阅读。
+- 手机九个行业直接展开，全部八个问答无需额外点击「查看更多」。
+- 首屏说明无需上传原始数据，导航「开启评估」直达现有表单；菜单外部点击与跨断点关闭完善。
+- 新文案入口为 `source/ui.json`，结构与交互入口仍为 `build.py`、`styles.css`、`script.js`。本轮实测见 `evidence/reading-verification.json` 与 `design-qa.md`。
+
 ## 当前内容与维护入口
 
 - 以用户提供的完整定稿统一首屏、价值主张、九个行业、六步流程、行动按钮及页脚。法律段按用户的核心纠错去掉「特权」，采用执业保密、涉密材料与未公开底稿边界。
