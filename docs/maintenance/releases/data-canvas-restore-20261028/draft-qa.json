@@ -1,0 +1,238 @@
+{
+  "passed": true,
+  "deploy_id": "6ae19ca67a626994e22a7dcd",
+  "url": "https://6ae19ca67a626994e22a7dcd--forflow-enterprise-suite-v3.netlify.app",
+  "payload_sha256": "c2ed4be788419431b95c70ebe943c042736aca9859f7810606255d7c99f9e2cb",
+  "verified_files": [
+    {
+      "path": "/company/data/index.html",
+      "status": 200,
+      "sha256": "8973b9d4e1ae4241dc83787d6404841a9de8a88a70d11d8862a19d8954983a4c",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/styles.css",
+      "status": 200,
+      "sha256": "977e895d4035e540e2c083f309369ae11c07d7a0ae633689d3af56caa9ccbf21",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/script.js",
+      "status": 200,
+      "sha256": "eaf9c5436d0e248dc987bcd60ee88fe5a5b0d305903d93c3ce2a17bd607025df",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/visuals.js",
+      "status": 200,
+      "sha256": "f10ebe6cc5ae9a08f4f7dabc60c610baa774d0d60505bcc126a0d045fa14da3b",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-hero.js",
+      "status": 200,
+      "sha256": "95cfcb1c8f3ea86a5a955bc63d031e11a929f9ffc6b625f1caf82044e0cc7929",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-styles.css",
+      "status": 200,
+      "sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-mark.png",
+      "status": 200,
+      "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-lockup-transparent.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/generated/work-records-office-v1.jpg",
+      "status": 200,
+      "sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/asana.webp",
+      "status": 200,
+      "sha256": "e5515ce1e77621f4f1be0e8109369c8347e6c8d7d62c7f9361ed0a9845bc08fd",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/confluence.webp",
+      "status": 200,
+      "sha256": "97dafc312acbd446cdec2233bb860865f52fe2acbbc85487ebda763da19813fa",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/github.webp",
+      "status": 200,
+      "sha256": "6fa64ed2e23b7cd34ebd7a824c5fb712890c9ff792c6452ff16de97c8c5b5d56",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/gmail.webp",
+      "status": 200,
+      "sha256": "9f3ff92ca381ee79dfaeb51484fc07b925dd1be04de1c1cf97ac71da62c5bf72",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/google-calendar.webp",
+      "status": 200,
+      "sha256": "68f0200a9c35ff47b0eb5463574ca495bbac2a0143c2f7a726174d13eadce50b",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/google-drive.webp",
+      "status": 200,
+      "sha256": "e5e0af23153034c9da465785917986d347bd486477f73beedfa9c69a1dd6ef45",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/hubspot.webp",
+      "status": 200,
+      "sha256": "d16e81cf9f45e9ab2e40f6fd91362d546cb598258726b0b0a9b3fcce37ea0409",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/jira.webp",
+      "status": 200,
+      "sha256": "012dcd4dee78c38d86991c64b60ed67776c9292315d4080029917a51b414cf3d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/microsoft-teams.webp",
+      "status": 200,
+      "sha256": "f4f81ce621b355ab6b7013d52861cfb22a3b01248deeb1dcfe3b822a4b4dfc09",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/notion.webp",
+      "status": 200,
+      "sha256": "ca58afdf9555ae43a2321e1e4c2bcc0185e6856a141fcacae21f9960d69dbdcc",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/outlook.webp",
+      "status": 200,
+      "sha256": "1781e95ea137de2232cd30fa820f0dd0145245ee7c252d29d1475657e1b91ecd",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/salesforce.webp",
+      "status": 200,
+      "sha256": "fadd838e5806a39d6e2f45ad08c07b81fbb9a19725a2e380cf8b4e4278cb44ff",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/sharepoint.webp",
+      "status": 200,
+      "sha256": "bccff9dd310043090ec416041681ce6c9af85e6764a23729a9cadd34cea55e9a",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/slack.webp",
+      "status": 200,
+      "sha256": "114e53c6f2c436187f5fa0e3e5c9266633de1c6305e69008bc360a9e5e68751d",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/tools/trello.webp",
+      "status": 200,
+      "sha256": "cd45f687f008dd05c66e2e43a74a3bedf8b4924bfffa4b20628ea001db6758af",
+      "transformation": null
+    }
+  ],
+  "routes": [
+    {
+      "path": "/company/data",
+      "status": 200
+    },
+    {
+      "path": "/company/data/",
+      "status": 200
+    },
+    {
+      "path": "/company/data/index.html",
+      "status": 200
+    },
+    {
+      "path": "/company",
+      "status": 200
+    },
+    {
+      "path": "/company/",
+      "status": 200
+    },
+    {
+      "path": "/product/one/",
+      "status": 200
+    },
+    {
+      "path": "/product/one/ai-governance",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 302
+    },
+    {
+      "path": "/cases.html",
+      "status": 302
+    },
+    {
+      "path": "/company-other",
+      "status": 302
+    },
+    {
+      "path": "/assets/site/home-workspace.js",
+      "status": 302
+    },
+    {
+      "path": "/api/gate-login",
+      "status": 405
+    },
+    {
+      "path": "/api/leads",
+      "status": 302
+    },
+    {
+      "path": "/api/events",
+      "status": 302
+    },
+    {
+      "path": "/api/assessments",
+      "status": 302
+    },
+    {
+      "path": "/q/company-check-nonexistent",
+      "status": 404
+    }
+  ],
+  "custom_domain_files": [],
+  "checked_at_utc": "2026-10-28T07:00:31Z"
+}

@@ -20,7 +20,8 @@ def package(destination, write_receipt=True):
     target.mkdir(parents=True, exist_ok=True)
     assets = [
         ROOT / name for name in (
-            'index.html', 'styles.css', 'script.js',
+            'index.html', 'styles.css', 'script.js', 'visuals.js',
+            'assets/source-hero.js',
             'assets/source-styles.css', 'assets/forflow-mark.png',
             'assets/forflow-lockup-transparent.png',
             'assets/generated/work-records-office-v1.jpg',
@@ -28,6 +29,7 @@ def package(destination, write_receipt=True):
             'assets/inter-semibold.woff2',
         )
     ]
+    assets += sorted((ROOT / 'assets/tools').glob('*.webp'))
     entries = []
     for source in assets:
         relative = source.relative_to(ROOT)

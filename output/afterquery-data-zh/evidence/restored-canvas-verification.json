@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-28",
+  "canvas_count": 2,
+  "tool_assets": 15,
+  "original_visual_modules_match_commit": "e79cb57",
+  "approved_copy_preserved": true,
+  "replacement_path_removed": true,
+  "source_sha256": {
+    "index.html": "cb3ac21498dda0b902e820efac24a0238575dfedab18f5a50b138a44169b0121",
+    "build.py": "df32bde7383b2c03c373042012581a46ec9f497b97e0360e0f46c52195a9038b",
+    "styles.css": "977e895d4035e540e2c083f309369ae11c07d7a0ae633689d3af56caa9ccbf21",
+    "package.py": "7732877068bb585c9b113037ea8f1e7443e17920f9001816e47e1c408e2cda23",
+    "visuals.js": "f10ebe6cc5ae9a08f4f7dabc60c610baa774d0d60505bcc126a0d045fa14da3b",
+    "assets/source-hero.js": "95cfcb1c8f3ea86a5a955bc63d031e11a929f9ffc6b625f1caf82044e0cc7929"
+  },
+  "root_static_check": "Three unchanged workbench_prototype.html errors."
+}

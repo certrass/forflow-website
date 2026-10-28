@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-28",
+  "viewports": [
+    {
+      "headline": "让真实业务经验，成为 AI 的学习基础",
+      "height": 1000,
+      "hero": "ForFlow 帮助企业将邮件、办公沟通、CRM 和财务系统中的业务记录，整理为 AI 训练数据与评测基准。通过数据授权合作，让长期积累的业务经验带来新的收益。",
+      "overflow": [],
+      "scrollWidth": 1440,
+      "width": 1440
+    },
+    {
+      "headline": "让真实业务经验，成为 AI 的学习基础",
+      "height": 844,
+      "hero": "ForFlow 帮助企业将邮件、办公沟通、CRM 和财务系统中的业务记录，整理为 AI 训练数据与评测基准。通过数据授权合作，让长期积累的业务经验带来新的收益。",
+      "overflow": [],
+      "scrollWidth": 320,
+      "width": 320
+    }
+  ],
+  "visuals": [
+    {
+      "canvases": [
+        {
+          "height": 1039,
+          "rect": {
+            "bottom": 753.3684365153313,
+            "height": 752.643798828125,
+            "left": 0,
+            "right": 1439.8551025390625,
+            "top": 0.7246376872062683,
+            "width": 1439.8551025390625,
+            "x": 0,
+            "y": 0.7246376872062683
+          },
+          "width": 1987
+        },
+        {
+          "height": 839,
+          "rect": {
+            "bottom": 608.6956459879875,
+            "height": 607.9710083007812,
+            "left": 0,
+            "right": 1439.8551025390625,
+            "top": 0.7246376872062683,
+            "width": 1439.8551025390625,
+            "x": 0,
+            "y": 0.7246376872062683
+          },
+          "width": 1987
+        }
+      ],
+      "hasReplacementPath": false,
+      "hasTools": true,
+      "referral": "推荐企业合作，最高可获 50 万元奖励",
+      "scripts": [
+        "./assets/source-hero.js",
+        "./visuals.js",
+        "./script.js"
+      ],
+      "width": 1440
+    },
+    {
+      "canvases": [
+        {
+          "height": 984,
+          "width": 442
+        },
+        {
+          "height": 839,
+          "width": 442
+        }
+      ],
+      "hasReplacementPath": false,
+      "hasTools": true,
+      "width": 320
+    }
+  ],
+  "console": [],
+  "initialMobile": {
+    "canvases": 2,
+    "headerTop": 0,
+    "scrollY": 0,
+    "width": 320
+  }
+}

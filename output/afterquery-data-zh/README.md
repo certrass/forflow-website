@@ -4,6 +4,14 @@
 
 2026-10-26 经用户授权发布，部署 ID `6adf4e420116de1e107d68df`。发布对象是本目录根 `index.html`，不是下面保留的 Company / Data 研究实验页。完整发布回执见 `docs/maintenance/releases/data-20261026/`。
 
+## 当前首屏：恢复画布与工具图标（2026-10-28）
+
+已恢复上线，部署 `6ae19dfc2fb8f63096353659`。
+
+按用户反馈恢复删除前的动态画布、工具 Logo 和首屏构图，保留最新正文、推荐合作措辞、小尺寸 Logo 及导航修复。后续文案调整保留这套视觉结构。
+
+视觉入口为 `assets/source-hero.js`、`visuals.js` 与 `assets/tools/`。这两段运行代码与删除前 `e79cb57` 版本一致；三步路径图不再挂载，其来源文件仅留作历史。恢复截图及检查记录见 `evidence/restored-canvas-*`，发布回执在 `docs/maintenance/releases/data-canvas-restore-20261028/`。
+
 ## 最新文案（2026-10-28）
 
 已发布至同一正式地址，部署 `6ae198853b135bcbd8a20766`。
@@ -28,11 +36,11 @@
 - 首屏标题为「让真实业务经验，成为 AI 的学习基础」；推荐入口为「推荐企业合作，最高可获 50 万元奖励」。导航 Logo 为桌面 108px、手机 96px。
 - `source/zh.json`：页面文案；`source/faq.json`：八个本地化问答；`source/site.json`：页面元信息与 ForFlow 联系地址。
 - `build.py`：从捕获的结构生成 `index.html`；命令 `python build.py`，需安装 `beautifulsoup4`。修改来源后生成，不只修改产物。
-- `styles.css`、`script.js`：排版、菜单与章节高亮；`visuals.js`、`assets/source-hero.js` 只保留历史，不再由正式页加载。
+- `styles.css`、`script.js`：排版、菜单与章节高亮；`visuals.js`、`assets/source-hero.js`：原动态画布及工具图标，当前正式页恢复加载。
 
 ## 发布维护
 
-先运行 `build.py` 生成，再运行 `python package.py /path/to/publish-root`。包只包含正式页面及所需资产，共 10 个文件（约 679 KB）；发布版增加 canonical 并将 robots 改为 `index, follow`，本地预览仍为 noindex。`scripts/build_public.py` 已加入这个打包入口，后续全站构建会保留 `/company/data/`。
+先运行 `build.py` 生成，再运行 `python package.py /path/to/publish-root`。包只包含正式页面及所需资产，共 27 个文件（约 746 KB）；发布版增加 canonical 并将 robots 改为 `index, follow`，本地预览仍为 noindex。`scripts/build_public.py` 已加入这个打包入口，后续全站构建会保留 `/company/data/`。
 
 发布沿用最新线上快照，只覆盖本页变更的运行文件。其他页面、5 个函数及门禁 edge bundle/manifest 保持；旧版页面可能引用的历史资产仍保留在生产快照中。
 

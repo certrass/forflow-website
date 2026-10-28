@@ -237,15 +237,10 @@ faq_intro = soup.new_tag('p', attrs={'class': 'faq-intro'})
 faq_intro.string = ui['faq_intro']
 soup.select_one('#faq h2').insert_after(faq_intro)
 
-# Replace the source site's animated tool logos with an accessible business path.
-hero = soup.select_one('#hero')
-hero_copy = hero.select_one('[data-hero-copy]').extract()
-hero.clear()
-hero['class'] = 'data-hero'
-hero_layout = soup.new_tag('div', attrs={'class': 'hero-layout mx-auto w-[min(100%_-_2rem,1040px)]'})
-hero_layout.append(hero_copy)
-hero_layout.append(BeautifulSoup((ROOT / 'source/data-path.html').read_text(), 'html.parser').figure)
-hero.append(hero_layout)
+# Preserve the original canvas and tool-logo composition with ForFlow colours.
+hero_layers = soup.select_one('#hero').find_all('div', recursive=False)
+hero_layers[2]['class'].append('ff-hero-logos')
+hero_layers[3]['class'].append('ff-hero-band')
 
 # Keep the main action available on phones without opening the menu.
 header_cta = nav.select_one(f'a[href="{site["contact_url"]}"]')
@@ -259,7 +254,7 @@ for anchor in soup.select('header a[href]'):
     if anchor['href'] in ('#why', '#industries', '#process', '#faq'):
         anchor['class'] = anchor.get('class', []) + ['section-link']
 
-for src in ('./script.js',):
+for src in ('./assets/source-hero.js', './visuals.js', './script.js'):
     script = soup.new_tag('script', src=src, defer=True)
     soup.body.append(script)
 (ROOT / 'index.html').write_text(str(soup), encoding='utf-8')
