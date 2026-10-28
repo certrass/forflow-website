@@ -1,0 +1,281 @@
+{
+  "date": "2026-10-28",
+  "viewports": [
+    {
+      "canvas": 0,
+      "headerCTA": {
+        "bottom": 56.99728488922119,
+        "height": 43.99909591674805,
+        "left": 241.4175720214844,
+        "right": 316.86480712890625,
+        "top": 12.998188972473145,
+        "width": 75.44723510742188,
+        "x": 241.4175720214844,
+        "y": 12.998188972473145
+      },
+      "height": 844,
+      "heroHeight": 683.1861572265625,
+      "images": [],
+      "logoWidth": 95.9975128173828,
+      "scripts": [
+        "./script.js"
+      ],
+      "scrollWidth": 390,
+      "textOverflow": [],
+      "width": 390
+    },
+    {
+      "canvas": 0,
+      "headerCTA": {
+        "bottom": 59.992074966430664,
+        "height": 41.995018005371094,
+        "left": 834.4769287109375,
+        "right": 931.9180526733398,
+        "top": 17.99705696105957,
+        "width": 97.44112396240234,
+        "x": 834.4769287109375,
+        "y": 17.99705696105957
+      },
+      "height": 900,
+      "heroHeight": 646.1900024414062,
+      "images": [],
+      "logoWidth": 107.99932098388672,
+      "scripts": [
+        "./script.js"
+      ],
+      "scrollWidth": 1024,
+      "textOverflow": [],
+      "width": 1024
+    },
+    {
+      "canvas": 0,
+      "headerCTA": {
+        "bottom": 59.992074966430664,
+        "height": 41.995018005371094,
+        "left": 1222.4864501953125,
+        "right": 1319.9275741577148,
+        "top": 17.99705696105957,
+        "width": 97.44112396240234,
+        "x": 1222.4864501953125,
+        "y": 17.99705696105957
+      },
+      "height": 1000,
+      "heroHeight": 658.1804809570312,
+      "images": [],
+      "logoWidth": 107.99932098388672,
+      "scripts": [
+        "./script.js"
+      ],
+      "scrollWidth": 1440,
+      "textOverflow": [],
+      "width": 1440
+    },
+    {
+      "canvas": 0,
+      "headerCTA": {
+        "bottom": 59.992074966430664,
+        "height": 41.995018005371094,
+        "left": 835.9262084960938,
+        "right": 933.367332458496,
+        "top": 17.99705696105957,
+        "width": 97.44112396240234,
+        "x": 835.9262084960938,
+        "y": 17.99705696105957
+      },
+      "height": 900,
+      "heroHeight": 646.1900024414062,
+      "images": [],
+      "logoWidth": 107.99932098388672,
+      "scripts": [
+        "./script.js"
+      ],
+      "scrollWidth": 1025,
+      "textOverflow": [],
+      "width": 1025
+    },
+    {
+      "canvas": 0,
+      "headerCTA": {
+        "bottom": 56.99728488922119,
+        "height": 43.99909591674805,
+        "left": 171.85235595703125,
+        "right": 247.29959106445312,
+        "top": 12.998188972473145,
+        "width": 75.44723510742188,
+        "x": 171.85235595703125,
+        "y": 12.998188972473145
+      },
+      "height": 844,
+      "heroHeight": 721.4390869140625,
+      "images": [],
+      "logoWidth": 95.9975128173828,
+      "scripts": [
+        "./script.js"
+      ],
+      "scrollWidth": 320,
+      "textOverflow": [],
+      "width": 320
+    },
+    {
+      "canvas": 0,
+      "headerCTA": {
+        "bottom": 56.99728488922119,
+        "height": 43.99909591674805,
+        "left": 619.678466796875,
+        "right": 695.1257019042969,
+        "top": 12.998188972473145,
+        "width": 75.44723510742188,
+        "x": 619.678466796875,
+        "y": 12.998188972473145
+      },
+      "height": 900,
+      "heroHeight": 678.7307739257812,
+      "images": [],
+      "logoWidth": 95.9975128173828,
+      "scripts": [
+        "./script.js"
+      ],
+      "scrollWidth": 768,
+      "textOverflow": [],
+      "width": 768
+    },
+    {
+      "canvas": 0,
+      "headerCTA": {
+        "bottom": 59.992074966430664,
+        "height": 41.995018005371094,
+        "left": 621.4334106445312,
+        "right": 718.8745346069336,
+        "top": 17.99705696105957,
+        "width": 97.44112396240234,
+        "x": 621.4334106445312,
+        "y": 17.99705696105957
+      },
+      "height": 900,
+      "heroHeight": 691.5647583007812,
+      "images": [],
+      "logoWidth": 107.99932098388672,
+      "scripts": [
+        "./script.js"
+      ],
+      "scrollWidth": 811,
+      "textOverflow": [],
+      "width": 811
+    }
+  ],
+  "navigation": [
+    {
+      "active": [
+        "#industries",
+        "#industries"
+      ],
+      "expanded": "false",
+      "hash": "#industries",
+      "headerBottom": 70.72010803222656,
+      "inert": true,
+      "sectionTop": 86.02808380126953
+    },
+    {
+      "active": [
+        "#why",
+        "#why"
+      ],
+      "expanded": "false",
+      "hash": "#why",
+      "headerBottom": 70.72010803222656,
+      "sectionTop": 86.15262603759766
+    },
+    {
+      "active": [
+        "#process",
+        "#process"
+      ],
+      "expanded": "false",
+      "hash": "#process",
+      "headerBottom": 70.72010803222656,
+      "sectionTop": 86.09601593017578
+    },
+    {
+      "active": [
+        "#faq",
+        "#faq"
+      ],
+      "expanded": "false",
+      "hash": "#faq",
+      "headerBottom": 70.72010803222656,
+      "sectionTop": 86.11299896240234
+    },
+    {
+      "active": [
+        "#why",
+        "#why"
+      ],
+      "hash": "#why",
+      "headerBottom": 78.71942901611328,
+      "sectionTop": 98.13179779052734,
+      "width": 1440
+    },
+    {
+      "active": [
+        "#industries",
+        "#industries"
+      ],
+      "hash": "#industries",
+      "headerBottom": 78.71942901611328,
+      "sectionTop": 97.86571502685548,
+      "width": 1440
+    },
+    {
+      "active": [
+        "#process",
+        "#process"
+      ],
+      "hash": "#process",
+      "headerBottom": 78.71942901611328,
+      "sectionTop": 98.1487808227539,
+      "width": 1440
+    },
+    {
+      "active": [
+        "#faq",
+        "#faq"
+      ],
+      "hash": "#faq",
+      "headerBottom": 78.71942901611328,
+      "sectionTop": 98.046875,
+      "width": 1440
+    }
+  ],
+  "interactions": {
+    "heroClearsActive": true,
+    "faqKeyboardOpen": "",
+    "faqKeyboardClosed": null,
+    "industryKeyboardOpen": "",
+    "escape": {
+      "expanded": "false",
+      "focusReturned": true
+    },
+    "tabletMenuBeforeResize": {
+      "expanded": "true",
+      "width": 768
+    },
+    "tabletMenuAfterResize": {
+      "buttonDisplay": "none",
+      "expanded": "false",
+      "inert": true,
+      "media": true,
+      "width": 1201
+    },
+    "industryAt768": {
+      "items": 9,
+      "mobileDisplay": "block",
+      "width": 768
+    },
+    "industryAt811": {
+      "mobileDisplay": "none",
+      "visibleTitles": 9,
+      "width": 811
+    }
+  },
+  "console": []
+}

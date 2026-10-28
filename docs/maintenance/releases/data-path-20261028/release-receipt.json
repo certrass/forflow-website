@@ -1,0 +1,34 @@
+{
+  "created_at_utc": "2026-10-28T06:15:40.939334+00:00",
+  "public_url": "https://forflow.ai/company/data/",
+  "site_id": "cfe11c44-420e-4af6-9472-e2c4570d84c5",
+  "production_deploy_id": "6ae1922cf308c48ece9de275",
+  "previous_production_deploy_id": "6adf5849ad615a73004034d9",
+  "draft_deploy_id": "6ae190a421f24ad84fcaccbb",
+  "payload_sha256": "cc6946e2ead10f61c60055c7bcf7e1e4d47118409a1c5bd2b1caf983ab67a932",
+  "changed_public_files": [
+    "/company/data/index.html",
+    "/company/data/script.js",
+    "/company/data/styles.css"
+  ],
+  "unchanged_public_file_count": 225,
+  "function_digests": {
+    "assessments": "c2415df75909194acaa8bf01a26c3cbe719077eff44c690cfd77e925f7a97d92",
+    "events": "94f787ff54f9e8f1ab4ba392f7b0f51947f19b4063962e43861968237d73be56",
+    "gate-login": "12aab8545aa8773b6f4d158b97581eb1867f1b927f4e215f56f46926d54e5713",
+    "leads": "eaaade2c48d31c29bb9872fe7bcad3ac285e0bf9ca32d1a9936b3590b60018e0",
+    "q": "07faef780acc7886abb8cf82d9df813e4869230755dcce16a351783b9fdecb73"
+  },
+  "function_and_edge_configuration_preserved": true,
+  "git_cd_connected": false,
+  "source_verification": "output/afterquery-data-zh/evidence/path-verification.json",
+  "browser_verification": "Same-source local page; widths 320, 390, 768, 811, 1024, 1025, 1440. No production browser interaction claimed.",
+  "general_static_check": "pre-existing workbench_prototype.html stylesheet, search modal, footer failures",
+  "production_http_verification": {
+    "passed": true,
+    "file_count": 10,
+    "route_count": 16,
+    "custom_domain_file_count": 10
+  },
+  "draft_recovery": "The POST response ended early; recovered candidate by title/time and uploaded three changed files to the same deploy ID. No duplicate candidate created."
+}

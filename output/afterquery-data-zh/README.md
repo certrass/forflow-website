@@ -4,14 +4,15 @@
 
 2026-10-26 经用户授权发布，部署 ID `6adf4e420116de1e107d68df`。发布对象是本目录根 `index.html`，不是下面保留的 Company / Data 研究实验页。完整发布回执见 `docs/maintenance/releases/data-20261026/`。
 
-## 最新优化
+## 最新优化（2026-10-28）
 
-已发布至同一正式地址，部署 `6adf5849ad615a73004034d9`。本轮回执在 `docs/maintenance/releases/data-reading-20261026/`。
+已发布至同一正式地址，部署 `6ae1922cf308c48ece9de275`。本轮回执在 `docs/maintenance/releases/data-path-20261028/`。
 
-- 价值段分清标题和解释；流程改为桌面三列、手机纵向阅读。
-- 手机九个行业直接展开，全部八个问答无需额外点击「查看更多」。
-- 首屏说明无需上传原始数据，导航「开启评估」直达现有表单；菜单外部点击与跨断点关闭完善。
-- 新文案入口为 `source/ui.json`，结构与交互入口仍为 `build.py`、`styles.css`、`script.js`。本轮实测见 `evidence/reading-verification.json` 与 `design-qa.md`。
+- 首屏改为业务说明与「业务留痕 → 授权整理 → AI 数据资产」路径图，取消原站画布、工具 Logo 和未使用字体加载。
+- 手机顶部始终保留「开启评估」；导航跟随当前章节，修复重复锚点偏移。菜单关闭与原站 CSS 的 1200px 桌面断点对齐。
+- 手机样式与原站 810px 行业网格断点衔接，避免 768–809px 行业内容空档；320px 长按钮均衡换行。
+- 保留已确认的正文、50 万元奖励、108px / 96px 导航标识及生成配图。前一轮的分栏价值段、三列流程、手机行业展开与八问答继续保留。
+- 路径图来源为 `source/data-path.html`；构建和交互入口为 `build.py`、`styles.css`、`script.js`。实测见 `evidence/path-*` 与 `design-qa.md`。
 
 ## 当前内容与维护入口
 
@@ -19,13 +20,13 @@
 - 首屏标题为「企业真实业务数据，审慎合规授权」；推荐入口为「成为生态引荐人，享最高 50 万元居间奖励」。导航 Logo 为桌面 108px、手机 96px。
 - `source/zh.json`：页面文案；`source/faq.json`：八个本地化问答；`source/site.json`：页面元信息与 ForFlow 联系地址。
 - `build.py`：从捕获的结构生成 `index.html`；命令 `python build.py`，需安装 `beautifulsoup4`。修改来源后生成，不只修改产物。
-- `styles.css`、`script.js`：排版与菜单、问答交互；`visuals.js` 与 `assets/source-hero.js`：既有首屏画布。
+- `styles.css`、`script.js`：排版、菜单与章节高亮；`visuals.js`、`assets/source-hero.js` 只保留历史，不再由正式页加载。
 
 ## 发布维护
 
-先运行 `build.py` 生成，再运行 `python package.py /path/to/publish-root`。包只包含正式页面及 35 个运行文件；发布版增加 canonical 并将 robots 改为 `index, follow`，本地预览仍为 noindex。`scripts/build_public.py` 已加入这个打包入口，后续全站构建会保留 `/company/data/`。
+先运行 `build.py` 生成，再运行 `python package.py /path/to/publish-root`。包只包含正式页面及所需资产，共 10 个文件（约 679 KB）；发布版增加 canonical 并将 robots 改为 `index, follow`，本地预览仍为 noindex。`scripts/build_public.py` 已加入这个打包入口，后续全站构建会保留 `/company/data/`。
 
-本次采用线上快照增量发布，193 个已有文件、5 个函数及门禁 edge bundle/manifest 的摘要均保持。没有从旧工作区发布全站。
+发布沿用最新线上快照，只覆盖本页变更的运行文件。其他页面、5 个函数及门禁 edge bundle/manifest 保持；旧版页面可能引用的历史资产仍保留在生产快照中。
 
 ## 合作入口
 

@@ -57,7 +57,6 @@ head = BeautifulSoup('''
 <meta name="description" content="">
 <title></title>
 <link rel="icon" href="./assets/forflow-mark.png" type="image/png">
-<link rel="stylesheet" href="./assets/source-fonts.css">
 <link rel="stylesheet" href="./assets/source-styles.css">
 <link rel="stylesheet" href="./styles.css">
 ''', 'html.parser')
@@ -138,9 +137,6 @@ for column, title, items in zip(footer_nav, ['数据合作', '流程与答疑', 
         anchor.string = label
         li.append(anchor)
         links.append(li)
-hero_layers = soup.select_one('#hero').find_all('div', recursive=False)
-hero_layers[2]['class'].append('ff-hero-logos')
-hero_layers[3]['class'].append('ff-hero-band')
 for bar in soup.select('#process h3 > span'):
     bar['style'] = 'background-color:#06e705'
 
@@ -241,7 +237,29 @@ faq_intro = soup.new_tag('p', attrs={'class': 'faq-intro'})
 faq_intro.string = ui['faq_intro']
 soup.select_one('#faq h2').insert_after(faq_intro)
 
-for src in ('./assets/source-hero.js', './visuals.js', './script.js'):
+# Replace the source site's animated tool logos with an accessible business path.
+hero = soup.select_one('#hero')
+hero_copy = hero.select_one('[data-hero-copy]').extract()
+hero.clear()
+hero['class'] = 'data-hero'
+hero_layout = soup.new_tag('div', attrs={'class': 'hero-layout mx-auto w-[min(100%_-_2rem,1040px)]'})
+hero_layout.append(hero_copy)
+hero_layout.append(BeautifulSoup((ROOT / 'source/data-path.html').read_text(), 'html.parser').figure)
+hero.append(hero_layout)
+
+# Keep the main action available on phones without opening the menu.
+header_cta = nav.select_one(f'a[href="{site["contact_url"]}"]')
+header_cta['class'] = [name for name in header_cta.get('class', []) if name != 'max-md:hidden']
+header_cta['class'].append('header-assessment')
+for anchor in soup.select(f'#mobile-menu a[href="{site["contact_url"]}"]'):
+    anchor.parent.decompose()
+for anchor in soup.select('a.forflow-brand'):
+    anchor['aria-label'] = 'ForFlow 萬維流形，返回本页顶部'
+for anchor in soup.select('header a[href]'):
+    if anchor['href'] in ('#why', '#industries', '#process', '#faq'):
+        anchor['class'] = anchor.get('class', []) + ['section-link']
+
+for src in ('./script.js',):
     script = soup.new_tag('script', src=src, defer=True)
     soup.body.append(script)
 (ROOT / 'index.html').write_text(str(soup), encoding='utf-8')

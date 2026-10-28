@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-28",
+  "checks": {
+    "faq": 8,
+    "industries": 9,
+    "process_steps": 6,
+    "path_steps": 3,
+    "canvases": 0,
+    "page_scripts": [
+      "script.js"
+    ],
+    "anchors_unique_ids_and_external_links": "passed",
+    "approved_contact_url": "https://zenithlink.feishu.cn/share/base/form/shrcnX80RM22yy6IxZYHCrkpwye"
+  },
+  "source_sha256": {
+    "build.py": "eaaca029fa7f43f0637136d883fb395f12f9f79482e3ebf65f12833479ed062b",
+    "styles.css": "e1b61fc888b9456c3171497b942440bc2b0a31e4d433bc0877407f143db25f72",
+    "script.js": "eaf9c5436d0e248dc987bcd60ee88fe5a5b0d305903d93c3ce2a17bd607025df",
+    "package.py": "9e9584349a0fc62de57c31f3991f6637e1208066d65a853e93b9ad7b09099191",
+    "index.html": "0fae337ece15bb8879ca7b813d164fe66f79d270a743d30935f26ddae082b32f",
+    "source/data-path.html": "7cd3f741a3743bcf4f18f82f3df1de68353e37e074b3fc0ffbc03b29fc03ddd1"
+  },
+  "static_check": "Three unchanged errors in workbench_prototype.html: stylesheet, search modal, direct-body footer."
+}

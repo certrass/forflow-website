@@ -27,6 +27,32 @@ document.addEventListener('click', event => {
     setMenu(false);
   }
 });
-window.matchMedia('(min-width: 768px)').addEventListener('change', event => {
+window.matchMedia('(min-width: 1200px)').addEventListener('change', event => {
   if (event.matches) setMenu(false);
 });
+
+// Mark the section being read without changing the URL or moving focus.
+const sectionLinks = [...document.querySelectorAll('header .section-link')];
+const readingSections = [...new Set(sectionLinks.map(link => link.hash))]
+  .map(hash => document.querySelector(hash));
+let navigationFrame = 0;
+function updateReadingPosition() {
+  navigationFrame = 0;
+  const threshold = document.querySelector('header').getBoundingClientRect().height + 100;
+  let current = '';
+  for (const section of readingSections) {
+    if (section.getBoundingClientRect().top <= threshold) current = '#' + section.id;
+  }
+  for (const link of sectionLinks) {
+    if (link.hash === current) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  }
+}
+function scheduleReadingPosition() {
+  if (!navigationFrame) navigationFrame = requestAnimationFrame(updateReadingPosition);
+}
+window.addEventListener('scroll', scheduleReadingPosition, { passive: true });
+window.addEventListener('resize', scheduleReadingPosition);
+window.addEventListener('pageshow', scheduleReadingPosition);
+new ResizeObserver(scheduleReadingPosition).observe(document.querySelector('main'));
+updateReadingPosition();
