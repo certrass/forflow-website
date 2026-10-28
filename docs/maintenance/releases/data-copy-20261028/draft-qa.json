@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "deploy_id": "6ae197f55ecbb2d743238246",
+  "url": "https://6ae197f55ecbb2d743238246--forflow-enterprise-suite-v3.netlify.app",
+  "payload_sha256": "538a3ed3513dc0de3d23a62906aaa5afe66a2bc20013cc3d8c98d9da4f2d9b70",
+  "verified_files": [
+    {
+      "path": "/company/data/index.html",
+      "status": 200,
+      "sha256": "0aae5b16e713b69475ca12ea5f8cae8ccf5ed59480803b5597fe0ec4e46e1f23",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/styles.css",
+      "status": 200,
+      "sha256": "e1b61fc888b9456c3171497b942440bc2b0a31e4d433bc0877407f143db25f72",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/script.js",
+      "status": 200,
+      "sha256": "eaf9c5436d0e248dc987bcd60ee88fe5a5b0d305903d93c3ce2a17bd607025df",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/source-styles.css",
+      "status": 200,
+      "sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-mark.png",
+      "status": 200,
+      "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/forflow-lockup-transparent.png",
+      "status": 200,
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/generated/work-records-office-v1.jpg",
+      "status": 200,
+      "sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-regular.woff2",
+      "status": 200,
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-medium.woff2",
+      "status": 200,
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "transformation": null
+    },
+    {
+      "path": "/company/data/assets/inter-semibold.woff2",
+      "status": 200,
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "transformation": null
+    }
+  ],
+  "routes": [
+    {
+      "path": "/company/data",
+      "status": 200
+    },
+    {
+      "path": "/company/data/",
+      "status": 200
+    },
+    {
+      "path": "/company/data/index.html",
+      "status": 200
+    },
+    {
+      "path": "/company",
+      "status": 200
+    },
+    {
+      "path": "/company/",
+      "status": 200
+    },
+    {
+      "path": "/product/one/",
+      "status": 200
+    },
+    {
+      "path": "/product/one/ai-governance",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 302
+    },
+    {
+      "path": "/cases.html",
+      "status": 302
+    },
+    {
+      "path": "/company-other",
+      "status": 302
+    },
+    {
+      "path": "/assets/site/home-workspace.js",
+      "status": 302
+    },
+    {
+      "path": "/api/gate-login",
+      "status": 405
+    },
+    {
+      "path": "/api/leads",
+      "status": 302
+    },
+    {
+      "path": "/api/events",
+      "status": 302
+    },
+    {
+      "path": "/api/assessments",
+      "status": 302
+    },
+    {
+      "path": "/q/company-check-nonexistent",
+      "status": 404
+    }
+  ],
+  "custom_domain_files": [],
+  "checked_at_utc": "2026-10-28T06:38:17Z"
+}

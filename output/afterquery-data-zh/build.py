@@ -125,7 +125,7 @@ for column, title, items in zip(footer_nav, ['数据合作', '流程与答疑', 
     [('数据价值', '#why'), ('适用行业', '#industries')],
     [('合作流程', '#process'), ('常见问题', '#faq')],
     [('公司介绍', site['company_url']), ('ForFlow One', site['product_url'])],
-    [('发起数据评估', site['contact_url']), ('生态合作引荐', site['contact_url'])]
+    [('发起数据评估', site['contact_url']), ('推荐合作', site['contact_url'])]
 ]):
     column['aria-label'] = title
     column.select_one('h2').string = title
@@ -155,7 +155,7 @@ for anchor in soup.select('a[href]'):
         anchor['target'] = '_blank'
         anchor['rel'] = 'noopener noreferrer'
 
-soup.select_one('#referral [data-cta="apply"]').string = '立即开启评估 →'
+soup.select_one('#referral [data-cta="apply"]').string = '发起数据评估 →'
 
 menu = soup.select_one('header button')
 menu['aria-label'] = '打开菜单'

@@ -4,7 +4,15 @@
 
 2026-10-26 经用户授权发布，部署 ID `6adf4e420116de1e107d68df`。发布对象是本目录根 `index.html`，不是下面保留的 Company / Data 研究实验页。完整发布回执见 `docs/maintenance/releases/data-20261026/`。
 
-## 最新优化（2026-10-28）
+## 最新文案（2026-10-28）
+
+已发布至同一正式地址，部署 `6ae198853b135bcbd8a20766`。
+
+按用户「避免防御性表述」的要求，主线调整为业务经验、训练评测用途和合作收益。首屏标题为「让真实业务经验，成为 AI 的学习基础」，六步流程与八问答以具体合作安排说明授权、处理和交付。现有布局、Logo、图片及最高 50 万元奖励保持。
+
+整页文案可审阅 `evidence/copy-review.md`，实际浏览器检查与源码哈希见 `evidence/copy-*.json`。发布回执位于 `docs/maintenance/releases/data-copy-20261028/`。
+
+## 首屏与导航优化（2026-10-28）
 
 已发布至同一正式地址，部署 `6ae1922cf308c48ece9de275`。本轮回执在 `docs/maintenance/releases/data-path-20261028/`。
 
@@ -16,8 +24,8 @@
 
 ## 当前内容与维护入口
 
-- 以用户提供的完整定稿统一首屏、价值主张、九个行业、六步流程、行动按钮及页脚。法律段按用户的核心纠错去掉「特权」，采用执业保密、涉密材料与未公开底稿边界。
-- 首屏标题为「企业真实业务数据，审慎合规授权」；推荐入口为「成为生态引荐人，享最高 50 万元居间奖励」。导航 Logo 为桌面 108px、手机 96px。
+- 首屏、价值主张、九个行业、六步流程及八问答采用本轮精简文案；授权范围、数据处理、保密与收益安排在对应流程和问答中说明。
+- 首屏标题为「让真实业务经验，成为 AI 的学习基础」；推荐入口为「推荐企业合作，最高可获 50 万元奖励」。导航 Logo 为桌面 108px、手机 96px。
 - `source/zh.json`：页面文案；`source/faq.json`：八个本地化问答；`source/site.json`：页面元信息与 ForFlow 联系地址。
 - `build.py`：从捕获的结构生成 `index.html`；命令 `python build.py`，需安装 `beautifulsoup4`。修改来源后生成，不只修改产物。
 - `styles.css`、`script.js`：排版、菜单与章节高亮；`visuals.js`、`assets/source-hero.js` 只保留历史，不再由正式页加载。
@@ -33,14 +41,14 @@
 四个主要行动按钮及页脚咨询链接使用现有 ForFlow 飞书通用咨询表单：
 <https://zenithlink.feishu.cn/share/base/form/shrcnX80RM22yy6IxZYHCrkpwye>
 
-地址来源为主工作目录的 `templates/index.html`，本轮 HTTP 回读为 200。在线浏览器读取超时，没有测试提交，也没有创建专门的数据评估或引荐表单。将来更换专用接收入口，只需修改 `source/site.json`。页面不再含 AfterQuery 正文、品牌、申请链接、原站条款或三天回复等旧承诺。
+地址来源为主工作目录的 `templates/index.html`，此前 HTTP 回读为 200。在线浏览器读取超时，没有测试提交，也没有创建专门的数据评估或引荐表单。将来更换专用接收入口，只需修改 `source/site.json`。页面不再含 AfterQuery 正文、品牌、申请链接、原站条款或三天回复等旧承诺。
 
 ## 图片与来源
 
 - 行业照片使用内置 image_gen 生成的虚构中国企业办公场景：`assets/generated/work-records-office-v1.jpg`。PNG 原图、JPG 网页版、提示词与哈希记录在 `source/generated-images.json`；手机裁切焦点为 `50% 35%`。
 - `expert-data-review-v1` 为未使用备选。用户澄清只修改当前数据伙伴页后，已撤回该图在 Company / Data 页的试放。
 - ForFlow 标识来自本库已有资产，本地 Inter 字体来自既有首页预览。布局来源为 AfterQuery 数据合作页，原始捕获及资产来源留在 `source/reference.html`、`source/assets.json`；页面呈现已按 ForFlow 定稿替换。
-- 首轮原站对照及中间截图保留历史，不代表当前文案。当前证据为 `evidence/localized-desktop.png`、`localized-mobile.png`、`localized-full.png` 和 `localization-verification.json`。
+- 首轮原站对照及中间截图保留历史，不代表当前文案。首轮文案本地化证据为 `evidence/localized-desktop.png`、`localized-mobile.png`、`localized-full.png` 和 `localization-verification.json`。
 
 ## 独立 Company / Data 页
 

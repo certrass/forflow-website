@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28",
+  "content_checks": "Positive copy, 50万元 recommendation reward, no 居间/引荐 in page, 8 FAQ / 9 industries / 6 steps, valid links and IDs",
+  "layout_and_runtime_unchanged": true,
+  "source_sha256": {
+    "index.html": "3d4e137f5d4dd93cf5d3c0030350e1a75a165747e14278c01b341bbfb9cf7dd8",
+    "build.py": "1870311317ba1d85b11c2c6ba83fd99857f7bf8d7f69797a6da99083f5b89abb",
+    "source/zh.json": "1ecaeee6e28cd219183c8b6fd95c13942d70707c45daf1f04eb44a4f704f92ab",
+    "source/faq.json": "bd079ffa99fc5e755da54422255a8e940ac94d57ce13a8482bfaffa6b8d93725",
+    "source/site.json": "840d1bf232b63fc4beee67c9a97000b2dccfa868246875b962ba23ed321014c7",
+    "source/ui.json": "929942589672fb5ab2b00702ec2a452df58424a64e442f8147f98c388b3beae8",
+    "source/data-path.html": "78412581d9f61c07d9add184ba7f5ab4b58d5e9757b9992d91246be36fdf7d31"
+  },
+  "static_check": "Three unchanged errors in workbench_prototype.html: stylesheet, search modal, direct-body footer."
+}

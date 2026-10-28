@@ -1,0 +1,80 @@
+{
+  "public_url": "https://forflow.ai/company/data/",
+  "source": "output/afterquery-data-zh/index.html",
+  "production_only_changes": [
+    "index, follow robots meta",
+    "canonical URL"
+  ],
+  "files": [
+    {
+      "path": "/company/data/index.html",
+      "bytes": 48696,
+      "sha1": "2a39809d849edf3fd82e7a2dea75c45389ca0264",
+      "sha256": "0aae5b16e713b69475ca12ea5f8cae8ccf5ed59480803b5597fe0ec4e46e1f23",
+      "source_sha256": "3d4e137f5d4dd93cf5d3c0030350e1a75a165747e14278c01b341bbfb9cf7dd8"
+    },
+    {
+      "path": "/company/data/styles.css",
+      "bytes": 18267,
+      "sha1": "b587bfff671c73ff35c40b0ba3579bf08e692c30",
+      "sha256": "e1b61fc888b9456c3171497b942440bc2b0a31e4d433bc0877407f143db25f72",
+      "source_sha256": "e1b61fc888b9456c3171497b942440bc2b0a31e4d433bc0877407f143db25f72"
+    },
+    {
+      "path": "/company/data/script.js",
+      "bytes": 2517,
+      "sha1": "2a0b09bc2bf49f805ee6971b9d88882eb737a02d",
+      "sha256": "eaf9c5436d0e248dc987bcd60ee88fe5a5b0d305903d93c3ce2a17bd607025df",
+      "source_sha256": "eaf9c5436d0e248dc987bcd60ee88fe5a5b0d305903d93c3ce2a17bd607025df"
+    },
+    {
+      "path": "/company/data/assets/source-styles.css",
+      "bytes": 105106,
+      "sha1": "26d5350a59659bbed1562880506b1b41df166db1",
+      "sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba",
+      "source_sha256": "847096072c2e2a80118e96d0a73737165627f9731bf0330b3f1fe6693fa8fdba"
+    },
+    {
+      "path": "/company/data/assets/forflow-mark.png",
+      "bytes": 15601,
+      "sha1": "3140a5234a7e45f8e629aff9cf115d9338afc857",
+      "sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f",
+      "source_sha256": "4e14e0721443661d86ddd18250bafbcd203d651fca24e4e67e18542766783a3f"
+    },
+    {
+      "path": "/company/data/assets/forflow-lockup-transparent.png",
+      "bytes": 43435,
+      "sha1": "ef2b1a8479002e941f9f1d5dd2831c676150147c",
+      "sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060",
+      "source_sha256": "acf780de328fc9f02c06011b7ef95faceaee1c455e45c0386e2d88ae26bbe060"
+    },
+    {
+      "path": "/company/data/assets/generated/work-records-office-v1.jpg",
+      "bytes": 316759,
+      "sha1": "de81a0376c2c14012671d1d11c435e3656c53372",
+      "sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9",
+      "source_sha256": "ab9383833f853d2d23870975c6a058567c3e5ad5f88ecb070eec54a91aee35f9"
+    },
+    {
+      "path": "/company/data/assets/inter-regular.woff2",
+      "bytes": 41732,
+      "sha1": "b692bc3d6bef045b7b12e0f24ca7c5b66b7843e6",
+      "sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823",
+      "source_sha256": "fb7bdc84ed89b11cb0024f3f23a12e93b9b482971ef2f2517559da72d1ec1823"
+    },
+    {
+      "path": "/company/data/assets/inter-medium.woff2",
+      "bytes": 42720,
+      "sha1": "ac8a680cb1892e0205339cd89cb034498c779244",
+      "sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504",
+      "source_sha256": "253766e1e2fe00a614a6ab92b8b5755c2c901bdd8d191317638d9e5afa54f504"
+    },
+    {
+      "path": "/company/data/assets/inter-semibold.woff2",
+      "bytes": 42868,
+      "sha1": "43d1c88cec356e76acfb8a7c95e00b16d5b17c3a",
+      "sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a",
+      "source_sha256": "c0e3a624c89eb67220bb1a43d90f70654a0c4a86d7a42c8f9f13a32190b9f06a"
+    }
+  ]
+}
